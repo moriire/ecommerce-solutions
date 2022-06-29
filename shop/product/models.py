@@ -1,10 +1,11 @@
 from django.db import models
 from category.models import Category
 from users.models import Users
+from rest_framework import serializers
 
 class Product(models.Model):
-	vendor = models.OneToOneField(Users, related_name="product_vendor")
-	category = models.Foreignkey(Category, related_name="product_category")
+	vendor = models.OneToOneField(Users, on_delete=models.DO_NOTHING, related_name="product_vendor")
+	category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="product_category")
 	name = models.CharField(max_length=100)
 	description = models.TextField(max_length=512)
 	price = models.FloatField()
@@ -16,4 +17,8 @@ class Product(models.Model):
 		return price*100
 
 
-# Create your models here.
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = "__all__"
+

@@ -17,9 +17,12 @@ from django.contrib.auth.validators import UnicodeUsernameValidator
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
-    def _create_user(self, username, email, password, **extra_fields):
+    def _create_user(self, 
+            #username,
+            email, password, **extra_fields):
         """
         Create and save a user with the given username, email, and password.
+        """
         """
         if not username:
             raise ValueError("The given username must be set")
@@ -31,17 +34,27 @@ class UserManager(BaseUserManager):
             self.model._meta.app_label, self.model._meta.object_name
         )
         username = GlobalUserModel.normalize_username(username)
-        user = self.model(username=username, email=email, **extra_fields)
+        """
+        user = self.model(
+                #username=username, 
+                email=email,
+                **extra_fields)
         user.password = make_password(password)
         user.save(using=self._db)
         return user
 
-    def create_user(self, username, email=None, password=None, **extra_fields):
+    def create_user(self, 
+            #username, 
+            email, password=None, **extra_fields):
         extra_fields.setdefault("is_staff", False)
         extra_fields.setdefault("is_superuser", False)
-        return self._create_user(username, email, password, **extra_fields)
+        return self._create_user(
+                #username, 
+                email, 
+                password, 
+                **extra_fields)
 
-    def create_superuser(self, username, email=None, password=None, **extra_fields):
+    def create_superuser(self, email=None, password=None, **extra_fields):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
 
@@ -50,7 +63,7 @@ class UserManager(BaseUserManager):
         if extra_fields.get("is_superuser") is not True:
             raise ValueError("Superuser must have is_superuser=True.")
 
-        return self._create_user(username, email, password, **extra_fields)
+        return self._create_user(email, password, **extra_fields)
 
     def with_perm(
         self, perm, is_active=True, include_superusers=True, backend=None, obj=None
@@ -120,39 +133,22 @@ def _user_has_module_perms(user, app_label):
     return False
 
 
-class Users(AbstractUser):
-    """
-    An abstract base clasAbstractUsers implementing a fully featured User model with
-    admin-compliant permissions.
+class Users(AbstractUser): 
+    username = None
+    email = models.EmailField(_("email address"), unique=True,)
 
-    Username and password are required. Other fields are optional.
-    """
+    phone = models.IntegerField(_("phone number"),  unique=True)
 
-    username_validator = UnicodeUsernameValidator()
-
-    username = models.CharField(
-        _("username"),
-        max_length=150,
-        unique=True,
-        help_text=_(
-            "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
-        ),
-        validators=[username_validator],
-        error_messages={
-            "unique": _("A user with that stage name already exists."),
-        },
-    )
-    first_name = models.CharField(_("first name"), max_length=150, blank=True)
-    last_name = models.CharField(_("last name"), max_length=150, blank=True)
-    email = models.EmailField(_("email address"), blank=True)
-
-    artiste = models.BooleanField(_("Are you an artiste?"), default=0)
+    vendor = models.BooleanField(_("Who are you?"), default=0)
 
     objects = UserManager()
 
-    EMAIL_FIELD = "email"
-    USERNAME_FIELD = "username"
-    REQUIRED_FIELDS = ["email", "artiste"]
+    #EMAIL_FIELD = "email"
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = [
+            #"email", 
+            "phone"
+            ]
 
     class Meta:
         verbose_name = _("user")
@@ -162,6 +158,9 @@ class Users(AbstractUser):
     def clean(self):
         super().clean()
         self.email = self.__class__.objects.normalize_email(self.email)
+
+    def __str__(self):
+        return self.email.split("@")[0]
 
     def get_full_name(self):
         """
