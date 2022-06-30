@@ -2,25 +2,22 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-import product
 
 from rest_framework import routers
 from category.views import CategoryView
 from product.views import ProductView
-
 from vendor.views import VendorView
 from users.views import UsersView
 from thumb.views import ProductImageView
+from flash.views import FlashSalesView
 
 route = routers.DefaultRouter()
 route.register("category", CategoryView)
-
 route.register("product", ProductView)
-
 route.register("vendor", VendorView)
-
 route.register("users", UsersView)
 route.register("thumb", ProductImageView)
+route.register("flash", FlashSalesView)
 
 urlpatterns = [
     path('api/', include(route.urls)),
