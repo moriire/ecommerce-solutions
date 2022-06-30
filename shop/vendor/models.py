@@ -14,7 +14,7 @@ class VendorSerializer(serializers.ModelSerializer):
 		model = Profile 
 		fields = "__all__"
 
-class VendorUserSerializer(serializer.ModelSerializer):
+class VendorUserSerializer(serializers.ModelSerializer):
 	user = Users.objects.all()
 	class Meta:
 		model = Profile 
