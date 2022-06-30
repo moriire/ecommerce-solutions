@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import Product
+from product.models import Product
 from rest_framework import serializers
 
 class Thumb(models.Model):
