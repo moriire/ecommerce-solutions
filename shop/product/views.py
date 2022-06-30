@@ -1,10 +1,12 @@
-from rest_framework.views import APIView
+from rest_framework.viewsets import GenericViewSet
 from rest_framework.response import Response
 
 from .models import Product, ProductSerializer
 
-class ProductListView(APIView):
-    def get(self, request):
+class ProductView(GenericViewSet):
+    serializer_class = ProductSerializer
+    queryset = Product.objects.all()
+    def list(self, request):
         items = Product.objects.all()
         params = request.query_params
         pk = params.get("id", None)
@@ -19,7 +21,7 @@ class ProductListView(APIView):
 
         catser = ProductSerializer(items, many=True)
         return Response({"data": catser.data, "count": len(catser.data), "p": request.query_params})
-    def post(self, request):
+    def create(self, request):
         catser = ProductSerializer(data=request.data)
         return Response({"data": catser.data})
 

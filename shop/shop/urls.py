@@ -4,10 +4,21 @@ from django.contrib import admin
 from django.urls import path, include
 import product
 
+from rest_framework import routers
+from category.views import CategoryView
+from product.views import ProductView
+
+from vendor.views import VendorView
+
+route = routers.DefaultRouter()
+route.register("category", CategoryView)
+
+route.register("product", ProductView)
+
+route.register("vendor", VendorView)
+
 urlpatterns = [
-    #path('api/', include('product.urls')),
-    path('api/', include('category.urls')),
-    path('api/', include('product.urls')),
+    path('api/', include(route.urls)),
     path('admin/', admin.site.urls),
 ]
 
