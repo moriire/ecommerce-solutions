@@ -58,7 +58,7 @@ ROOT_URLCONF = 'shop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ BASE_DIR / "templates",],
+        'DIRS': [BASE_DIR / "templates",],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,15 +120,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = "home/ec/ecommerce-solutions/shop/static"#BASE_DIR / 'static'
-STATICFILES_DIRS = [
-    "home/ecs/env/lib/python3.9/site-packages/django/contrib/admin/static",
-    "/home/ecs/ecommerce-solutions/shop/static",
-]
+STATIC_URL = '/static/'
+STATIC_ROOT = '/home/ecs/ecommerce-solutions/shop/static'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 
