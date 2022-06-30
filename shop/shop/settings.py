@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "vendor",
     "category",
     "product",
+    "thumb",
 
 ]
 
