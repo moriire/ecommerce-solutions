@@ -9,7 +9,7 @@ class Vendor(models.Model):
 	merchandise = models.TextField()
 
 
-class VendorSerializer(serializer.ModelSerializer):
+class VendorSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Profile 
 		fields = "__all__"
