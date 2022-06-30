@@ -1,5 +1,4 @@
 from django.db import models
-from django.db import models
 from users import Users
 from rest_framework import serializers
 
@@ -16,7 +15,7 @@ class VendorSerializer(serializer.ModelSerializer):
 		fields = "__all__"
 
 class VendorUserSerializer(serializer.ModelSerializer):
-	user = User.objects.all()
+	user = Users.objects.all()
 	class Meta:
 		model = Profile 
 		fields = (user, vendor, address, merchandise)
