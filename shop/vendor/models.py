@@ -11,13 +11,13 @@ class Vendor(models.Model):
 
 class VendorSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = Profile 
+		model = Vendor 
 		fields = "__all__"
 
 class VendorUserSerializer(serializers.ModelSerializer):
 	user = Users.objects.all()
 	class Meta:
-		model = Profile 
+		model = Vendor 
 		fields = (user, vendor, address, merchandise)
 
 
