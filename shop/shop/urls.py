@@ -9,6 +9,7 @@ from category.views import CategoryView
 from product.views import ProductView
 
 from vendor.views import VendorView
+from users.views import UsersView
 
 route = routers.DefaultRouter()
 route.register("category", CategoryView)
@@ -16,6 +17,8 @@ route.register("category", CategoryView)
 route.register("product", ProductView)
 
 route.register("vendor", VendorView)
+
+route.register("users", UsersView)
 
 urlpatterns = [
     path('api/', include(route.urls)),
