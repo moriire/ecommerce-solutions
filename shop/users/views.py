@@ -1,7 +1,7 @@
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.response import Response
 from .models import Users
-from .serializers import UsersSerializers
+from .serializers import UsersSerializer
 
 class UsersView(GenericViewSet):
     serializer_class = UsersSerializer
