@@ -1,10 +1,9 @@
 from django.db import models
-from category.models import Category
-from users.models import Users
+from users.models import Product
 from rest_framework import serializers
 
 class Thumb(models.Model):
-    product = models.ForeignKey(Users, on_delete=models.CASCADE, related_name="product_thumb")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_thumb")
     img = models.ImageField()
     uploaded_on = models.DateTimeField(auto_now_add=True)
     level = models.IntegerField(default=0)
