@@ -7,6 +7,10 @@ class Vendor(models.Model):
 	vendor = models.CharField(max_length=100, unique=True)
 	address = models.TextField()
 	merchandise = models.TextField()
+    
+    def __str__(self):
+        return "{}-{}".format(self.user.phone, self.vendor)
+
 
 
 class VendorSerializer(serializers.ModelSerializer):
