@@ -18,7 +18,12 @@ class VendorUserSerializer(serializers.ModelSerializer):
 	user = Users.objects.all()
 	class Meta:
 		model = Vendor 
-		fields = (user, vendor, address, merchandise)
+		fields = (
+                "user", 
+                "vendor", 
+                "address", 
+                "merchandise"
+                )
 
 
 
