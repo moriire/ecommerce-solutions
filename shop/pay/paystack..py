@@ -3,15 +3,15 @@ import uuid
 import inspect
 class Paystack:
 	base = "https://api.paystack.co"
+
+	def new_base(self, *path):
+			return "{}/{}".format(self.base, *path)
 	
 	class Transaction:
 		def __init__(self, email, amount, **metadata):
 			self.reference = str(uuid.uuid4())
 			self.email = email
 			self.amount = amount
-
-		def new_base(self, *path):
-			return "{}/{}".format(Paystack.base, *path)
 
 		def __dict__(self):
 			return dict(
@@ -23,7 +23,8 @@ class Paystack:
 		def initialize(self):
 			first = self.__class__.__name__.lower()
 			sec = inspect.stack()[0].function
-			return self.new_base(first, sec)#requests.get(self.new_base(first, sec))
+			resp = requests.post(Paystack.new_base(first, sec), self.__dict__())
+			return resp["data"]["authorization_url"]
 
 p=Paystack()
 t = p.Transaction('a.bbb', 12222)
