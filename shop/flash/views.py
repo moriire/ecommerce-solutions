@@ -8,3 +8,5 @@ class FlashSalesView(GenericViewSet):
 	queryset = Flash.objects.all()
 	def list(self, request):
 		return Response("get all")
+	def create(self, request):
+		return Response("get all")

@@ -6,16 +6,16 @@ from datetime import datetime
 from rest_framework.serializers import ModelSerializer
 
 FLASH_PACKAGES =(
-				("Normal", 1),
-				("Super", 2),
-				("Mega", 3),
-				("Jumbo", 4)
+				(1, "Normal"),
+				(2, "Super"),
+				(3, "Mega"),
+				(4, "Jumbo")
 				)
 
 class Flash(models.Model):
 	vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE, related_name="flash-vendor+")
 	product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="flash-product+")
-	package = models.IntegerField(choices=FLASH_PACKAGES)
+	package = models.PositiveSmallIntegerField(choices=FLASH_PACKAGES)
 	enabled = models.BooleanField()
 	clicks = models.IntegerField(default=0)
 	created_on = models.DateTimeField(auto_now=True)
