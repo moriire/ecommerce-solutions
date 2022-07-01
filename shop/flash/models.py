@@ -13,12 +13,16 @@ FLASH_PACKAGES =(
 				)
 
 class Flash(models.Model):
-	vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE, related_name="flash-vendor")
-	product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="flash-product")
+	vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE, related_name="flash-vendor+")
+	product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="flash-product+")
 	package = models.IntegerField(choices=FLASH_PACKAGES)
 	enabled = models.BooleanField()
 	clicks = models.IntegerField(default=0)
 	created_on = models.DateTimeField(auto_now=True)
+
+	class Meta:
+		verbose_name = ("flash Sale")
+		verbose_name_plural = ("flash Sales")
 
 	def __str__(self):
 		return "{}-{}".format(self.package, self.vendor.Users.first_name)

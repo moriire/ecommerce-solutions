@@ -10,6 +10,7 @@ class Product(models.Model):
     description = models.TextField(max_length=512)
     price = models.FloatField()
     discount = models.IntegerField(default=0)
+    
     def __str__(self):
         return self.name
 
@@ -18,6 +19,7 @@ class Product(models.Model):
 
     def discount(self):
         return self.discount*self.price
+
     def discounted_price(self):
         return self.price-self.discount()
     

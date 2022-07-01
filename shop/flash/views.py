@@ -4,7 +4,7 @@ from rest_framework.viewsets import GenericViewSet
 from rest_framework.response import Response
 
 class FlashSalesView(GenericViewSet):
-	queryset = Flash
 	serializer_class = FlashSerializer
-	def list():
+	queryset = Flash.objects.all()
+	def list(self, request):
 		return Response("get all")
