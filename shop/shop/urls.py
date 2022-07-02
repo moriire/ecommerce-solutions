@@ -11,6 +11,8 @@ from users.views import UsersView
 from thumb.views import ProductImageView
 from flash.views import FlashSalesView
 
+from users import views
+
 route = routers.DefaultRouter()
 route.register("category", CategoryView)
 route.register("product", ProductView)
@@ -20,6 +22,7 @@ route.register("thumb", ProductImageView)
 route.register("flash", FlashSalesView)
 
 urlpatterns = [
+    path("", views.index, name="home"),
     path('api/', include(route.urls)),
     path('admin/', admin.site.urls),
 ]

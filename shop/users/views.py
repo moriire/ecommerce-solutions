@@ -1,7 +1,11 @@
+from django.shortcuts import render
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.response import Response
 from .models import Users
 from .serializers import UsersSerializer
+
+def index(request):
+    return render(request, "users/index.html", {})
 
 class UsersView(GenericViewSet):
     serializer_class = UsersSerializer
