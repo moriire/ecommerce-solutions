@@ -13,7 +13,8 @@ class UsersView(GenericViewSet):
     serializer_class = UsersSerializer
     queryset = Users.objects.all()
     def list(self, request):
-        return Response("hello")
+        items = UsersSerializer(self.queryset, many=True)
+        return Response(items.data)
 
     def create(self, request):
         return Response("hello")

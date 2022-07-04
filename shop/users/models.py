@@ -120,6 +120,9 @@ def _user_has_module_perms(user, app_label):
 
 class Users(AbstractUser): 
     username = None
+    first_name = None
+    last_name = None
+    full_name = models.CharField(_("Full Name"), max_length=100)
     email = models.EmailField(_("email address"), unique=True,)
 
     phone = models.IntegerField(_("phone number"),  unique=True)
@@ -147,16 +150,9 @@ class Users(AbstractUser):
     def __str__(self):
         return self.email.split("@")[0]
 
-    def get_full_name(self):
-        """
-        Return the first_name plus the last_name, with a space in between.
-        """
-        full_name = "%s %s" % (self.first_name, self.last_name)
-        return full_name.strip()
-
     def get_short_name(self):
         """Return the short name for the user."""
-        return self.first_name
+        return self.full_name.split(" ")[0]
 
     def email_user(self, subject, message, from_email=None, **kwargs):
         """Send an email to this user."""

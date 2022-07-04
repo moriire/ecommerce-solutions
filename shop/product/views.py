@@ -12,13 +12,15 @@ class ProductView(GenericViewSet):
         pk = params.get("id", None)
         name = params.get("name", None)
         slug = params.get("slug", None)
+        price = params.get("price", None)
         if pk:
             items = items.filter(id=pk)
         if name:
             items = items.filter(name = name)
         if slug:
             items = items.filter(slug= slug)
-
+        if price:
+            items = items.filter(price <= price)
         catser = ProductSerializer(items, many=True)
         return Response({"data": catser.data, "count": len(catser.data), "p": request.query_params})
     def create(self, request):
