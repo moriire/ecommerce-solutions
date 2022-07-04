@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.response import Response
 from .models import Users
 from .serializers import UsersSerializer
 
+@login_required
 def index(request):
     return render(request, "users/index.html", {})
 
