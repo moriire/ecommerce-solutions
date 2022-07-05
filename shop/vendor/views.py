@@ -7,7 +7,7 @@ class VendorView(GenericViewSet):
     serializer_class = VendorSerializer
     queryset = Vendor.objects.all()
     def list(self, request):
-        items = Vendor.objects.all()
+        items = self.queryset
         params = request.query_params
         pk = params.get("id", None)
         name = params.get("name", None)
@@ -23,5 +23,9 @@ class VendorView(GenericViewSet):
         return Response({"data": catser.data, "count": len(catser.data), "p": request.query_params})
     def create(self, request):
         catser = VendorSerializer(data=request.data)
-        return Response({"data": catser.data})
+        if catser.is_valid():
+            catser.save()
+            return Response({"data": catser.data})
+        return Response("something went wrong")
+
 

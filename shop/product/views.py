@@ -25,5 +25,8 @@ class ProductView(GenericViewSet):
         return Response({"data": catser.data, "count": len(catser.data), "p": request.query_params})
     def create(self, request):
         catser = ProductSerializer(data=request.data)
-        return Response({"data": catser.data})
+        if catser.is_valid():
+            catser.save()
+            return Response({"data": catser.data})
+        return Response({"data": "error"})
 

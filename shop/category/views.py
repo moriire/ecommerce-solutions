@@ -4,6 +4,9 @@ from rest_framework.response import Response
 
 from .models import Category, CategorySerializer
 
+from django.template.defaultfilters import slugify # new
+
+
 class CategoryView(GenericViewSet):
     """
     This endpoint is absolutely used by the frontend and admin for classifying available items based on the following:\n 1. Products\n 2. Vendors\n Fields:\n 1. Name: The name of the type of items e.g. Electronics, Wears etc.\n 2. Slug(backend): frontend for routing category-detail.\n 3. Description: blah blah blah about the cat.
@@ -28,7 +31,10 @@ class CategoryView(GenericViewSet):
 
     def create(self, request):
         catser = CategorySerializer(data=request.data)
-        return Response({"data": catser.data})
+        if catser.is_valid():
+            catser.save()
+            return Response({"data": catser.data})
+        return Response("something went wrong")
 
     def update(self, request, pk=None):
         return Response(pk)
