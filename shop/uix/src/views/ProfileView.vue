@@ -18,7 +18,7 @@ export default {                     name: 'ProfileView',
   methods: {
      async getProfileItems(){
      	try {
-	const resp = await axios.get("https://ecs.pythonanywhere.com/api/product/")
+	const resp = await axios.get("https://ecs.pythonanywhere.com/api/users/")
 	this.items = resp.data;
 	} catch(error) {
 		alert(JSON.stringify(error));
