@@ -124,11 +124,10 @@ class Users(AbstractUser):
     last_name = None
     full_name = models.CharField(_("Full Name"), max_length=100)
     email = models.EmailField(_("email address"), unique=True,)
-
     phone = models.IntegerField(_("phone number"),  unique=True)
-
-    vendor = models.BooleanField(_("Who are you?"), default=0)
-
+    img = models.ImageField(_("upload image"),  null=True, blank=True)
+    vendor = models.BooleanField(_("Are you a vendor?"), default=False)
+    subscribe = models.BooleanField(_("Subscribe?"), default=True)
     objects = UserManager()
 
     #EMAIL_FIELD = "email"

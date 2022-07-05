@@ -22,6 +22,7 @@ route.register("thumb", ProductImageView)
 route.register("flash", FlashSalesView)
 
 urlpatterns = [
+        path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
         path("", views.index, name="home"),
         path("home/<str:path>", views.index, name="home-with-path"),
         path('api/', include(route.urls)),

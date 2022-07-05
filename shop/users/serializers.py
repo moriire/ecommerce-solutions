@@ -9,8 +9,8 @@ class UsersSerializer(serializers.ModelSerializer):
                     "phone", 
                      "email", 
                      "password",
-                     #"password2",
                       "vendor",
+                      "subscribe",
                       "get_short_name"
                       )
 

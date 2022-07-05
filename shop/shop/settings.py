@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "users",
+    'oauth2_provider',
     "vendor",
     "category",
     "product",
