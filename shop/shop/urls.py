@@ -22,9 +22,10 @@ route.register("thumb", ProductImageView)
 route.register("flash", FlashSalesView)
 
 urlpatterns = [
-    path("", views.index, name="home"),
-    path('api/', include(route.urls)),
-    path('admin/', admin.site.urls),
+        path("", views.index, name="home"),
+        path("home/<str:path>", views.index, name="home-with-path"),
+        path('api/', include(route.urls)),
+        path('admin/', admin.site.urls),
 ]
 
 if settings.DEBUG:

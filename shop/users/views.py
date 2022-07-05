@@ -6,7 +6,7 @@ from .models import Users
 from .serializers import UsersSerializer
 
 @login_required
-def index(request):
+def index(request, path=None):
     return render(request, "users/index.html", {})
 
 class UsersView(GenericViewSet):
