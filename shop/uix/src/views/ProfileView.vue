@@ -5,6 +5,7 @@
   <StoreProduct :items="items" />
 </template>
 <script>
+import { PulseLoader } from "vue-spinner/dist/vue-spinner.min.js"
 import axios from  "axios"
 import StoreProduct from '@/components/StoreProduct.vue';
 export default {                     name: 'ProfileView',
@@ -13,7 +14,9 @@ export default {                     name: 'ProfileView',
 		items: [],
 	}
   },
-  components: {                        StoreProduct
+  components: {
+  	StoreProduct,
+	PulseLoader,
   },
   methods: {
      async getProfileItems(){

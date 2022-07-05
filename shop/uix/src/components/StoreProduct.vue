@@ -10,16 +10,20 @@
       </li>
       </ul>
       <ul v-else >
-      <h2>Nothing to show </h2>
+      	<PulseLoader />
       </ul>
   </div>
 </template>
 
 <script>
+import { PulseLoader } from "vue-spinner/dist/vue-spinner.min.js"
 export default {
   name: 'StoreProduct',
   props: {
     items: Array
+  },
+  components: {
+  	PulseLoader,
   }
 }
 </script>
