@@ -15,5 +15,8 @@ class ProductImageView(GenericViewSet):
 
     def create(self, request):
         catser = ThumbSerializer(data=request.data)
-        return Response({"data": catser.data})
+        if catser.is_valid():
+            catser.save()
+            return Response({"data": catser.data})
+        return Response("errors")
 

@@ -11,6 +11,7 @@ class UsersSerializer(serializers.ModelSerializer):
                      "password",
                       "vendor",
                       "subscribe",
+                      "img",
                       "get_short_name"
                       )
 

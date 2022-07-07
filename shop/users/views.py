@@ -17,7 +17,11 @@ class UsersView(GenericViewSet):
         return Response(items.data)
 
     def create(self, request):
-        return Response("hello")
+        userser = UsersSerializer(data=request.data)
+        if userser.is_valid():
+            userser.save()
+            return Response({"data": userser.data})
+        return Response({"data": "hello"})
 
     def retrieve(self, request, pk=None):
         return Response("hello")
