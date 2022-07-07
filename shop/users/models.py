@@ -14,6 +14,9 @@ from django.utils.translation import gettext_lazy as _
 
 from django.contrib.auth.validators import UnicodeUsernameValidator
 
+from PIL import Image
+from utils import image_resize, delete_img
+
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
@@ -125,7 +128,7 @@ class Users(AbstractUser):
     full_name = models.CharField(_("Full Name"), max_length=100)
     email = models.EmailField(_("email address"), unique=True,)
     phone = models.IntegerField(_("phone number"),  unique=True)
-    img = models.ImageField(_("upload image"),  null=True, blank=True)
+    img = models.ImageField(_("upload image"),  upload_to="users", null=True, blank=True)
     vendor = models.BooleanField(_("Are you a vendor?"), default=False)
     subscribe = models.BooleanField(_("Subscribe?"), default=True)
     objects = UserManager()
@@ -148,6 +151,15 @@ class Users(AbstractUser):
 
     def __str__(self):
         return self.email.split("@")[0]
+
+    def save(self, *args, **kwargs):
+        image_resize(self.img, 300, 300)
+        super().save(*args, **kwargs)
+
+    def delete(self):
+        if self.img:
+            delete_img(self.img)
+        super().delete()
 
     def get_short_name(self):
         """Return the short name for the user."""
