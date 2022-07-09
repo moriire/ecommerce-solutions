@@ -1,7 +1,7 @@
 from django.apps import apps
 from django.contrib.auth.base_user import BaseUserManager
 
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 
 from django.contrib.auth.hashers import make_password
 
@@ -20,29 +20,29 @@ from utils import image_resize, delete_img
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
-    def _create_user(self, 
-            #username,
-            email, password, **extra_fields): 
+    def _create_user(self,
+            username,
+            email, password, **extra_fields):
         user = self.model(
-                #username=username, 
+                username=username,
                 email=email,
                 **extra_fields)
         user.password = make_password(password)
         user.save(using=self._db)
         return user
 
-    def create_user(self, 
-            #username, 
+    def create_user(self,
+            username,
             email, password=None, **extra_fields):
         extra_fields.setdefault("is_staff", False)
         extra_fields.setdefault("is_superuser", False)
         return self._create_user(
-                #username, 
-                email, 
-                password, 
+                username,
+                email,
+                password,
                 **extra_fields)
 
-    def create_superuser(self, email=None, password=None, **extra_fields):
+    def create_superuser(self, username, email=None, password=None, **extra_fields):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
 
@@ -51,7 +51,7 @@ class UserManager(BaseUserManager):
         if extra_fields.get("is_superuser") is not True:
             raise ValueError("Superuser must have is_superuser=True.")
 
-        return self._create_user(email, password, **extra_fields)
+        return self._create_user(email, username, password, **extra_fields)
 
     def with_perm(
         self, perm, is_active=True, include_superusers=True, backend=None, obj=None
@@ -121,39 +121,29 @@ def _user_has_module_perms(user, app_label):
     return False
 
 
-class Users(AbstractUser): 
-    username = None
-    first_name = None
-    last_name = None
+class Users(AbstractBaseUser, PermissionsMixin):
+    username = models.CharField(_("username"), max_length=100, unique=True,)
     full_name = models.CharField(_("Full Name"), max_length=100)
     email = models.EmailField(_("email address"), unique=True,)
-    phone = models.IntegerField(_("phone number"),  unique=True)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    date_joined = models.DateTimeField(default=timezone.now)
+    phone = models.IntegerField(_("phone number"),  blank=True, null=True,)
     img = models.ImageField(_("upload image"),  upload_to="users", null=True, blank=True)
     vendor = models.BooleanField(_("Are you a vendor?"), default=False)
     subscribe = models.BooleanField(_("Subscribe?"), default=True)
     objects = UserManager()
 
-    #EMAIL_FIELD = "email"
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = [
-            #"email", 
-            "phone"
-            ]
+    USERNAME_FIELD = 'username'
 
-    class Meta:
-        verbose_name = _("user")
-        verbose_name_plural = _("users")
-        #abstract = True
-
-    def clean(self):
-        super().clean()
-        self.email = self.__class__.objects.normalize_email(self.email)
+    REQUIRED_FIELDS = []
 
     def __str__(self):
-        return self.email.split("@")[0]
+        return self.username#email.split("@")[0]
 
     def save(self, *args, **kwargs):
-        image_resize(self.img, 300, 300)
+        if self.img:
+            image_resize(self.img, 300, 300)
         super().save(*args, **kwargs)
 
     def delete(self):
@@ -162,7 +152,6 @@ class Users(AbstractUser):
         super().delete()
 
     def get_short_name(self):
-        """Return the short name for the user."""
         return self.full_name.split(" ")[0]
 
     def email_user(self, subject, message, from_email=None, **kwargs):

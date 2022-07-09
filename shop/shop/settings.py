@@ -31,6 +31,16 @@ ALLOWED_HOSTS = ["127.0.0.1",  "ecs.pythonanywhere.com" ]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    #'allauth',
+
+    #'allauth.account',
+
+    #'allauth.socialaccount',
+
+    #'allauth.socialaccount.providers.google',
+
+    #'allauth.socialaccount.providers.facebook',
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -112,7 +122,18 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = "users.Users"
+"""
+AUTHENTICATION_BACKENDS = (
 
+    'django.contrib.auth.backends.ModelBackend',
+
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+"""
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+
+SITE_ID = 7
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
