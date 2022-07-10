@@ -1,2 +1,0 @@
-# ecommerce-solutions
-Ecommerce Solution
