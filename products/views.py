@@ -6,17 +6,10 @@ from rest_framework import filters
 
 class CategoryView(GenericViewSet):
     """
-    This endpoint is absolutely used
-    by the frontend and admin for cl
-    sifying available items based on
-    the following:\n 1. Products\n 2.
-    Vendors\n Fields:\n 1. Name: The
-    name of the type of items e.g. E
-    ectronics, Wears etc.\n 2. Slug(b
-    ackend): frontend for routing ca
-    egory-detail.\n 3. Description: 
-    lah blah blah abo
-    ut the cat. """
+    All Categories(GET): /api/categories/
+    Categories(POST, PUT, PATCH): /api/categories/:id
+    
+    """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer   
     filter_backends = [filters.SearchFilter]
@@ -43,6 +36,8 @@ class CategoryView(GenericViewSet):
                     "p": request.query_params
                     }
                 )
+    def retrieve(self, request, pk):
+        return "pk"
 
     def create(self, request):
         catser = CategorySerializer(data=request.data)

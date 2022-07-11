@@ -1,14 +1,19 @@
 from django.db import models
 from users.models import CustomUsers
 from rest_framework import serializers
+from django.urls import reverse
 from django.template.defaultfilters import slugify # new
 
 class Category(models.Model):
     name = models.CharField(max_length=40)
     slug = models.SlugField(null=True, blank=True, unique=True, editable=False)
     description = models.TextField()
+
     def  __str__(self):
         return self.name
+
+    def absolute_url(self):
+        return reverse('category-detail', args=[str(self.id)])
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -22,7 +27,7 @@ class Category(models.Model):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = "__all__"
+        fields = ("id", "name", "description", "slug", "absolute_url")
 
 
 class Products(models.Model):
