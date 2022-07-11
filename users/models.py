@@ -31,6 +31,9 @@ class CustomUsers(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.username
 
+    def absolute_url(self):
+        return reverse('flash-detail', args=(self.id,))
+
     def save(self, *args, **kwargs):
         if self.img:
             image_resize(self.img, 300, 300)

@@ -25,6 +25,9 @@ class Flash(models.Model):
 	def __str__(self):
 		return "{}-{}".format(self.package, self.vendor.Users.first_name)
 
+	def absolute_url(self):
+		return reverse('flash-detail', args=(self.id,))
+
 	def price_naira(self):
 		return self.package*1000
 

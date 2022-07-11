@@ -8,8 +8,12 @@ class Thumbs(models.Model):
     uploaded_on = models.DateTimeField(auto_now_add=True)
     level = models.IntegerField(default=0)
     caption=models.CharField(max_length=100)
+
     def __str__(self):
         return self.product.name
+
+    def absolute_url(self):
+        return reverse('thumbs-detail', args=(self.id,))
  
 
 class ThumbSerializer(serializers.ModelSerializer):
