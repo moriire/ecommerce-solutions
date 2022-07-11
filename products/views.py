@@ -2,7 +2,7 @@ from rest_framework.viewsets import GenericViewSet
 from rest_framework.response import Response
 
 from .models import Products, Category, ProductSerializer, CategorySerializer
-
+from rest_framework import filters
 
 class CategoryView(GenericViewSet):
     """
@@ -18,7 +18,10 @@ class CategoryView(GenericViewSet):
     lah blah blah abo
     ut the cat. """
     queryset = Category.objects.all()
-    serializer_class = CategorySerializer                           
+    serializer_class = CategorySerializer   
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'slug', 'category__name']
+
     def list(self, request):
         items = Category.objects.all()
         params = request.query_params

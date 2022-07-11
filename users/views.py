@@ -5,13 +5,22 @@ from rest_framework.response import Response
 from .models import CustomUsers
 from .serializers import UsersSerializer
 
+from rest_framework import filters
+
 @login_required
 def index(request, path=None):
     return render(request, "users/index.html", {})
 
 class UsersView(GenericViewSet):
+    """
+    profile: /api/users/:id
+    
+
+    """
     serializer_class = UsersSerializer
     queryset = CustomUsers.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['email', 'company_name']
 
     def list(self, request):
         items = self.get_serializer(self.get_queryset(), many=True)
