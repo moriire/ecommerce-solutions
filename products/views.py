@@ -1,7 +1,7 @@
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.response import Response
 
-from .models import Products, Category, ProductSerializer, CategorySerializer
+from .models import (Products, Category, ProductSerializer, CategorySerializer, ReviewSerializer, Reviews)
 from rest_framework import filters
 
 class CategoryView(GenericViewSet):
@@ -105,6 +105,27 @@ class ProductView(GenericViewSet):
 
     def create(self, request):
         catser = ProductSerializer(data=request.data)
+        if catser.is_valid():
+            catser.save()
+            return Response({"data": catser.data})
+        return Response({"data": "error"})
+
+
+class ReviewsView(GenericViewSet):
+    serializer_class = ReviewSerializer
+    queryset = Reviews.objects.all()
+    def list(self, request):
+        items = self.get_queryset()
+        catser = self.get_serializer(items, many=True)
+        return Response({"data": catser.data, "count": len(catser.data), "p": request.query_params})
+    
+    def retrieve(self, request, pk):
+        item = self.get_queryset().filter(id=pk).first()
+        catser = self.get_serializer(item)
+        return Response(catser.data)
+
+    def create(self, request):
+        catser = self.get_serializer(data=request.data)
         if catser.is_valid():
             catser.save()
             return Response({"data": catser.data})

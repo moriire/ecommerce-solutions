@@ -37,6 +37,7 @@ class Products(models.Model):
     slug = models.SlugField(null=True, blank=True, unique=True, editable=False)
     description = models.TextField(max_length=512)
     price = models.FloatField()
+    viewed_by = models.ManyToManyField(CustomUsers, related_name="viewed_by")
     discount = models.IntegerField(default=0)
     
     def __str__(self):
@@ -55,11 +56,30 @@ class Products(models.Model):
 
     def discounted_price(self):
         return self.price-self.discount()
+
+    def no_of_viewers(self):
+        return self.viewed_by.count()
     
-
-
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Products
+        fields = "__all__"
+
+
+class Reviews(models.Model):
+    user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE, related_name="user+")
+    product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name="product_review")
+    comment = models.TextField()
+    reviewed_on = models.DateTimeField(auto_now_add=True)
+
+    def  __str__(self):
+        return self.user.full_name
+
+    def absolute_url(self):
+        return reverse('review-detail', args=(self.id))
+
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reviews
         fields = "__all__"
 

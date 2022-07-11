@@ -4,8 +4,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from rest_framework import routers
-from products.views import CategoryView
-from products.views import ProductView
+from products.views import CategoryView, ProductView, ReviewsView
 #from vendors.views import VendorsView
 from users.views import UsersView
 from thumbs.views import ProductImageView
@@ -16,7 +15,7 @@ from users import views
 route = routers.DefaultRouter()
 route.register("categories", CategoryView)
 route.register("products", ProductView)
-#route.register("vendors", VendorsView)
+route.register("reviews", ReviewsView)
 route.register("users", UsersView)
 route.register("thumbs", ProductImageView)
 route.register("flash", FlashSalesView)
