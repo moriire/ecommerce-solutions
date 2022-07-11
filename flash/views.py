@@ -35,14 +35,13 @@ class FlashSalesView(GenericViewSet):
 			return Response("single seleted")
 
 	def update(self, request, pk):
-    	userser = self.get_serializer(data=request.data)
-    	if userser.is_valid():
-    		userser.save()
-            return Response(userser.data)
-        return Response(pk)
+		userser = self.get_serializer(data=request.data)
+		if userser.is_valid():
+			userser.save()
+			return Response(userser.data)
+		return Response(pk)
 
-
-    def partial_update(self, request, pk=None):
+def partial_update(self, request, pk=None):
         useser = self.get_serializer(self.get_queryset(), data=request.data, partial=True)
         if useser.is_valid():
             useser.save()
