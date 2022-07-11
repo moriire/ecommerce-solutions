@@ -38,6 +38,7 @@ class CustomUsers(AbstractBaseUser, PermissionsMixin):
         if self.img:
             image_resize(self.img, 300, 300)
         super().save(*args, **kwargs)
+        
     def delete(self):
         if self.img:
             delete_img(self.img)

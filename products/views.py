@@ -28,7 +28,7 @@ class CategoryView(GenericViewSet):
         if slug:
             items = items.filter(slug= slug)
 
-        catser = CategorySerializer(items, many=True)
+        catser = self.get_serializer(items, many=True)
         return Response(
                 {
                     "data": catser.data, 
@@ -40,20 +40,41 @@ class CategoryView(GenericViewSet):
         return "pk"
 
     def create(self, request):
-        catser = CategorySerializer(data=request.data)
+        catser = self.get_serializer(data=request.data)
         if catser.is_valid():
             catser.save()
             return Response({"data": catser.data})
         return Response("something went wrong")
 
-    def update(self, request, pk=None):
+    def retrieve(self, request, pk):
+        item = self.get_queryset().filter(id=pk).first()
+        catser = self.get_serializer(item)
+        return Response(catser.data)
+
+    def destroy(self, request, pk=None):
+        if pk is None:
+            self.get_queryset().delete()
+            return Response("all deleted")
+        else:
+            self.get_queryset().filter(id=pk).delete()
+            return Response("single seleted")
+
+    def update(self, request, pk):
+        userser = self.get_serializer(data=request.data)
+        if userser.is_valid():
+            userser.save()
+            return Response(userser.data)
         return Response(pk)
 
-    def partial_update(self, request, pk):
-        return Response(pk=None)
 
-    def retrieve(self, request, pk=None):
-        return Response(pk)
+    def partial_update(self, request, pk=None):
+        useser = self.get_serializer(self.get_queryset(), data=request.data, partial=True)
+        if useser.is_valid():
+            useser.save()
+            return Response(useser.data)
+        return Response("errors")
+
+
 
 
 class ProductView(GenericViewSet):
@@ -76,6 +97,12 @@ class ProductView(GenericViewSet):
             items = items.filter(price <= price)
         catser = ProductSerializer(items, many=True)
         return Response({"data": catser.data, "count": len(catser.data), "p": request.query_params})
+    
+    def retrieve(self, request, pk):
+        item = self.get_queryset().filter(id=pk).first()
+        catser = ProductSerializer(item)
+        return Response(catser.data)
+
     def create(self, request):
         catser = ProductSerializer(data=request.data)
         if catser.is_valid():
