@@ -11,7 +11,8 @@ class CategoryView(GenericViewSet):
     
     """
     queryset = Category.objects.all()
-    serializer_class = CategorySerializer   
+    serializer_class = CategorySerializer
+    basename = "product"   
     filter_backends = [filters.SearchFilter]
     search_fields = ['name', 'slug', 'category__name']
 
@@ -21,8 +22,7 @@ class CategoryView(GenericViewSet):
         pk = params.get("id", None)
         name = params.get("name", None)
         slug = params.get("slug", None)
-        if pk:
-            items = items.filter(id=pk)
+        
         if name:
             items = items.filter(name = name)
         if slug:
@@ -36,9 +36,7 @@ class CategoryView(GenericViewSet):
                     "p": request.query_params
                     }
                 )
-    def retrieve(self, request, pk):
-        return "pk"
-
+    
     def create(self, request):
         catser = self.get_serializer(data=request.data)
         if catser.is_valid():
@@ -80,6 +78,7 @@ class CategoryView(GenericViewSet):
 class ProductView(GenericViewSet):
     serializer_class = ProductSerializer
     queryset = Products.objects.all()
+    lookup = ("slug", "id")
     def list(self, request):
         items = self.get_queryset()
         params = request.query_params
@@ -87,12 +86,13 @@ class ProductView(GenericViewSet):
         name = params.get("name", None)
         slug = params.get("slug", None)
         price = params.get("price", None)
-        if pk:
-            items = items.filter(id=pk)
+
         if name:
             items = items.filter(name = name)
+        
         if slug:
             items = items.filter(slug= slug)
+        
         if price:
             items = items.filter(price <= price)
         catser = ProductSerializer(items, many=True)
@@ -100,15 +100,15 @@ class ProductView(GenericViewSet):
     
     def retrieve(self, request, pk):
         item = self.get_queryset().filter(id=pk).first()
-        catser = ProductSerializer(item)
+        catser = self.get_serializer(item)
         return Response(catser.data)
 
     def create(self, request):
-        catser = ProductSerializer(data=request.data)
+        catser = self.get_serializer(data=request.data)
         if catser.is_valid():
             catser.save()
             return Response({"data": catser.data})
-        return Response({"data": "error"})
+        return Response({"data": catser.errors})
 
 
 class ReviewsView(GenericViewSet):
@@ -129,5 +129,5 @@ class ReviewsView(GenericViewSet):
         if catser.is_valid():
             catser.save()
             return Response({"data": catser.data})
-        return Response({"data": "error"})
+        return Response({"data": {"data": catser.errors}})
 

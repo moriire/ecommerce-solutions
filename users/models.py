@@ -12,7 +12,7 @@ class CustomUsers(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
-    phone = models.IntegerField(_("phone number"), unique=True)
+    phone = models.IntegerField(_("phone number"), unique=True, blank=True, null=True)
     img = models.ImageField(_("upload image"),  upload_to="users", null=True, blank=True
 )
     vendor = models.BooleanField(_("Are you a vendor?"), default=False)
