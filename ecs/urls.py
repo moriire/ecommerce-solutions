@@ -11,6 +11,7 @@ from thumbs.views import ProductImageView
 from flash.views import FlashSalesView
 
 from users import views
+import users
 
 route = routers.DefaultRouter()
 route.register("categories", CategoryView)
@@ -21,11 +22,13 @@ route.register("thumbs", ProductImageView)
 route.register("flash", FlashSalesView)
 
 urlpatterns = [
+        path('api/auth/', include('dj_rest_auth.urls')),
+        path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
         path('auth/', include('allauth.urls')),
-        #path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
         path("", views.index, name="home"),
         path("home/<str:path>", views.index, name="home-with-path"),
         path('api/', include(route.urls)),
+        #path('auth/social', include('users.urls')),
         path('admin/', admin.site.urls),
 ]
 

@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -47,7 +49,6 @@ INSTALLED_APPS = [
     "storages",
     "rest_framework",
     'rest_framework.authtoken',
-    'rest_auth',
     "users",
     "products",
     "thumbs",
@@ -91,8 +92,11 @@ WSGI_APPLICATION = 'ecs.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ecs$default',
+        'USERNAME': 'ecsolutions',
+        'HOST': 'ecs.mysql.pythonanywhere-services.com',
+        'PASSWORD': 'ecommerce-solutions',
     }
 }
 
@@ -116,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = "users.CustomUsers"
-SITE_ID = 2
+SITE_ID = 4
 LOGIN_REDIRECT_URL = '/home'
 
 # Additional configuration settings
@@ -130,6 +134,12 @@ SOCIALACCOUNT_PROVIDERS = {
             'profile',
             'email',
         ],
+        'facebook': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        },
         'AUTH_PARAMS': {
             'access_type': 'online',
         }
@@ -137,6 +147,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
+
 
 LANGUAGE_CODE = 'en-us'
 
