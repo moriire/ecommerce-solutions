@@ -5,7 +5,7 @@ from django.urls import path, include
 
 from rest_framework import routers
 from products.views import CategoryView, ProductView, ReviewsView
-#from vendors.views import VendorsView
+from packages.views import PackagesView
 from users.views import UsersView
 from thumbs.views import ProductImageView
 from flash.views import FlashSalesView
@@ -15,6 +15,7 @@ from users import views
 import users
 
 route = routers.DefaultRouter(trailing_slash=False)
+route.register("packages", PackagesView)
 route.register("categories", CategoryView)
 route.register("products", ProductView)
 route.register("reviews", ReviewsView)

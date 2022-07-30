@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "thumbs",
     "flash",
     "bargains",
+    "packages"
 ]
 
 MIDDLEWARE = [
