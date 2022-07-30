@@ -9,6 +9,7 @@ from products.views import CategoryView, ProductView, ReviewsView
 from users.views import UsersView
 from thumbs.views import ProductImageView
 from flash.views import FlashSalesView
+from bargains.views import BargainVendorsView
 
 from users import views
 import users
@@ -20,6 +21,7 @@ route.register("reviews", ReviewsView)
 route.register("users", UsersView)
 route.register("thumbs", ProductImageView)
 route.register("flash", FlashSalesView)
+route.register("bargains", BargainVendorsView)
 
 urlpatterns = [
         path('api/auth/', include('dj_rest_auth.urls')),

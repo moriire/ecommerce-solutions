@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "products",
     "thumbs",
     "flash",
+    "bargains",
 ]
 
 MIDDLEWARE = [
@@ -91,12 +92,17 @@ WSGI_APPLICATION = 'ecs.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
+    #'default': {
+        #'ENGINE': 'django.db.backends.mysql',
+        #'NAME': 'ecs$default',
+        #'USERNAME': 'ecsolutions',
+        #'HOST': 'ecs.mysql.pythonanywhere-services.com',
+        #'PASSWORD': 'ecommerce-solutions',
+    #}
+    
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ecs$default',
-        'USERNAME': 'ecsolutions',
-        'HOST': 'ecs.mysql.pythonanywhere-services.com',
-        'PASSWORD': 'ecommerce-solutions',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
