@@ -4,38 +4,21 @@ from rest_framework.parsers import JSONParser
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from .models import (Products, Category, ProductSerializer, CategorySerializer, ReviewSerializer, Reviews)
-from rest_framework import filters
+#from rest_framework import filters
 
 class CategoryView(GenericViewSet):
-    """
-    All Categories(GET): /api/categories/
-    Categories(POST, PUT, PATCH): /api/categories/:id
-
-    """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    basename = "product"
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['name', 'slug', 'category__name']
-
     def list(self, request):
         items = Category.objects.all()
         params = request.query_params
-        pk = params.get("id", None)
-        name = params.get("name", None)
-        slug = params.get("slug", None)
-
-        if name:
-            items = items.filter(name = name)
-        if slug:
-            items = items.filter(slug= slug)
-
+        pp = params.dict()
+        if params:
+            items = items.filter(**pp)
         catser = self.get_serializer(items, many=True)
         return Response(
                 {
                     "data": catser.data,
-                    "count": len(catser.data),
-                    "p": request.query_params
                     }
                 )
 
@@ -80,77 +63,12 @@ class CategoryView(GenericViewSet):
 
 
 
-class ProductView(GenericViewSet):
+class ProductView(CategoryView):
     authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticated,)
     serializer_class = ProductSerializer
     queryset = Products.objects.all()
-    lookup = ("slug", "id")
-    def list(self, request):
-        items = self.get_queryset()
-        params = request.query_params
-        pk = params.get("id", None)
-        name = params.get("name", None)
-        slug = params.get("slug", None)
-        price = params.get("price", None)
-
-        if name:
-            items = items.filter(name = name)
-
-        if slug:
-            items = items.filter(slug= slug)
-
-        if price:
-            items = items.filter(price <= price)
-        catser = ProductSerializer(items, many=True)
-        return Response({"data": catser.data, "count": len(catser.data), "p": request.query_params})
-
-    def retrieve(self, request, pk):
-        item = self.get_queryset().filter(id=pk).first()
-        catser = self.get_serializer(item)
-        return Response(catser.data)
-
-    def create(self, request):
-        catser = self.get_serializer(data=request.data)
-        if catser.is_valid():
-            catser.save()
-            return Response({"data": catser.data})
-        return Response({"data": catser.errors})
-
-
-    def update(self, request, pk=None):
-        userser = self.get_serializer(data=request.data)
-        if userser.is_valid():
-            userser.save()
-            return Response(userser.data)
-        return Response(userser.data)
-
-
-    def partial_update(self, request, pk=None):
-        useser = self.get_serializer(self.get_queryset(), data=request.data, partial=True)
-        if useser.is_valid():
-            useser.save()
-            return Response(useser.data)
-        return Response(errors.data)
-
-
-class ReviewsView(GenericViewSet):
+    
+class ReviewsView(CategoryView):
     serializer_class = ReviewSerializer
-    queryset = Reviews.objects.all()
-    def list(self, request):
-        items = self.get_queryset()
-        catser = self.get_serializer(items, many=True)
-        return Response({"data": catser.data, "count": len(catser.data), "p": request.query_params})
-
-    def retrieve(self, request, pk):
-        item = self.get_queryset().filter(id=pk).first()
-        catser = self.get_serializer(item)
-        return Response(catser.data)
-
-    def create(self, request):
-        catser = self.get_serializer(data=request.data)
-        if catser.is_valid():
-            catser.save()
-            return Response({"data": catser.data})
-        return Response({"data": {"data": catser.errors}})
-
+    queryset = Reviews.objects.all() 
