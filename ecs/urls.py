@@ -13,7 +13,7 @@ from flash.views import FlashSalesView
 from users import views
 import users
 
-route = routers.DefaultRouter()
+route = routers.DefaultRouter(trailing_slash=False)
 route.register("categories", CategoryView)
 route.register("products", ProductView)
 route.register("reviews", ReviewsView)

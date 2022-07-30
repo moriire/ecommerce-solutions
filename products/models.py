@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import CustomUsers
+#from thumbs.models import Thumbs
 from rest_framework import serializers
 from django.urls import reverse
 from django.template.defaultfilters import slugify # new
@@ -39,7 +40,7 @@ class Products(models.Model):
     price = models.FloatField()
     viewed_by = models.ManyToManyField(CustomUsers, related_name="viewed_by")
     discount = models.IntegerField(default=0)
-    
+
     def __str__(self):
         return self.name
 
@@ -59,7 +60,7 @@ class Products(models.Model):
 
     def no_of_viewers(self):
         return self.viewed_by.count()
-    
+
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Products

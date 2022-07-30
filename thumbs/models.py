@@ -1,6 +1,7 @@
 from django.db import models
 from products.models import Products
 from rest_framework import serializers
+from utils import delete_img, image_resize
 
 class Thumbs(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name="product_thumb")
@@ -14,7 +15,20 @@ class Thumbs(models.Model):
 
     def absolute_url(self):
         return reverse('thumbs-detail', args=(self.id,))
- 
+
+    def save(self, *args, **kwargs):
+        if self.img.file is not None:
+            image_resize(self.img, 300, 300)
+            super().save(*args, **kwargs)
+        else:
+            super(Thumbs, self).delete(*args, **kwargs)
+
+    def delete(self):
+        if self.img:
+            self.img.delete(save=True)
+        super(Thumbs, self).delete(*args, **kwargs)
+
+
 
 class ThumbSerializer(serializers.ModelSerializer):
     class Meta:

@@ -6,7 +6,7 @@ from .models import Thumbs, ThumbSerializer
 class ProductImageView(GenericViewSet):
     serializer_class = ThumbSerializer
     queryset = Thumbs.objects.all()
-    
+
     def list(self, request):
         items = self.get_queryset()
         params = request.query_params
@@ -34,7 +34,7 @@ class ProductImageView(GenericViewSet):
             return Response("single seleted")
 
     def update(self, request, pk):
-        userser = UsersSerializer(data=request.data)
+        userser = self.get_serializer(data=request.data)
         if userser.is_valid():
             userser.save()
             return Response(userser.data)
@@ -42,7 +42,7 @@ class ProductImageView(GenericViewSet):
 
 
     def partial_update(self, request, pk=None):
-        useser = UsersSerializer(self.get_queryset(), data=request.data, partial=True)
+        useser = self.get_serializer(self.get_queryset(), data=request.data, partial=True)
         if useser.is_valid():
             useser.save()
             return Response(useser.data)
