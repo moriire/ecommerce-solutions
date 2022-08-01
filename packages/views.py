@@ -2,10 +2,23 @@ from django.shortcuts import render
 from .models import Packages, PackageSerializer
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+import py4paystack as p4p
 
 class PackagesView(GenericViewSet):
     serializer_class = PackageSerializer
     queryset = Packages.objects.all()
+    #permission_classes = [IsAuthenticated]
+    """
+    def get_permissions(self):
+        if self.action=="list":
+            print("get action")
+            permission_classes = [IsAuthenticatedOrReadOnly]
+            #t = p4p.Transaction()
+            #t.Subscription()
+
+    """
+            
     def list(self, request):
         items = self.get_queryset()
         params = request.query_params
@@ -21,8 +34,10 @@ class PackagesView(GenericViewSet):
         return Response(catser.data)
 
     def create(self, request):
+        t = p4p.Paystack()
         catser = self.get_serializer(data=request.data)
         if catser.is_valid():
+            t.Plan()(name=request.data.name, amount=request.data.price, interval=request.data.duration)
             catser.save()
             return Response({"data": catser.data})
         return Response("errors")
