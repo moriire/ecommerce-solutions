@@ -1,4 +1,4 @@
-from rest_framework.viewsets import GenericViewSet
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
@@ -6,9 +6,10 @@ from rest_framework.permissions import IsAuthenticated
 from .models import (Products, Category, ProductSerializer, CategorySerializer, ReviewSerializer, Reviews)
 #from rest_framework import filters
 
-class CategoryView(GenericViewSet):
+class CategoryView(ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    """
     def list(self, request):
         items = Category.objects.all()
         params = request.query_params
@@ -59,6 +60,8 @@ class CategoryView(GenericViewSet):
             useser.save()
             return Response(useser.data)
         return Response("errors")
+
+    """
 
 
 

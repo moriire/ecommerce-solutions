@@ -3,9 +3,8 @@ from .models import Bargains, BargainSerializer
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.response import Response
 
-from products.views import CategoryView
-
-class BargainVendorsView(CategoryView):
+from rest_framework.viewsets import ModelViewSet
+class BargainVendorsView(ModelViewSet):
     serializer_class = BargainSerializer
     queryset = Bargains.objects.all()
     """

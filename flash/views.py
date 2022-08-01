@@ -2,9 +2,8 @@ from django.shortcuts import render
 from .models import Flash, FlashSerializer
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.response import Response
-from products.views import CategoryView
-
-class FlashSalesView(CategoryView):
+from rest_framework.viewsets import ModelViewSet
+class FlashSalesView(ModelViewSet):
     serializer_class = FlashSerializer
     queryset = Flash.objects.all()
     """

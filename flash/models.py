@@ -1,13 +1,11 @@
 from django.db import models
 from packages.models import Packages
 from users.models import CustomUsers
-from products.models import Products
 from datetime import datetime 
 from rest_framework.serializers import ModelSerializer
 
 class Flash(models.Model):
 	user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE, related_name="flash-user+")
-	product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name="flash-product+")
 	package = models.ForeignKey(Packages, on_delete=models.CASCADE, related_name="flash-package+")
 	enabled = models.BooleanField(default=False)
 	created_on = models.DateTimeField(auto_now=True)
