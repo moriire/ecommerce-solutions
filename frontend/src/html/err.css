@@ -1,0 +1,11 @@
+*{
+    border: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+
+body{
+    text-align: center;
+    font-size: 28px;
+    background-color: blue;
+}

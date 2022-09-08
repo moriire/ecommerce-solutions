@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap");
+
+*{
+    border:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.verification{
+    padding: 20px;
+    display: block;
+    text-align: center;
+
+    img{
+        height: 90px;
+        width: 90px;
+    }
+
+    h1{
+        font-family: 'DM Sans';
+        font-size: 35px;
+        font-weight: 700;
+    }
+
+    h2{
+        font-family: 'DM Sans';
+        font-size: 20px;
+        font-weight: 700;
+    }
+    h3{
+        font-family: 'DM Sans';
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    span{
+        color: #bb00da;
+    }
+}
+.redirect{
+    display: block;
+    text-align: center;
+    h3{
+        font-family: 'DM Sans';
+        font-size: 20px;
+        font-weight: 700;
+    }
+    button{
+        width: 9em;
+        height: 2.5em;
+        background: #bb00da;
+        color: #fff;
+        border: none;
+        &:hover{
+            background: #fff;
+            color: #bb00da;
+            border: 1px solid black;
+        }
+    }
+}
+.mail{
+    display: block;
+    text-align: center;
+    a{
+        text-decoration: none;
+        color: black;
+
+        span{
+            color: #bb00da;
+        }
+
+        &:hover{
+            // border: 1px solid #bb00da;
+            width: 10em;
+            height: 2em;
+            padding: 4px;
+            background-color: #fff;
+            box-shadow: rgba($color: #000000, $alpha: 0.5);
+        }
+    }
+    h1{
+        
+           font-family: 'DM Sans';
+           font-size: 35px;
+           font-weight: 700;
+    
+    
+    }
+    h2{
+        
+           font-family: 'DM Sans';
+           font-size: 35px;
+           font-weight: 700;
+    
+    
+    }
+    p{
+        font-family: 'DM Sans';
+        font-size: 35px;
+        font-weight: 400;
+ 
+    }
+
+    button{
+        width: 9em;
+        height: 2.5em;
+        background: #bb00da;
+        color: #fff;
+        &:hover{
+            background: #fff;
+            color: #bb00da;
+            border: 1px solid black;
+        }
+    }
+}

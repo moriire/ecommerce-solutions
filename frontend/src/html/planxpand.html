@@ -1,0 +1,2079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./Sass/style.css">
+    <title>Plan Expand</title>
+</head>
+<body>
+    <div class="header">
+        <div class="nav1">
+            <div class="logo">
+               <h1> <span>Mega</span>Day</h1>
+            </div>
+            <div class="search">
+                <input type="text" placeholder="Search">
+                <ul>
+                    <li><a href="">All Categories <span></span><i class="fa-solid fa-caret-down"></i></a></li>
+                </ul>
+                <!-- <button type="submit">Search</button> -->
+            </div>
+            <!-- <div class="nav-btn">
+               <a id="create_account" href="Signup.html">Create Account</a>
+               <a id="login" href="Login.html"> Login</a>
+            </div>  -->
+            <div class="user">
+                <img src="./Assets/Vector.png">
+                <img src="./Assets/Group 87.png">
+                <img src="./Assets/Vector-1.png">
+                <span>
+                    <img src="./Assets/Rectangle 21.png"><i class="fa-solid fa-caret-down"></i>
+                </span>
+            </div>
+        </div>
+        <!-- -END OF 1st NAV --> 
+
+        <div class="nav2">
+            <div class="row1">
+                <ul id="Categories">
+                   <span></span>
+                       <li>
+                        <img src="./Assets/Group 10.png">
+                            <span>All  Categories</span></li>
+              </ul>
+           </div>
+
+           <div class="row2">
+                <ul>
+                    <li>
+                       
+                       <img src="./Assets/Group.png">
+                        English</li>
+                    <li>
+                       <img src="./Assets/Group 3.png">
+                        Lagos, NG<i class="fa-thin fa-caret-down"></i></li>
+                </ul>
+           </div>
+           
+        </div> 
+        <!-----END OF 2nd NAV-->
+        <div class="nav3"> 
+            <ul>
+                <li><a href =""> <img src="./Assets/Group 25.png">
+                    Post an Item</a></li>
+                <li><a href =""> <img src="./Assets/Group 26.png" >
+                    Feautured Products</a></li>
+                <li><a href ="">
+                    <img src="./Assets/Group 28.png">
+                    Under 5k</a></li>
+                <li><a href ="">
+                 <img src="./Assets/Group 27.png">
+                    Latest Stocks</a></li>
+            </ul>
+        </div>
+    <!-- ---END OF TOP NAV -->
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!--Nav Track Starts-->
+<div class="nav_track">
+    <p>Home > <span>Mega Deals</span></p>
+</div>
+<!--Nav Track End-->
+
+<!---------Grid Starts--------->
+<div class="grid_container">
+    <div class="container">
+        <div class="grid1">
+            <h2 id="top"><img src="./Assets/Group 10.png"> All Categories</h2>
+           <div class="col1">
+            <ul>
+                <li>Agricultural Products</li>
+                <li>Animals and Pet</li>
+                <li>Apparel and Clothing</li>
+                <li>Baby</li>
+                <li>Books</li>
+                <li>Computer and Networking</li>
+                <li>Electronics</li>
+                <li>Equipment and Machinery</li>
+                <li>Fashion</li>
+                <li>Food and Beverage</li>
+                <li>Hair Products, Health and Beauty</li>
+                <li>Home</li>
+                <li>Industrial and Construction</li>
+                <li>Medical</li>
+                <li>Mobile Phones</li>
+                <li>Music</li>
+                <li>Properties</li>
+                <li>Security and Surveillance</li>
+                <li>Services and Jobs</li>
+                <li>Sports and Outdoors</li>
+                <li>Vehicles</li>
+                <li>Wedding, Party and Events</li>
+                <li><span>
+                    More Categories &nbsp;  </span> </li>
+            </ul>
+           </div>
+           <div class="col2">
+            <h4> <strong> Price </strong>
+            <a href=""> Apply </a> </h4>
+            <br>
+            <form action="">
+                <input type="Range" name="Price" id="priceFinder" min="20,000" max="3,000,000">
+            </form>
+            <h4 id="price"> <strong> 20,000</strong> -<strong> 3,000,000</strong></h4>
+            <!-- <br>     -->
+            <label >
+                <input type="radio" name="price" id="Filter" checked="Checked"> Under 5k <br>
+                <br>
+                <input type="radio" name="price" id="Filter"> 5k - 50k <br>
+                <br>
+                <input type="radio" name="price" id="Filter"> 50k - 150k <br>
+                <br>
+                <input type="radio" name="price" id="Filter"> 150k to 250 k <br>
+                <br>
+                <input type="radio" name="price" id="Filter"> More than 250k
+                <br>
+            </label>
+           </div>
+           <div class="col3">
+            <h2> <strong> Discount Percentage</strong></h2>
+            <label >
+                <input type="radio" name="percent" id="" checked> 50% or more <br>
+                <br>
+                <input type="radio" name="percent" id=""> 20-30% <br>
+                <br>
+                <input type="radio" name="percent" id=""> less than 20% <br>
+                <br>
+               
+            </label>
+           </div>
+           <div class="col4">
+            <h2> <strong>
+                Gender </strong></h2>
+            <label action="">
+                <input type="radio" name="gnder" id="Gender"> Female <br>
+                <br>
+                <input type="radio" name="gnder" id="Gender"> Male <br>
+                <br>
+                <input type="radio" name="gnder" id="Gender"> Unisex <br>
+                <br>
+
+            </label>
+           </div>
+           <div class="col5">
+            <h2><strong>
+                Location</strong></h2>
+                <br>
+            <input type="search" name="Location" id="Location"> <br>
+            <br>
+            <h4>All Nigeria</h4>
+            <br>
+            <br>
+
+            <a href=""> <img src="./Assets/Group 142.png"> My Location </a>
+           </div>
+           <div class="col6">
+            <h2><strong>Condition</strong></h2>
+            <label action="">
+                <input type="radio" name="condition" id="condition"> Brand New <br>
+                <br>
+                <input type="radio" name="condition" id="condition"> Refurbished <br>
+                <br>
+                <input type="radio" name="condition" id="condition"> Used <br>
+                <br>    
+            </label>
+           </div>
+           <div class="col7">
+            <h2><strong>Exchange</strong></h2>
+            <label >
+                <input type="radio" name="xchange" id="yes"> Yes <br>
+             
+                <input type="radio" name="xchange" id="No"> No <br> 
+            
+            </label>
+           </div>
+        </div>
+
+        <div class="grid2">
+            <div class="flexcontainer">
+
+                <div class="topflex">
+                    <div class="one">
+                        <div class="img">
+                            <img src="" alt="">
+                        </div>
+                        <div class="cap">
+                            <p>Electronics</p>
+                        </div>
+                    </div>
+                    <div class="one">
+                        <div class="img">
+                            <img src="" alt="">
+                        </div>
+                        <div class="cap">
+                            <p>Phones & Tablets</p>
+                        </div>
+                    </div>
+                    <div class="one">
+                        <div class="img">
+                            <img src="" alt="">
+                        </div>
+                        <div class="cap">
+                            <p>Groceries</p>
+                        </div>
+                    </div>
+                    <div class="one">
+                        <div class="img">
+                            <img src="" alt="">
+                        </div>
+                        <div class="cap">
+                            <p>Fashion</p>
+                        </div>
+                    </div>
+                    <div class="one">
+                        <div class="img">
+                            <img src="" alt="">
+                        </div>
+                        <div class="cap">
+                            <p>Home & Appliances</p>
+                        </div>
+                    </div>
+                 
+                </div>
+                <br>
+                <br>
+                <div class="planflex">
+                    <div class="top">
+                        <h3>Mega Deals</h3>
+                    </div>
+                    <h5>12345678 Matches Found</h5> <br>
+                    <div class="cardcontainer">
+                       
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (5).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (1).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (2).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (4).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (5).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (1).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (2).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (4).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (5).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (1).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (2).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (4).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (5).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (1).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (2).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (4).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (5).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (1).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (2).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (4).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (5).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (1).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (2).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (4).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (5).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (1).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (2).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (4).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (5).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (1).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (2).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (4).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (5).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (1).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (2).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (4).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (5).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (1).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (2).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (4).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (5).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (1).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (2).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                        <div class="cards">
+                            <div class="card-img">
+                                <img src="./Assets/Rectangle 9 (4).png">
+                            </div>
+                            <div class="caption">
+                                <ul>
+                                    <li>
+                                        <h4> Nike Running Shoe</h4>
+        
+                                    </li>
+                                    <li>
+                                        <h6>
+                                            Shoes
+                                        </h6>
+                                    </li>
+                                </ul>
+                            </div>   
+                            <br>
+                            <div class="price">
+                                <ul>
+                                    <li>
+                                        <p id="prc"> N17,000</p>
+                                        <h6 id="strike">
+                                            N13,000
+                                        </h6>
+            
+                                    </li>
+                                </ul>
+        
+                                <ul>
+                                    <li>
+                                        <h6>
+                                            100 aval
+                                        </h6>
+                                       </li>
+                                </ul>
+                            </div>
+                            
+                         
+                            <span><a href="" id="buy">Buy Now</a></span>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+         
+        </div>
+    </div>
+</div>
+<!---------Grid Ends--------->
+<!------Bleed Starts------>
+<br>
+<br>
+<br>
+<br>
+<!------Bleed Ends------>
+</body>
+</html>

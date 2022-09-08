@@ -1,0 +1,6 @@
+Colors
+$btncolor: #BB00DA
+$nav2: #FCDDFF
+$nav3: #F9CBFE
+$hitchglobal1: #AB6BFF
+$hitchglobal2: #FF6BF0

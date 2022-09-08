@@ -1,0 +1,397 @@
+/*Import colors*/
+/*Import header*/
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Plus+Jakarta+Sans:wght@400;700&display=swap");
+.header {
+  display: block;
+  position: absolute;
+  padding: 0, 10%;
+  height: 25%;
+  min-width: 100%;
+  margin: auto;
+  /*First part of nav*/
+  /*Second part of nav*/
+}
+.header .nav1 {
+  position: -webkit-sticky;
+  position: sticky;
+  background: #FDEBFF;
+  padding: 15px, 15px, 10%;
+  left: 0;
+  top: 10;
+  display: flex;
+  height: 40%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin: 10px, 20px;
+  /*Styles the logo icon or text*/
+  /*Styles the search action*/
+  /*Styles the buttons*/
+  /*Styles the user actions for logged in users*/
+  /*Styles the nav on small screens*/
+}
+.header .nav1 .logo {
+  display: flex;
+  position: relative;
+  width: 15%;
+  justify-content: center;
+}
+.header .nav1 .logo h1 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 200%;
+}
+.header .nav1 .logo span {
+  color: #BB00DA;
+}
+.header .nav1 .search {
+  position: relative;
+  padding: 0% 5%;
+  display: flex;
+  min-width: 50%;
+  max-height: 80%;
+  height: 70%;
+  align-items: center;
+  justify-content: center;
+}
+.header .nav1 .search input {
+  max-width: 40rem;
+  height: 70%;
+  flex: 1;
+  padding: 0 10px;
+  border: 1px solid #BB00DA;
+}
+.header .nav1 .search ul {
+  position: relative;
+  left: -115px;
+}
+.header .nav1 .search ul li {
+  list-style-type: none;
+}
+.header .nav1 .search ul a {
+  text-decoration: none;
+}
+.header .nav1 .search ul .fa-solid {
+  color: #BB00DA;
+}
+.header .nav1 .nav-btn {
+  display: flex;
+  width: 20%;
+  padding: 0, 2%;
+  align-items: center;
+  justify-content: space-around;
+}
+.header .nav1 .nav-btn a {
+  text-decoration: none;
+}
+.header .nav1 .nav-btn #create_account {
+  border: none;
+  padding: 2.6% 2.6%;
+  text-align: center;
+  background: #BB00DA;
+  width: 10rem;
+  height: 2rem;
+  color: #fff;
+}
+.header .nav1 .nav-btn #create_account:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.header .nav1 .nav-btn #login {
+  border: 1px solid #BB00DA;
+  padding: 0.3rem 1.7rem;
+  background: #fff;
+  align-items: center;
+  width: 6rem;
+  height: 2rem;
+  color: #BB00DA;
+}
+.header .nav1 .nav-btn #login:hover {
+  background: #BB00DA;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.header .nav1 .user {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.header .nav1 .user img {
+  height: 15px;
+  width: 15px;
+}
+.header .nav1 .user span img {
+  height: 40px;
+  width: 40px;
+}
+.header .nav1 .user span i {
+  height: 20px;
+  width: 20px;
+}
+.header .nav1 .tgler {
+  display: none;
+}
+.header .nav2 {
+  display: flex;
+  height: 25%;
+  width: 100%;
+  position: absolute;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px 10px 20px;
+  background: #FCDDFF;
+}
+.header .nav2 .row1 {
+  align-items: center;
+  padding: 0.5%;
+  transform: translate(40%, 49.6%);
+  text-align: center;
+}
+.header .nav2 .row1 img {
+  width: 20px;
+  height: 20px;
+  transform: translateY(25%);
+}
+.header .nav2 .row1 .catlist {
+  display: inline-block;
+  display: block;
+  position: relative;
+  border: 1px solid black;
+  background-color: #fff;
+  z-index: 100;
+  transform: translateY(-0.35%);
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 132%;
+}
+.header .nav2 .row1 .catlist #catlist {
+  list-style-type: none;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0px, 5px;
+}
+.header .nav2 .row1 .catlist #catlist li {
+  display: block;
+  background-color: #f5f5f5;
+  height: 25px;
+  padding-top: 5px;
+}
+.header .nav2 .row1 .catlist #catlist li:hover {
+  background-color: #BB00DA;
+  color: #fff;
+}
+.header .nav2 .row1 .catlist #catlist li img {
+  height: 13px;
+  width: 13px;
+}
+.header .nav2 .row1 .catlist #subcat {
+  display: block;
+  transform: translateX(120%);
+}
+.header .nav2 .row1 .catlist #subsubcat {
+  display: none;
+}
+.header .nav2 .row2 {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  width: 20%;
+  gap: 2px;
+  justify-content: space-between;
+}
+.header .nav2 .row2 img {
+  width: 20px;
+  height: 20px;
+}
+.header .nav2 .row2 ul {
+  display: flex;
+}
+.header .nav2 .row2 ul li {
+  margin: 0px 10px;
+  display: flex;
+}
+.header .nav2 ul {
+  list-style-type: none;
+}
+.header .nav3 {
+  display: flex;
+  position: relative;
+  padding: 0% 3%;
+  height: 20%;
+  width: 50%;
+  background: #F9CBFE;
+  align-items: center;
+  justify-content: space-around;
+  transform: translate(50%, 100%);
+  z-index: 2;
+  top: -1px;
+}
+.header .nav3 ul {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  gap: 4rem;
+  font-family: "Jakarta Plus Sans";
+  font-size: 10px;
+}
+.header .nav3 ulli {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
+.header .nav3 ul img {
+  width: 10px;
+  height: 10px;
+}
+.header .nav3 a {
+  text-decoration: none;
+}
+
+.footer {
+  display: flex;
+  width: 100%;
+  height: 40%;
+  padding: 20px;
+  z-index: -5;
+  gap: 40px;
+  background: black;
+  color: #fff;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+}
+.footer li {
+  list-style-type: none;
+}
+.footer .footerlogo {
+  position: absolute;
+  width: 55px;
+  transform: translate(-620px, -100px);
+}
+.footer .footerlogo img {
+  height: 20px;
+  width: 20px;
+  background: white;
+}
+.footer .cols {
+  display: flex;
+  position: relative;
+  gap: 60px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 150%;
+  transform: translate(20%, 10%);
+}
+.footer .footer_img {
+  color: gold;
+  align-self: flex-end;
+  transform: translate(140px, -82px);
+}
+.footer span {
+  position: relative;
+  align-self: flex-end;
+  transform: translate(50%, 50%);
+}
+
+/*Import Mixins fr general styling*/
+/*Import fonts*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.flow {
+  display: block;
+  position: relative;
+  transform: translateY(60%);
+}
+.flow .container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.flow .container .img {
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+  background: #F9CBFE;
+  padding: 10px;
+  border-radius: 40px;
+}
+.flow .container .img img {
+  height: 30px;
+  width: 30px;
+}
+.flow .container h3 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 200%;
+}
+.flow .container h4 {
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16.3298px;
+  line-height: 21px;
+  color: #808080;
+}
+.flow .container form {
+  text-align: left;
+  width: 300px;
+  margin: auto;
+}
+.flow .container form label {
+  padding: 10px;
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16.3298px;
+  line-height: 21px;
+}
+.flow .container form input {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+}
+.flow .container .rst {
+  width: 300px;
+  margin: auto;
+}
+.flow .container .rst a {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.flow .container .rst a:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}/*# sourceMappingURL=reset.css.map */

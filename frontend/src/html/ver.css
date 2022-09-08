@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap");
+* {
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.verification {
+  padding: 20px;
+  display: block;
+  text-align: center;
+}
+.verification img {
+  height: 90px;
+  width: 90px;
+}
+.verification h1 {
+  font-family: "DM Sans";
+  font-size: 35px;
+  font-weight: 700;
+}
+.verification h2 {
+  font-family: "DM Sans";
+  font-size: 20px;
+  font-weight: 700;
+}
+.verification h3 {
+  font-family: "DM Sans";
+  font-size: 20px;
+  font-weight: 700;
+}
+.verification span {
+  color: #bb00da;
+}
+
+.redirect {
+  display: block;
+  text-align: center;
+}
+.redirect h3 {
+  font-family: "DM Sans";
+  font-size: 20px;
+  font-weight: 700;
+}
+.redirect button {
+  width: 9em;
+  height: 2.5em;
+  background: #bb00da;
+  color: #fff;
+  border: none;
+}
+.redirect button:hover {
+  background: #fff;
+  color: #bb00da;
+  border: 1px solid black;
+}
+
+.mail {
+  display: block;
+  text-align: center;
+}
+.mail a {
+  text-decoration: none;
+  color: black;
+}
+.mail a span {
+  color: #bb00da;
+}
+.mail a:hover {
+  width: 10em;
+  height: 2em;
+  padding: 4px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.5);
+}
+.mail h1 {
+  font-family: "DM Sans";
+  font-size: 35px;
+  font-weight: 700;
+}
+.mail h2 {
+  font-family: "DM Sans";
+  font-size: 35px;
+  font-weight: 700;
+}
+.mail p {
+  font-family: "DM Sans";
+  font-size: 35px;
+  font-weight: 400;
+}
+.mail button {
+  width: 9em;
+  height: 2.5em;
+  background: #bb00da;
+  color: #fff;
+}
+.mail button:hover {
+  background: #fff;
+  color: #bb00da;
+  border: 1px solid black;
+}/*# sourceMappingURL=ver.css.map */

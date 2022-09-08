@@ -1,0 +1,96 @@
+/*Import colors*/
+@import '../Sass/colours';
+
+
+
+/*Import header*/
+@import '../Sass/header';
+
+
+
+
+/*Import Mixins fr general styling*/
+@import '../Sass/mixins';
+
+/*Import fonts*/
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Plus+Jakarta+Sans:wght@400;700&display=swap');
+
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.flow{
+    display: block;
+    position: relative;
+    transform: translateY(60%);
+    .container{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        .img{
+            display: block;
+            width: 50px;
+            height: 50px;
+            margin: auto;
+            background: $nav3;
+            padding: 10px;
+            border-radius: 40px;
+            img{
+                height:30px;
+                width: 30px;
+            }
+        }
+        h3{
+            font-family: 'DM Sans';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 200%;
+        }
+        h4{
+            font-family: 'Jakarta Plus Sans';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16.3298px;
+            line-height: 21px;
+            color: #808080;
+        }
+
+ 
+        form{
+            // border: 1px solid black;
+            text-align: left;
+            width: 300px;
+            margin: auto;
+            label{
+                padding: 10px;
+                font-family: 'Jakarta Plus Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16.3298px;
+                line-height: 21px;
+            }
+            input{
+                width: 100%;
+                height: 40px;
+                padding: 10px;
+            }
+        }
+        .rst{
+            width: 300px;
+            margin: auto;
+            a{
+                @include btn1;
+            }
+        }
+        
+    }
+}
