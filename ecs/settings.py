@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-c+=02zv07*647ejmnqjn7+t=rbvl6j_mv9=k9dqye=7n==$o=s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["www.megadey.org", "megadey.org", "ecs.pythonanywhere.com"]
 
 
 # Application definition
@@ -33,13 +33,6 @@ ALLOWED_HOSTS = ["*"]
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
-    'dj_rest_auth',
-    'dj_rest_auth.registration',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -48,13 +41,25 @@ INSTALLED_APPS = [
     "corsheaders",
     "storages",
     "rest_framework",
+    'knox',
     'rest_framework.authtoken',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
     "users",
+    #"profiles",
     "products",
     "thumbs",
+    "packages",
     "flash",
     "bargains",
-    "packages"
+    "payment",
+    'coreapi', # Coreapi for coreapi documentation
+    'drf_yasg', # drf_yasg fro Swagger documentatio
 ]
 
 MIDDLEWARE = [
@@ -73,7 +78,7 @@ ROOT_URLCONF = 'ecs.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ BASE_DIR / "templates/", ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -94,13 +99,13 @@ WSGI_APPLICATION = 'ecs.wsgi.application'
 
 DATABASES = {
     #'default': {
-        #'ENGINE': 'django.db.backends.mysql',
-        #'NAME': 'ecs$default',
-        #'USERNAME': 'ecsolutions',
-        #'HOST': 'ecs.mysql.pythonanywhere-services.com',
-        #'PASSWORD': 'ecommerce-solutions',
+    #    'ENGINE': 'django.db.backends.mysql',
+     #   'NAME': 'ecs$ecsolutions',
+      #  'USERNAME': 'ecs',
+       # 'HOST': 'ecs.mysql.pythonanywhere-services.com',
+        #'PASSWORD': '',
     #}
-    
+
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
@@ -126,14 +131,21 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
+}
+REST_AUTH_REGISTER_SERIALIZERS = {                            'REGISTER_SERIALIZER': 'users.models.RegisterSerializer',
+}
+ACCOUNT_ADAPTER = 'users.forms.NewAllauthAdapter'
 AUTH_USER_MODEL = "users.CustomUsers"
 SITE_ID = 4
-LOGIN_REDIRECT_URL = '/home'
-LOGIN_URL="auth/login/"
-LOGOUT_URL="auth/logout/"
-
-ACCOUNT_EMAIL_VERIFICATION = 'none'
-
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_USER_MODEL_USERNAME_FIELD=None
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_USERNAME_REQUIRED = False
 # Additional configuration settings
 SOCIALACCOUNT_QUERY_EMAIL = True
 ACCOUNT_LOGOUT_ON_GET= True
@@ -144,17 +156,36 @@ SOCIALACCOUNT_PROVIDERS = {
         'SCOPE': [
             'profile',
             'email',
-        ],
-        'facebook': {
+        ]
+    },
+    'facebook': {
         'SCOPE': [
-            'profile',
+            'public_profile',
             'email',
         ],
-        },
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time',
+        ],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
     }
+}
+#ACCOUNT_SIGNUP_FORM_CLASS='users.forms.SocialPasswordedSignupForm'
+SOCIALACCOUNT_FORMS = {
+    'signup': 'users.forms.SocialPasswordedSignupForm'
+}
+ACCOUNT_FORMS = {
+    'signup': 'users.forms.SocialPasswordedSignupForm'
 }
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -168,12 +199,25 @@ USE_I18N = True
 
 USE_TZ = True
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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'
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = "mail@megadey.org"
 
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = 'email-success'  # if you are not logged in
+
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/'  # if you are logged in
+
+#UNIQUE_EMAIL = True  # just to be sure, ok
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
+STATIC_ROOT="/static/"
+#STATIC_DIRS=[    ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -181,8 +225,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOWED_ORIGINS = [
-    "https://ecs.pythonanywhere.com",
+    "https://www.megadey.org",
     "http://127.0.0.1:8080",
+    #"*",
 ]
 
 Env = os.environ
@@ -202,3 +247,7 @@ AWS_S3_VERIFY = True
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+#CSRF_TRUSTED_ORIGINS = ["megadey.org", "*"]
+
+

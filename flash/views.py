@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Flash, FlashSerializer
-from rest_framework.viewsets import GenericViewSet
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 class FlashSalesView(ModelViewSet):
@@ -22,11 +22,23 @@ class FlashSalesView(ModelViewSet):
         return Response(catser.data)
 
     def create(self, request):
+        data = request.data
+        plan_code = data["plan_code"]
+        email = request.user.email
         catser = self.get_serializer(data=request.data)
         if catser.is_valid():
-            catser.save()
+
+            try:
+                s = sub(email=email, plan_code=plan_code).create()
+            except Exception as e:
+                return Response(str(e))
+            finally:
+                catser.validated_data["sub_data"] = s
+
+                catser.save()
             return Response({"data": catser.data})
-        return Response("errors")
+        return Response(catser.errors)
+
 
     def destroy(self, request, pk=None):
         if pk is None:

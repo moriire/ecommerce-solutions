@@ -7,22 +7,11 @@ from .models import (Products, Category, ProductSerializer, CategorySerializer, 
 #from rest_framework import filters
 
 class CategoryView(ModelViewSet):
+    """Lists/Get/Re Product category"""
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    """
-    def list(self, request):
-        items = Category.objects.all()
-        params = request.query_params
-        pp = params.dict()
-        if params:
-            items = items.filter(**pp)
-        catser = self.get_serializer(items, many=True)
-        return Response(
-                {
-                    "data": catser.data,
-                    }
-                )
 
+    """
     def create(self, request):
         catser = self.get_serializer(data=request.data)
         if catser.is_valid():
@@ -66,12 +55,38 @@ class CategoryView(ModelViewSet):
 
 
 
-class ProductView(CategoryView):
+class ProductView(ModelViewSet):
     authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticated,)
     serializer_class = ProductSerializer
     queryset = Products.objects.all()
-    
-class ReviewsView(CategoryView):
+
+    def list(self, request):
+        items = self.get_queryset()
+        params = request.query_params
+        pp = params.dict()
+        if params:
+            items = items.filter(**pp)
+        catser = self.get_serializer(items, many=True)
+        return Response(
+                {
+                    "data": catser.data,
+                    }
+                )
+
+class ReviewsView(ModelViewSet):
     serializer_class = ReviewSerializer
-    queryset = Reviews.objects.all() 
+    queryset = Reviews.objects.all()
+
+    def list(self, request):
+        items = self.get_queryset()
+        params = request.query_params
+        pp = params.dict()
+        if params:
+            items = items.filter(**pp)
+        catser = self.get_serializer(items, many=True)
+        return Response(
+                {
+                    "data": catser.data,
+                    }
+                )

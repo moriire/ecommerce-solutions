@@ -28,7 +28,10 @@ class Category(models.Model):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ("id", "name", "description", "slug", "absolute_url")
+        fields = ("id",
+                  "name",# Category name
+                  "description", "slug", "absolute_url")
+
 
 
 class Products(models.Model):

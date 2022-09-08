@@ -7,16 +7,22 @@ from .serializers import UsersSerializer
 
 from rest_framework import filters
 
-@login_required
-def index(request, path=None):
-    return render(request, "users/index.html", {})
+def privacy_policy(request):
+    return render(request, "account/verification_success.html", {})
 
+def terms_of_service(request):
+    return render(request, "account/verification_success.html", {})
+
+def account_delete(request):
+    return render(request, "account/verification_success.html", {})
+
+
+def email_verified(request):
+    return render(request, "account/verification_success.html", {})
+
+"""
 class UsersView(GenericViewSet):
-    """
-    profile: /api/users/:id
 
-
-    """
     serializer_class = UsersSerializer
     queryset = CustomUsers.objects.all()
     filter_backends = [filters.SearchFilter]
@@ -60,7 +66,7 @@ class UsersView(GenericViewSet):
             useser.save()
             return Response(useser.data)
         return Response("errors")
-
+"""
 
 from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from dj_rest_auth.registration.views import SocialLoginView
