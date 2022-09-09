@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-c+=02zv07*647ejmnqjn7+t=rbvl6j_mv9=k9dqye=7n==$o=s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["www.megadey.org", "megadey.org", "ecs.pythonanywhere.com"]
+ALLOWED_HOSTS = ["www.megadey.org", "megadey.org", "ecs.pythonanywhere.com", "127.0.0.1", "localhost" ]
 
 
 # Application definition
@@ -144,11 +144,11 @@ AUTH_USER_MODEL = "users.CustomUsers"
 SITE_ID = 4
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_USER_MODEL_USERNAME_FIELD=None
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'none'#mandatory
 ACCOUNT_USERNAME_REQUIRED = False
 # Additional configuration settings
 SOCIALACCOUNT_QUERY_EMAIL = True
-ACCOUNT_LOGOUT_ON_GET= True
+#ACCOUNT_LOGOUT_ON_GET= True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_PROVIDERS = {
@@ -210,14 +210,15 @@ ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = 'email-success'  # if you ar
 
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/'  # if you are logged in
 
-#UNIQUE_EMAIL = True  # just to be sure, ok
+UNIQUE_EMAIL = True  # just to be sure, ok
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'), ]
+
 STATIC_URL = '/static/'
 
-STATIC_ROOT="/static/"
-#STATIC_DIRS=[    ]
+#STATIC_ROOT="/static/"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 

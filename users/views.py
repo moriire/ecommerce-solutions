@@ -8,7 +8,7 @@ from .serializers import UsersSerializer
 from rest_framework import filters
 
 def index(request, **kw):
-    return render(request, "index.html", {})
+    return render(request, "users/index.html", {})
 
 def privacy_policy(request):
     return render(request, "account/verification_success.html", {})

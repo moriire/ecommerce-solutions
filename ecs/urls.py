@@ -57,7 +57,6 @@ urlpatterns = [
         path('api/auth/', include('dj_rest_auth.urls')),
         path('auth/email-success', views.email_verified, name="email-success"),
         path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
-        #path('auth/', include('allauth.urls')),
         path("", views.index, name="home"),
         path("<str:page>/<str:path>", views.index, name="home-with-path"),
         path('api/', include(route.urls)),

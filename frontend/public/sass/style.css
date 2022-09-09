@@ -1,0 +1,4276 @@
+/* Import Colour Variables */
+/* Import Header styles */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Plus+Jakarta+Sans:wght@400;700&display=swap");
+.header {
+  display: block;
+  position: absolute;
+  padding: 0, 10%;
+  height: 25%;
+  min-width: 100%;
+  margin: auto;
+  /*First part of nav*/
+  /*Second part of nav*/
+}
+.header .nav1 {
+  position: -webkit-sticky;
+  position: sticky;
+  background: #FDEBFF;
+  padding: 15px, 15px, 10%;
+  left: 0;
+  top: 10;
+  display: flex;
+  height: 40%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin: 10px, 20px;
+  /*Styles the logo icon or text*/
+  /*Styles the search action*/
+  /*Styles the buttons*/
+  /*Styles the user actions for logged in users*/
+  /*Styles the nav on small screens*/
+}
+.header .nav1 .logo {
+  display: flex;
+  position: relative;
+  width: 15%;
+  justify-content: center;
+}
+.header .nav1 .logo h1 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 200%;
+}
+.header .nav1 .logo span {
+  color: #BB00DA;
+}
+.header .nav1 .search {
+  position: relative;
+  padding: 0% 5%;
+  display: flex;
+  min-width: 50%;
+  max-height: 80%;
+  height: 70%;
+  align-items: center;
+  justify-content: center;
+}
+.header .nav1 .search input {
+  max-width: 40rem;
+  height: 70%;
+  flex: 1;
+  padding: 0 10px;
+  border: 1px solid #BB00DA;
+}
+.header .nav1 .search ul {
+  position: relative;
+  left: -115px;
+}
+.header .nav1 .search ul li {
+  list-style-type: none;
+}
+.header .nav1 .search ul a {
+  text-decoration: none;
+}
+.header .nav1 .search ul .fa-solid {
+  color: #BB00DA;
+}
+.header .nav1 .nav-btn {
+  display: flex;
+  width: 20%;
+  padding: 0, 2%;
+  align-items: center;
+  justify-content: space-around;
+}
+.header .nav1 .nav-btn a {
+  text-decoration: none;
+}
+.header .nav1 .nav-btn #create_account {
+  border: none;
+  padding: 2.6% 2.6%;
+  text-align: center;
+  background: #BB00DA;
+  width: 10rem;
+  height: 2rem;
+  color: #fff;
+}
+.header .nav1 .nav-btn #create_account:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.header .nav1 .nav-btn #login {
+  border: 1px solid #BB00DA;
+  padding: 0.3rem 1.7rem;
+  background: #fff;
+  align-items: center;
+  width: 6rem;
+  height: 2rem;
+  color: #BB00DA;
+}
+.header .nav1 .nav-btn #login:hover {
+  background: #BB00DA;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.header .nav1 .user {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.header .nav1 .user img {
+  height: 15px;
+  width: 15px;
+}
+.header .nav1 .user span img {
+  height: 40px;
+  width: 40px;
+}
+.header .nav1 .user span i {
+  height: 20px;
+  width: 20px;
+}
+.header .nav1 .tgler {
+  display: none;
+}
+.header .nav2 {
+  display: flex;
+  height: 25%;
+  width: 100%;
+  position: absolute;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px 10px 20px;
+  background: #FCDDFF;
+}
+.header .nav2 .row1 {
+  align-items: center;
+  padding: 0.5%;
+  transform: translate(40%, 49.6%);
+  text-align: center;
+}
+.header .nav2 .row1 img {
+  width: 20px;
+  height: 20px;
+  transform: translateY(25%);
+}
+.header .nav2 .row1 .catlist {
+  display: inline-block;
+  display: block;
+  position: relative;
+  border: 1px solid black;
+  background-color: #fff;
+  z-index: 100;
+  transform: translateY(-0.35%);
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 132%;
+}
+.header .nav2 .row1 .catlist #catlist {
+  list-style-type: none;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0px, 5px;
+}
+.header .nav2 .row1 .catlist #catlist li {
+  display: block;
+  background-color: #f5f5f5;
+  height: 25px;
+  padding-top: 5px;
+}
+.header .nav2 .row1 .catlist #catlist li:hover {
+  background-color: #BB00DA;
+  color: #fff;
+}
+.header .nav2 .row1 .catlist #catlist li img {
+  height: 13px;
+  width: 13px;
+}
+.header .nav2 .row1 .catlist #subcat {
+  display: block;
+  transform: translateX(120%);
+}
+.header .nav2 .row1 .catlist #subsubcat {
+  display: none;
+}
+.header .nav2 .row2 {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  width: 20%;
+  gap: 2px;
+  justify-content: space-between;
+}
+.header .nav2 .row2 img {
+  width: 20px;
+  height: 20px;
+}
+.header .nav2 .row2 ul {
+  display: flex;
+}
+.header .nav2 .row2 ul li {
+  margin: 0px 10px;
+  display: flex;
+}
+.header .nav2 ul {
+  list-style-type: none;
+}
+.header .nav3 {
+  display: flex;
+  position: relative;
+  padding: 0% 3%;
+  height: 20%;
+  width: 50%;
+  background: #F9CBFE;
+  align-items: center;
+  justify-content: space-around;
+  transform: translate(50%, 100%);
+  z-index: 2;
+  top: -1px;
+}
+.header .nav3 ul {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  gap: 4rem;
+  font-family: "Jakarta Plus Sans";
+  font-size: 10px;
+}
+.header .nav3 ulli {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
+.header .nav3 ul img {
+  width: 10px;
+  height: 10px;
+}
+.header .nav3 a {
+  text-decoration: none;
+}
+
+.footer {
+  display: flex;
+  width: 100%;
+  height: 40%;
+  padding: 20px;
+  z-index: -5;
+  gap: 40px;
+  background: black;
+  color: #fff;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+}
+.footer li {
+  list-style-type: none;
+}
+.footer .footerlogo {
+  position: absolute;
+  width: 55px;
+  transform: translate(-620px, -100px);
+}
+.footer .footerlogo img {
+  height: 20px;
+  width: 20px;
+  background: white;
+}
+.footer .cols {
+  display: flex;
+  position: relative;
+  gap: 60px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 150%;
+  transform: translate(20%, 10%);
+}
+.footer .footer_img {
+  color: gold;
+  align-self: flex-end;
+  transform: translate(140px, -82px);
+}
+.footer span {
+  position: relative;
+  align-self: flex-end;
+  transform: translate(50%, 50%);
+}
+
+/* Import Styles for Product Card*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.nav_track {
+  display: block;
+  height: 5%;
+  width: 100%;
+  position: relative;
+  padding: 3em;
+  font-family: "DM Sans";
+  font-weight: 500;
+  font-size: 17px;
+  color: rgba(82, 76, 76, 0.38);
+}
+.nav_track span {
+  color: #BB00DA;
+}
+
+/*Styles the grid and similar product section*/
+.main-grid {
+  display: block;
+  margin: auto;
+  position: relative;
+  width: 90%;
+  height: 70%;
+}
+.main-grid .grid-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: center;
+  gap: 1%;
+  row-gap: 10px;
+  padding: 2px;
+}
+.main-grid .grid-container .grid1 {
+  grid-column: 1/span 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5%;
+}
+.main-grid .grid-container .grid1 img {
+  height: 100px;
+  width: 150px;
+}
+.main-grid .grid-container .grid2 {
+  grid-column: span 4;
+  padding: 10px;
+  border-radius: 25px;
+}
+.main-grid .grid-container .grid2 .img_m {
+  align-items: center;
+  justify-items: center;
+}
+.main-grid .grid-container .grid2 .img_m img {
+  height: 400px;
+  width: 750px;
+}
+.main-grid .grid-container .grid2 .img_m p {
+  font-family: "DM Sans";
+  font-weight: 700;
+  font-size: 30px;
+}
+.main-grid .grid-container .grid2 .caption {
+  display: flex;
+  gap: 1em;
+  padding: 5px;
+  align-items: space-between;
+  justify-content: space-between;
+}
+.main-grid .grid-container .grid2 .caption .prt1 {
+  display: flex;
+  gap: 1em;
+}
+.main-grid .grid-container .grid2 .caption img {
+  height: 12px;
+  width: 12px;
+}
+.main-grid .grid-container .grid2 .caption span img {
+  height: 40px;
+  width: 40px;
+}
+.main-grid .grid-container .grid3 {
+  grid-column: span 1;
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  gap: 25px;
+  height: 80%;
+  padding: 2px;
+}
+.main-grid .grid-container .grid3 .col1 {
+  grid-row: span 2;
+  text-align: center;
+  background: #fff;
+  border-radius: 15px;
+  align-items: center;
+}
+.main-grid .grid-container .grid3 .col1 p {
+  font-family: "Jakarta Plus Sans";
+  font-weight: 800;
+  font-size: 40px;
+}
+.main-grid .grid-container .grid3 .col1 #offer {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.main-grid .grid-container .grid3 .col1 #offer:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.main-grid .grid-container .grid3 .col2 {
+  grid-row: span 4;
+  background: #fff;
+  border-radius: 15px;
+  align-items: center;
+  width: 100%;
+  height: 80%;
+}
+.main-grid .grid-container .grid3 .col2 ul {
+  list-style-type: none;
+  text-align: center;
+}
+.main-grid .grid-container .grid3 .col2 ul li {
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 200%;
+}
+.main-grid .grid-container .grid3 .col2 #details p {
+  display: inline;
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 200%;
+}
+.main-grid .grid-container .grid3 .col2 #details img {
+  display: inline;
+  height: 29px;
+  width: 29px;
+}
+.main-grid .grid-container .grid3 .col2 img {
+  height: 15px;
+  width: 15px;
+  transition: all 0.2s;
+}
+.main-grid .grid-container .grid3 .col2:hover img {
+  color: black;
+}
+.main-grid .grid-container .grid3 .col2 #contact {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.main-grid .grid-container .grid3 .col2 #contact:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.main-grid .grid-container .grid3 .col2 #Chat {
+  display: inline-block;
+  text-align: center;
+  border: 1px solid #BB00DA;
+  padding: 0.45rem 0.8rem;
+  background: #fff;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #BB00DA;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.main-grid .grid-container .grid3 .col2 #Chat:hover {
+  background: #BB00DA;
+  color: #fff;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.main-grid .grid-container .grid4 {
+  grid-column: 2/span 4;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  font-family: "Jarkata Plus Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 150%;
+}
+.main-grid .grid-container .grid4 ul {
+  list-style-type: none;
+}
+.main-grid .grid-container .grid5 {
+  grid-column: span 1;
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+}
+.main-grid .grid-container .grid5 a {
+  text-decoration: none;
+  text-align: center;
+}
+.main-grid .grid-container .grid5 ul {
+  font-size: 12px;
+  line-height: 200%;
+}
+.main-grid .grid-container .grid5 img {
+  height: 15px;
+  width: 15px;
+}
+.main-grid .grid-container .grid5 #post {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  padding: 0.3rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+}
+.main-grid .grid-container .grid5 #post:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.main-grid .grid-container .grid6 {
+  grid-column: 2/span 4;
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 213.5%;
+}
+
+.similar_prod {
+  display: block;
+  width: 65%;
+  margin: auto;
+  position: relative;
+  transform: translateY(50%);
+}
+.similar_prod h3 {
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 213.5%;
+}
+.similar_prod .container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 1em;
+}
+.similar_prod .container .card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: start;
+  gap: 1em;
+  box-shadow: 5.82029px 5.09275px 7.27536px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+}
+.similar_prod .container .card .cardimg {
+  align-items: center;
+  justify-content: center;
+}
+.similar_prod .container .card .cardimg img {
+  height: 120px;
+  width: 150px;
+}
+.similar_prod .container .card .caption {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.similar_prod .container .card .caption .col1 {
+  display: flex;
+  flex-direction: column;
+}
+.similar_prod .container .card .caption .col1 span {
+  display: flex;
+}
+.similar_prod .container .card .caption .col1 span img {
+  height: 15px;
+  width: 15px;
+}
+.similar_prod .container .card .caption .col1 h5 {
+  border: 1px solid gray;
+  background-color: #EEEEEE;
+  color: #aaaaaa;
+  height: 20px;
+  text-align: center;
+}
+.similar_prod .container .card .caption .col2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+}
+.similar_prod .container .card .caption .col2 #cl2 img {
+  height: 15px;
+  width: 15px;
+}
+.similar_prod .container .card .caption .col2 h5 {
+  border: 1px solid gray;
+  background-color: #EEEEEE;
+  color: #aaaaaa;
+  height: 20px;
+  text-align: center;
+}
+
+/*Styles the popup modals*/
+.feedback {
+  display: block;
+  width: 500px;
+  height: 500px;
+  border: 1px solid black;
+  background: #fff;
+  padding: 20px;
+}
+.feedback h2 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 200%;
+}
+.feedback h3 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 200%;
+  color: #737373;
+}
+.feedback #close {
+  display: block;
+  transform: translate(98%, -610%);
+}
+.feedback #close img {
+  height: 20px;
+  width: 20px;
+}
+.feedback .rxn img {
+  height: 50px;
+  width: 50px;
+}
+.feedback .rvw {
+  display: block;
+  width: 80%;
+  height: 150px;
+  margin: auto;
+}
+.feedback .rvw input[type=text] {
+  width: 100%;
+  height: 66%;
+  padding: 10px;
+}
+.feedback .rvw input[type=text] ::-moz-placeholder {
+  transform: translateY(-20px);
+}
+.feedback .rvw input[type=text] :-ms-input-placeholder {
+  transform: translateY(-20px);
+}
+.feedback .rvw input[type=text] ::placeholder {
+  transform: translateY(-20px);
+}
+.feedback .rvw a {
+  transform: translateX(120%);
+}
+.feedback .rvw a {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 30%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.feedback .rvw a:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+
+.share {
+  display: block;
+  width: 500px;
+  height: 300px;
+  border: 1px solid black;
+  background: #fff;
+  padding: 20px;
+}
+.share h2 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 200%;
+}
+.share h3 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 200%;
+  color: #737373;
+}
+.share #close {
+  display: block;
+  transform: translate(98%, -610%);
+}
+.share #close img {
+  height: 20px;
+  width: 20px;
+}
+.share .scials {
+  display: flex;
+  justify-content: space-evenly;
+}
+.share .scials img {
+  height: 50px;
+  width: 50px;
+}
+.share .rvw {
+  display: block;
+  width: 80%;
+  height: 150px;
+  margin: auto;
+}
+.share .rvw input[type=text] {
+  width: 100%;
+  height: 66%;
+  padding: 10px;
+}
+.share .rvw input[type=text] ::-moz-placeholder {
+  transform: translateY(-20px);
+}
+.share .rvw input[type=text] :-ms-input-placeholder {
+  transform: translateY(-20px);
+}
+.share .rvw input[type=text] ::placeholder {
+  transform: translateY(-20px);
+}
+.share .rvw a {
+  transform: translateX(120%);
+}
+.share .rvw a {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 30%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.share .rvw a:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+
+.Offer {
+  display: block;
+  width: 500px;
+  height: 300px;
+  border: 1px solid black;
+  background: #fff;
+  padding: 20px;
+}
+.Offer h2 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 200%;
+}
+.Offer h3 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 200%;
+  color: #737373;
+}
+.Offer #close {
+  display: block;
+  transform: translate(98%, -610%);
+}
+.Offer #close img {
+  height: 20px;
+  width: 20px;
+}
+.Offer .offsxn input[type=text] {
+  width: 90%;
+  height: 30px;
+}
+.Offer .offsxn #offer1 {
+  text-align: center;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 20%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+}
+.Offer .offsxn #offer1:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.Offer .offsxn #offer2 {
+  text-align: center;
+  border: 1px solid #BB00DA;
+  padding: 0.45rem 0.8rem;
+  background: #fff;
+  align-items: center;
+  width: 20%;
+  height: 2em;
+  color: #BB00DA;
+  text-decoration: none;
+}
+.Offer .offsxn #offer2:hover {
+  background: #BB00DA;
+  color: #fff;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.Offer .offsxn img {
+  height: 50px;
+  width: 50px;
+}
+.Offer .rvw {
+  display: block;
+  width: 80%;
+  height: 150px;
+  margin: auto;
+}
+.Offer .rvw input[type=text] {
+  width: 100%;
+  height: 66%;
+  padding: 10px;
+}
+.Offer .rvw input[type=text] ::-moz-placeholder {
+  transform: translateY(-20px);
+}
+.Offer .rvw input[type=text] :-ms-input-placeholder {
+  transform: translateY(-20px);
+}
+.Offer .rvw input[type=text] ::placeholder {
+  transform: translateY(-20px);
+}
+.Offer .rvw a {
+  transform: translateX(120%);
+}
+.Offer .rvw a {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 30%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.Offer .rvw a:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+
+.Chat {
+  display: block;
+  width: 500px;
+  height: 300px;
+  border: 1px solid black;
+  background: #fff;
+  padding: 20px;
+}
+.Chat h2 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 200%;
+}
+.Chat h3 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 200%;
+  color: #737373;
+}
+.Chat #close {
+  display: block;
+  transform: translate(98%, -610%);
+}
+.Chat #close img {
+  height: 20px;
+  width: 20px;
+}
+.Chat .offsxn input[type=text] {
+  width: 90%;
+  height: 30px;
+}
+.Chat .offsxn #msg1 {
+  text-align: center;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 20%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+}
+.Chat .offsxn #msg1:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.Chat .offsxn #msg2 {
+  text-align: center;
+  border: 1px solid #BB00DA;
+  padding: 0.45rem 0.8rem;
+  background: #fff;
+  align-items: center;
+  width: 20%;
+  height: 2em;
+  color: #BB00DA;
+  text-decoration: none;
+}
+.Chat .offsxn #msg2:hover {
+  background: #BB00DA;
+  color: #fff;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.Chat .offsxn img {
+  height: 50px;
+  width: 50px;
+}
+.Chat .rvw {
+  display: block;
+  width: 80%;
+  height: 150px;
+  margin: auto;
+}
+.Chat .rvw input[type=text] {
+  width: 100%;
+  height: 66%;
+  padding: 10px;
+}
+.Chat .rvw input[type=text] ::-moz-placeholder {
+  transform: translateY(-20px);
+}
+.Chat .rvw input[type=text] :-ms-input-placeholder {
+  transform: translateY(-20px);
+}
+.Chat .rvw input[type=text] ::placeholder {
+  transform: translateY(-20px);
+}
+.Chat .rvw a {
+  transform: translateX(70%);
+}
+.Chat .rvw a {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 40%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.Chat .rvw a:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+
+/* Import Styling on Plan Expand*/
+.grid_container {
+  display: block;
+  position: relative;
+  width: 90%;
+  margin: auto;
+}
+.grid_container .container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(8, 1fr);
+  padding: 2px;
+  gap: 5px;
+}
+.grid_container .container .grid1 {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 10px;
+  align-items: center;
+  gap: 10px;
+}
+.grid_container .container .grid1 #top {
+  color: #BB00DA;
+  align-self: flex-start;
+  padding-left: 29px;
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 92%;
+}
+.grid_container .container .grid1 #top img {
+  height: 15px;
+  width: 15px;
+}
+.grid_container .container .grid1 .col1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  gap: 10px;
+}
+.grid_container .container .grid1 .col1 ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 5px;
+}
+.grid_container .container .grid1 .col1 ul li {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  background: #F5F5F5;
+  padding-left: 10px;
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 132%;
+}
+.grid_container .container .grid1 .col1 ul li span {
+  color: #BB00DA;
+}
+.grid_container .container .grid1 .col2 {
+  width: 80%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 200%;
+}
+.grid_container .container .grid1 .col2 #priceFinder {
+  width: 100%;
+}
+.grid_container .container .grid1 .col2 #filter {
+  background: #BB00DA;
+  height: 20px;
+}
+.grid_container .container .grid1 .col2 h4 {
+  display: flex;
+  justify-content: space-between;
+}
+.grid_container .container .grid1 .col2 #price {
+  padding: 10px;
+  font-size: 10px;
+}
+.grid_container .container .grid1 .col2 a {
+  text-decoration: none;
+}
+.grid_container .container .grid1 .col3 {
+  width: 80%;
+  padding: 10px;
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 200%;
+}
+.grid_container .container .grid1 .col3 h2 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 200%;
+}
+.grid_container .container .grid1 .col4 {
+  width: 80%;
+  padding: 10px;
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 200%;
+}
+.grid_container .container .grid1 .col4 h2 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 200%;
+}
+.grid_container .container .grid1 .col5 {
+  width: 80%;
+  padding: 10px;
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 200%;
+}
+.grid_container .container .grid1 .col5 h2 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 200%;
+}
+.grid_container .container .grid1 .col5 a {
+  text-decoration: none;
+}
+.grid_container .container .grid1 .col5 input {
+  height: 30px;
+  width: 100%;
+  border-radius: 35px;
+  border: 1px solid #BB00DA;
+}
+.grid_container .container .grid1 .col5 img {
+  height: 20px;
+  width: 20px;
+}
+.grid_container .container .grid1 .col6 {
+  width: 80%;
+  padding: 10px;
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 200%;
+}
+.grid_container .container .grid1 .col6 h2 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 200%;
+}
+.grid_container .container .grid1 .col7 {
+  width: 80%;
+  padding: 10px;
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 200%;
+}
+.grid_container .container .grid1 .col7 h2 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 200%;
+}
+.grid_container .container .grid2 {
+  grid-column: span 6;
+  display: block;
+}
+.grid_container .container .grid2 .flexcontainer {
+  width: 100%;
+  display: flex;
+  padding: 5px;
+  flex-direction: column;
+  gap: 10px;
+}
+.grid_container .container .grid2 .flexcontainer .topflex {
+  display: flex;
+  height: 150px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  background: #FEF2FF;
+}
+.grid_container .container .grid2 .flexcontainer .topflex .one {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 92%;
+}
+.grid_container .container .grid2 .flexcontainer .topflex .one img {
+  height: 60px;
+  width: 60px;
+  border-radius: 25px;
+}
+.grid_container .container .grid2 .flexcontainer .planflex {
+  display: block;
+}
+.grid_container .container .grid2 .flexcontainer .planflex .top {
+  display: flex;
+  padding: 10px;
+  padding-left: 20px;
+  color: #fff;
+  justify-content: space-between;
+  background: #BB00DA;
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 92%;
+}
+.grid_container .container .grid2 .flexcontainer .planflex h5 {
+  display: block;
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 200%;
+  color: #b3b3b3;
+  text-align: center;
+}
+.grid_container .container .grid2 .flexcontainer .planflex .cardcontainer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(5px 4px 8px rgba(0, 0, 0, 0.2));
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.grid_container .container .grid2 .flexcontainer .planflex .cardcontainer .caption {
+  display: inline-block;
+  padding: 5px;
+}
+.grid_container .container .grid2 .flexcontainer .planflex .cardcontainer .caption ul {
+  list-style-type: none;
+}
+.grid_container .container .grid2 .flexcontainer .planflex .cardcontainer .caption ul li h4 {
+  text-align: left;
+  font-family: "DM Sans";
+  font-weight: 700;
+  font-size: 12px;
+}
+.grid_container .container .grid2 .flexcontainer .planflex .cardcontainer .caption ul li h6 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 6.91982px;
+  line-height: 200%;
+}
+.grid_container .container .grid2 .flexcontainer .planflex .cardcontainer .price {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+.grid_container .container .grid2 .flexcontainer .planflex .cardcontainer .price ul {
+  list-style-type: none;
+}
+.grid_container .container .grid2 .flexcontainer .planflex .cardcontainer .price ul h6 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 6.91982px;
+  line-height: 200%;
+}
+.grid_container .container .grid2 .flexcontainer .planflex .cardcontainer .price ul #strike {
+  text-decoration: line-through;
+}
+.grid_container .container .grid2 .flexcontainer .planflex .cardcontainer span {
+  height: 2.5em;
+  display: inline-block;
+  width: 200px;
+  padding: 3px;
+}
+.grid_container .container .grid2 .flexcontainer .planflex .cardcontainer span #buy {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.grid_container .container .grid2 .flexcontainer .planflex .cardcontainer span #buy:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.grid_container .container .grid2 .flexcontainer .planflex .cardcontainer #sell {
+  display: inline-block;
+  text-align: center;
+  border: 1px solid #BB00DA;
+  padding: 0.45rem 0.8rem;
+  background: #fff;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #BB00DA;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.grid_container .container .grid2 .flexcontainer .planflex .cardcontainer #sell:hover {
+  background: #BB00DA;
+  color: #fff;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.grid_container .container .grid2 .flexcontainer .planflex .cardcontainer #prc {
+  text-align: left;
+  font-style: normal;
+  font-family: "DM Sans";
+  font-weight: 700;
+  font-size: 12px;
+  color: #BB00DA;
+}
+.grid_container .container .grid2 .flexcontainer .planflex .cardcontainer .card-img img {
+  height: 200px;
+  width: 200px;
+  background: #FCDDFF;
+  border-radius: 15px;
+  transition: height 0.5s;
+}
+.grid_container .container .grid2 .flexcontainer .planflex .cardcontainer .card-img:hover img {
+  transform: translateY(-6%);
+}
+
+/*Imports Styling for StoreCard*/
+.store_hero {
+  display: block;
+  width: 90%;
+  height: 200px;
+  margin: auto;
+  position: relative;
+}
+.store_hero .container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: #F174FF;
+  gap: 2%;
+  padding: 20px;
+}
+.store_hero .container .txt {
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 112.5%;
+  color: #fff;
+  width: 30%;
+}
+.store_hero .container .img {
+  width: 40%;
+  display: inline;
+  align-items: center;
+}
+.store_hero .container .img img {
+  height: 100px;
+  width: 200px;
+}
+.store_hero .container .img #n {
+  transform: translateX(10%) rotate(-2deg);
+}
+.store_hero .container .cntct {
+  width: 1px solid black;
+  width: 20%;
+  text-align: center;
+}
+.store_hero .container .cntct a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.7rem 1.3rem;
+  background: #fff;
+  align-items: center;
+  width: 6rem;
+  height: 2.3rem;
+  color: #BB00DA;
+  box-shadow: 4.69231px 5.63077px 6.56923px rgba(0, 0, 0, 0.1);
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.store_hero .container .cntct a:hover {
+  background: #BB00DA;
+  color: #fff;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+.store_hero .container .cntct h2 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 200%;
+}
+.store_hero .container .cntct h5 {
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 450;
+  font-size: 16px;
+  line-height: 100%;
+}
+
+.storeflex {
+  display: block;
+}
+.storeflex .storenme {
+  display: block;
+  padding: 10px;
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 200%;
+}
+.storeflex h5 {
+  display: block;
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 200%;
+  color: #b3b3b3;
+  text-align: center;
+}
+.storeflex .cardcontain {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: space-around;
+  overflow-wrap: inherit;
+  padding: 15px;
+}
+.storeflex .cardcontain .cards {
+  filter: drop-shadow(5px 4px 8px rgba(0, 0, 0, 0.2));
+}
+.storeflex .cardcontain .cards .caption {
+  display: inline-block;
+  padding: 5px;
+}
+.storeflex .cardcontain .cards .caption ul {
+  list-style-type: none;
+}
+.storeflex .cardcontain .cards .caption ul li h4 {
+  text-align: left;
+  font-family: "DM Sans";
+  font-weight: 700;
+  font-size: 12px;
+}
+.storeflex .cardcontain .cards .caption ul li h6 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 6.91982px;
+  line-height: 200%;
+}
+.storeflex .cardcontain .cards .price {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+.storeflex .cardcontain .cards .price ul {
+  list-style-type: none;
+}
+.storeflex .cardcontain .cards .price ul h6 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 6.91982px;
+  line-height: 200%;
+}
+.storeflex .cardcontain .cards .price ul #strike {
+  text-decoration: line-through;
+}
+.storeflex .cardcontain .cards span {
+  height: 2.5em;
+  display: inline-block;
+  width: 200px;
+  padding: 3px;
+}
+.storeflex .cardcontain .cards span #buy {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.storeflex .cardcontain .cards span #buy:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.storeflex .cardcontain .cards #sell {
+  display: inline-block;
+  text-align: center;
+  border: 1px solid #BB00DA;
+  padding: 0.45rem 0.8rem;
+  background: #fff;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #BB00DA;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.storeflex .cardcontain .cards #sell:hover {
+  background: #BB00DA;
+  color: #fff;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.storeflex .cardcontain .cards #prc {
+  text-align: left;
+  font-style: normal;
+  font-family: "DM Sans";
+  font-weight: 700;
+  font-size: 12px;
+  color: #BB00DA;
+}
+.storeflex .cardcontain .cards .card-img img {
+  height: 200px;
+  width: 200px;
+  background: #FCDDFF;
+  border-radius: 15px;
+  transition: height 0.5s;
+}
+.storeflex .cardcontain .cards .card-img:hover img {
+  transform: translateY(-6%);
+}
+
+/*Styles the Create form section*/
+.formname {
+  display: block;
+  width: 40%;
+  position: relative;
+  margin: auto;
+  transform: translateY(-100%);
+}
+.formname h2 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 200%;
+  text-align: center;
+}
+
+.storeform {
+  display: block;
+  border: 1px solid black;
+  width: 50%;
+  margin: auto;
+  transform: translateY(-6%);
+  padding: 10px;
+  background: #FAFAFA;
+}
+.storeform .form {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid black;
+}
+.storeform .form h3 {
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16.3298px;
+  line-height: 21px;
+  padding: 5px;
+}
+.storeform .form form {
+  width: 100%;
+  margin: auto;
+  border: 1px solid red;
+  padding: 15px;
+  background: #FAFAFA;
+}
+.storeform .form form input {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+}
+.storeform .form .socials {
+  text-align: left;
+  border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+}
+.storeform .form .socials label {
+  width: 100%;
+  border: 1px solid red;
+  margin: auto;
+}
+.storeform .form .socials label img {
+  height: 40px;
+  width: 40px;
+  display: inline;
+  transform: translateY(30%);
+}
+.storeform .form .socials label input {
+  width: 90%;
+  height: 40px;
+}
+.storeform .storebanner {
+  padding: 20px;
+}
+.storeform .storebanner h3 {
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16.3298px;
+  line-height: 21px;
+  padding: 5px;
+}
+.storeform .storebanner .bannerimg {
+  border: 1px dashed black;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 5px;
+  gap: 5px;
+  text-align: center;
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16.3298px;
+  line-height: 110%;
+}
+.storeform .storebanner .bannerimg a {
+  color: #BB00DA;
+  text-decoration: none;
+}
+.storeform .storebanner .bannerimg img {
+  height: 50px;
+  width: 50px;
+}
+.storeform .addedimage {
+  display: block;
+  width: 93%;
+  margin: auto;
+  border: 1px solid red;
+}
+.storeform .addedimage .card {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+}
+.storeform .addedimage .card .cardimg img {
+  height: 30px;
+  width: 30px;
+}
+.storeform .addedimage .card .caption {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 450;
+  font-size: 10px;
+  line-height: 8px;
+  padding: 5px;
+}
+.storeform .addedimage .card .caption img {
+  height: 10px;
+  width: 10px;
+}
+.storeform .btn {
+  display: block;
+  width: 120px;
+  transform: translateX(425%);
+}
+.storeform .btn a {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.storeform .btn a:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+
+/*Styles The Popup after creation*/
+.popup {
+  display: block;
+  border: 1px solid black;
+  width: 55%;
+  height: 700px;
+  margin: auto;
+  background: #fff;
+}
+.popup .cnt {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.popup .cnt h2 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 200%;
+}
+.popup .cnt p {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 200%;
+  color: #737373;
+}
+.popup .cnt img {
+  height: 400px;
+  width: 400px;
+}
+.popup .cnt .btn {
+  width: 30%;
+}
+.popup .cnt .btn a {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.popup .cnt .btn a:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+
+/* Styles the Vendor Store*/
+.name {
+  display: block;
+  width: 70%;
+  position: relative;
+  transform: translate(40%, -140%);
+}
+.name #name {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 200%;
+}
+
+.container .grid1 {
+  padding: 10px;
+}
+.container .grid1 .usercol {
+  background: #fff;
+  border-radius: 15px;
+  align-items: center;
+  width: 100%;
+}
+.container .grid1 .usercol ul {
+  list-style-type: none;
+  text-align: left;
+  transform: translateX(35%);
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 300%;
+}
+.container .grid1 .usercol ul #lbl {
+  color: #BB00DA;
+}
+.container .grid1 .usercol #dets {
+  text-align: left;
+  transform: translateX(17%);
+}
+.container .grid1 .usercol #details {
+  padding: 2px;
+  width: 70%;
+  margin: auto;
+}
+.container .grid1 .usercol #details h3 {
+  display: inline;
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 200%;
+}
+.container .grid1 .usercol #details img {
+  display: inline;
+  height: 50px;
+  width: 50px;
+  transform: translateY(30%);
+}
+.container .grid1 .usercol img {
+  height: 15px;
+  width: 15px;
+  transition: all 0.2s;
+}
+.container .grid1 .usercol:hover img {
+  color: black;
+}
+.container .grid1 .usercol #contact {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.container .grid1 .usercol #contact:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.container .grid1 .usercol #Chat {
+  display: inline-block;
+  text-align: center;
+  border: 1px solid #BB00DA;
+  padding: 0.45rem 0.8rem;
+  background: #fff;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #BB00DA;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.container .grid1 .usercol #Chat:hover {
+  background: #BB00DA;
+  color: #fff;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.container .grid1 .feedbackcol {
+  display: block;
+  width: 100%;
+}
+.container .grid1 .feedbackcol h2 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 200%;
+  color: #BB00DA;
+}
+.container .grid1 .feedbackcol .cont {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+.container .grid1 .feedbackcol .cont img {
+  height: 50px;
+  width: 50px;
+}
+.container .grid1 .socialcol {
+  display: block;
+  width: 100%;
+}
+.container .grid1 .socialcol h2 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 200%;
+  color: #BB00DA;
+}
+.container .grid1 .socialcol .cont {
+  display: flex;
+  justify-content: space-around;
+}
+.container .grid1 .socialcol .cont img {
+  height: 50px;
+  width: 50px;
+}
+.container .grid1 span {
+  color: #BB00DA;
+  display: block;
+  width: 90%;
+  padding: 10px;
+}
+.container .grid1 span a {
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 92%;
+  color: #BB00DA;
+}
+.container .grid1 span img {
+  height: 35px;
+  width: 35px;
+  transform: translateY(25%);
+}
+.container .grid1 #post {
+  text-align: left;
+  display: inline-block;
+  text-align: center;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.container .grid1 #post img {
+  height: 15px;
+  width: 15px;
+}
+.container .grid1 #post:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.container .grid2 .storeimg .storebannerimg img {
+  height: 300px;
+  width: 897px;
+}
+.container .grid2 .storeimg .storedets {
+  text-align: center;
+  transform: translate(-20%, -200%);
+}
+.container .grid2 .storeimg .storedets h2 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 96px;
+  line-height: 92.5%;
+  color: #651373;
+}
+.container .grid2 .storeimg .storedets span {
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 92.5%;
+}
+.container .grid2 .storebanner {
+  padding: 20px;
+  transform: translateY(-65%);
+}
+.container .grid2 .storebanner h3 {
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16.3298px;
+  line-height: 21px;
+  padding: 5px;
+}
+.container .grid2 .storebanner .bannerimg {
+  border: 1px dashed black;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 5px;
+  gap: 5px;
+  text-align: center;
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16.3298px;
+  line-height: 110%;
+}
+.container .grid2 .storebanner .bannerimg a {
+  color: #BB00DA;
+  text-decoration: none;
+}
+.container .grid2 .storebanner .bannerimg img {
+  height: 50px;
+  width: 50px;
+}
+.container .grid2 .filtr {
+  border: 1px solid black;
+  display: block;
+  text-align: right;
+  padding: 10px;
+  transform: translateY(-180%);
+}
+.container .grid2 .filtr h3 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 200%;
+}
+.container .grid2 .filtr li {
+  display: inline;
+}
+.container .grid2 .filtr a {
+  text-decoration: none;
+  color: black;
+}
+.container .grid2 .filtr a:active {
+  color: #BB00DA;
+}
+.container .grid2 .products {
+  display: block;
+  width: 90%;
+  margin: auto;
+  position: relative;
+  transform: translateY(-6%);
+}
+.container .grid2 .products .contain {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 1em;
+}
+.container .grid2 .products .contain .card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: start;
+  gap: 1em;
+  box-shadow: 5.82029px 5.09275px 7.27536px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+}
+.container .grid2 .products .contain .card .cardimg {
+  align-items: center;
+  justify-content: center;
+}
+.container .grid2 .products .contain .card .cardimg img {
+  height: 120px;
+  width: 150px;
+}
+.container .grid2 .products .contain .card .caption {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.container .grid2 .products .contain .card .caption .col1 {
+  display: flex;
+  flex-direction: column;
+}
+.container .grid2 .products .contain .card .caption .col1 span {
+  display: flex;
+}
+.container .grid2 .products .contain .card .caption .col1 span img {
+  height: 15px;
+  width: 15px;
+}
+.container .grid2 .products .contain .card .caption .col1 h5 {
+  border: 1px solid gray;
+  background-color: #EEEEEE;
+  color: #aaaaaa;
+  height: 20px;
+  text-align: center;
+}
+.container .grid2 .products .contain .card .caption .col2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+}
+.container .grid2 .products .contain .card .caption .col2 #cl2 img {
+  height: 15px;
+  width: 15px;
+}
+.container .grid2 .products .contain .card .caption .col2 h5 {
+  border: 1px solid gray;
+  background-color: #EEEEEE;
+  color: #aaaaaa;
+  height: 20px;
+  text-align: center;
+}
+
+/*Import Stylings for the user profile*/
+/*Styles the main page grids*/
+.container .grid1 .usercol #prfle {
+  padding-left: 65px;
+  text-decoration: none;
+  color: #BB00DA;
+  text-align: center;
+}
+.container .grid1 .settings {
+  width: 100%;
+  padding: 10px;
+}
+.container .grid1 .settings h3 {
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 200%;
+  color: #BB00DA;
+}
+.container .grid1 .settings .hr {
+  border-bottom: 3px solid #f1ecec;
+  border-radius: 100px;
+}
+.container .grid1 .settings #set {
+  list-style-type: none;
+  padding: 10px;
+}
+.container .grid1 .settings #set li a {
+  display: inline-block;
+  text-decoration: none;
+  height: 40px;
+  width: 100%;
+  color: black;
+  padding-top: 8px;
+  padding-left: 5px;
+}
+.container .grid1 .settings #set li a:hover {
+  background-color: #BB00DA;
+}
+.container .grid1 .settings #set li a:active {
+  color: #fff;
+  background: #BB00DA;
+  border: none;
+}
+.container .grid1 .settings #set li #activ {
+  color: #fff;
+  background: #BB00DA;
+  border: none;
+}
+.container .grid2 {
+  display: block;
+}
+.container .grid2 .adverts {
+  width: 100%;
+  padding: 10px;
+}
+.container .grid2 .adverts .dashboard {
+  width: 80%;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid red;
+}
+.container .grid2 .adverts .dashboard .top {
+  padding: 7px;
+  display: flex;
+  justify-content: space-between;
+  background: #BB00DA;
+  color: #fff;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  border-radius: 20px 20px 0px 0px;
+}
+.container .grid2 .adverts .dashboard .body .nv {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.container .grid2 .adverts .dashboard .body .nv ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.container .grid2 .adverts .dashboard .body .nv ul li a {
+  display: inline-block;
+  text-decoration: none;
+  color: #BB00DA;
+  height: 30px;
+  width: 8em;
+  padding: 2px 15px;
+  border-radius: 90px;
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 200%;
+}
+.container .grid2 .adverts .dashboard .body .nv ul li a:hover {
+  background-color: #BB00DA;
+  color: #fff;
+}
+.container .grid2 .adverts .dashboard .body .nv ul li a:hover img {
+  background: black;
+}
+.container .grid2 .adverts .dashboard .body .nv ul li a:active {
+  background: #BB00DA;
+  color: #fff;
+}
+.container .grid2 .adverts .dashboard .body .nv ul li img {
+  height: 15px;
+  width: 15px;
+  transform: translateY(15%);
+}
+.container .grid2 .adverts .dashboard .body .nv ul li #active {
+  color: #fff;
+  background-color: #BB00DA;
+}
+.container .grid2 .adverts .dashboard .body .none {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 250px;
+  gap: 10px;
+}
+.container .grid2 .adverts .dashboard .body .none img {
+  height: 90px;
+  width: 115px;
+}
+.container .grid2 .adverts .dashboard .body .sumn {
+  display: flex;
+  flex-direction: row;
+  height: 250px;
+  gap: 5px;
+}
+.container .grid2 .adverts .dashboard .body .sumn .row1 img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+.container .grid2 .adverts .dashboard .body .sumn .row2 {
+  padding-top: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.container .grid2 .perfomance {
+  width: 100%;
+  padding: 10px;
+}
+.container .grid2 .perfomance .dashboard {
+  width: 90%;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid red;
+}
+.container .grid2 .perfomance .dashboard .top {
+  padding: 7px;
+  display: flex;
+  justify-content: space-between;
+  background: #BB00DA;
+  color: #fff;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  border-radius: 20px 20px 0px 0px;
+}
+.container .grid2 .perfomance .dashboard .top span {
+  display: inline-block;
+  border: 1px solid #fff;
+  padding: 2px 10px;
+  border-radius: 90px;
+}
+.container .grid2 .perfomance .dashboard .body .nv {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.container .grid2 .perfomance .dashboard .body .nv ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.container .grid2 .perfomance .dashboard .body .nv ul li a {
+  display: inline-block;
+  text-decoration: none;
+  color: #BB00DA;
+  height: 30px;
+  width: 8em;
+  padding: 2px 15px;
+  border-radius: 90px;
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 200%;
+}
+.container .grid2 .perfomance .dashboard .body .nv ul li a:hover {
+  background-color: #BB00DA;
+  color: #fff;
+}
+.container .grid2 .perfomance .dashboard .body .nv ul li a:hover img {
+  background: black;
+}
+.container .grid2 .perfomance .dashboard .body .nv ul li a:active {
+  background: #BB00DA;
+  color: #fff;
+}
+.container .grid2 .perfomance .dashboard .body .nv ul li img {
+  height: 15px;
+  width: 15px;
+  transform: translateY(15%);
+}
+.container .grid2 .perfomance .dashboard .body .nv ul li #active {
+  color: #fff;
+  background-color: #BB00DA;
+}
+.container .grid2 .perfomance .dashboard .body .none {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 250px;
+  gap: 10px;
+}
+.container .grid2 .perfomance .dashboard .body .none img {
+  height: 90px;
+  width: 115px;
+}
+.container .grid2 .perfomance .dashboard .body .sumn {
+  display: flex;
+  flex-direction: row;
+  height: 250px;
+  gap: 5px;
+}
+.container .grid2 .perfomance .dashboard .body .sumn .row1 img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+.container .grid2 .perfomance .dashboard .body .sumn .row2 {
+  padding-top: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.container .grid2 .perfomance .dashboard .body .chart {
+  padding: 10px 5px;
+}
+.container .grid2 .perfomance .dashboard .body .chart img {
+  height: 500px;
+  width: 750px;
+}
+.container .grid2 .perfomance .dashboard .body .togg {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.container .grid2 .perfomance .dashboard .body .togg .blck {
+  background: #BB00DA;
+  color: #fff;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 132%;
+}
+.container .grid2 .perfomance .dashboard .body .togg .blck img {
+  height: 20px;
+  width: 20px;
+}
+.container .grid2 .perfomance .dashboard .body .togg #tw {
+  background: black;
+  gap: 10px;
+}
+.container .grid2 .perfomance .dashboard .body .togg #thr {
+  background: #FFB84D;
+}
+.container .grid2 .feedbck {
+  width: 100%;
+  padding: 10px;
+}
+.container .grid2 .feedbck .dashboard {
+  width: 80%;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid red;
+}
+.container .grid2 .feedbck .dashboard .top {
+  padding: 7px;
+  display: flex;
+  justify-content: space-between;
+  background: #BB00DA;
+  color: #fff;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  border-radius: 20px 20px 0px 0px;
+}
+.container .grid2 .feedbck .dashboard .body .nv {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.container .grid2 .feedbck .dashboard .body .nv ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.container .grid2 .feedbck .dashboard .body .nv ul li a {
+  display: inline-block;
+  text-decoration: none;
+  color: #BB00DA;
+  height: 30px;
+  width: 8em;
+  padding: 2px 15px;
+  border-radius: 90px;
+  font-family: "Jakarta Plus Sans";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 200%;
+}
+.container .grid2 .feedbck .dashboard .body .nv ul li a:hover {
+  background-color: #BB00DA;
+  color: #fff;
+}
+.container .grid2 .feedbck .dashboard .body .nv ul li a:hover img {
+  background: black;
+}
+.container .grid2 .feedbck .dashboard .body .nv ul li a:active {
+  background: #BB00DA;
+  color: #fff;
+}
+.container .grid2 .feedbck .dashboard .body .nv ul li img {
+  height: 15px;
+  width: 15px;
+  transform: translateY(15%);
+}
+.container .grid2 .feedbck .dashboard .body .nv ul li #active {
+  color: #fff;
+  background-color: #BB00DA;
+}
+.container .grid2 .feedbck .dashboard .body .none {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 250px;
+  gap: 10px;
+}
+.container .grid2 .feedbck .dashboard .body .none img {
+  height: 90px;
+  width: 115px;
+}
+.container .grid2 .feedbck .dashboard .body .sumn {
+  display: flex;
+  flex-direction: row;
+  height: 250px;
+  gap: 5px;
+  padding: 10px;
+}
+.container .grid2 .feedbck .dashboard .body .sumn .row1 {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+}
+.container .grid2 .feedbck .dashboard .body .sumn .row1 img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+.container .grid2 .feedbck .dashboard .body .sumn .row2 {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.container .grid2 .feedbck .dashboard .body .sumn .row2 img {
+  height: 30px;
+  width: 30px;
+}
+.container .grid2 .feedbck .dashboard .body .sumn .row2 .col1 ul {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  list-style-type: none;
+}
+.container .grid2 .feedbck .dashboard .body .sumn .row2 .col2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+/*Styles the Profile settings form*/
+.p_settings {
+  border: 1px solid black;
+  display: block;
+  height: 600px;
+  width: 600px;
+  margin: auto;
+  padding: 10px;
+  /*Styles the close icon*/
+}
+.p_settings h2 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 200%;
+}
+.p_settings #close {
+  width: 70px;
+  height: 70px;
+  display: block;
+  transform: translate(820%, -800%);
+}
+.p_settings #close img {
+  height: 20px;
+  width: 20px;
+}
+.p_settings input {
+  height: 40px;
+  width: 70%;
+  margin: auto;
+  padding: 5px;
+}
+.p_settings label {
+  padding: 10px;
+}
+.p_settings button {
+  height: 40px;
+  width: 9rem;
+  background-color: #BB00DA;
+  border: none;
+  color: #fff;
+}
+.p_settings button:hover {
+  background-color: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+}
+.p_settings #save {
+  transform: translateX(150%);
+}
+
+/*Styles the New password form*/
+.newpass {
+  display: block;
+  height: 470px;
+  width: 420px;
+  margin: auto;
+  border: 1px solid black;
+  padding: 10px;
+  /*Styles the close icon*/
+}
+.newpass h3 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 200%;
+  text-align: center;
+}
+.newpass #close {
+  width: 70px;
+  height: 70px;
+  display: block;
+  transform: translate(580%, -10%);
+}
+.newpass #close img {
+  height: 20px;
+  width: 20px;
+}
+.newpass input {
+  height: 40px;
+  width: 95%;
+  margin: auto;
+  padding: 5px;
+}
+.newpass label {
+  padding: 10px;
+}
+.newpass button {
+  height: 40px;
+  width: 9rem;
+  background-color: #BB00DA;
+  border: none;
+  color: #fff;
+}
+.newpass button:hover {
+  background-color: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+}
+.newpass #save {
+  transform: translateX(90%);
+}
+
+.phoneno {
+  display: block;
+  height: 400px;
+  width: 400px;
+  border: 1px solid black;
+  margin: auto;
+  padding: 10px;
+  /*Styles the close icon*/
+}
+.phoneno #close {
+  width: 70px;
+  height: 70px;
+  display: block;
+  transform: translate(550%, -18%);
+}
+.phoneno #close img {
+  height: 20px;
+  width: 20px;
+}
+.phoneno h2 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 200%;
+  text-align: center;
+}
+.phoneno input {
+  height: 40px;
+  width: 95%;
+  margin: auto;
+  padding: 5px;
+}
+.phoneno label {
+  padding: 10px;
+}
+.phoneno button {
+  height: 40px;
+  width: 9rem;
+  background-color: #BB00DA;
+  border: none;
+  color: #fff;
+}
+.phoneno button:hover {
+  background-color: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+}
+.phoneno #save {
+  transform: translateX(90%);
+}
+
+/*Import Stylings for the login page*/
+@media (max-width: 600px) {
+  .header {
+    display: block;
+    width: 100%;
+  }
+  .header .nav1 {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header .nav1 .logo {
+    padding: 10px;
+    justify-content: center;
+    align-self: center;
+  }
+  .header .nav1 .search {
+    display: none;
+  }
+  .header .nav1 .nav-btn {
+    display: none;
+  }
+  .header .nav1 .tgler {
+    border: 1px solid black;
+    display: block;
+    z-index: inherit;
+  }
+  .header .nav1 .tgler__toggler {
+    position: absolute;
+    cursor: pointer;
+  }
+  .header .nav1 .tgler input[type=checkbox] {
+    display: none;
+  }
+  .header .nav1 .tgler svg {
+    width: 1.5rem;
+    height: 2rem;
+  }
+  .header .nav1 .tgler .close {
+    display: none;
+  }
+  .header .nav1 .tgler ul {
+    display: flex;
+    flex-direction: column;
+    transform: translate(0%, 50%);
+    gap: 3rem;
+    align-items: center;
+    text-align: right;
+    margin-right: 50%;
+  }
+  .header .nav1 .tgler ul li {
+    list-style-type: none;
+  }
+  .header .nav2 {
+    display: none;
+  }
+  .header .nav3 {
+    display: none;
+  }
+  .hero {
+    display: block;
+    position: relative;
+  }
+  .hero .container .txt h1 {
+    display: none;
+  }
+  .hero .container .txt h4 {
+    display: none;
+  }
+  .hero .container .txt a {
+    display: inline;
+    transform: translateY(370%);
+  }
+  .hero .container .hero_img svg {
+    display: none;
+  }
+  .aside {
+    display: none;
+  }
+  .aside .container {
+    display: none;
+  }
+  .aside .container ul {
+    display: none;
+  }
+  .Optimum_deals {
+    display: none;
+  }
+  .Optimum_deals .container {
+    display: none;
+  }
+  .Premium_Deals {
+    display: block;
+  }
+  .Premium_Deals .container {
+    display: block;
+  }
+  .Premium_Deals .container .grid1 {
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: hidden;
+  }
+  .Premium_Deals .container .grid1 .txt {
+    display: inline;
+  }
+  .Premium_Deals .container .grid1 .txt h2, .Premium_Deals .container .grid1 .txt p {
+    display: none;
+  }
+  .Premium_Deals .container .grid1 .txt a {
+    width: 5rem;
+    padding: 0%;
+  }
+  .Premium_Deals .container .grid1 .imgpart img {
+    height: 200px;
+    max-width: 250px;
+  }
+  .app_section {
+    height: 20%;
+  }
+  .app_section .container {
+    padding: 10px;
+  }
+  .app_section .container .txt {
+    padding: 5px;
+    height: 100px;
+    width: 100px;
+  }
+  .app_section .container .txt h1, .app_section .container .txt p {
+    display: none;
+  }
+  .app_section .container .txt h4 {
+    display: block;
+    font-size: 10px;
+    line-height: 10%;
+    font-weight: 400;
+  }
+  .app_section .container .hero_img svg {
+    height: 150px;
+    width: 100px;
+  }
+  .news {
+    display: none;
+  }
+}
+/*Import Mixins fr general styling*/
+/*Import fonts*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.hero {
+  display: block;
+  height: 35%;
+  margin: auto;
+  width: 100%;
+  top: 130px;
+  padding-top: 6%;
+}
+.hero .container {
+  display: flex;
+  padding: 20px;
+  gap: 100px;
+}
+.hero h1 {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 110%;
+}
+.hero h4 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 110%;
+}
+.hero a {
+  text-decoration: none;
+  width: 15em;
+}
+.hero .txt {
+  width: 30%;
+}
+.hero .txt #Contactbtn {
+  border: none;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.6rem 2rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 10rem;
+  height: 2.3rem;
+  color: #fff;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.hero .txt #Contactbtn:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #fff;
+  cursor: pointer;
+  box-shadow: 5px 8px 11px 2px rgba(0, 0, 0, 0.4);
+}
+.hero .hero_img {
+  position: relative;
+  display: flex;
+  width: 70%;
+  transform: translateX(-25%);
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.hero .hero_img #small {
+  height: 190px;
+  transform: translateX(20%);
+}
+.hero .hero_img #s1 {
+  height: 200px;
+  transform: translateX(70%);
+}
+.hero .hero_img #big {
+  height: 280px;
+  transform: translateX(40%);
+}
+.hero .hero_img #circle {
+  width: 80px;
+  transform: translate(-640%, 40%);
+  z-index: -4;
+}
+
+.aside {
+  display: block;
+  margin: 13px;
+  position: relative;
+  height: 20%;
+  width: 50%;
+  background: #fff;
+  color: #BB00DA;
+  transform: translateX(50%);
+  z-index: 2;
+}
+.aside .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.aside .container ul {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  gap: 40px;
+}
+.aside .container ulli {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+}
+.aside .container ul img {
+  width: 23px;
+  height: 21px;
+  transform: translateY(15%);
+}
+.aside .container a {
+  text-decoration: none;
+  color: #BB00DA;
+  background: #F9F9F9;
+  border: none;
+  border-radius: 100%;
+}
+
+/*Separator*/
+.sept_nifty {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  background: #fff;
+}
+.sept_nifty .content {
+  height: 30px;
+  width: 15%;
+  transform: translateX(280%);
+  position: absolute;
+  border: 2px solid #CECECE;
+  border-radius: 100px;
+  z-index: 2;
+  background: #fff;
+  text-align: center;
+  line-height: 80%;
+  padding: 0.5%;
+}
+.sept_nifty .separator {
+  position: absolute;
+  border-bottom: 5px solid rgba(206, 206, 206, 0.3);
+  height: 1px;
+  width: 100%;
+  z-index: 1;
+  background: none;
+}
+
+/*Nifty deals section*/
+.Nifty_Deals {
+  display: block;
+  position: relative;
+  height: 70%;
+  width: 90%;
+  margin: auto;
+  box-shadow: 10px 8px 13px rgba(0, 0, 0, 0.04);
+}
+.Nifty_Deals .container {
+  display: flex;
+  width: 100%;
+  gap: 30px;
+  flex-wrap: wrap;
+  padding: 20px;
+  justify-content: center;
+  align-items: space-between;
+  overflow: hidden;
+}
+.Nifty_Deals .container .Cards {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 300px;
+  width: 350px;
+  align-items: center;
+  background: #F9CBFE;
+  border-radius: 30px;
+  gap: -20px;
+  position: relative;
+  overflow: hidden;
+  z-index: 100;
+}
+.Nifty_Deals .container .Cards .card-img {
+  align-items: center;
+  height: 70%;
+  width: 50%;
+}
+.Nifty_Deals .container .Cards img {
+  height: 100%;
+  max-width: 200px;
+}
+.Nifty_Deals .container .Cards .caption {
+  direction: reverse;
+  width: 50%;
+  text-align: center;
+  transform: translateX(-50%);
+  padding-top: 0.5em;
+  font-family: "DM Sans";
+  font-size: 20px;
+  font-weight: 700;
+}
+.Nifty_Deals .container .Cards .caption p {
+  text-align: center;
+}
+.Nifty_Deals .container .Cards .caption a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.7rem 1.3rem;
+  background: #fff;
+  align-items: center;
+  width: 6rem;
+  height: 2.3rem;
+  color: #BB00DA;
+  box-shadow: 4.69231px 5.63077px 6.56923px rgba(0, 0, 0, 0.1);
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.Nifty_Deals .container .Cards .caption a:hover {
+  background: #BB00DA;
+  color: #fff;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+.Nifty_Deals .container .Cards:hover img {
+  transform: translateY(-6%);
+}
+.Nifty_Deals .container .Cards::before {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: #FCDDFF;
+  transform: rotate(-50deg) translate(20%, -99%);
+  z-index: -2;
+}
+
+/* Separator */
+.seperator {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  background: #fff;
+}
+.seperator .content {
+  height: 30px;
+  width: 10%;
+  margin: auto;
+  transform: translateX(450%);
+  position: absolute;
+  border: 2px solid #CECECE;
+  border-radius: 100px;
+  z-index: 2;
+  background: #fff;
+  padding: 0.5% 0.5%;
+  text-align: center;
+  line-height: 80%;
+}
+.seperator .separator {
+  position: absolute;
+  border-bottom: 5px solid rgba(206, 206, 206, 0.6);
+  height: 1px;
+  width: 100%;
+  z-index: 1;
+  background: none;
+}
+
+/* Exclusive Deals*/
+.Exclusive_Deals {
+  display: block;
+  position: relative;
+  height: 70%;
+  width: 90%;
+  margin: auto;
+  box-shadow: 10px 8px 13px rgba(0, 0, 0, 0.04);
+}
+.Exclusive_Deals .top {
+  display: flex;
+  padding: 10px;
+  color: black;
+  justify-content: space-between;
+  background: #FF6BF0;
+  border-radius: 15px 15px 0px 0px;
+}
+.Exclusive_Deals .top h3 {
+  color: #fff;
+}
+.Exclusive_Deals .Card_Container {
+  display: flex;
+  width: 100%;
+  gap: 30px;
+  flex-wrap: wrap;
+  padding: 20px;
+  justify-content: center;
+  align-items: space-between;
+  overflow: hidden;
+}
+.Exclusive_Deals .Card_Container .Cards {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 300px;
+  width: 350px;
+  align-items: center;
+  background: #FCDDFF;
+  border-radius: 30px;
+  gap: -20px;
+  position: relative;
+  overflow: hidden;
+  z-index: 100;
+}
+.Exclusive_Deals .Card_Container .Cards .card-img {
+  align-items: center;
+  height: 70%;
+  width: 50%;
+}
+.Exclusive_Deals .Card_Container .Cards img {
+  height: 100%;
+  max-width: 200px;
+}
+.Exclusive_Deals .Card_Container .Cards .caption {
+  direction: reverse;
+  width: 50%;
+  text-align: center;
+  transform: translateX(50%);
+  padding-top: 0.5em;
+  font-family: "DM Sans";
+  font-size: 20px;
+  font-weight: 700;
+}
+.Exclusive_Deals .Card_Container .Cards .caption p {
+  text-align: center;
+}
+.Exclusive_Deals .Card_Container .Cards .caption a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.7rem 1.3rem;
+  background: #fff;
+  align-items: center;
+  width: 6rem;
+  height: 2.3rem;
+  color: #BB00DA;
+  box-shadow: 4.69231px 5.63077px 6.56923px rgba(0, 0, 0, 0.1);
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.Exclusive_Deals .Card_Container .Cards .caption a:hover {
+  background: #BB00DA;
+  color: #fff;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+.Exclusive_Deals .Card_Container .Cards:hover img {
+  transform: translateY(-6%);
+}
+.Exclusive_Deals .Card_Container .Cards::before {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 300px;
+  background: #F9CBFE;
+  transform: rotate(-50deg) translate(4%, 53%);
+  z-index: -2;
+  box-shadow: 5px 8px 11px 2px rgba(0, 0, 0, 0.08);
+}
+
+/*Mega Deals*/
+.Mega_Deals {
+  display: block;
+  position: relative;
+  height: 40%;
+  width: 90%;
+  margin: auto;
+  box-shadow: 10px 8px 13px rgba(0, 0, 0, 0.04);
+}
+.Mega_Deals p {
+  text-align: center;
+}
+.Mega_Deals a {
+  text-decoration: none;
+  text-align: center;
+}
+.Mega_Deals .top {
+  display: flex;
+  padding: 10px;
+  color: #fff;
+  justify-content: space-between;
+  background: #BB00DA;
+  border-radius: 15px 15px 0px 0px;
+}
+.Mega_Deals .top h3 {
+  color: #fff;
+}
+.Mega_Deals .Card_Container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: space-around;
+  overflow-wrap: inherit;
+  padding: 15px;
+}
+.Mega_Deals .Card_Container .Cards {
+  filter: drop-shadow(5px 4px 8px rgba(0, 0, 0, 0.2));
+}
+.Mega_Deals .Card_Container .Cards .caption {
+  display: inline-block;
+  padding: 5px;
+}
+.Mega_Deals .Card_Container .Cards .caption ul {
+  list-style-type: none;
+}
+.Mega_Deals .Card_Container .Cards .caption ul li h4 {
+  text-align: left;
+  font-family: "DM Sans";
+  font-weight: 700;
+  font-size: 12px;
+}
+.Mega_Deals .Card_Container .Cards .caption ul li h6 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 6.91982px;
+  line-height: 200%;
+}
+.Mega_Deals .Card_Container .Cards .price {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+.Mega_Deals .Card_Container .Cards .price ul {
+  list-style-type: none;
+}
+.Mega_Deals .Card_Container .Cards .price ul h6 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 6.91982px;
+  line-height: 200%;
+}
+.Mega_Deals .Card_Container .Cards .price ul #strike {
+  text-decoration: line-through;
+}
+.Mega_Deals .Card_Container .Cards span {
+  height: 2.5em;
+  display: inline-block;
+  width: 200px;
+  padding: 3px;
+}
+.Mega_Deals .Card_Container .Cards span #buy {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.Mega_Deals .Card_Container .Cards span #buy:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.Mega_Deals .Card_Container .Cards #sell {
+  display: inline-block;
+  text-align: center;
+  border: 1px solid #BB00DA;
+  padding: 0.45rem 0.8rem;
+  background: #fff;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #BB00DA;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.Mega_Deals .Card_Container .Cards #sell:hover {
+  background: #BB00DA;
+  color: #fff;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.Mega_Deals .Card_Container .Cards #prc {
+  text-align: left;
+  font-style: normal;
+  font-family: "DM Sans";
+  font-weight: 700;
+  font-size: 12px;
+  color: #BB00DA;
+}
+.Mega_Deals .Card_Container .Cards .card-img img {
+  height: 200px;
+  width: 200px;
+  background: #FCDDFF;
+  border-radius: 15px;
+  transition: height 0.5s;
+}
+.Mega_Deals .Card_Container .Cards .card-img:hover img {
+  transform: translateY(-6%);
+}
+
+/*Separator*/
+.sept_opti {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  background: #fff;
+}
+.sept_opti .content {
+  height: 30px;
+  width: 15%;
+  transform: translateX(280%);
+  position: absolute;
+  border: 2px solid #CECECE;
+  border-radius: 100px;
+  z-index: 2;
+  background: #fff;
+  text-align: center;
+  line-height: 80%;
+  padding: 0.5%;
+}
+.sept_opti .separator {
+  position: absolute;
+  border-bottom: 5px solid rgba(206, 206, 206, 0.3);
+  height: 1px;
+  width: 100%;
+  z-index: 1;
+  background: none;
+}
+
+/*Optimum Deals*/
+.Optimum_deals {
+  display: block;
+  position: relative;
+  height: 30em;
+  width: 90%;
+  margin: auto;
+}
+.Optimum_deals .container {
+  padding: 10px;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  gap: 1%;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  overflow-wrap: inherit;
+}
+.Optimum_deals .container .cards {
+  background: #FFD6D6;
+  border-radius: 20px;
+  height: 100%;
+  width: 22%;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+}
+.Optimum_deals .container .cards .card-img img {
+  height: 200px;
+}
+.Optimum_deals .container .cards .card-img:hover img {
+  transform: translateY(-6%);
+}
+.Optimum_deals .container .cards .txt a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.7rem 1.3rem;
+  background: #fff;
+  align-items: center;
+  width: 6rem;
+  height: 2.3rem;
+  color: #BB00DA;
+  box-shadow: 4.69231px 5.63077px 6.56923px rgba(0, 0, 0, 0.1);
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.Optimum_deals .container .cards .txt a:hover {
+  background: #BB00DA;
+  color: #fff;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+.Optimum_deals .container .cards .txt p {
+  font-family: "Plus Jakarta Sans";
+  font-weight: 800;
+  font-size: 20px;
+}
+
+/*Great Offers*/
+.Great_Offers {
+  display: block;
+  position: relative;
+  height: 40%;
+  width: 90%;
+  margin: auto;
+  box-shadow: 10px 8px 13px rgba(0, 0, 0, 0.04);
+}
+.Great_Offers p {
+  text-align: center;
+}
+.Great_Offers a {
+  text-decoration: none;
+  text-align: center;
+}
+.Great_Offers .top {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  color: #fff;
+  background: black;
+  border-radius: 15px 15px 0px 0px;
+}
+.Great_Offers .top a {
+  color: #fff;
+}
+.Great_Offers .top img {
+  height: 20px;
+}
+.Great_Offers .Card_Container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: space-around;
+  overflow-wrap: inherit;
+  padding: 15px;
+}
+.Great_Offers .Card_Container .Cards {
+  filter: drop-shadow(5px 4px 8px rgba(0, 0, 0, 0.2));
+}
+.Great_Offers .Card_Container .Cards .caption {
+  display: inline-block;
+  padding: 5px;
+}
+.Great_Offers .Card_Container .Cards .caption ul {
+  list-style-type: none;
+}
+.Great_Offers .Card_Container .Cards .caption ul li h4 {
+  text-align: left;
+  font-family: "DM Sans";
+  font-weight: 700;
+  font-size: 12px;
+}
+.Great_Offers .Card_Container .Cards .caption ul li h6 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 6.91982px;
+  line-height: 200%;
+}
+.Great_Offers .Card_Container .Cards .price {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+.Great_Offers .Card_Container .Cards .price ul {
+  list-style-type: none;
+}
+.Great_Offers .Card_Container .Cards .price ul h6 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 6.91982px;
+  line-height: 200%;
+}
+.Great_Offers .Card_Container .Cards .price ul #strike {
+  text-decoration: line-through;
+}
+.Great_Offers .Card_Container .Cards span {
+  height: 2.5em;
+  display: inline-block;
+  width: 200px;
+  padding: 3px;
+}
+.Great_Offers .Card_Container .Cards span #buy {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.Great_Offers .Card_Container .Cards span #buy:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.Great_Offers .Card_Container .Cards #sell {
+  display: inline-block;
+  text-align: center;
+  border: 1px solid #BB00DA;
+  padding: 0.45rem 0.8rem;
+  background: #fff;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #BB00DA;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.Great_Offers .Card_Container .Cards #sell:hover {
+  background: #BB00DA;
+  color: #fff;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.Great_Offers .Card_Container .Cards #prc {
+  text-align: left;
+  font-style: normal;
+  font-family: "DM Sans";
+  font-weight: 700;
+  font-size: 12px;
+  color: #BB00DA;
+}
+.Great_Offers .Card_Container .Cards .card-img img {
+  height: 200px;
+  width: 200px;
+  background: #FCDDFF;
+  border-radius: 15px;
+  transition: height 0.5s;
+}
+.Great_Offers .Card_Container .Cards .card-img:hover img {
+  transform: translateY(-6%);
+}
+.Great_Offers .Card_Container .more {
+  height: 50px;
+  width: 50px;
+  transform: translateY(150%);
+  padding: 15px;
+  filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.08));
+}
+.Great_Offers .Card_Container .more img {
+  height: 50px;
+  width: 50px;
+}
+
+/*Separator*/
+.sept_cont {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  background: #fff;
+}
+.sept_cont .content {
+  height: 30px;
+  width: 15%;
+  margin: auto;
+  transform: translateX(280%);
+  position: absolute;
+  border: 2px solid #CECECE;
+  border-radius: 100px;
+  z-index: 2;
+  background: #fff;
+  text-align: center;
+  line-height: 80%;
+  padding: 0.5%;
+}
+.sept_cont .separator {
+  position: absolute;
+  border-bottom: 5px solid rgba(206, 206, 206, 0.3);
+  height: 1px;
+  width: 100%;
+  z-index: 1;
+  background: none;
+}
+
+/*Superstores*/
+.Superstores {
+  display: block;
+  position: relative;
+  height: 40%;
+  width: 90%;
+  margin: auto;
+  box-shadow: 10px 8px 13px rgba(0, 0, 0, 0.04);
+}
+.Superstores p {
+  text-align: center;
+}
+.Superstores a {
+  text-decoration: none;
+  text-align: center;
+}
+.Superstores .top {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  color: #fff;
+  background: #AB6BFF;
+  border-radius: 15px 15px 0px 0px;
+}
+.Superstores .top a {
+  color: #fff;
+}
+.Superstores .Card_Container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: space-around;
+  overflow-wrap: inherit;
+  padding: 15px;
+}
+.Superstores .Card_Container .Cards {
+  filter: drop-shadow(5px 4px 8px rgba(0, 0, 0, 0.2));
+}
+.Superstores .Card_Container .Cards .caption {
+  display: inline-block;
+  padding: 5px;
+}
+.Superstores .Card_Container .Cards .caption ul {
+  list-style-type: none;
+}
+.Superstores .Card_Container .Cards .caption ul li h4 {
+  text-align: left;
+  font-family: "DM Sans";
+  font-weight: 700;
+  font-size: 12px;
+}
+.Superstores .Card_Container .Cards .caption ul li h6 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 6.91982px;
+  line-height: 200%;
+}
+.Superstores .Card_Container .Cards .price {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+.Superstores .Card_Container .Cards .price ul {
+  list-style-type: none;
+}
+.Superstores .Card_Container .Cards .price ul h6 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 6.91982px;
+  line-height: 200%;
+}
+.Superstores .Card_Container .Cards .price ul #strike {
+  text-decoration: line-through;
+}
+.Superstores .Card_Container .Cards span {
+  height: 2.5em;
+  display: inline-block;
+  width: 200px;
+  padding: 3px;
+}
+.Superstores .Card_Container .Cards span #buy {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.Superstores .Card_Container .Cards span #buy:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.Superstores .Card_Container .Cards #sell {
+  display: inline-block;
+  text-align: center;
+  border: 1px solid #BB00DA;
+  padding: 0.45rem 0.8rem;
+  background: #fff;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #BB00DA;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.Superstores .Card_Container .Cards #sell:hover {
+  background: #BB00DA;
+  color: #fff;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.Superstores .Card_Container .Cards #prc {
+  text-align: left;
+  font-style: normal;
+  font-family: "DM Sans";
+  font-weight: 700;
+  font-size: 12px;
+  color: #BB00DA;
+}
+.Superstores .Card_Container .Cards .card-img img {
+  height: 200px;
+  width: 200px;
+  background: #FCDDFF;
+  border-radius: 15px;
+  transition: height 0.5s;
+}
+.Superstores .Card_Container .Cards .card-img:hover img {
+  transform: translateY(-6%);
+}
+
+.Superstoress {
+  display: block;
+  position: relative;
+  height: 40%;
+  width: 90%;
+  margin: auto;
+  box-shadow: 10px 8px 13px rgba(0, 0, 0, 0.04);
+}
+.Superstoress p {
+  text-align: center;
+}
+.Superstoress a {
+  text-decoration: none;
+  text-align: center;
+}
+.Superstoress .top {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  color: #fff;
+  background: #FF6BF0;
+  border-radius: 15px 15px 0px 0px;
+}
+.Superstoress .top a {
+  color: #fff;
+}
+.Superstoress .Card_Container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: space-around;
+  overflow-wrap: inherit;
+  padding: 15px;
+}
+.Superstoress .Card_Container .Cards {
+  filter: drop-shadow(5px 4px 8px rgba(0, 0, 0, 0.2));
+}
+.Superstoress .Card_Container .Cards .caption {
+  display: inline-block;
+  padding: 5px;
+}
+.Superstoress .Card_Container .Cards .caption ul {
+  list-style-type: none;
+}
+.Superstoress .Card_Container .Cards .caption ul li h4 {
+  text-align: left;
+  font-family: "DM Sans";
+  font-weight: 700;
+  font-size: 12px;
+}
+.Superstoress .Card_Container .Cards .caption ul li h6 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 6.91982px;
+  line-height: 200%;
+}
+.Superstoress .Card_Container .Cards .price {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+.Superstoress .Card_Container .Cards .price ul {
+  list-style-type: none;
+}
+.Superstoress .Card_Container .Cards .price ul h6 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 6.91982px;
+  line-height: 200%;
+}
+.Superstoress .Card_Container .Cards .price ul #strike {
+  text-decoration: line-through;
+}
+.Superstoress .Card_Container .Cards span {
+  height: 2.5em;
+  display: inline-block;
+  width: 200px;
+  padding: 3px;
+}
+.Superstoress .Card_Container .Cards span #buy {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  background: #BB00DA;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.Superstoress .Card_Container .Cards span #buy:hover {
+  background: #fff;
+  color: #BB00DA;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.Superstoress .Card_Container .Cards #sell {
+  display: inline-block;
+  text-align: center;
+  border: 1px solid #BB00DA;
+  padding: 0.45rem 0.8rem;
+  background: #fff;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  color: #BB00DA;
+  text-decoration: none;
+  font-family: "Jakarta Plus Sans";
+  font-weight: 700;
+  font-size: 15px;
+}
+.Superstoress .Card_Container .Cards #sell:hover {
+  background: #BB00DA;
+  color: #fff;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.Superstoress .Card_Container .Cards #prc {
+  text-align: left;
+  font-style: normal;
+  font-family: "DM Sans";
+  font-weight: 700;
+  font-size: 12px;
+  color: #BB00DA;
+}
+.Superstoress .Card_Container .Cards .card-img img {
+  height: 200px;
+  width: 200px;
+  background: #FCDDFF;
+  border-radius: 15px;
+  transition: height 0.5s;
+}
+.Superstoress .Card_Container .Cards .card-img:hover img {
+  transform: translateY(-6%);
+}
+
+/* Separator */
+.seperate {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  background: #fff;
+}
+.seperate .content {
+  height: 30px;
+  width: 10%;
+  margin: auto;
+  transform: translateX(450%);
+  position: absolute;
+  border: 2px solid #CECECE;
+  border-radius: 100px;
+  z-index: 2;
+  background: #fff;
+  padding: 0.5%;
+  text-align: center;
+  line-height: 80%;
+}
+.seperate .separator {
+  position: absolute;
+  border-bottom: 5px solid rgba(206, 206, 206, 0.3);
+  height: 1px;
+  width: 100%;
+  z-index: 1;
+  background: none;
+}
+
+/*Jolly Deals*/
+/*Premium Deals*/
+.Premium_Deals {
+  display: block;
+  height: 70%;
+  width: 90%;
+  margin: auto;
+}
+.Premium_Deals .container {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4%;
+}
+.Premium_Deals .container .grid1 {
+  grid-column: 1/span 6;
+  height: 400px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  padding: 0px 10px;
+  background: #F9CBFE;
+  border-radius: 25px;
+}
+.Premium_Deals .container .grid1 .txt {
+  grid-column: 1/span 2;
+  justify-content: center;
+  text-align: left;
+  align-self: center;
+}
+.Premium_Deals .container .grid1 .txt h2 {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.5em;
+  line-height: 112.5%;
+}
+.Premium_Deals .container .grid1 .txt a {
+  border: none;
+  padding: 0.5rem 0.8rem;
+  background: #ff9900;
+  border-radius: 100px;
+  align-items: center;
+  width: 10rem;
+  height: 2.3rem;
+  color: #fff;
+  text-decoration: none;
+}
+.Premium_Deals .container .grid1 .txt a:hover {
+  background: #fff;
+  color: #ff9900;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.Premium_Deals .container .grid1 .imgpart {
+  grid-column: span 4;
+  padding: 10px;
+  align-items: center;
+  justify-items: start;
+}
+.Premium_Deals .container .grid1 .imgpart img {
+  width: 800px;
+}
+.Premium_Deals .container .grid2 {
+  grid-column: span 2;
+  border-radius: 35px;
+  height: 230px;
+  display: flex;
+  background: #FCDDFF;
+}
+.Premium_Deals .container .grid2 .txt {
+  height: 100%;
+  width: 50%;
+  left: -5em;
+  justify-content: center;
+  transform: translateX(30%);
+  padding-top: 0.5em;
+  font-family: "DM Sans";
+  font-size: 20px;
+  font-weight: 700;
+}
+.Premium_Deals .container .grid2 .txt p {
+  text-align: center;
+  transform: translate(-25%);
+}
+.Premium_Deals .container .grid2 .txt a {
+  border: 1px solid black;
+  text-decoration: none;
+  padding: 0.5rem 0.8rem;
+  background: #fff;
+  border-radius: 100px;
+  align-items: center;
+  width: 10rem;
+  height: 2.3rem;
+  color: #BB00DA;
+}
+.Premium_Deals .container .grid2 .txt a:hover {
+  background: #BB00DA;
+  color: #fff;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.Premium_Deals .container .grid3 {
+  grid-column: span 4;
+  border-radius: 35px;
+  height: 230px;
+  display: flex;
+  background: #18E4D7;
+  overflow: hidden;
+}
+.Premium_Deals .container .grid3 .txt {
+  height: 100%;
+  width: 50%;
+  justify-content: center;
+  transform: translateX(30%);
+  padding-top: 0.5em;
+  font-family: "DM Sans";
+  font-size: 20px;
+  font-weight: 700;
+}
+.Premium_Deals .container .grid3 .txt p {
+  text-align: center;
+  transform: translate(-25%);
+}
+.Premium_Deals .container .grid3 .txt a {
+  border: 1px solid black;
+  text-decoration: none;
+  padding: 0.5rem 0.8rem;
+  background: #fff;
+  border-radius: 100px;
+  align-items: center;
+  width: 10rem;
+  height: 2.3rem;
+  color: #BB00DA;
+}
+.Premium_Deals .container .grid3 .txt a:hover {
+  background: #BB00DA;
+  color: #fff;
+  border: 1px solid #BB00DA;
+  cursor: pointer;
+}
+.Premium_Deals .container .grid3::before {
+  content: "";
+  position: relative;
+  width: 300px;
+  height: 240px;
+  justify-content: start;
+  background: #EE88FF;
+  transform: rotate(-40deg) translateY(-20%);
+}
+.Premium_Deals #imag {
+  height: 180px;
+  width: 180px;
+}
+
+/*App Section*/
+.app_section {
+  height: 30%;
+  width: 90%;
+  display: block;
+  position: relative;
+  margin: auto;
+}
+.app_section .container {
+  display: flex;
+  padding: 5%;
+  justify-content: space-around;
+  text-align: center;
+}
+.app_section .container .txt {
+  padding: 10px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 250%;
+  text-align: center;
+  letter-spacing: -0.04em;
+}
+.app_section .container .txt h4 {
+  display: none;
+}
+.app_section .container .hero_img {
+  padding: 3%;
+}
+.app_section .container #app {
+  height: 60%;
+}
+
+/*News*/
+.news {
+  max-height: 25%;
+  width: 50%;
+  background: #BB00DA;
+  box-shadow: 8.75px 13.125px 21.875px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  text-align: center;
+  align-items: center;
+  transform: translateX(50%);
+  padding: 60px 10px 100px 10px;
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15.5px;
+  line-height: 21px;
+  color: #fff;
+}
+.news input[type=text] {
+  padding-left: 20px;
+  border: none;
+  width: 70%;
+  height: 40px;
+}
+.news button[type=submit] {
+  border: none;
+  width: 8em;
+  height: 40px;
+  background: black;
+  color: #fff;
+}/*# sourceMappingURL=style.css.map */
