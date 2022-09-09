@@ -214,7 +214,7 @@ UNIQUE_EMAIL = True  # just to be sure, ok
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'), ]
+STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'), "/home/ecommerce-solution/static/" ]
 
 STATIC_URL = '/static/'
 
