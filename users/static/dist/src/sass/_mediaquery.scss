@@ -1,0 +1,190 @@
+@media (max-width: 600px) {
+    .header{
+        display: block;
+        width: 100%;
+        
+
+
+
+        
+        .nav1{
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .logo{
+                padding: 10px;
+                justify-content: center;
+                align-self: center;
+            }
+            .search{
+                display: none;
+            }
+            .nav-btn{
+                display: none;
+            }
+
+            .tgler{
+                border: 1px solid black;
+                display: block;
+                // padding: 10px;
+                z-index: inherit;
+
+
+                &__toggler{
+                    position: absolute;
+                    cursor: pointer;
+                }
+                input[type=checkbox]{
+                    display: none;
+                }
+                svg{
+                    width: 1.5rem;
+                    height: 2rem;
+                    // transform: translateY(90%);
+                }
+                .close{
+                    display: none;
+                }
+               ul{
+                display: flex;
+                flex-direction: column;
+                transform: translate(0%,50%);
+                gap: 3rem;
+                align-items: center;
+                text-align: right;
+                margin-right: 50%;
+
+
+
+                li{
+                    list-style-type: none;
+                }
+               }
+            }
+        }
+        .nav2{
+            display: none;
+        }
+        .nav3{
+            display: none;
+        }
+    }
+
+
+
+    .hero{
+        display: block;
+        // padding: 10px;
+        position: relative;
+        .container{
+            .txt{
+                h1{
+                    display: none;
+                }
+                h4{
+                    display: none;
+                }
+                a{
+                    display: inline;
+                    transform: translateY(370%);
+                }
+              
+            }
+            .hero_img{
+                svg{
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .aside{
+        display: none;
+        .container{
+            display: none;
+            ul{
+                display: none;
+            }
+        }
+    }
+
+    .Optimum_deals{
+
+        display: none;
+        .container{
+            display: none;
+
+           
+        }
+
+    }
+
+    .Premium_Deals{
+        display: block;
+        .container{
+            display: block;
+            .grid1{
+                display: flex;
+                flex-direction: column-reverse;
+              
+                overflow: hidden;
+                .txt{
+                    // border: 1px solid red;
+                    display: inline;
+                    
+                        h2, p{
+                            display: none;
+                        }
+                        a{
+                            width: 5rem;
+                            padding: 0%;
+                        }
+
+                    
+                }
+                .imgpart{
+                    // border: 1px solid black;
+                    img{
+                        height: 200px;
+                        max-width: 250px;
+                    }
+                }
+            }
+        }
+    }
+
+    .app_section{
+        height: 20%;
+        .container{
+            padding: 10px;
+            .txt{
+                h1,p{
+                    display: none;
+                }
+                h4{
+                    display: block;
+                    font-size: 10px;
+                    line-height: 10%;
+                    font-weight: 400;
+                }
+                padding: 5px;
+              
+
+                height: 100px;
+                width: 100px;
+            }
+            .hero_img{
+                svg{
+                    height: 150px;
+                    width: 100px;
+                }
+            }
+        }
+    }
+    .news{
+        display: none;
+    }
+}
