@@ -1,0 +1,309 @@
+.grid_container{
+    display: block;
+    position: relative;
+    width: 90%;
+    margin: auto;
+
+
+    .container{
+        display: grid;
+        // border: 3px solid black;
+        width: 100%;
+        grid-template-columns: repeat(8, 1fr);
+        padding: 2px;
+        gap: 5px;
+
+
+        .grid1{
+            // border: 1px solid black;
+            grid-column: span  2;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            padding: 10px;
+            align-items: center;
+            gap: 10px;
+
+            #top{
+                color: $btncolor;
+                align-self: flex-start;
+                padding-left: 29px;
+
+                font-family: 'Jakarta Plus Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 92%;
+                img{
+                    height: 15px;
+                    width: 15px;
+                }
+            }
+
+            .col1{
+                display: flex;
+                flex-direction: column;
+                // border: 1px solid red;
+                align-items: center;
+                width: 80%;
+                gap: 10px;
+
+                
+                ul{
+                    list-style-type: none;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 6px;
+                    padding: 5px;                    
+                    li{
+                        display: flex;
+                        align-items: center;
+                        height: 30px;
+                        background: #F5F5F5;
+                        padding-left: 10px;
+
+
+
+                        font-family: 'DM Sans';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 12px;
+                        line-height: 132%;
+
+                        span{
+                            color: $btncolor
+                        }
+
+                    }
+                }
+            }
+
+            .col2{
+                // border: 1px solid red;
+                width: 80%;
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+
+
+
+                #priceFinder{
+                    width: 100%;
+                }
+                #filter{
+                    background: $btncolor;
+                    height: 20px;
+                }
+                h4{
+                    display: flex;
+                    justify-content: space-between;
+                }
+                #price{
+                    padding: 10px;
+                    font-size: 10px;
+                }
+                a{
+                    text-decoration: none;
+                }
+
+                font-family: 'DM Sans';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 12px;
+                line-height: 200%;
+            }
+
+            .col3{
+                // border: 1px solid red;
+                width: 80%;
+                padding: 10px;
+                h2{
+                    font-family: 'DM Sans';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 200%;
+                }
+
+                font-family: 'DM Sans';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 12px;
+                line-height: 200%;
+            }
+
+            .col4{
+                // border: 1px solid red;
+                width: 80%;
+                padding: 10px;
+                h2{
+                    font-family: 'DM Sans';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 200%;
+                }
+
+                font-family: 'DM Sans';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 12px;
+                line-height: 200%;
+            }
+
+            .col5{
+                // border: 1px solid red;
+                width: 80%;
+                padding: 10px;
+
+                h2{
+                    font-family: 'DM Sans';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 200%;
+                }
+                a{
+                    text-decoration: none;
+                }
+                input{
+                    height: 30px;
+                    width: 100%;
+                    border-radius: 35px;
+                    border: 1px solid $btncolor;
+                }
+                img{
+                    height: 20px;
+                    width: 20px;
+                }
+
+                font-family: 'DM Sans';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 12px;
+                line-height: 200%;
+            }
+
+            .col6{
+                // border: 1px solid red;
+                width: 80%;
+                padding: 10px;
+
+                h2{
+                    font-family: 'DM Sans';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 200%;
+                }
+
+                font-family: 'DM Sans';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 12px;
+                line-height: 200%;
+            }
+
+            .col7{
+                // border: 1px solid red;
+                width: 80%;
+                padding: 10px;
+
+                h2{
+                    font-family: 'DM Sans';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 20px;
+                    line-height: 200%;
+                }
+                font-family: 'DM Sans';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 12px;
+                line-height: 200%;
+            }
+        }
+
+        .grid2{
+            grid-column: span 6;
+            // border: 2px solid black;
+            display: block;
+
+            .flexcontainer{
+                // border: 1px solid red;
+                width: 100%;
+                display: flex;
+                padding: 5px;
+                flex-direction: column;
+                gap: 10px;
+
+
+                .topflex{
+                    display: flex;
+                    // border: 1px solid red;
+                    height: 150px;
+                    width: 100%;
+                    align-items: center;
+                    justify-content: space-around;
+                    text-align: center;
+                    background: #FEF2FF;
+
+                    .one{
+                        img{
+                            height: 60px;
+                            width: 60px;
+                            border-radius: 25px;
+                        }
+                        font-family: 'Plus Jakarta Sans';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 16px;
+                        line-height: 92%;
+                    }
+                }
+
+                .planflex{
+                    display: block;
+                    // border: 1px solid red;
+
+                    .top{
+                        display: flex;
+                        padding: 10px;
+                        padding-left: 20px;
+                        color: #fff;
+                        justify-content: space-between;
+                        background: $btncolor;
+                        // border-radius: 15px 15px 0px 0px;
+                    
+                        font-family: 'Jakarta Plus Sans';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 20px;
+                        line-height: 92%;
+                      }
+
+                      h5{
+                        display: block;
+                        font-family: 'DM Sans';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 200%;
+                        color: #b3b3b3;
+                        text-align: center;
+                    }
+                      .cardcontainer{
+                        display: flex;
+                        width: 100%;
+                        align-items: center;
+                        justify-content: center;
+                        @include xpandcard;
+                        flex-wrap: wrap;
+                        gap: 10px;
+                        
+                      }
+                }
+            }
+        }
+    }
+}
