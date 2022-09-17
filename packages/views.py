@@ -8,12 +8,12 @@ from py4paystack import Plan
 class PackagesView(ModelViewSet):
     serializer_class = PackageSerializer
     queryset = Packages.objects.all()
-
+    """""
     def list(self, request):
         items = self.get_queryset()#Plan().list()#self.get_queryset()
         catser = self.get_serializer(items, many=True)
         return Response({"data": catser.data})
-
+    
     def create(self, request):
         data = request.data
         catser = self.get_serializer(data=data)
@@ -44,7 +44,7 @@ class PackagesView(ModelViewSet):
         finally:
             catser = self.get_serializer(item)
         return Response(catser.data)
-
+    """""
     def destroy(self, request, pk=None):
         plan_code = self.get_queryset().filter(id=pk).first()
         try:

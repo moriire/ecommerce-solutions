@@ -1,6 +1,7 @@
 from django.db import models
 from users.models import CustomUsers
-#from thumbs.models import Thumbs
+from packages.models import Packages, PackageSerializer
+from thumbs.models import Thumbs, ThumbSerializer
 from rest_framework import serializers
 from django.urls import reverse
 from django.template.defaultfilters import slugify # new
@@ -36,12 +37,14 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class Products(models.Model):
     user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE, related_name="user_product")
+    package = models.ForeignKey(Packages, on_delete=models.CASCADE, related_name="user_packages")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="product_category")
+    thumbs = models.ForeignKey(Thumbs, on_delete=models.Empty, related_name="products_thumbs", null=True, blank=True,)
     name = models.CharField(max_length=100)
     slug = models.SlugField(null=True, blank=True, unique=True, editable=False)
     description = models.TextField(max_length=512)
     price = models.FloatField()
-    viewed_by = models.ManyToManyField(CustomUsers, related_name="viewed_by")
+    viewed_by = models.ManyToManyField(CustomUsers, related_name="viewed_by", blank=True)
     discount = models.IntegerField(default=0)
 
     def __str__(self):
@@ -64,10 +67,21 @@ class Products(models.Model):
     def no_of_viewers(self):
         return self.viewed_by.count()
 
-class ProductSerializer(serializers.ModelSerializer):
+
+class ProductExpandSerializer(serializers.ModelSerializer):
+    package = PackageSerializer()
+    category = CategorySerializer()
+    thumbs = ThumbSerializer(many=True)
     class Meta:
         model = Products
-        fields = "__all__"
+        fields = ("package", "category", "user", "name", "description", "price", "thumbs")
+
+class ProductSerializer(serializers.ModelSerializer):
+    #category = CategorySerializer()
+    #thumbs = ThumbSerializer()
+    class Meta:
+        model = Products
+        fields = ("package", "category", "user", "name", "description", "price")
 
 
 class Reviews(models.Model):

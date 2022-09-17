@@ -131,13 +131,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
+    'DEFAULT_AUTHENTICATION_CLASSES': ( 'dj_rest_auth.jwt_auth.JWTCookieAuthentication',),
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
-REST_AUTH_REGISTER_SERIALIZERS = {                            'REGISTER_SERIALIZER': 'users.models.RegisterSerializer',
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = 'mega-auth'
+JWT_AUTH_REFRESH_COOKIE = 'mega-refresh-token'
+
+REST_AUTH_REGISTER_SERIALIZERS = {                            
+    'REGISTER_SERIALIZER': 'users.models.RegisterSerializer',
 }
 ACCOUNT_ADAPTER = 'users.forms.NewAllauthAdapter'
 AUTH_USER_MODEL = "users.CustomUsers"
@@ -214,7 +217,9 @@ UNIQUE_EMAIL = True  # just to be sure, ok
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'), "/home/ecs/ecommerce-solutions/static/" ]
+STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static')
+#, "/home/ecs/ecommerce-solutions/static/" 
+]
 
 STATIC_URL = '/static/'
 
@@ -224,10 +229,11 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_ALLOW_ALL = not False
 CORS_ALLOWED_ORIGINS = [
     "https://www.megadey.org",
     "http://127.0.0.1:8080",
+    "http://localhost:8080",
     #"*",
 ]
 

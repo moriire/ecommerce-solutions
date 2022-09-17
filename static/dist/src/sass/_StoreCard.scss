@@ -217,7 +217,7 @@
             height: 200px;
             display: flex;
             flex-direction: column;
-            justify-content: start;
+            justify-content: flex-start;
             align-items: center;
             padding: 5px;
             gap: 5px;
@@ -577,7 +577,7 @@
                 height: 200px;
                 display: flex;
                 flex-direction: column;
-                justify-content: start;
+                justify-content: flex-start;
                 align-items: center;
                 padding: 5px;
                 gap: 5px;
@@ -649,7 +649,7 @@
                     display: flex;
                     // border: 1px solid black;
                     align-items: flex-start;
-                    justify-content: start;
+                    justify-content: flex-start;
                     gap: 1em;
                     // border-radius: 20px;
                     box-shadow: 5.82029px 5.09275px 7.27536px rgba(0, 0, 0, 0.2);
@@ -671,7 +671,7 @@
                         width: 100%;
                         height: 100%;
                         flex-direction: row;
-                        // align-items: start;
+                        // align-items: flex-start;
                         justify-content: space-between;
                         // border: 1px solid magenta;
         

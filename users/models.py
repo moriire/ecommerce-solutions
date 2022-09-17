@@ -50,6 +50,7 @@ class RegisterSerializer(serializers.Serializer):
     email = serializers.EmailField(required=allauth_settings.EMAIL_REQUIRED)
     password1 = serializers.CharField(write_only=True)
     password2 = serializers.CharField(write_only=True)
+    #img=serializers.ImageField(allow_empty_file=True)
 
     def validate_email(self, email):
         email = get_adapter().clean_email(email)
@@ -78,6 +79,7 @@ class RegisterSerializer(serializers.Serializer):
             'phone': self.validated_data.get('phone', ''),
             'password1': self.validated_data.get('password1', ''),
             'email': self.validated_data.get('email', ''),
+#img": self.validated_data.get("img", "")
         }
 
     def save(self, request):

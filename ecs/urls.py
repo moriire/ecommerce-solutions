@@ -53,13 +53,14 @@ route.register("transaction", TransactionView, basename="transaction")
 route.register("payhook", PaystackHookView)
 
 urlpatterns = [
-        re_path(r'api/auth/token/', include('knox.urls')),
+        #re_path(r'api/auth/token/', include('knox.urls')),
         path('api/auth/', include('dj_rest_auth.urls')),
         path('auth/email-success', views.email_verified, name="email-success"),
         path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
+        re_path(r'^api/v1/', include(route.urls)),
         path("", views.index, name="home"),
+        path("<str:page>", views.index, name="home-1"),
         path("<str:page>/<str:path>", views.index, name="home-with-path"),
-        path('api/', include(route.urls)),
         path('check/privacy_policy/', views.privacy_policy, name="privacy_policy"),
         path('check/terms_of_service/', views.terms_of_service, name="terms_of_service"),
         path('check/account_delete/', views.account_delete, name="account_delete"),

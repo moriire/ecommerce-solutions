@@ -3,12 +3,12 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
-from .models import (Products, Category, ProductSerializer, CategorySerializer, ReviewSerializer, Reviews)
+from .models import (Products, Category, ProductSerializer, ProductExpandSerializer, CategorySerializer, ReviewSerializer, Reviews)
 #from rest_framework import filters
 
 class CategoryView(ModelViewSet):
     """Lists/Get/Re Product category"""
-    queryset = Category.objects.all()
+    queryset = Category.objects.all().select_related()
     serializer_class = CategorySerializer
 
     """
@@ -57,9 +57,9 @@ class CategoryView(ModelViewSet):
 
 class ProductView(ModelViewSet):
     authentication_classes = (SessionAuthentication, BasicAuthentication)
-    permission_classes = (IsAuthenticated,)
+    #permission_classes = (IsAuthenticated,)
     serializer_class = ProductSerializer
-    queryset = Products.objects.all()
+    queryset = Products.objects.all().select_related()
 
     def list(self, request):
         items = self.get_queryset()
@@ -67,7 +67,7 @@ class ProductView(ModelViewSet):
         pp = params.dict()
         if params:
             items = items.filter(**pp)
-        catser = self.get_serializer(items, many=True)
+        catser = ProductExpandSerializer(items, many=True)
         return Response(
                 {
                     "data": catser.data,
