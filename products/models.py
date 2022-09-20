@@ -36,12 +36,18 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class Products(models.Model):
+    CONDITION=(
+        ("new", "New"),
+        ("used", "Used")
+    )
     user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE, related_name="user_product")
     package = models.ForeignKey(Packages, on_delete=models.CASCADE, related_name="user_packages")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="product_category")
     thumbs = models.ForeignKey(Thumbs, on_delete=models.Empty, related_name="products_thumbs", null=True, blank=True,)
     name = models.CharField(max_length=100)
     slug = models.SlugField(null=True, blank=True, unique=True, editable=False)
+    brand = models.CharField(max_length=50, null=True, blank=True,)
+    condition = models.CharField(max_length=11, null=True, blank=True, choices=CONDITION)
     description = models.TextField(max_length=512)
     price = models.FloatField()
     viewed_by = models.ManyToManyField(CustomUsers, related_name="viewed_by", blank=True)
@@ -58,11 +64,8 @@ class Products(models.Model):
     def price_in_kobo(self):
         return self.price*100
 
-    def discount(self):
-        return self.discount*self.price
-
     def discounted_price(self):
-        return self.price-self.discount()
+        return self.price-self.discount
 
     def no_of_viewers(self):
         return self.viewed_by.count()
@@ -74,14 +77,24 @@ class ProductExpandSerializer(serializers.ModelSerializer):
     thumbs = ThumbSerializer(many=True)
     class Meta:
         model = Products
-        fields = ("package", "category", "user", "name", "description", "price", "thumbs")
+        fields = (
+            "id", #user id
+            "package", # subscribed package e.g Jumbo superstor, dandy
+            "category",# Product category
+             "user", #user
+            "name",# Product name
+            "description", #detailed product description less than 200
+            "price", #product price
+            "thumbs",#product thumbnail. max size 400x400px
+            "discounted_price"#discount on product price
+            )
 
 class ProductSerializer(serializers.ModelSerializer):
     #category = CategorySerializer()
     #thumbs = ThumbSerializer()
     class Meta:
         model = Products
-        fields = ("package", "category", "user", "name", "description", "price")
+        fields = ("id", "package", "category", "user", "name", "description", "price", "discounted_price")
 
 
 class Reviews(models.Model):
