@@ -29,6 +29,7 @@
   /*Styles the buttons*/
   /*Styles the user actions for logged in users*/
   /*Styles the nav on small screens*/
+  /*Styles the search dropdown*/
 }
 .header .nav1 .logo {
   display: flex;
@@ -58,9 +59,8 @@
   justify-content: center;
 }
 .header .nav1 .search input {
-  max-width: 40rem;
-  height: 70%;
-  flex: 1;
+  width: 30rem;
+  height: 2.3em;
   padding: 0 10px;
   border: 1px solid #BB00DA;
 }
@@ -76,6 +76,20 @@
 }
 .header .nav1 .search ul .fa-solid {
   color: #BB00DA;
+}
+.header .nav1 .search button {
+  left: 0.6em;
+  position: relative;
+  height: 2.3em;
+  width: 6em;
+  background: #BB00DA;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+.header .nav1 .search button img {
+  height: 10px;
+  width: 10px;
 }
 .header .nav1 .nav-btn {
   display: flex;
@@ -404,6 +418,38 @@
 }
 .header .nav1 .tgler {
   display: none;
+}
+.header .nav1 .cntent {
+  display: none;
+  position: relative;
+  height: 200px;
+  width: 50em;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #fff;
+  transform: translate(-200%, 70%);
+  z-index: 999;
+}
+.header .nav1 .cntent div {
+  display: flex;
+  padding: 2px;
+  margin: auto;
+  width: 95%;
+  align-items: center;
+  justify-content: space-between;
+}
+.header .nav1 .cntent div p {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 92%;
+}
+.header .nav1 .cntent div a {
+  text-decoration: none;
+}
+.header .nav1 .cntent div:hover {
+  color: #BB00DA;
 }
 .header .nav2 {
   display: flex;
@@ -3106,14 +3152,23 @@
   gap: 5px;
 }
 
+/*Styles the Profile settings backdrop*/
+.backdrp {
+  display: block;
+  width: 100%;
+  height: 110%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 /*Styles the Profile settings form*/
 .p_settings {
-  border: 1px solid black;
   display: block;
-  height: 600px;
+  background-color: #fff;
+  position: relative;
   width: 600px;
   margin: auto;
   padding: 10px;
+  transform: translateY(1%);
   /*Styles the close icon*/
 }
 .p_settings h2 {
@@ -3127,7 +3182,8 @@
   width: 70px;
   height: 70px;
   display: block;
-  transform: translate(820%, -800%);
+  transform: translate(820%, -1310%);
+  box-shadow: 2px rgba(0, 0, 0, 0.1);
 }
 .p_settings #close img {
   height: 20px;
@@ -3156,6 +3212,26 @@
 }
 .p_settings #save {
   transform: translateX(150%);
+}
+.p_settings .socials {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: -2em;
+}
+.p_settings .socials label {
+  width: 100%;
+  margin: auto;
+}
+.p_settings .socials label img {
+  height: 40px;
+  width: 40px;
+  display: inline;
+  transform: translateY(30%);
+}
+.p_settings .socials label input {
+  width: 60%;
+  height: 40px;
 }
 
 /*Styles the New password form*/
@@ -3291,6 +3367,9 @@
     display: none;
   }
   .header .nav1 .nav-btn {
+    display: none;
+  }
+  .header .nav1 .user {
     display: none;
   }
   .header .nav1 .tgler {
@@ -3689,6 +3768,19 @@
   padding: 20px;
   gap: 100px;
 }
+.hero .container .sction {
+  display: flex;
+  gap: 1em;
+}
+.hero .container .sction p {
+  display: inline-block;
+  color: #BB00DA;
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 200%;
+}
 .hero h1 {
   font-family: "Plus Jakarta Sans";
   font-style: normal;
@@ -3758,7 +3850,6 @@
   background: #fff;
   color: #BB00DA;
   transform: translateX(50%);
-  z-index: 2;
 }
 .aside .container {
   display: flex;
@@ -3858,7 +3949,6 @@
   gap: -20px;
   position: relative;
   overflow: hidden;
-  z-index: 100;
   filter: drop-shadow(5px 4px 8px rgba(0, 0, 0, 0.2));
 }
 .Nifty_Deals .container .Cards .card-img {
@@ -4266,7 +4356,6 @@
   display: flex;
   width: 100%;
   height: 100%;
-  gap: 1%;
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;

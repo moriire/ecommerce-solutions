@@ -7,7 +7,7 @@ from rest_framework import routers
 from products.views import CategoryView, ProductView, ReviewsView
 from packages.views import PackagesView
 #from users.views import UsersView
-#from profiles.views import ProfileView
+from profiles.views import ProfileView
 from thumbs.views import ProductImageView
 from flash.views import FlashSalesView
 from bargains.views import BargainVendorsView
@@ -45,7 +45,7 @@ route.register("categories", CategoryView)
 route.register("products", ProductView)
 route.register("reviews", ReviewsView)
 #route.register("users", UsersView)
-#route.register("profile", ProfileView)
+route.register("profile", ProfileView)
 route.register("thumbs", ProductImageView)
 route.register("flash", FlashSalesView)
 route.register("bargains", BargainVendorsView)

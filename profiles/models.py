@@ -3,8 +3,8 @@ from django.utils.translation import gettext as _
 from django.utils import timezone
 from users.models import CustomUsers
 from rest_framework import serializers
-from utils import image_resize
-
+#from utils import image_resize
+"""
 class Profile(models.Model):
     user = models.OneToOneField(CustomUsers, related_name="user_profile", on_delete=models.CASCADE)
     img = models.ImageField(_("upload image"),  upload_to="users", null=True, blank=True
@@ -17,10 +17,10 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.email
-    """
+    
     def absolute_url(self):
         return reverse('flash-detail', args=(self.id,))
-    """
+    
     def save(self, *args, **kwargs):
         if self.img:
             image_resize(self.img, 300, 300)
@@ -30,14 +30,9 @@ class Profile(models.Model):
         if self.img:
             delete_img(self.img)
         super().delete()
-
+"""
 class ProfileSerializer(serializers.ModelSerializer):
     user = CustomUsers.objects.all()
     class Meta:
-        model = Profile
+        model = CustomUsers
         fields = "__all__"
-
-
-
-
-

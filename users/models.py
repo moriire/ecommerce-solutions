@@ -26,7 +26,6 @@ class CustomUsers(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
-
     def absolute_url(self):
         return reverse('flash-detail', args=(self.id,))
 
