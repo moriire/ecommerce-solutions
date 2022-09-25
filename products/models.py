@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import CustomUsers
+from profiles.models import Profile, ProfileSerializer, ProfileExpandSerializer
 from packages.models import Packages, PackageSerializer
 from thumbs.models import Thumbs, ThumbSerializer
 from rest_framework import serializers
@@ -40,7 +41,7 @@ class Products(models.Model):
         ("new", "New"),
         ("used", "Used")
     )
-    user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE, related_name="user_product")
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="user_product")
     package = models.ForeignKey(Packages, on_delete=models.CASCADE, related_name="user_packages")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="product_category")
     thumbs = models.ForeignKey(Thumbs, on_delete=models.Empty, related_name="products_thumbs", null=True, blank=True,)
@@ -50,6 +51,7 @@ class Products(models.Model):
     condition = models.CharField(max_length=11, null=True, blank=True, choices=CONDITION)
     description = models.TextField(max_length=512)
     price = models.FloatField()
+    quantity = models.IntegerField(null=True, blank=True)
     viewed_by = models.ManyToManyField(CustomUsers, related_name="viewed_by", blank=True)
     discount = models.IntegerField(default=0)
 
@@ -65,7 +67,7 @@ class Products(models.Model):
         return self.price*100
 
     def discounted_price(self):
-        return self.price-self.discount
+        return int(self.price)*int(self.discount)/100
 
     def no_of_viewers(self):
         return self.viewed_by.count()
@@ -75,26 +77,30 @@ class ProductExpandSerializer(serializers.ModelSerializer):
     package = PackageSerializer()
     category = CategorySerializer()
     thumbs = ThumbSerializer(many=True)
+    profile = ProfileExpandSerializer()
     class Meta:
         model = Products
         fields = (
-            "id", #user id
+            #"id", #user id
             "package", # subscribed package e.g Jumbo superstor, dandy
             "category",# Product category
-             "user", #user
+             "profile", #user
             "name",# Product name
+            "slug",
+            "quantity",
             "description", #detailed product description less than 200
             "price", #product price
             "thumbs",#product thumbnail. max size 400x400px
+            "discount",
+            "brand",
+            "condition",
             "discounted_price"#discount on product price
             )
 
 class ProductSerializer(serializers.ModelSerializer):
-    #category = CategorySerializer()
-    #thumbs = ThumbSerializer()
     class Meta:
         model = Products
-        fields = ("id", "package", "category", "user", "name", "description", "price", "discounted_price")
+        fields = ("id", "package", "category", "profile", "name", "description", "price", "discounted_price", "quantity", "slug",)
 
 
 class Reviews(models.Model):
@@ -113,4 +119,3 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reviews
         fields = "__all__"
-

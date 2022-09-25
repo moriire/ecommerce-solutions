@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'dj_rest_auth',
     'dj_rest_auth.registration',
     "users",
-    #"profiles",
+    "profiles",
     "products",
     "thumbs",
     "packages",

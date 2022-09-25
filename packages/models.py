@@ -4,9 +4,9 @@ from rest_framework.serializers import ModelSerializer
 #from py4paystack import Paystack
 #pay = Paystack()
 class Packages(models.Model):
-    name = models.CharField(max_length=40)#Package name to be determined by the admin
-    amount = models.PositiveIntegerField()
-    plan_code = models.CharField(max_length=60,)
+    name = models.CharField(max_length=40, default="free")#Package name to be determined by the admin
+    amount = models.PositiveIntegerField(default=0)
+    plan_code = models.CharField(max_length=50, null=True, blank=True)
     interval = models.CharField(max_length=20)
     description = models.TextField(blank=True, null=True)
     enabled = models.BooleanField(default=True)

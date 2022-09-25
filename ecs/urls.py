@@ -62,6 +62,7 @@ urlpatterns = [
         path("<str:page>", views.index, name="home_one"),
         path("<str:page>/<str:path>", views.index, name="home_two"),
         path("<str:page>/<str:path>/<str:others>", views.index, name="home_three"),
+        path("<str:page>/<str:path>/<str:others>/<str:last>", views.index, name="home_four"),
         path('check/privacy_policy/', views.privacy_policy, name="privacy_policy"),
         path('check/terms_of_service/', views.terms_of_service, name="terms_of_service"),
         path('check/account_delete/', views.account_delete, name="account_delete"),

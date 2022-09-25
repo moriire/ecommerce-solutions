@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-from users.models import CustomUsers
-from .models import ProfileSerializer
+from profiles.models import Profile
+from .models import ProfileSerializer, ProfileExpandSerializer
 
 from rest_framework import filters
 
@@ -14,7 +14,20 @@ class ProfileView(ModelViewSet):
 
     """
     serializer_class = ProfileSerializer
-    queryset = CustomUsers.objects.all().select_related()
+    queryset = Profile.objects.all().select_related()
+    def list(self, request):
+        items = self.get_queryset()
+        params = request.query_params
+        pp = params.dict()
+        if params:
+            items = items.filter(**pp)
+        catser = ProfileExpandSerializer(items, many=True)
+        return Response({"data": catser.data,})
+
+    def retrieve(self, request, pk):
+        item = self.get_queryset().get(store_slug = pk)
+        catser = ProfileExpandSerializer(item)
+        return Response({"data": catser.data,})
     #filter_backends = [filters.SearchFilter]
     #search_fields = ['email', 'company_name']
 
