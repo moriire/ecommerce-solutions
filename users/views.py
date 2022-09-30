@@ -92,3 +92,11 @@ class GoogleLogin(SocialLoginView): # if you want to use Implicit Grant, use thi
     adapter_class = GoogleOAuth2Adapter
 
 """
+
+
+from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
+from dj_rest_auth.registration.views import SocialLoginView
+
+class FacebookLogin(SocialLoginView):
+    adapter_class = FacebookOAuth2Adapter
+

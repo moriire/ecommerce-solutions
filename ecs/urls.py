@@ -53,7 +53,8 @@ route.register("transaction", TransactionView, basename="transaction")
 route.register("payhook", PaystackHookView)
 
 urlpatterns = [
-        #re_path(r'api/auth/token/', include('knox.urls')),
+        path('api/auth/facebook/', views.FacebookLogin.as_view(), name='fb_login'),
+        path('api/auth/google/', views.GoogleLogin.as_view(), name='google_login'),
         path('api/auth/', include('dj_rest_auth.urls')),
         path('auth/email-success', views.email_verified, name="email-success"),
         path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
