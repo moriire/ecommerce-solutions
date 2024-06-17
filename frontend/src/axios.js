@@ -1,0 +1,34 @@
+import axios from 'axios';
+import { useAuthStore } from './stores/auth';
+
+const axiosInstance = axios.create({
+  baseURL: 'http://127.0.0.1:8000/api/'
+  //process.env.VUE_APP_API_URL,
+});
+
+axiosInstance.interceptors.request.use((config) => {
+  const authStore = useAuthStore();
+  if (authStore.accessToken) {
+    config.headers.Authorization = `Bearer ${authStore.accessToken}`;
+  }
+  return config;
+});
+
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const authStore = useAuthStore();
+    const originalRequest = error.config;
+
+    if (error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      await authStore.refreshToken();
+      axios.defaults.headers.common['Authorization'] = `Bearer ${authStore.accessToken}`;
+      return axiosInstance(originalRequest);
+    }
+
+    return Promise.reject(error);
+  }
+);
+
+export default axiosInstance;

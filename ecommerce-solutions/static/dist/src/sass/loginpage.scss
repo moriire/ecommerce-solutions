@@ -1,0 +1,301 @@
+/*Import Colors*/
+@import './colours';
+
+/*Import Mixins fr general styling*/
+@import './mixins.scss';
+
+/*Import fonts*/
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Plus+Jakarta+Sans:wght@400;700&display=swap');
+
+.backdrop{
+    display: block;
+    width: 100%;
+    margin: auto;
+    height: 96vh;
+    padding: 4px;
+    background-color: rgba(0, 0, 0, 0.25);
+    // z-index: 100;
+}
+
+
+.login{
+    display: block;
+    width: 95%;
+    height: 95vh;
+    margin: auto;
+    background-color: #fff;
+    // border: 3px solid black;
+    position: relative;
+    z-index: 120;
+
+
+
+
+
+     .containlogin{
+        // border: 2px solid red;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            justify-content: space-around;
+            // flex-wrap: wrap;
+            overflow: hidden;
+            z-index: 120;
+
+
+
+
+            .surroundlogin{
+                // border: 1px solid black;
+                position: relative;
+                height: 100%;
+
+
+                .text{
+                    //  border: 1px solid black;
+                    position: relative;
+                   text-align: center;
+                    //  width: 150px;
+                    // margin-left: 50px;
+                     transform: translateX(-10%);
+                    // padding-left: 200px;
+
+
+
+                    #mega{
+                        color: #BB00DA;
+
+                    }
+                    h1{
+                        font-family: 'DM Sans';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 50px;
+                        line-height: 200%;
+                        text-align: center;
+                    }
+                    p{
+                        font-family: 'DM Sans';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 24px;
+                        line-height: 127.5%;
+                        text-align: center;
+                    }
+
+                }
+
+                #img_{
+                    position: relative;
+                    transform: translateX(9%);
+                //  border: 1px solid black;
+                    height: 400px;
+                    // top: 75px;
+                    z-index: 2;
+                    background: rgba(237, 237, 237, 0.1)
+                }
+
+
+
+                #elip{
+                    position: relative;
+                    height: 350px;
+                    width: 600px;
+                    top: -280px;
+                    left: -20px;
+                    z-index: 1;
+
+                }
+
+                #ecli{
+                    position: relative;
+                    height: 800px;
+                    width: 800px;
+                    top: -1450px;
+                    right: -590px;
+                    z-index: 20;
+                    rotate: (34deg);
+                }
+            }
+
+            .form{
+                margin-top: 4%;
+                position: relative;
+                height: 70%;
+                // border: 1px solid black;
+                width: 1000px;
+                left: -200px;
+                z-index: 100;
+                padding: 20px;
+                background: #FFFFFF;
+                gap: 30px;
+                align-items: center;
+                box-shadow:
+                8px 8px 32px 14px rgba(0, 0, 0, 0.2);
+
+
+
+
+                form{
+                    position: relative;
+                    align-items: center;
+                    // left: 1.5em;
+                    background: #fff;
+                    padding: 20px;
+
+                 input[type=text]{
+                    width: 95%;
+                    margin: auto;
+                    height: 2em;
+                 }
+                 input[type=password]{
+                    width: 95%;
+                    margin: auto;
+                    height: 2em;
+                 }
+
+                 label{
+                    font-family: 'Jakarta Plus Sans';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 16.3298px;
+                    line-height: 21px;
+                    padding: 10px;
+                 }
+                 section{
+                    width: 100px;
+                    height: 30px;
+                    margin: auto;
+                    a{
+                        display: inline-block;
+                        color: #fff;
+                        // border: 1px solid black;
+                        background-color: $btncolor;
+                        width: 120px;
+                        height: 1.8em;
+                        padding-top: 10px;
+                        margin: auto;
+                        text-align: center;
+
+                        &:hover{
+                            color: $btncolor;
+                            background-color: #fff;
+                            border: 1px solid $btncolor;
+                        }
+                    }
+                 }
+                
+
+                    #reset{
+                        text-align: left;
+                        font-family: 'Jakarta Plus Sans';
+                        font-style: normal;
+                        font-weight: 450;
+                        font-size: 13.0639px;
+                        line-height: 17px;
+
+                    }
+
+                    p{
+                        text-align: center;
+                        background: #fff;
+                        a{
+                            text-decoration: none;
+                            color: $btncolor;
+                        }
+                    }
+                    a{
+                        text-decoration: none;
+
+                        // :hover{
+                        //     border: 1px solid black;
+                        // }
+                    }
+                   
+                }
+            }
+
+
+            .sep_cont{
+                display: flex;
+                align-items: center;
+                position: relative;
+                justify-content: space-between;
+                //gap: 1em;
+                background: #fff;
+
+
+
+                .content{
+                    left: 50%;
+                    position: absolute;
+                    background: #FFFFFF;
+                    width: 10%;
+                    height: 20px;
+                    //  top: 35%;
+                    transform: translateX(-65%);
+                    // border: 1px solid rgba(0, 0, 0, 0.1);
+                    border-radius: 80px;
+                    z-index: 2;
+                    background: #fff;
+                    padding: 2px;
+
+                    p{
+                        transform: translate(2px,-15px);
+                    }
+
+                }
+
+                .separator{
+                    position: relative;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+                    height: 1px;
+                    width: 100%;
+                z-index: 1;
+                background: #fff;
+                }
+
+            }
+            .af{
+                display: inline-block;
+            // border:1px solid black;
+                gap: 10px;
+                width: 100%;
+                // top: -75px;
+                // transform: translateY(-70%);
+                background: #fff;
+
+
+                img{
+                    height: 19px;
+                    width: 19px;
+                    transform: translate(135%,20%);
+                }
+
+                input[type=text]{
+                    // transform: translateX(-15%);
+                    background: #FFFFFF;
+                    border: 0.816492px solid rgba(82, 76, 76, 0.38);
+                    // border-radius: 81.6492px;
+                    height: 2rem;
+                    width: 9rem;
+                    padding-left: 25px;
+
+                }
+
+                input[type=text]:focus{
+                    background: rgba($color: $nav2, $alpha: 0.2);
+                    color: #BB00DA;
+                // border: 2px solid #BB00DA;
+
+                }
+
+
+            }
+        }
+}
+

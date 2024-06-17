@@ -1,0 +1,284 @@
+@mixin button {
+    
+        // border: 1px solid black;
+        text-decoration: none;
+        display: inline-block;
+        padding: 0.7rem 1.3rem;
+        background: #fff;
+        align-items: center;
+        width: 6rem;
+        height: 2.3rem;
+        color: #BB00DA;
+        box-shadow: 4.69231px 5.63077px 6.56923px rgba(0, 0, 0, 0.1);
+  
+  
+        &:hover{
+          background: #BB00DA;
+          color: #fff;
+          border: 1px solid #fff;
+          cursor: pointer;
+        }
+  
+
+        font-family: 'Jakarta Plus Sans';
+        font-weight: 700;
+        font-size: 15px;
+    
+}
+
+@mixin Btnlink($color, $kolor, $backgr, $backg, $brder) {
+    
+        border: $brder;
+        display: inline-block;
+        text-decoration: none;
+        padding: 0.6rem 2rem;
+        background: $backgr;
+        // border-radius: 100px;
+        align-items: center;
+        width: 10rem;
+        height: 2.3rem;
+        color: $color;
+  
+  
+        &:hover{
+          background: $backg;
+          color: $kolor;
+          border: 1px solid #fff;
+          cursor: pointer;
+          box-shadow: 5px 8px 11px 2px rgba(0, 0, 0, 0.4)
+
+        }
+  
+        font-family: 'Jakarta Plus Sans';
+        font-weight: 700;
+        font-size: 15px;
+    
+    
+}
+
+@mixin cards {
+    
+        //  border: 1px solid black;
+         filter: drop-shadow(5px 4px 8px
+          rgba(0, 0, 0, 0.2));
+    
+    
+          .caption{
+            display: inline-block;
+            padding: 5px;
+            // border: 1px solid black;
+    
+    
+            ul{
+              list-style-type: none;
+
+              li{
+                h4{
+                  text-align: left;
+                  font-family: 'DM Sans';
+                  font-weight: 700;
+                  font-size: 12px;
+                  }
+                  h6{
+                    font-family: 'DM Sans';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 6.91982px;
+                    line-height: 200%;
+                  }
+              }
+            }
+            
+          }
+
+          .price{
+            display: flex;
+            justify-content: space-between;
+            // border: 1px solid black;
+            padding: 5px;
+
+            ul{
+              list-style-type: none;
+
+              h6{
+                font-family: 'DM Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 6.91982px;
+                line-height: 200%;
+              }
+              #strike{
+                text-decoration: line-through;
+              }
+            }
+          }
+    
+    
+          span{
+            // border: 1px solid red;
+            height: 2.5em;
+            display: inline-block;
+            width: 200px;
+            padding: 3px;
+    
+            #buy{
+             @include btn1
+              }
+      
+            }
+
+            #sell{
+              @include btn2
+            }
+          
+        
+    
+    
+          #prc{
+            text-align: left;
+            font-style: normal;
+            font-family: 'DM Sans';
+            font-weight: 700;
+            font-size: 12px;
+            color: #BB00DA;
+          }
+    
+          
+    
+    
+           .card-img{
+            img{
+                height: 200px;
+                width: 200px;
+                background: $nav2;
+                border-radius: 15px;
+                transition: height 0.5s;
+          
+          
+                
+                
+                }
+                @include hover
+                
+           }
+    
+    
+    
+}       
+
+@mixin hover {
+
+    
+        &:hover img{
+            //   height: 250px;
+              transform: translateY(-6%);
+              }
+    
+    
+}
+
+
+@mixin btn1 {
+    
+        display: inline-block;
+        text-align: center;
+        border: none;
+        padding: 0.45rem 0.8rem;
+        background: #BB00DA;
+        // border-radius: 100px;
+        align-items: center;
+        width: 100%;
+        height: 2em;
+        color: #fff;
+        text-decoration: none;
+
+
+        &:hover{
+          background: #fff;
+          color: #BB00DA;
+          border: 1px solid #BB00DA;
+          cursor: pointer;
+        }
+
+        font-family: 'Jakarta Plus Sans';
+        font-weight: 700;
+        font-size: 15px;
+    
+    
+}
+
+@mixin btn2 {
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #BB00DA;
+    padding: 0.45rem 0.8rem;
+    background: #fff;
+    // border-radius: 100px;
+    align-items: center;
+    width: 100%;
+    height: 2em;
+    color: #BB00DA;
+    text-decoration: none;
+
+
+    &:hover{
+      background: #BB00DA;
+      color: #fff;
+      border: 1px solid #BB00DA;
+      cursor: pointer;
+    }
+
+    font-family: 'Jakarta Plus Sans';
+    font-weight: 700;
+    font-size: 15px;
+
+}
+
+@mixin gen{
+  p{
+    font-family: 'Plus Jakarta Sans';
+    font-weight: 700;
+    font-size: 12px;
+  }
+}
+
+@mixin tags {
+  border: 1px solid gray;
+  background-color: $tags;
+  color: #aaaaaa;
+  height: 20px;
+  // width: 120%;
+  text-align: center;
+}
+
+@mixin xpandcard {
+        @include cards
+      
+}
+
+@mixin storexpand {
+  
+   
+
+    .cards{
+      @include cards
+    }
+
+
+    // .more{
+    //   // border: 1px solid black;
+    //   height: 50px;
+    //   width: 50px;
+    //   transform: translateY(150%);
+    //   padding: 15px;
+    //   filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.08));
+
+
+    //   .fa-circle-chevron-right{
+    //     color: #dbaa3f;
+    //     height: 100%;
+    //     width: 100%;
+    //   }
+    // }
+  
+}

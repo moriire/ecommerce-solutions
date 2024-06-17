@@ -1,0 +1,91 @@
+{% extends "account/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+{% get_providers as socialaccount_providers %}
+{% block content %}
+<div class="login">
+        <div class="container">
+            <div class="surround">
+                <div class="text">
+                    <h1>
+                        <span id="mega">Mega</span>day<br>
+
+                    </h1>
+                    <p>Buy and sell<br>On Megaday</p>
+            </div>
+
+                    <img src="./Images/pleasant-looking-female-with-crisp-hair-points-cell-phone-device-donwloads-new-modern-application-has-happy-expression-wears-spectacles-vision-correction-purple-jumper-silk-scarf-removebg-preview.png" id="img_">
+
+
+                    <svg id="elip" width="700" height="456" viewBox="0 0 790 456" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M485.044 104.744C600.213 171.237 688.412 258.663 738.047 345.971C787.766 433.426 798.259 519.612 760.554 584.919C722.849 650.227 642.963 684.232 542.366 684.902C441.937 685.57 322.124 652.901 206.956 586.408C91.7868 519.916 3.58814 432.489 -46.0474 345.181C-95.7664 257.727 -106.259 171.541 -68.5542 106.233C-30.8491 40.9261 49.0367 6.92023 149.634 6.25075C250.063 5.58241 369.876 38.2516 485.044 104.744Z" stroke="#F174FF" stroke-width="12.3005"/>
+                        </svg>
+
+
+                    <svg id="ecli" width="790" height="456" viewBox="0 0 790 456" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M485.044 104.744C600.213 171.237 688.412 258.663 738.047 345.971C787.766 433.426 798.259 519.612 760.554 584.919C722.849 650.227 642.963 684.232 542.366 684.902C441.937 685.57 322.124 652.901 206.956 586.408C91.7868 519.916 3.58814 432.489 -46.0474 345.181C-95.7664 257.727 -106.259 171.541 -68.5542 106.233C-30.8491 40.9261 49.0367 6.92023 149.634 6.25075C250.063 5.58241 369.876 38.2516 485.044 104.744Z" stroke="#F174FF" stroke-width="12.3005"/>
+                        </svg>
+
+            </div>
+            <div class="form">
+                    <div class="sep_cont">
+
+                        <div class="content">
+                            <p>{% trans "Log In" %}</p>
+                        </div>
+                            <div class="separator">
+
+                            </div><br><br>
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                    </div>
+
+                    <div class="af">
+                        <img src="./Assets/Group 26 (2).png">
+                            <input type="text" label="Google" placeholder="Google Account" id="Google">
+
+                            <img src="./Assets/logos_facebook.png">
+                        <input type="text" label="Facebook" placeholder="Facebook Account" id="Facebook">
+                    </div>
+
+                <form method="POST" action="{% url 'account_login' %}">
+                     {% csrf_token %}
+
+                    &nbsp;
+                    &nbsp;
+                    <label for="id_login" >Email</label><br>
+                        <input type="text" autocomplete="email" name="Email" placeholder="Input your mail address" required id="id_login" ><br><br>
+                    <label for="id_password">Password</label><br>
+                        <input type="password" autocomplete="current-password" id="id_password" name="password" placeholder="Input your password"><br><br>
+                    <label for="id_remember">Remember me</label><br>
+                        <input type="checkbox" id="id_remember" name="remember" ><br><br>
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;<br>
+
+
+                      {% if redirect_field_value %}
+                      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                      {% endif %}
+                      <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+                      <button class="primaryAction" type="submit"  id="login">{% trans "Sign In" %}</button>
+
+
+                </form>
+
+                <p>
+                    {% blocktrans %} Don't have an account? <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
+                </p>
+            </div>
+        </div>
+   </div>
+{% endblock %}

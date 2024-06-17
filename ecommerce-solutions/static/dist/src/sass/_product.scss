@@ -1,0 +1,129 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+
+  .nav_track{
+    display: block;
+    margin: 5em;
+    height: 5%;
+    width: 100%;
+    position: absolute;
+    padding: 3em;
+
+
+
+    font-family: 'DM Sans';
+    font-weight: 500;
+    font-size: 17px;
+    color: rgba(82,76,76,0.38);
+
+    span{
+        color: $btncolor;
+    }
+}
+
+.main-grid{
+        display: block;
+        margin: auto;
+        width: 90%;
+        transform: translateY(15%);
+        
+        // position: relative;
+
+
+
+        .grid-container{
+            border: 2px solid red;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            align-items: center;
+            gap: 1%;
+            row-gap: 10px;
+            
+        
+        
+            .grid1{
+                border: 1px solid black;
+                grid-column: 1 / span 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 5%;
+        
+        
+                img{
+                    height: 100px;
+                    width: 150px;
+                }
+            }
+        
+            .grid2{
+                border: 1px solid black;
+                grid-column: span 4;
+                padding-top: 10px;
+        
+                .img_m{
+                    // border: 1px solid blue;
+                    align-items: center;
+                    justify-items: center;
+                    img{
+                        height: 400px;
+                        width: 750px;
+                    }
+
+
+                    p{
+                        font-family: 'DM Sans';
+                        font-weight: 700;
+                        font-size: 30px;
+                    }
+                }
+
+                .caption{
+                    display: flex;
+                    gap: 1em;
+                    align-items: space-between;
+                  
+
+        
+                    img{
+                        height: 12px;
+                        width: 12px;
+                    }
+                    span{
+                        img{
+                            height: 20px;
+                            width: 20px;
+                          
+                        }
+                    }
+                 
+                }
+            }
+        
+            .grid3{
+                grid-column: span 1;
+                border: 1px solid black;
+               
+            }
+
+            .grid4{
+                grid-column: 2 / span 4;
+                border: 1px solid black;
+            }
+
+            .grid5{
+                grid-column: span 1;
+                border: 1px solid black;
+            }
+
+            .grid6{
+                grid-column: 2 / span 4;
+                border: 1px solid black;
+            }
+        }
+        
+}
