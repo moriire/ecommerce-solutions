@@ -2,8 +2,6 @@
 import { onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import ProductPage from "@/components/ProductPage.vue"
-//import ProductCard from '@/components/ProductCard..vue';
-import ShopSidebar from "@/components/ShopSidebar.vue"
 import { useProductStore } from '@/stores/products';
 import { useFilterStore } from '@/stores/filter';
 const prod = useProductStore()
@@ -19,33 +17,12 @@ onMounted(async () =>
 <template>
     <!--Hero /-->
 
-    <!-- breadcrumb start -->
-    <div class="breadcrumb">
-        <div class="container">
-            <ul class="list-unstyled d-flex align-items-center m-0">
-                <li><a href="/">Home</a></li>
-                <li>
-                    <svg class="icon icon-breadcrumb" width="64" height="64" viewBox="0 0 64 64" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <g opacity="0.4">
-                            <path
-                                d="M25.9375 8.5625L23.0625 11.4375L43.625 32L23.0625 52.5625L25.9375 55.4375L47.9375 33.4375L49.3125 32L47.9375 30.5625L25.9375 8.5625Z"
-                                fill="#000" />
-                        </g>
-                    </svg>
-                </li>
-                <li>Products</li>
-            </ul>
-        </div>
-    </div>
-    <!-- breadcrumb end -->
-
     <main id="MainContent" class="content-for-layout">
         <div class="collection mt-100">
             <div class="container">
                 <div class="row">
                     <!-- product area start -->
-                    <div class="col-lg-10 col-md-12 col-12">
+                    <div class="col-lg-12 col-md-12 col-12">
                         <div class="filter-sort-wrapper d-flex justify-content-between flex-wrap">
                             <div class="collection-title-wrap d-flex align-items-end">
                                 <h2 class="collection-title heading_24 mb-0">All products</h2>
@@ -96,7 +73,7 @@ onMounted(async () =>
                             </div>
                         </div>
                         <div class="pagination justify-content-center mt-100">
-                            <nav aria-label="...">
+                            <nav>
                                 <ul class="pagination pagination-md">
                                     <li class="page-item">
                                         <a class="link" @click="filter.doPagination()">
@@ -126,7 +103,7 @@ onMounted(async () =>
                     </div>
                     <!-- product area end -->
 
-                    <ShopSidebar />
+                    <!--ShopSidebar /-->
                 </div>
             </div>
         </div>

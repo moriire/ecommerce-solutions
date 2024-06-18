@@ -11,22 +11,35 @@ const router = createRouter({
       component: () => import('../views/HomeView.vue')
     },
     {
+      path: '/categories',
+      name: 'categories',
+      children: [
+        {
+          path: ':categories_slug',
+          name: 'categories_slug',
+          component: () => import('../views/ShopByCategoryView.vue')
+        }
+      ],
+      component: () => import('../views/CategoryBaseView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
       path: '/cart',
       name: 'cart',
       component: () => import('../views/CartView.vue'),
-      meta: { requiresAuth: true } 
+      meta: { requiresAuth: true }
     },
     {
       path: '/checkout',
       name: 'checkout',
       component: () => import('../views/CheckoutView.vue'),
-      meta: { requiresAuth: true } 
+      meta: { requiresAuth: true }
     },
     {
       path: '/shop',
       name: 'shop',
       component: () => import('../views/ShopView.vue'),
-      meta: { requiresAuth: true } 
+      meta: { requiresAuth: true }
     },
     {
       path: '/login',
@@ -38,6 +51,7 @@ const router = createRouter({
       name: 'register',
       component: () => import('../views/auth/RegisterView.vue')
     },
+    { path: '/verify-email', component: "../views/auth/VerifyEmail.vue" },
     {
       path: '/about',
       name: 'about',

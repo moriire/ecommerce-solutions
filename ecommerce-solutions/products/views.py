@@ -63,8 +63,8 @@ class ProductView(ModelViewSet):
         items = self.get_queryset()
         params = request.query_params
         pp = params.dict()
-        #if params:
-        #    items = items.filter(**pp)
+        if params:
+            items = items.filter(**pp)
         catser = ProductExpandSerializer(items, many=True)
         return Response(
                 {

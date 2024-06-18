@@ -61,8 +61,8 @@ route.register("transaction", TransactionView, basename="transaction")
 route.register("payhook", PaystackHookView)
 
 urlpatterns = [
-        path('api/auth/facebook/', views.FacebookLogin.as_view(), name='fb_login'),
-        path('api/auth/google/', views.GoogleLogin.as_view(), name='google_login'),
+        #path('api/auth/facebook/', views.FacebookLogin.as_view(), name='fb_login'),
+        #path('api/auth/google/', views.GoogleLogin.as_view(), name='google_login'),
         path('api/auth/', include('dj_rest_auth.urls')),
         path('auth/email-success', views.email_verified, name="email-success"),
         path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
@@ -75,10 +75,10 @@ urlpatterns = [
         path('check/privacy_policy/', views.privacy_policy, name="privacy_policy"),
         path('check/terms_of_service/', views.terms_of_service, name="terms_of_service"),
         path('check/account_delete/', views.account_delete, name="account_delete"),
-       #path('admin/', admin.site.urls),
+       path('admin/', admin.site.urls),
         path('docs/', include_docs_urls(title='Megadey Api Endpoints')),
         re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-        path(f"{fast_settings.ADMIN_PREFIX}/", get_admin_urls())
+        #path(f"{fast_settings.ADMIN_PREFIX}/", get_admin_urls())
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

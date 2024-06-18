@@ -31,7 +31,7 @@ defineProps({
 })
 </script>
 <template>
-  <div class="col-lg-4 col-md-6 col-6" sdata-aos="fade-up" sdata-aos-duration="200">
+  <div class="col-lg-3 col-md-4 col-6" sdata-aos="fade-up" sdata-aos-duration="200">
     <div class="product-card">
       <div class="product-card-img">
         <a class="hover-switch" href="collection-left-sidebar.html">

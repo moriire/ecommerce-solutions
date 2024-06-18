@@ -7,25 +7,25 @@ from rest_framework import serializers
 #from utils import image_resize
 
 class CustomUsers(AbstractBaseUser, PermissionsMixin):
-    #username=None
+    username = models.CharField(_("Username"), max_length=12, unique=True)
     first_name = models.CharField(_("First Name"), max_length=50)
     last_name = models.CharField(_("last Name"), max_length=50)
     email = models.EmailField(_("email address"), unique=True,)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
-    phone = models.IntegerField(_("phone number"), unique=True)
+    phone = models.CharField(_("phone number"), unique=True, max_length=8)
     img = models.ImageField(_("upload image"),  upload_to="users", null=True, blank=True)
     vendor = models.BooleanField(_("Are you a vendor?"), default=False)
     subscribe = models.BooleanField(_("Subscribe?"), default=True)
     objects = UserManager()
 
-    USERNAME_FIELD = "email"
+    USERNAME_FIELD = "username"
 
-    REQUIRED_FIELDS = ["first_name", "last_name", "phone"]
+    REQUIRED_FIELDS = ["email", "first_name", "last_name"]
 
     def __str__(self):
-        return self.email
+        return self.username
     def absolute_url(self):
         return reverse('flash-detail', args=(self.id,))
 

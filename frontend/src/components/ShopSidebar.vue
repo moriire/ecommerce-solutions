@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { useCateoryStore } from '@/stores/categories';
+import { useCategoryStore } from '@/stores/categories';
 import { useFilterStore } from '@/stores/filter';
 import { useProductStore } from '@/stores/products';
 defineProps({
@@ -10,7 +10,7 @@ defineProps({
   }
 });
 const prod = useProductStore()
-const cat = useCateoryStore()
+const cat = useCategoryStore()
 const filter = useFilterStore()
 const categoryfilter = ref("")
 </script>
