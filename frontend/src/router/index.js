@@ -24,6 +24,19 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     {
+      path: '/vendors',
+      name: 'vendors',
+      children: [
+        {
+          path: ':vendors',
+          name: 'vendors_slug',
+          component: () => import('../views/ShopbyvendorView.vue')
+        }
+      ],
+      component: () => import('../views/VendorBaseView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
       path: '/cart',
       name: 'cart',
       component: () => import('../views/CartView.vue'),

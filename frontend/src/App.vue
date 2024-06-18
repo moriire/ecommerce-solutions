@@ -10,10 +10,12 @@ const prod = useProductStore()
 const cat = useCategoryStore()
 const navSection = [
     { loc: "Home", route: "/", icon: "las la-home" },
-    { loc: "Shop", route: "/shop", icon: "las la-gifts" },
+    { loc: "Shop", route: "/shop", icon: "las la-gifts", submenu: [
+        {loc: "else", route: "/categories"}
+    ] },
     { loc: "View Cart", route: "/cart", icon: "las la-cart-plus" },
     { loc: "Checkout", route: "/checkout", icon: "las la-cash-register" },
-    //{ loc: "Contact Us", route: "/contact", icon: "las la-user" }
+    { loc: "Contact Us", route: "/contact", icon: "las la-user" }
 ];
 const auth = useAuthStore()
 onMounted(async () => {
