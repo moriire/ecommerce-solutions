@@ -10,6 +10,18 @@ services:
       - ./.env.web
     depends_on:
       - db
+
+  frontend:
+    image: nginx:1.25
+    build: ./frontend
+    container_name: frontend
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 80:80
+    depends_on:
+      - web
+
   db:
     image: postgres:15
     env_file:
@@ -19,8 +31,8 @@ services:
   nginx:
     build: ./nginx
     volumes:
-      - static_volume:/home/app/web/staticfiles
-      - media_volume:/home/app/web/mediafiles
+      - static_volume:/home/backend/staticfiles
+      - media_volume:/home/backend/mediafiles
     ports:
       - 1337:80
     depends_on:

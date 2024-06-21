@@ -8,11 +8,6 @@ from .models import ProfileSerializer, ProfileExpandSerializer
 from rest_framework import filters
 
 class ProfileView(ModelViewSet):
-    """
-    profile: /api/users/:id
-
-
-    """
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all().select_related()
     def list(self, request):

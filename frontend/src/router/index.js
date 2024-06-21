@@ -24,16 +24,29 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     {
-      path: '/vendors',
-      name: 'vendors',
+      path: '/product',
+      name: 'product',
       children: [
         {
-          path: ':vendors',
-          name: 'vendors_slug',
-          component: () => import('../views/ShopbyvendorView.vue')
-        }
+          path: 'add',
+          name: 'add',
+          component: () => import('../views/AddProduct.vue')
+        },
       ],
-      component: () => import('../views/VendorBaseView.vue'),
+      component: () => import('../views/CategoryBaseView.vue'),
+      meta: { requiresAuth: true }
+    },
+    
+    {
+      path: '/add',
+      name: 'add',
+      component: () => import('../views/AddProduct.vue')
+    },
+
+    {
+      path: '/vendor/:vendor_slug',
+      name: 'vendors_slug',
+      component: () => import('../views/ShopbyvendorView.vue'),
       meta: { requiresAuth: true }
     },
     {

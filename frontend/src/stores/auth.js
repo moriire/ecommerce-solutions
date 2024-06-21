@@ -6,7 +6,7 @@ import { useRouter } from 'vue-router';
 export const useAuthStore = defineStore('auth', () => {
   const accessToken = ref(localStorage.getItem('accessToken') || null);
   const refreshToken = ref(localStorage.getItem('refreshToken') || null);
-  const userInfo = ref(localStorage.getItem('user') || null);
+  const userInfo = ref(JSON.parse(localStorage.getItem('user')) || null);
   const router = useRouter();
 
   const setTokens = (access, refresh, user) => {
@@ -15,7 +15,7 @@ export const useAuthStore = defineStore('auth', () => {
     userInfo.value = user;
     localStorage.setItem('accessToken', access);
     localStorage.setItem('refreshToken', refresh);
-    localStorage.setItem('userInfo', user);
+    localStorage.setItem('user', JSON.stringify(user));
   };
 
   const clearTokens = () => {
