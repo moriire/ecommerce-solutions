@@ -20,7 +20,7 @@ const cat = useCategoryStore()
                 <div class="banner-section-inner">
                     <div class="container">
                         <div class="row justify-content-center">
-                            <div class="col-lg-6 col-md-6 col-12" sdata-aos="fade-right" sdata-aos-duration="1200">
+                            <div class="col-lg-6 col-md-6 col-12" data-aos="fade-right" data-aos-duration="1200">
                                 <a class="banner-item position-relative rounded" href="collection-left-sidebar.html">
                                     <img class="banner-img" src="/src/assets/img/banner/shoe-1.jpg" alt="banner-1">
                                     <div class="content-absolute content-slide">
@@ -33,7 +33,7 @@ const cat = useCategoryStore()
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-12" sdata-aos="fade-left" sdata-aos-duration="1200">
+                            <div class="col-lg-6 col-md-6 col-12" data-aos="fade-left" data-aos-duration="1200">
                                 <a class="banner-item position-relative rounded" href="collection-left-sidebar.html">
                                     <img class="banner-img" src="/src/assets/img/banner/shoe-2.jpg" alt="banner-2">
                                     <div class="content-absolute content-slide">

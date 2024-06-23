@@ -17,7 +17,7 @@ export const useCategoryStore = defineStore('category', () => {
       return (
         prod.findIndex((cat) => cat.category.name === x.category.name) === index
       );
-    });
+    }) || [];
     categories.value = filteredArr
   }
   return {

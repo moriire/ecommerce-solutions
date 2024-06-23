@@ -61,7 +61,7 @@ class Products(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
-            return super().save(*args, **kwargs)
+        return super().save(*args, **kwargs)
 
     def price_in_kobo(self):
         return self.price*100
@@ -104,7 +104,24 @@ class ProductExpandSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Products
-        fields = ("id", "package", "category", "profile", "name", "description", "price", "discounted_price", "new_price", "quantity", "slug",)
+        fields = (
+            "id", #user id
+            "package", # subscribed package e.g Jumbo superstor, dandy
+            "category",# Product category
+             "profile", #user
+            "name",# Product name
+            "slug",
+            "quantity",
+            "description", #detailed product description less than 200
+            "price", #product price
+            "thumbs",#product thumbnail. max size 400x400px
+            "discount",
+            "brand",
+            "condition",
+            "new_price",
+            "discounted_price"#discount on product price
+            )
+        #depth = 1
 
 
 class Reviews(models.Model):

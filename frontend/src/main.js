@@ -9,6 +9,9 @@
 //import "/src/assets/js/main.js"
 
 // import function to register Swiper custom elements
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+// ..
 
 
 import { createApp } from 'vue'
@@ -24,5 +27,5 @@ app.config.globalProperties.$axios = axios
 axios.defaults.baseURL = 'http://127.0.0.1:8000/api/'
 app.use(createPinia())
 app.use(router)
-
+AOS.init()
 app.mount('#app')

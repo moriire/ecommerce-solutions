@@ -64,7 +64,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+    #'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -128,6 +128,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 REST_FRAMEWORK = {
+    #'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination', 
+    #'PAGE_SIZE': 2, 
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",
     ],
@@ -142,7 +144,7 @@ REST_FRAMEWORK = {
 
 REST_AUTH = {
     #'LOGIN_SERIALIZER':  'users.models.CustomLoginSerializer',
-    #'REGISTER_SERIALIZER': 'users.models.CustomRegisterSerializer',
+    'REGISTER_SERIALIZER': 'users.models.CustomRegisterSerializer',
     #"USER_DETAILS_SERIALIZER":'users.models.CustomUserDetailsSerializer',
     "USE_JWT": True,
     'JWT_AUTH_RETURN_EXPIRATION': not False,

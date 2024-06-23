@@ -5,6 +5,7 @@ from django.utils import timezone
 from .manager import UserManager
 from rest_framework import serializers
 #from utils import image_resize
+from django.core.exceptions import ValidationError as DjangoValidationError
 
 class CustomUsers(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(_("Username"), max_length=12, unique=True)
@@ -26,12 +27,14 @@ class CustomUsers(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
-    def absolute_url(self):
-        return reverse('flash-detail', args=(self.id,))
-
+    
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}"
-
+    
+    def save(self, *args, **kwargs):
+        #self.profile.create(user=self, store_name=self.username)
+        return super().save(*args, **kwargs)
+    
 from allauth.account.models import EmailAddress
 
 def email_address_exists(email):
@@ -44,44 +47,26 @@ from allauth.account.utils import setup_user_email
 from rest_framework.exceptions import ValidationError
 
 from django.utils.translation import gettext_lazy as _
-
-class RegisterSerializer(serializers.Serializer):
-    first_name = serializers.CharField(required=True, write_only=True)
-    last_name = serializers.CharField(required=True, write_only=True)
+from dj_rest_auth.registration.serializers import RegisterSerializer
+    
+class CustomRegisterSerializer(RegisterSerializer):
+    #first_name = serializers.CharField(required=True, write_only=True)
+    #last_name = serializers.CharField(required=True, write_only=True)
+    vendor = serializers.BooleanField(write_only=True)
+    store_name = serializers.CharField(write_only=True)
     phone = serializers.CharField(required=True, write_only=True)
-    email = serializers.EmailField(required=allauth_settings.EMAIL_REQUIRED)
-    password1 = serializers.CharField(write_only=True)
-    password2 = serializers.CharField(write_only=True)
     #img=serializers.ImageField(allow_empty_file=True)
-
-    def validate_email(self, email):
-        email = get_adapter().clean_email(email)
-        if allauth_settings.UNIQUE_EMAIL:
-            if email and email_address_exists(email):
-                raise serializers.ValidationError(
-                    _('A user is already registered with this e-mail address.'),
-                )
-        return email
-
-    def validate_password1(self, password):
-        return get_adapter().clean_password(password)
-
-    def validate(self, data):
-        if data['password1'] != data['password2']:
-            raise serializers.ValidationError(_("The two password fields didn't match."))
-        return data
-
-    def custom_signup(self, request, user):
-        pass
-
+    
     def get_cleaned_data(self):
         return {
+            'username': self.validated_data.get('username', ''),
             'first_name': self.validated_data.get('first_name', ''),
             'last_name': self.validated_data.get('last_name', ''),
             'phone': self.validated_data.get('phone', ''),
+            'vendor': self.validated_data.get('vendor'),
+            'store_name': self.validated_data.get('store_name', ""),
             'password1': self.validated_data.get('password1', ''),
             'email': self.validated_data.get('email', ''),
-#img": self.validated_data.get("img", "")
         }
 
     def save(self, request):
@@ -95,8 +80,11 @@ class RegisterSerializer(serializers.Serializer):
             except DjangoValidationError as exc:
                 raise serializers.ValidationError(
                     detail=serializers.as_serializer_error(exc)
-            )
+                )
+        user.phone = self.cleaned_data.get("phone")
+        user.vendor = self.cleaned_data.get("vendor")
         user.save()
         self.custom_signup(request, user)
         setup_user_email(request, user, [])
         return user
+

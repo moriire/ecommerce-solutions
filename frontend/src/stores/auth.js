@@ -33,8 +33,8 @@ export const useAuthStore = defineStore('auth', () => {
     router.push("/shop")
   };
 
- const registerAction = async (username, email, phone, password1, password2) => {
-    const response = await register(username, email, phone, password1, password2)
+ const registerAction = async (data) => {
+    const response = await register(data)
 
  }
   const refreshAccessToken = async () => {

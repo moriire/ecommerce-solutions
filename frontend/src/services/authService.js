@@ -1,14 +1,8 @@
 import axios from 'axios';
 
-export const register = async (username, email, phone, password1, password2) => {
+export const register = async (data) => {
   try {
-      await axios.post('auth/registration/', {
-          username:username,
-          email:email,
-          phone: phone,
-          password1:password1,
-          password2:password2,
-      });
+      await axios.post('auth/registration/', data);
       alert('Registration successful! Please check your email for verification.');
   } catch (error) {
       console.error('Error during registration:', error);
