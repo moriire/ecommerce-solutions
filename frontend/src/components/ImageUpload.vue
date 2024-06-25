@@ -1,103 +1,70 @@
 <template>
-    <div>
-      <file-pond
-        ref="pond"
-        name="img"
-        label-idle="Drag & Drop your image or <span class='filepond--label-action'>Browse</span>"
-        allow-multiple="false"
-        :server="{
-          process: {
-            url: 'http://127.0.0.1:8000/api/thumbs',
-            method: 'POST',
-            headers: {
-              'X-CSRFToken': getCsrfToken()
-            }
-          }
-        }"
-        @processfile="handleProcessFile"
-      >
-      </file-pond>
-      <input v-model="product" placeholder="Enter product" type="number">
-      <button @click="uploadImage">Upload</button>
+  <div class="image-uploader">
+    <input type="file" @change="onFileChange" />
+    <button @click="uploadImage">Upload Image</button>
+    <div v-if="imageUrl">
+      <h3>Uploaded Image:</h3>
+      <img :src="imageUrl" alt="Uploaded Image" />
     </div>
-  </template>
-  
-  <script>
-  import vueFilePond from 'vue-filepond';
-  import 'filepond/dist/filepond.min.css';
-  import axios from 'axios';
-  
-  const FilePond = vueFilePond();
-  
-  export default {
-    components: {
-      FilePond
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      file: null,
+      imageUrl: null,
+    };
+  },
+  methods: {
+    onFileChange(event) {
+      this.file = event.target.files[0];
     },
-    data() {
-      return {
-        product: '',
-        file: null,
-      };
-    },
-    methods: {
-      getCsrfToken() {
-        const cookieValue = document.cookie
-          .split('; ')
-          .find(row => row.startsWith('csrftoken='))
-          ?.split('=')[1];
-        return cookieValue;
-      },
-      handleProcessFile(error, file) {
-        if (error) {
-          console.error('File processing failed:', error);
-          return;
-        }
-        this.file = file.serverId;
-      },
-      uploadImage() {
-        if (this.file && this.product) {
-          const formData = new FormData();
-          formData.append('img', this.file);
-          formData.append('product', this.product);
-  
-          axios
-            .post('thumbs', formData, {
-              headers: {
-                'Content-Type': 'multipart/form-data',
-                'X-CSRFToken': this.getCsrfToken()
-              }
-            })
-            .then(response => {
-              console.log('Image uploaded successfully:', response.data);
-            })
-            .catch(error => {
-              console.error('Error uploading image:', error);
-            });
-        } else {
-          alert('Please select a file and enter a product.');
-        }
+    async uploadImage() {
+      if (!this.file) {
+        alert("Please select a file first!");
+        return;
       }
-    }
-  };
-  </script>
-  
-  <style scoped>
-  .filepond--root {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  input {
-    display: block;
-    margin: 20px auto;
-    padding: 10px;
-    width: 100%;
-    max-width: 500px;
-  }
-  button {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-  }
-  </style>
-  
+
+      const formData = new FormData();
+      formData.append('img', this.file);
+      formData.append('product', 10);
+
+
+      try {
+        const response = await axios.post('thumbs', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+
+        this.imageUrl = response.data.imageUrl; // Adjust according to your API response
+      } catch (error) {
+        console.error('Error uploading image:', error);
+      }
+    },
+  },
+};
+</script>
+
+<style scoped>
+.image-uploader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+input[type="file"] {
+  margin-bottom: 10px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+</style>
