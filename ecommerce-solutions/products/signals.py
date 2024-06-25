@@ -8,4 +8,4 @@ from products.models import Products
 @receiver(post_save, sender=Products) 
 def create_product(sender, instance, created, **kwargs):
 	if created:
-		ProductWithImage.object.create(product = instance)
+		ProductWithImage.objects.create(product = instance)

@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from products.models import Products
 
 def product_image_path(instance, filename):
-    return '/'.join([instance.category.slug, instance.product.slug, filename])
+    return '/'.join([instance.product.category.slug, instance.product.slug, filename])
     
 class ProductImage(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
