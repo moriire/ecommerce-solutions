@@ -1,14 +1,58 @@
 <script setup>
+
+// Import Vue FilePond
+import vueFilePond from "vue-filepond";
+
+// Import FilePond styles
+import "filepond/dist/filepond.min.css";
+import ImageUpload from "@/components/ImageUpload.vue"
+// Import FilePond plugins
+// Please note that you need to install these plugins separately
+
+// Import image preview plugin styles
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
+
+// Import image preview and file type validation plugins
+import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+
 import Uploader from "vue-media-upload";
+import VueFilePond from "vue-filepond";
 import { useProductcrudStore } from '@/stores/product-crud';
 import { RouterLink } from 'vue-router';
 import axios from 'axios';
-import { onMounted, ref } from 'vue';
-const packages = ref([])
+import { onMounted, reactive, ref } from 'vue';
+
+
+
+
+const packages = ref()
 const media = ref([])
-const changeMedia = async (media)=>{
-  media.value = media
-}
+const changeMedia = (media) => {
+  prodData.img = media
+  onSubmit()
+};
+const onSubmit = ()=>{
+  //this.isLoading = true
+  axios.post('thumbs', prodData)
+    .then(response => {
+      console.log(response)
+    })
+    .catch(error => {
+      if (error.response.data) {
+        console.log(error.response.data.errors)
+      }
+      //this.isLoading = false
+    })
+};
+//reactive({saved: [], added: [], removed: []})
+const prodData = reactive({ product: 2, img: null })
+const addMedia = (addedImage, addedMedia) => {
+  media.added = addedMedia
+};
+const removeMedia = (removedImage, removedMedia) => {
+  media.removed = removedMedia
+};
 const getPackages = async () => {
   try {
     const res = await axios.get("packages")
@@ -17,7 +61,7 @@ const getPackages = async () => {
     console.log(e)
   }
 
-}
+}/*
 const getCategories = async () => {
   try {
     const res = await axios.get("categories")
@@ -25,11 +69,11 @@ const getCategories = async () => {
   } catch (e) {
     console.log(e)
   }
-}
+}*/
 onMounted(async () => {
   await prodcrud.getUserProducts()
   await getPackages()
-  await getCategories()
+  //await getCategories()
 })
 const prodcrud = useProductcrudStore()
 </script>
@@ -42,8 +86,10 @@ const prodcrud = useProductcrudStore()
             <div class="section-header mb-3">
               <h2 class="section-heading">Add New Product</h2>
             </div>
-            <div>
-              <Uploader server="products" @change="changeMedia" max="2"/>
+            <ImageUpload />
+          <div>
+              <Uploader server="thumbs" @change="changeMedia" max="2" />
+              <button @click="onSubmit">Submit</button>
             </div>
           </div>
           <div class="col-xl-6 col-lg-6 col-md-12 col-12">

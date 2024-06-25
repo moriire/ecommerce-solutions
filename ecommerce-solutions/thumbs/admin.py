@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import Thumbs
-admin.site.register(Thumbs)
+from .models import ProductImage
+admin.site.register(ProductImage)
 # Register your models here.

@@ -2,36 +2,44 @@ from django.db import models
 from users.models import CustomUsers
 from rest_framework import serializers
 from utils import delete_img, image_resize
+import uuid
+from django.utils.translation import gettext_lazy as _
+from products.models import Products
 
-class Thumbs(models.Model):
-    user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE, related_name="product_thumb")
-    img = models.ImageField(upload_to="products", null=True)
+def product_image_path(instance, filename):
+    return '/'.join([instance.category.slug, instance.product.slug, filename])
+    
+class ProductImage(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    product = models.ForeignKey(Products, related_name="product_image", on_delete=models.CASCADE)
+    img = models.ImageField(_("Upload Image"), upload_to=product_image_path)
+    #caption=models.CharField(max_length=6)
     uploaded_on = models.DateTimeField(auto_now_add=True)
-    level = models.IntegerField(default=0)
-    caption=models.CharField(max_length=100)
 
     def __str__(self):
-        return self.caption
-
-    def absolute_url(self):
-        return reverse('thumbs-detail', args=(self.id,))
-
+        return self.product.slug
+    
     def save(self, *args, **kwargs):
-        if self.img.file is not None:
-            image_resize(self.img, 300, 300)
-            super().save(*args, **kwargs)
-        else:
-            super(Thumbs, self).delete(*args, **kwargs)
+        if self.img.file:
+            image_resize(self.img, 400, 400)
+        return super().save(*args, **kwargs)
 
-    def delete(self):
+    def delete(self, *args, **kwargs):
         if self.img:
             self.img.delete(save=True)
-        super(Thumbs, self).delete(*args, **kwargs)
+        super(ProductImage, self).delete(*args, **kwargs)
 
-
-
-class ThumbSerializer(serializers.ModelSerializer):
+class ProductWithImage(models.Model):
+    product = models.OneToOneField(Products, related_name="product_product", on_delete=models.CASCADE)
+    images = models.ManyToManyField(ProductImage, related_name="product_images", blank=True)
+                                
+class ProductImageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Thumbs
+        model = ProductImage
+        fields = "__all__"
+
+class ProductWithImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductWithImage
         fields = "__all__"
 

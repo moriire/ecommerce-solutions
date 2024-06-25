@@ -2,7 +2,6 @@ from django.db import models
 from users.models import CustomUsers
 from profiles.models import Profile, ProfileSerializer, ProfileExpandSerializer
 from packages.models import Packages, PackageSerializer
-from thumbs.models import Thumbs, ThumbSerializer
 from rest_framework import serializers
 from django.urls import reverse
 from django.template.defaultfilters import slugify # new
@@ -44,7 +43,6 @@ class Products(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="user_product")
     package = models.ForeignKey(Packages, on_delete=models.CASCADE, related_name="user_packages")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="product_category")
-    thumbs = models.ForeignKey(Thumbs, on_delete=models.Empty, related_name="products_thumbs", null=True, blank=True,)
     name = models.CharField(max_length=100)
     slug = models.SlugField(null=True, blank=True, unique=True, editable=False)
     brand = models.CharField(max_length=50, null=True, blank=True,)
@@ -75,11 +73,9 @@ class Products(models.Model):
     def no_of_viewers(self):
         return self.viewed_by.count()
 
-
 class ProductExpandSerializer(serializers.ModelSerializer):
     package = PackageSerializer()
     category = CategorySerializer()
-    thumbs = ThumbSerializer(many=True)
     profile = ProfileExpandSerializer()
     class Meta:
         model = Products
@@ -93,7 +89,6 @@ class ProductExpandSerializer(serializers.ModelSerializer):
             "quantity",
             "description", #detailed product description less than 200
             "price", #product price
-            "thumbs",#product thumbnail. max size 400x400px
             "discount",
             "brand",
             "condition",
@@ -114,7 +109,6 @@ class ProductSerializer(serializers.ModelSerializer):
             "quantity",
             "description", #detailed product description less than 200
             "price", #product price
-            "thumbs",#product thumbnail. max size 400x400px
             "discount",
             "brand",
             "condition",
