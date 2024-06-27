@@ -16,52 +16,43 @@ const handleFileUpload = async (file) => {
   const fd = new FormData();
   fd.append("img", file)//, file.image_url.name)
   fd.append("product", router.params.product)
-  try{
-    const res = await axios.post("thumbs", fd, headers= {
-            "Content-Type": `multipart/form-data; boundary=${fd._boundary}`
-        })
+  try {
+    const res = await axios.post("thumbs", fd, headers = {
+      "Content-Type": `multipart/form-data; boundary=${fd._boundary}`
+    })
     console.log(res)
-  } catch(e){
+  } catch (e) {
     console.log(e.response)
   }
   // Handle the uploaded file, e.g., send it to a server
 }
 const productImages = ref([])
-const getImages = async (product_id)=>{
-  try{
+const getImages = async (product_id) => {
+  try {
     const res = await axios.get(`thumbs?product=${product_id}`)
     productImages.value = res.data.data
     console.log(res.data.data)
-  } catch(e){
+  } catch (e) {
     console.log(e)
   }
 }
 watch(
   async () => await getImages(route.params.product)
 )
-onMounted(async ()=> await getImages(route.params.product))
+onMounted(async () => await getImages(route.params.product))
 </script>
 <template>
   <div class="container mt-5">
-   <div v-for="img in productImages" v-bind:key="img.id">
-    <img :src="img.img" alt="">
-   </div>
-    <Tabs :tabs="tabs">
-      <template v-slot:front>
-        <h1>Front View</h1>
-        <p>This is the home tab content.</p>
-        
-      </template>
-      <template v-slot:back>
-        <h1>Back View</h1>
-        <p>This is the profile tab content.</p>
-      </template>
-      <template v-slot:rear>
-        <h1>Rear View</h1>
-        <p>This is the contact tab content.</p>
-        
-        <ImageUpload :productID="route.params.product" />
-      </template>
-    </Tabs>
+    <div class="row">
+      <div v-if="productImages.length" class="col-lg-4 p-2" v-for="img in productImages" v-bind:key="img.id">
+        <img :src="img.img" alt="">
+      </div>
+      <div class="col-12" v-else>
+        <h3>No Product Image Uploaded Yet!!</h3>
+      </div>
+    </div>
+    <div class="row">
+      <ImageUpload :productID="route.params.product" />
+    </div>
   </div>
 </template>

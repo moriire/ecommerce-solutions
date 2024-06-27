@@ -19,8 +19,7 @@
       <img v-else :src="imageUrl" alt="Uploaded Image" class="preview-image" />
 
     </div>
-
-    <button v-if="imageUrl" @click="uploadImage" class="submit-button">Submit Image</button>
+    <button v-if="imageUrl" @click="uploadImage" class="btn btn-primary position position-relative my-4">Upload Image</button>
 
   </div>
 </template>
@@ -126,7 +125,7 @@ const props = defineProps({
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
+  height: 210px;
 }
 
 .drag-over {
@@ -135,18 +134,5 @@ const props = defineProps({
 
 .preview-image {
   max-width: 100%;
-}
-
-.submit-button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.submit-button:hover {
-  background-color: #0056b3;
 }
 </style>
