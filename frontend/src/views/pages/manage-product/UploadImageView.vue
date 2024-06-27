@@ -30,8 +30,17 @@ const getCategories = async () => {
     console.log(e)
   }
 }*/
-const handleFileUpload = (file) => {
-  console.log('Uploaded file:', file);
+const handleFileUpload = async (file) => {
+  console.log('Uploaded file:');
+  try{
+    const res = await axios.post("thumbs", {
+    img: file,
+  product: 7
+})
+    console.log(res)
+  } catch(e){
+    console.log(e.response)
+  }
   // Handle the uploaded file, e.g., send it to a server
 }
 onMounted(async () => {
