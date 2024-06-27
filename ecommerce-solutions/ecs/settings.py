@@ -244,17 +244,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost:1337"]
-"""
+CSRF_TRUSTED_ORIGINS = ["http://localhost:5173"]
+
 CORS_ALLOWED_ORIGINS = [
-    "*",
     "https://www.megadey.org",
-    "http://127.0.0.1:8080",
-    "http://127.0.0.1:8000",
-    "http://localhost:8080",
-    #"*",
+    "http://localhost:5173"
 ]
-"""
+
 Env = os.environ
 
 AWS_ACCESS_KEY_ID = "AKIA6PO6FQSVJMLA7F6E"

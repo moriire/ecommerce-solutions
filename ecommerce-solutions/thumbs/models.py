@@ -42,5 +42,4 @@ class ProductWithImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductWithImage
         fields = "__all__"
-        #depth =2
 

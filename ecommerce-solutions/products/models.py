@@ -8,7 +8,7 @@ from django.template.defaultfilters import slugify # new
 
 class Category(models.Model):
     name = models.CharField(max_length=40)
-    slug = models.SlugField(null=True, blank=True, unique=True, editable=False)
+    slug = models.SlugField(unique=True, editable=False, db_index=True)
     description = models.TextField()
 
     def  __str__(self):
@@ -32,8 +32,6 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ("id",
                   "name",# Category name
                   "description", "slug", "absolute_url")
-
-
 
 class Products(models.Model):
     CONDITION=(
