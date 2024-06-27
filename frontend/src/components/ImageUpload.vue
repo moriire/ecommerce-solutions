@@ -1,70 +1,72 @@
 <template>
-  <div class="image-uploader">
-    <input type="file" @change="onFileChange" />
-    <button @click="uploadImage">Upload Image</button>
-    <div v-if="imageUrl">
-      <h3>Uploaded Image:</h3>
-      <img :src="imageUrl" alt="Uploaded Image" />
+  <div class="upload-container" 
+       :class="{'dragging': isDragging}"
+       @dragover.prevent="onDragOver"
+       @dragleave.prevent="onDragLeave"
+       @drop.prevent="onDrop"
+  >
+    <input type="file" ref="fileInput" @change="onFileChange" hidden />
+    <div class="upload-message" @click="triggerFileInput">
+      <p v-if="!file">Drag and drop a file here or click to upload</p>
+      <p v-else>{{ file.name }}</p>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   data() {
     return {
-      file: null,
-      imageUrl: null,
+      isDragging: false,
+      file: null
     };
   },
   methods: {
+    triggerFileInput() {
+      this.$refs.fileInput.click();
+    },
     onFileChange(event) {
       this.file = event.target.files[0];
+      this.$emit('file-uploaded', this.file);
     },
-    async uploadImage() {
-      if (!this.file) {
-        alert("Please select a file first!");
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append('img', this.file);
-      formData.append('product', 10);
-
-
-      try {
-        const response = await axios.post('thumbs', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-
-        this.imageUrl = response.data.imageUrl; // Adjust according to your API response
-      } catch (error) {
-        console.error('Error uploading image:', error);
-      }
+    onDragOver() {
+      this.isDragging = true;
     },
-  },
+    onDragLeave() {
+      this.isDragging = false;
+    },
+    onDrop(event) {
+      this.isDragging = false;
+      const files = event.dataTransfer.files;
+      if (files.length > 0) {
+        this.file = files[0];
+        this.$emit('file-uploaded', this.file);
+      }
+    }
+  }
 };
 </script>
 
 <style scoped>
-.image-uploader {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
+.upload-container {
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-input[type="file"] {
-  margin-bottom: 10px;
+.upload-container.dragging {
+  background-color: #f0f0f0;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  margin-top: 10px;
+.upload-message {
+  font-size: 16px;
+  color: #777;
+}
+
+.upload-container p {
+  margin: 0;
 }
 </style>

@@ -20,21 +20,28 @@ const router = createRouter({
           component: () => import('../views/pages/ShopByCategoryView.vue')
         },
         {
-          path: 'add',
-          name: 'add',
-          component: () => import('../views/pages/AddProduct.vue'),
-          meta: { requiresAuth: true }
-        },
-        {
-          path: 'upload',
-          name: 'upload',
-          component: () => import('../views/pages/UploadImageView.vue'),
-          meta: { requiresAuth: true }
+          path: 'product',
+          name: 'product',
+          component: () => import('../views/pages/manage-product/Base.vue'),
+          children: [
+            {
+              path: 'add',
+              name: 'add',
+              component: () => import('../views/pages/manage-product/AddProduct.vue'),
+              meta: { requiresAuth: true }
+            },
+            {
+              path: 'upload/:product',
+              name: 'upload',
+              component: () => import('../views/pages/manage-product/UploadImageView.vue'),
+              meta: { requiresAuth: true }
+            },
+          ]
         },
         {
           path: 'vendors',
           name: 'vendors',
-          component: () => import('../views/pages/AddProduct.vue')
+          component: () => import('../views/pages/manage-product/AddProduct.vue')
         },
         {
           path: 'vendor/:vendor_slug',

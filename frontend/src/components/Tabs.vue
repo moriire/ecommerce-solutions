@@ -1,69 +1,66 @@
-<!-- src/components/BootstrapTabs.vue -->
 <template>
-    <div>
-      <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item" v-for="tab in tabs" :key="tab.name">
-          <button
-            class="nav-link"
-            :class="{ active: activeTab === tab.name }"
-            @click="selectTab(tab.name)"
-            :id="`${tab.name}-tab`"
-            data-bs-toggle="tab"
-            :data-bs-target="`#${tab.name}`"
-            type="button"
-            role="tab"
-            :aria-controls="tab.name"
-            :aria-selected="activeTab === tab.name ? 'true' : 'false'"
-          >
-            {{ tab.title }}
-          </button>
-        </li>
-      </ul>
-      <div class="tab-content">
-        <div
-          class="tab-pane fade"
-          :class="{ show: activeTab === tab.name, active: activeTab === tab.name }"
-          v-for="tab in tabs"
-          :key="tab.name"
-          :id="tab.name"
-          role="tabpanel"
-          :aria-labelledby="`${tab.name}-tab`"
+  <div>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation" v-for="tab in tabs" :key="tab.id">
+        <button
+          class="nav-link"
+          :class="{ active: tab.id === activeTab }"
+          :id="`${tab.id}-tab`"
+          data-bs-toggle="tab"
+          :data-bs-target="`#${tab.id}`"
+          type="button"
+          role="tab"
+          :aria-controls="tab.id"
+          :aria-selected="tab.id === activeTab"
+          @click="selectTab(tab.id)"
         >
-          <component :is="tab.component"></component>
-        </div>
+          {{ tab.label }}
+        </button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div
+        class="tab-pane fade"
+        :class="{ show: tab.id === activeTab, active: tab.id === activeTab }"
+        v-for="tab in tabs"
+        :key="tab.id"
+        :id="tab.id"
+        role="tabpanel"
+        :aria-labelledby="`${tab.id}-tab`"
+      >
+        <slot :name="tab.id"></slot>
       </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    props: {
-      tabs: {
-        type: Array,
-        required: true,
-      },
-      initialTab: {
-        type: String,
-        default: '',
-      },
+  </div>
+</template>
+
+<script>
+import { ref } from 'vue';
+
+export default {
+  props: {
+    tabs: {
+      type: Array,
+      required: true,
     },
-    data() {
-      return {
-        activeTab: this.initialTab || this.tabs[0].name,
-      };
-    },
-    methods: {
-      selectTab(tabName) {
-        this.activeTab = tabName;
-      },
-    },
-  };
-  </script>
-  
-  <style scoped>
-  .nav-tabs .nav-link.active {
-    background-color: #007bff;
-    color: white;
-  }
-  </style>
-  
+  },
+  setup(props) {
+    const activeTab = ref(props.tabs[0].id);
+
+    const selectTab = (id) => {
+      activeTab.value = id;
+    };
+
+    return {
+      activeTab,
+      selectTab,
+    };
+  },
+};
+</script>
+
+<style scoped>
+.nav-link {
+  cursor: pointer;
+}
+</style>

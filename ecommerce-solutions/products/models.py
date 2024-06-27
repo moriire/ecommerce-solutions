@@ -80,7 +80,7 @@ class ProductExpandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Products
         fields = (
-            #"id", #user id
+            "id", #user id
             "package", # subscribed package e.g Jumbo superstor, dandy
             "category",# Product category
              "profile", #user

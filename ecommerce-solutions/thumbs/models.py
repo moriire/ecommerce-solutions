@@ -22,7 +22,7 @@ class ProductImage(models.Model):
     def save(self, *args, **kwargs):
         if self.img.file:
             image_resize(self.img, 400, 400)
-        return super().save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
         if self.img:
@@ -42,4 +42,5 @@ class ProductWithImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductWithImage
         fields = "__all__"
+        #depth =2
 

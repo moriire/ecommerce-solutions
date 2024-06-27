@@ -11,6 +11,6 @@ class ProductImageView(ModelViewSet):
     parser_classes = [MultiPartParser, FormParser]
 
 class ProductWithImageView(ModelViewSet):
-    """Vendor image serializer"""
     serializer_class = ProductWithImageSerializer
     queryset = ProductWithImage.objects.all().select_related()
+    
