@@ -1,70 +1,66 @@
 <script setup>
-import { useProductcrudStore } from '@/stores/product-crud';
 import { RouterLink, useRoute, useRouter } from 'vue-router';
 import axios from 'axios';
-import { onMounted, reactive, ref } from 'vue';
+import { onBeforeUpdate, onMounted, reactive, ref, watch } from 'vue';
 import Tabs from '@/components/Tabs.vue';
 import ImageUpload from '@/components/ImageUpload.vue';
 const route = useRoute()
 const tabs = [
-  { id: 'home', label: 'Home' },
-  { id: 'profile', label: 'Profile' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'front', label: 'Front View' },
+  { id: 'back', label: 'Back View' },
+  { id: 'rear', label: 'Rear View' },
 ];
 
-const packages = ref()
-const getPackages = async () => {
-  try {
-    const res = await axios.get("packages")
-    packages.value = res.data
-  } catch (e) {
-    console.log(e)
-  }
-
-}/*
-const getCategories = async () => {
-  try {
-    const res = await axios.get("categories")
-    categories.value = res.data
-  } catch (e) {
-    console.log(e)
-  }
-}*/
 const handleFileUpload = async (file) => {
-  console.log('Uploaded file:');
+  console.log('Uploaded file:', file);
+  const fd = new FormData();
+  fd.append("img", file)//, file.image_url.name)
+  fd.append("product", router.params.product)
   try{
-    const res = await axios.post("thumbs", {
-    img: file,
-  product: 7
-})
+    const res = await axios.post("thumbs", fd, headers= {
+            "Content-Type": `multipart/form-data; boundary=${fd._boundary}`
+        })
     console.log(res)
   } catch(e){
     console.log(e.response)
   }
   // Handle the uploaded file, e.g., send it to a server
 }
-onMounted(async () => {
-  await prodcrud.getUserProducts()
-  await getPackages()
-  //await getCategories()
-})
-const prodcrud = useProductcrudStore()
+const productImages = ref([])
+const getImages = async (product_id)=>{
+  try{
+    const res = await axios.get(`thumbs?product=${product_id}`)
+    productImages.value = res.data.data
+    console.log(res.data.data)
+  } catch(e){
+    console.log(e)
+  }
+}
+watch(
+  async () => await getImages(route.params.product)
+)
+onMounted(async ()=> await getImages(route.params.product))
 </script>
 <template>
   <div class="container mt-5">
+   <div v-for="img in productImages" v-bind:key="img.id">
+    <img :src="img.img" alt="">
+   </div>
     <Tabs :tabs="tabs">
-      <template v-slot:home>
+      <template v-slot:front>
         <h1>Front View</h1>
         <p>This is the home tab content.</p>
+        
       </template>
-      <template v-slot:profile>
+      <template v-slot:back>
         <h1>Back View</h1>
         <p>This is the profile tab content.</p>
       </template>
-      <template v-slot:contact>
+      <template v-slot:rear>
         <h1>Rear View</h1>
         <p>This is the contact tab content.</p>
-        <ImageUpload @file-uploaded="handleFileUpload" />
+        
+        <ImageUpload :productID="route.params.product" />
       </template>
     </Tabs>
   </div>

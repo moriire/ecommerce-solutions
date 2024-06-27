@@ -37,7 +37,7 @@ const prodcrud = useProductcrudStore()
           <div class="col-xl-6 col-lg-6 col-md-12 col-12">
             <RouterView />
           </div>
-          <div class="col-xl-6 col-lg-6 col-md-12 col-12">
+          <div class="col-xl-5 col-lg-6 col-md-12 col-12">
             <table class="table table-striped table-hovered .table-bordered">
               <thead>
                 <tr>
@@ -56,7 +56,7 @@ const prodcrud = useProductcrudStore()
                   <td>{{ item.price }}</td>
                   <td>{{ item.quantity }}</td>
                   <td>
-                    <RouterLink :to="{name:'upload', query:{product: item.id}}">Upload {{ item.id }}</RouterLink>
+                    <RouterLink :to="{name:'upload', params:{product: item.id}}">Upload</RouterLink>
                   </td>
                   <td>#</td>
                 </tr>

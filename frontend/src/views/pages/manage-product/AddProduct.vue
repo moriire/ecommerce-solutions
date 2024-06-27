@@ -1,32 +1,6 @@
 <script setup>
 import { useProductcrudStore } from '@/stores/product-crud';
 import { RouterLink } from 'vue-router';
-import axios from 'axios';
-import { onMounted, ref } from 'vue';
-const packages = ref([])
-const categories = ref([])
-const getPackages = async () => {
-  try {
-    const res = await axios.get("packages")
-    packages.value = res.data
-  } catch (e) {
-    console.log(e)
-  }
-
-}
-const getCategories = async () => {
-  try {
-    const res = await axios.get("categories")
-    categories.value = res.data
-  } catch (e) {
-    console.log(e)
-  }
-}
-onMounted(async () => {
-  await prodcrud.getUserProducts()
-  await getPackages()
-  await getCategories()
-})
 const prodcrud = useProductcrudStore()
 </script>
 <template>
