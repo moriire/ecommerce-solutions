@@ -274,3 +274,7 @@ AWS_S3_VERIFY = True
 CSRF_COOKIE_SECURE = not True
 
 #############################ADMIN CONFIGURATION #################################
+
+# Celery settings
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
