@@ -9,10 +9,15 @@ defineProps({
     default: false,
   }
 })
-import PagesBase from "@/views/PagesBase.vue";
+import QuickView from "./QuickView.vue";
 import ProductCard from "./ProductCard.vue"
 import { useProductStore } from '@/stores/products';
+import { ref } from "vue";
 const prod = useProductStore();
+const item = ref({})
+const modalShow = async (p)=>{
+    item.value = p
+}
 </script>
 
 <template>
@@ -21,7 +26,7 @@ const prod = useProductStore();
       <template v-for="product in products" v-bind:key="product.slug">
         <!--button @click="prod.addToCart(product)">Add({{ prod.cartItems.length }})</button-->
         <ProductCard :name="product.name" :price="product.new_price" :costPrice="product.price"
-          :discount="product.discount" :condition="product.condition" @addCart="prod.addToCart(product)" />
+          :discount="product.discount" :condition="product.condition" @addCart="prod.addToCart(product)" @click="modalShow(product)" />
       </template>
 
       <div class="pagination justify-content-center mt-100" v-if="show">
@@ -43,4 +48,7 @@ const prod = useProductStore();
       </div>
     </div>
   </div>
+   <!-- product quickview start -->
+   <QuickView :item="item"/>
+    <!-- product quickview end -->
 </template>

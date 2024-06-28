@@ -5,45 +5,24 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
-//import './style.css';
-// import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-
-//export default {
-  /*
-  components: {
-    Swiper,
-    SwiperSlide,
-  },*/
-  //setup() {
-    defineProps({
-      boostedProducts: {
-        type: Array,
-        required: true
-      }
-    });
-    const progressCircle = ref(null);
-    const progressContent = ref(null);
-    const onAutoplayTimeLeft = (s, time, progress) => {
-      progressCircle.value.style.setProperty('--progress', 1 - progress);
-      progressContent.value.textContent = `${Math.ceil(time / 1000)}s`;
-    };
-    const modules = [Autoplay, Pagination, Navigation];
-    /*
-    return {
-      onAutoplayTimeLeft,
-      progressCircle,
-      progressContent,
-      
-    };
-  },
-};*/
+defineProps({
+  boostedProducts: {
+    type: Array,
+    required: true
+  }
+});
+const progressCircle = ref(null);
+const progressContent = ref(null);
+const onAutoplayTimeLeft = (s, time, progress) => {
+  progressCircle.value.style.setProperty('--progress', 1 - progress);
+  progressContent.value.textContent = `${Math.ceil(time / 1000)}s`;
+};
+const modules = [Autoplay, Pagination, Navigation]
 </script>
 <template>
-  <swiper 
-   v-if="boostedProducts"
-  :spaceBetween="30" :centeredSlides="true" :autoplay="{
-    delay: 2500,
+  <swiper v-if="boostedProducts" :spaceBetween="30" :centeredSlides="true" :autoplay="{
+    delay: 3000,
     disableOnInteraction: false,
   }" :pagination="{
     clickable: true,
@@ -69,8 +48,8 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
         </div>
       </div>
 
-    </swiper-slide>
    
+
     <template #container-end>
       <div class="autoplay-progress">
         <svg viewBox="0 0 48 48" ref="progressCircle">
@@ -79,12 +58,12 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
         <span ref="progressContent"></span>
       </div>
     </template>
+  </swiper-slide>
   </swiper>
 </template>
 <style>
 .swiper,
-.swiper-slide,
-.row {
+.swiper-slide{
   width: 100%;
   height: 100%;
 }
