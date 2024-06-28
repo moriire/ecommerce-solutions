@@ -13,13 +13,11 @@ prod.pages.limit = 8
 </script>
 
 <template>
-    <div class="container-fluid">
+   
     
            
                 <HeroSlide :boostedProducts="prod.products" />
-            
-        
-    </div>
+          
 
     <!-- trusted badge start -->
     <div class="trusted-section mt-100 overflow-hidden">
