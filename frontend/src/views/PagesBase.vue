@@ -326,53 +326,6 @@ onMounted(async () => {
                             <span>My wishlist</span>
                         </a>
                     </li>
-                    <li class="utilty-menu-item">
-                        <button type="button" class="currency-btn btn-reset" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <img class="flag" src="/src/assets/img/flag/usd.jpg" alt="img">
-                            <span>USD</span>
-                            <span class="utilty-icon-wrapper">
-                                <svg class="icon icon-dropdown" xmlns="http://www.w3.org/2000/svg" width="24"
-                                    height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </span>
-                        </button>
-
-                        <ul class="currency-list dropdown-menu dropdown-menu-end px-2">
-                            <li class="currency-list-item ">
-                                <a class="currency-list-option" href="#" data-value="USD">
-                                    <img class="flag" src="/src/assets/img/flag/usd.jpg" alt="img">
-                                    <span>USD</span>
-                                </a>
-                            </li>
-                            <li class="currency-list-item ">
-                                <a class="currency-list-option" href="#" data-value="CAD">
-                                    <img class="flag" src="/src/assets/img/flag/cad.jpg" alt="img">
-                                    <span>CAD</span>
-                                </a>
-                            </li>
-                            <li class="currency-list-item ">
-                                <a class="currency-list-option" href="#" data-value="EUR">
-                                    <img class="flag" src="/src/assets/img/flag/eur.jpg" alt="img">
-                                    <span>EUR</span>
-                                </a>
-                            </li>
-                            <li class="currency-list-item ">
-                                <a class="currency-list-option" href="#" data-value="JPY">
-                                    <img class="flag" src="/src/assets/img/flag/jpy.jpg" alt="img">
-                                    <span>JPY</span>
-                                </a>
-                            </li>
-                            <li class="currency-list-item ">
-                                <a class="currency-list-option" href="#" data-value="GBP">
-                                    <img class="flag" src="/src/assets/img/flag/gbp.jpg" alt="img">
-                                    <span>GBP</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
                 </ul>
             </div>
         </div>
