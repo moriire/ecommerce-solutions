@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import { login, refreshToken, logout, register } from '../services/authService';
+import { login, refreshToken, logout, register, fetchUserDetails } from '../services/authService';
 import { useRouter } from 'vue-router';
 
 export const useAuthStore = defineStore('auth', () => {
@@ -48,6 +48,10 @@ export const useAuthStore = defineStore('auth', () => {
     logout();
     router.push("/")
   };
+  
+  const userdetail = async (token) => {
+    const response = await fetchUserDetails(token);
+  };
 
   return {
     accessToken,
@@ -56,6 +60,7 @@ export const useAuthStore = defineStore('auth', () => {
     loginAction,
     refreshAccessToken,
     logoutAction,
-    registerAction
+    registerAction,
+    userdetail
   };
 });

@@ -28,6 +28,10 @@ services:
       - ./.env.db
     volumes:
       - db_data:/var/lib/postgresql/data/
+
+  redis:
+    image: "redis:alpine"
+
   nginx:
     build: ./nginx
     volumes:
@@ -37,6 +41,20 @@ services:
       - 1337:80
     depends_on:
       - web
+
+  celery:
+    build: ./ecommerce-solutions
+    command: celery -A core worker -l info
+    depends_on:
+      - db
+      - redis
+
+  celery-beat:
+    build: .
+    command: celery -A core beat -l info
+    depends_on:
+      - db
+      - redis
 volumes:
   db_data:
   static_volume:

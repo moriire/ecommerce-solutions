@@ -23,3 +23,13 @@ export const refreshToken = async (refreshToken) => {
 export const logout = async () => {
   // Add any logout logic if necessary, like invalidating tokens on the server
 };
+
+export const fetchUserDetails = async (token) =>{
+    const response = await axios.get('auth/user/', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  
+};
