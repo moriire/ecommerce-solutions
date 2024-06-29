@@ -10,6 +10,12 @@ const router = createRouter({
       name: 'pages',
       children: [
         {
+          path: 'profile',
+          name: 'profile',
+          component: () => import('../views/pages/ProfileView.vue'),
+          meta: { requiresAuth: true }
+        },
+        {
           path: '',
           name: 'home',
           component: () => import('../views/pages/HomeView.vue')

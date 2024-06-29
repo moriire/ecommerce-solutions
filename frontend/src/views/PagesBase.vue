@@ -5,7 +5,8 @@ import { RouterLink, RouterView } from 'vue-router'
 import { useProductStore } from '../stores/products';
 import { useAuthStore } from '../stores/auth';
 import { useCategoryStore } from '../stores/categories';
-
+import router from '@/router';
+import BreadCrumb from "@/components/BreadCrumb.vue"
 const prod = useProductStore()
 const cat = useCategoryStore()
 const navSection = [
@@ -239,8 +240,8 @@ onMounted(async () => {
         </div>
     </div-->
     <!-- breadcrumb end -->
+     <!--BreadCrumb :loc="router.name"/-->
     <main id="MainContent" class="content-for-layout">
-
         <RouterView />
     </main>
 

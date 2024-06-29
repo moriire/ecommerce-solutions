@@ -140,10 +140,10 @@ const prod = useProductStore()
               <h3 class="d-none d-lg-block mb-0 text-center heading_24 mb-4">Order summary</h3>
                 <div class="minicart-item d-flex" v-for="(cart, index) in prod.cartItems" v-bind:key="index">
                   <div class="mini-img-wrapper">
-                    <img class="mini-img" src="/src/assets/img/products/furniture/2.jpg" alt="img">
+                    <img class="mini-img" :src="cart.images[0].img" alt="img">
                   </div>
                   <div class="product-info">
-                    <h2 class="product-title"><a href="#">Eliot Reversible Sectional</a></h2>
+                    <h2 class="product-title"><a href="#">{{ cart.product.name }}</a></h2>
                     <p class="product-vendor">&#x20A6;150 x 1</p>
                   </div>
                 </div>
@@ -164,16 +164,14 @@ const prod = useProductStore()
                   <hr />
                   <div class="subtotal-item discount-box">
                     <h4 class="subtotal-title">Total:</h4>
-                    <p class="subtotal-value">&#x20A6;1000.00</p>
+                    <p class="subtotal-value">&#x20A6;{{ prod.cartSubtotal - prod.cartTotalDiscount }}</p>
                   </div>
-
-
-                  <div class="mt-4 checkout-promo-code">
+                  <!--div class="mt-4 checkout-promo-code">
                     <input class="input-promo-code" type="text" placeholder="Promo code" />
                     <a href="checkout.html" class="btn-apply-code position-relative btn-secondary text-uppercase mt-3">
                       Apply Promo Code
                     </a>
-                  </div>
+                  </div-->
                 </div>
             </div>
           </div>

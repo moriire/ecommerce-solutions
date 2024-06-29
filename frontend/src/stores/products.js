@@ -35,13 +35,13 @@ const cartItems = ref([])
 const cartSubtotal = ref(0)
 const cartTotalDiscount = ref(0)
 const getCartSubtotal = () => {
-  let numbers = cartItems.value.map(x => x.price)
+  let numbers = cartItems.value.map(x => x.product.price)
   const total = numbers.reduce((sum, num) => sum + num, 0);
   cartSubtotal.value = total
   //console.log(total)
 }
 const getCartTotalDiscount = () => {
-  let numbers = cartItems.value.map(x => x.discounted_price)
+  let numbers = cartItems.value.map(x => x.product.discounted_price)
   const total = numbers.reduce((sum, num) => sum + num, 0);
   cartTotalDiscount.value = total
   //console.log(total)
@@ -60,11 +60,11 @@ const deleteCart = async (item) => {
 }
 const getProducts = async () => {
   try {
-    const res = await axios.get(`products?limit=${pages.limit}&offset=${pages.offset}`)
+    const res = await axios.get(`product-with-images?limit=${pages.limit}&offset=${pages.offset}`)
     products.value = res.data.results
     pages.total = res.data.count;
     //pages.items = pages.total/pages.limit;
-    console.log(res.data.data)
+    console.log(res.data)
   } catch (e) {
     console.log(e)
   }

@@ -1,6 +1,5 @@
 <script setup>
 import ProductCard from '@/components/ProductCard.vue';
-import Hero from "@/components/Hero.vue"
 import { RouterLink } from 'vue-router';
 
 import { ref } from 'vue';

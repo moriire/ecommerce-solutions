@@ -11,14 +11,14 @@ export const useCategoryStore = defineStore('category', () => {
   const cartTotalDiscount = ref(0)
 
   const getCategories = async () => {
-    await products.getProducts()
-    let prod = products.products
-    const filteredArr= prod.filter((x, index) => {
-      return (
-        prod.findIndex((cat) => cat.category.name === x.category.name) === index
-      );
-    }) || [];
-    categories.value = filteredArr
+    try{
+      const res = await axios.get("categories")
+      console.log(res.data)
+      categories.value = res.data
+    } catch(e){
+      console.log(e)
+    }
+    
   }
   return {
     count,

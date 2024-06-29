@@ -2,7 +2,6 @@
 import { RouterLink, useRoute, useRouter } from 'vue-router';
 import axios from 'axios';
 import { onBeforeUpdate, onMounted, reactive, ref, watch } from 'vue';
-import Tabs from '@/components/Tabs.vue';
 import ImageUpload from '@/components/ImageUpload.vue';
 const route = useRoute()
 const tabs = [

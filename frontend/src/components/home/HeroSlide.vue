@@ -36,7 +36,7 @@ const modules = [Autoplay, Pagination, Navigation]
             <h2 class="slide-heading heading_72 animate__animated animate__fadeInUp"
               data-animation="animate__animated animate__fadeInUp">
               Discover The Best Furniture
-            </h2>{{ prod.name }}
+            </h2>{{ prod.product.name }}
             <p class="slide-subheading heading_24 animate__animated animate__fadeInUp"
               data-animation="animate__animated animate__fadeInUp">
               Look for your inspiration here

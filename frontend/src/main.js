@@ -1,18 +1,19 @@
 
-//import "bootstrap/dist/css/bootstrap.min.css"
-
-//import "@fortawesome/fontawesome-free/css/all.min.css"
-//import "bootstrap/dist/js/bootstrap.min.js"
-//import "bootstrap/dist/js/bootstrap.bundle.min.js"
-//import "@fortawesome/fontawesome-free/js/all.min.js"
+import 'aos/dist/aos.css'; 
+import "bootstrap/dist/css/bootstrap.min.css"
+import "./assets/css/style.css"
+import "@fortawesome/fontawesome-free/css/all.min.css"
+import "bootstrap/dist/js/bootstrap.bundle.min.js"
+import "bootstrap/dist/js/bootstrap.min.js"
+import "@fortawesome/fontawesome-free/js/all.min.js"
 //import "/src/assets/js/vendor.js"
 //import "/src/assets/js/main.js"
 
+
 // import function to register Swiper custom elements
 import AOS from 'aos';
-import 'aos/dist/aos.css'; // You can also use <link> for styles
+// You can also use <link> for styles
 // ..
-
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

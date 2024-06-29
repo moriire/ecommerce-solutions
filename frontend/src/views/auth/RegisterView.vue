@@ -1,6 +1,5 @@
 <script setup>
 import ProductCard from '@/components/ProductCard.vue';
-import Hero from "@/components/Hero.vue"
 import { useAuthStore } from '../../stores/auth.js';
 import { reactive } from 'vue';
 const userData = reactive({username:"", phone: "", email: "", password1: "", password2: "", vendor: false, store_name: ""})

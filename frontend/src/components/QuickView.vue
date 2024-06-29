@@ -1,14 +1,40 @@
 <script setup>
+import { ref, defineProps } from 'vue';
+const emit = defineEmits("addCart")
+
+function addedCart(param) {
+  emit("addCart", param)
+  window.console.log("hello")
+}
 defineProps({
     item: {
         type: Object,
         required: true
     }
 })
+import { Swiper, SwiperSlide } from 'swiper/vue';
+// Import Swiper styles
+import 'swiper/css';
+
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
+
+//import './style.css';
+
+// import required modules
+import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+
+const thumbsSwiper = ref(null);
+
+const setThumbsSwiper = (swiper) => {
+    thumbsSwiper.value = swiper;
+};
+const modules = [FreeMode, Navigation, Thumbs]
 </script>
 <template>
     <!-- product quickview start -->
-    <div class="modal fade" tabindex="-1" id="quickview-modal">
+    <div class="modal fade" tabindex="-1" id="quickview-modal" v-if="item">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header border-0">
@@ -16,100 +42,34 @@ defineProps({
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-lg-6 col-md-12 col-12">
-                            <div class="product-gallery product-gallery-vertical d-flex">
-                                <div class="product-img-large">
-                                    <div class="qv-large-slider img-large-slider common-slider" data-slick='{
-                                            "slidesToShow": 1, 
-                                            "slidesToScroll": 1,
-                                            "dots": false,
-                                            "arrows": false,
-                                            "asNavFor": ".qv-thumb-slider"
-                                        }'>
-                                        <div class="img-large-wrapper">
-                                            <img src="/src/assets/img/products/bags/39.jpg" alt="img">
-                                        </div>
-                                        <div class="img-large-wrapper">
-                                            <img src="/src/assets/img/products/bags/38.jpg" alt="img">
-                                        </div>
-                                        <div class="img-large-wrapper">
-                                            <img src="/src/assets/img/products/bags/37.jpg" alt="img">
-                                        </div>
-                                        <div class="img-large-wrapper">
-                                            <img src="/src/assets/img/products/bags/36.jpg" alt="img">
-                                        </div>
-                                        <div class="img-large-wrapper">
-                                            <img src="/src/assets/img/products/bags/34.jpg" alt="img">
-                                        </div>
-                                        <div class="img-large-wrapper">
-                                            <img src="/src/assets/img/products/bags/30.jpg" alt="img">
-                                        </div>
-                                        <div class="img-large-wrapper">
-                                            <img src="/src/assets/img/products/bags/32.jpg" alt="img">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-img-thumb">
-                                    <div class="qv-thumb-slider img-thumb-slider common-slider"
-                                        data-vertical-slider="true" data-slick='{
-                                            "slidesToShow": 5, 
-                                            "slidesToScroll": 1,
-                                            "dots": false,
-                                            "arrows": true,
-                                            "infinite": false,
-                                            "speed": 300,
-                                            "cssEase": "ease",
-                                            "focusOnSelect": true,
-                                            "swipeToSlide": true,
-                                            "asNavFor": ".qv-large-slider"
-                                        }'>
-                                        <div>
-                                            <div class="img-thumb-wrapper">
-                                                <img src="/src/assets/img/products/bags/39.jpg" alt="img">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="img-thumb-wrapper">
-                                                <img src="/src/assets/img/products/bags/38.jpg" alt="img">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="img-thumb-wrapper">
-                                                <img src="/src/assets/img/products/bags/37.jpg" alt="img">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="img-thumb-wrapper">
-                                                <img src="/src/assets/img/products/bags/36.jpg" alt="img">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="img-thumb-wrapper">
-                                                <img src="/src/assets/img/products/bags/34.jpg" alt="img">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="img-thumb-wrapper">
-                                                <img src="/src/assets/img/products/bags/30.jpg" alt="img">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="img-thumb-wrapper">
-                                                <img src="/src/assets/img/products/bags/32.jpg" alt="img">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="activate-arrows show-arrows-always arrows-white d-none d-lg-flex justify-content-between mt-3">
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-lg-6 col-md-12 col-12" v-if="item.images">
+                            <swiper :style="{
+                                '--swiper-navigation-color': '#fff',
+                                '--swiper-pagination-color': '#fff',
+                            }" :spaceBetween="10" :navigation="true" :thumbs="{ swiper: thumbsSwiper }" :modules="modules" class="mySwiper2">
+                                <swiper-slide v-for="thumb in item.images">
+                                    <img :src="thumb.img" />
+                                </swiper-slide>
+                            </swiper>
+                            <swiper @swiper="setThumbsSwiper" :spaceBetween="10" :slidesPerView="4" :freeMode="true"
+                                :watchSlidesProgress="true" :modules="modules" class="mySwiper">
+                                <swiper-slide v-for="thumb in item.images">
+                                    <img :src="thumb.img" />
+                                </swiper-slide>
+                            </swiper>
                         </div>
-                        <div class="col-lg-6 col-md-12 col-12">
+                        <div class="col-lg-6 col-md-12 col-12" v-if="item.product">
                             <div class="product-details ps-lg-4">
-                                <div class="mb-3"><span class="product-availability">In Stock</span></div>
-                                <h2 class="product-title mb-3">{{  item.name }}</h2>
-                                <div class="product-rating d-flex align-items-center mb-3">
+                                <div class="mb-3">
+                                    <span class="product-availability">In Stock</span>
+                                </div>
+                                <h2 class="product-title mb-3">{{ item.product.name }}</h2>
+                                <div>
+                                    <p>
+                                        {{ item.product.description }}
+                                    </p>
+                                </div>
+                                <!--div class="product-rating d-flex align-items-center mb-3">
                                     <span class="star-rating">
                                         <svg width="16" height="15" viewBox="0 0 16 15" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -142,17 +102,16 @@ defineProps({
                                                 fill="#B2B2B2" />
                                         </svg>
                                     </span>
-                                    <!--span class="rating-count ms-2">(22)</span-->
-                                </div>
+                                </div-->
                                 <div class="product-price-wrapper mb-4">
-                                    <span class="product-price regular-price">$ {{  item.new_price }}</span>
-                                    <del class="product-price compare-price ms-2">$ {{  item.price  }}</del>
+                                    <span class="product-price regular-price">$ {{ item.product.new_price }}</span>
+                                    <del class="product-price compare-price ms-2">$ {{ item.product.price }}</del>
                                 </div>
                                 <!--div class="product-sku product-meta mb-1">
                                     <strong class="label">SKU:</strong> 401
                                 </div-->
                                 <div class="product-vendor product-meta mb-3">
-                                    <strong class="label">Vendor:</strong> leather
+                                    <strong class="label">Vendor:</strong> {{ item.product.profile.store_name}}
                                 </div>
 
                                 <div class="misc d-flex align-items-end justify-content-between mt-4">
@@ -180,7 +139,7 @@ defineProps({
                                     <div
                                         class="product-form-buttons d-flex align-items-center justify-content-between mt-4">
                                         <button type="submit"
-                                            class="position-relative btn-atc btn-add-to-cart loader">ADD TO
+                                            class="position-relative btn-atc btn-add-to-cart loader" @click="addedCart">ADD TO
                                             CART</button>
                                         <a href="#" class="product-wishlist">
                                             <svg class="icon icon-wishlist" width="26" height="22" viewBox="0 0 26 22"
@@ -386,7 +345,7 @@ defineProps({
                                     </ul>
                                 </div>
 
-                                <div class="share-area mt-4 d-flex align-items-center">
+                                <!--div class="share-area mt-4 d-flex align-items-center">
                                     <strong class="label mb-1 d-block">Share:</strong>
                                     <ul class="list-unstyled share-list d-flex align-items-center mb-1 flex-wrap">
                                         <li class="share-item">
@@ -430,7 +389,7 @@ defineProps({
                                             </svg>
                                         </li>
                                     </ul>
-                                </div>
+                                </div-->
                             </div>
                         </div>
                     </div>
@@ -440,3 +399,65 @@ defineProps({
     </div>
     <!-- product quickview end -->
 </template>
+<style scoped>
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.swiper {
+  width: 100%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.mySwiper2 {
+  height: 80% !important;
+  width: 100%;
+}
+
+.mySwiper {
+  height: 20% !important;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+
+.mySwiper .swiper-slide {
+  width: 25%;
+  height: 100%;
+  opacity: 0.4;
+}
+
+.mySwiper .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+</style>

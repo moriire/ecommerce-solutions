@@ -1,6 +1,7 @@
 <script setup>
 import CartItem from '@/components/CartItem.vue';
 import { useProductStore } from '@/stores/products';
+import { RouterLink } from 'vue-router';
 const prod = useProductStore()
 </script>
 
@@ -44,12 +45,12 @@ const prod = useProductStore()
                 <tr class="cart-item" v-for="(cart, index) in prod.cartItems" v-bind:key="index" >
                   <td class="cart-item-media">
                     <div class="mini-img-wrapper">
-                      <img class="mini-img" src="/src/assets/img/products/furniture/1.jpg" alt="img">
+                      <img class="mini-img" :src="cart.images[0].img" alt="img">
                     </div>
                   </td>
                   <td class="cart-item-details">
-                    <h2 class="product-title"><a href="#">{{ cart.name }}</a></h2>
-                    <p class="product-vendor">XS / Dove Gray</p>
+                    <h2 class="product-title"><a href="#">{{ cart.product.name }}</a></h2>
+                    <p class="product-vendor">{{ cart.product.profile.store_name }}</p>
                   </td>
                   <td class="cart-item-quantity">
                     <div class="quantity d-flex align-items-center justify-content-between">
@@ -60,7 +61,7 @@ const prod = useProductStore()
                     <a href="#" class="product-remove mt-2" @removeCart="prod.deleteCart(cart)">Remove</a>
                   </td>
                   <td class="cart-item-price text-end">
-                    <div class="product-price">&#x20A6;{{ cart.price }}</div>
+                    <div class="product-price">&#x20A6;{{ cart.product.price }}</div>
                   </td>
                 </tr>
                
@@ -87,13 +88,13 @@ const prod = useProductStore()
                 <hr />
                 <div class="subtotal-item discount-box">
                   <h4 class="subtotal-title">Total:</h4>
-                  <p class="subtotal-value">&#x20A6;{{ prod.cartSubtotal + prod.cartTotalDiscount }}</p>
+                  <p class="subtotal-value">&#x20A6;{{ prod.cartSubtotal - prod.cartTotalDiscount }}</p>
                 </div>
                 <p class="shipping_text">Shipping & taxes calculated at checkout</p>
                 <div class="d-flex justify-content-center mt-4">
-                  <a href="checkout.html" class="position-relative btn-primary text-uppercase">
+                  <RouterLink to="/checkout" class="position-relative btn-primary text-uppercase">
                     Procced to checkout
-                  </a>
+                  </RouterLink>
                 </div>
               </div>
             </div>

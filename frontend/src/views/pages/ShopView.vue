@@ -8,8 +8,10 @@ const prod = useProductStore()
 const filter = useFilterStore()
 const route = useRoute()
 
-prod.pages.limit = 4
-
+prod.pages.limit = 6
+onMounted(async ()=>{
+    await prod.getProducts()
+})
 //watch(route, ()=> prod.getProducts())
 </script>
 

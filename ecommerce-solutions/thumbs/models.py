@@ -4,7 +4,7 @@ from rest_framework import serializers
 from utils import delete_img, image_resize
 import uuid
 from django.utils.translation import gettext_lazy as _
-from products.models import Products
+from products.models import Products, ProductSerializer, ProductExpandSerializer
 
 def product_image_path(instance, filename):
     return '/'.join([instance.product.category.slug, instance.product.slug, filename])
@@ -21,7 +21,7 @@ class ProductImage(models.Model):
     
     def save(self, *args, **kwargs):
         if self.img.file:
-            image_resize(self.img, 400, 400)
+            image_resize(self.img, 500, 600)
         super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
@@ -43,3 +43,9 @@ class ProductWithImageSerializer(serializers.ModelSerializer):
         model = ProductWithImage
         fields = "__all__"
 
+class XProductWithImageSerializer(serializers.ModelSerializer):
+    product = ProductExpandSerializer()
+    images = ProductImageSerializer(many=True)
+    class Meta:
+        model = ProductWithImage
+        fields = "__all__"

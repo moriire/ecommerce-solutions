@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink } from 'vue-router';
 import CartItem from './CartItem.vue';
 import { useProductStore } from '@/stores/products';
 defineProps({
@@ -23,8 +24,7 @@ const prod = useProductStore()
                     <div class="minicart-loop custom-scrollbar">
                       <template v-for="(cart, index) in cartItems" v-bind:key="index">
                         <CartItem 
-                          :name="cart.name" 
-                          :price="cart.price" 
+                         :item = "cart"
                           @removeCart="prod.deleteCart(cart)" 
                         />
                       </template>
@@ -39,8 +39,8 @@ const prod = useProductStore()
                             </p>
                         </div>
                         <div class="minicart-btn-area d-flex align-items-center justify-content-between">
-                            <a href="cart.html" class="minicart-btn btn-secondary">View Cart</a>
-                            <a href="checkout.html" class="minicart-btn btn-primary">Checkout</a>
+                            <RouterLink to="/cart" class="minicart-btn btn-secondary">View Cart</RouterLink>
+                            <RouterLink to="/checkout" class="minicart-btn btn-primary">Checkout</RouterLink>
                         </div>
                     </div>
                 </div>

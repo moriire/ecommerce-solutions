@@ -83,6 +83,8 @@ class ProductExpandSerializer(serializers.ModelSerializer):
             "category",# Product category
              "profile", #user
             "name",# Product name
+            "new_price",
+            "discounted_price",
             "slug",
             "quantity",
             "description", #detailed product description less than 200
@@ -90,8 +92,7 @@ class ProductExpandSerializer(serializers.ModelSerializer):
             "discount",
             "brand",
             "condition",
-            "new_price",
-            "discounted_price"#discount on product price
+            "price",
             )
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -111,6 +112,7 @@ class ProductSerializer(serializers.ModelSerializer):
             "brand",
             "condition",
             "new_price",
+            "price",
             "discounted_price"#discount on product price
             )
         #depth = 1

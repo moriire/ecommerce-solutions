@@ -65,7 +65,7 @@ class CategoryView(ModelViewSet):
 
 class ProductView(ModelViewSet):
     authentication_classes = (SessionAuthentication, BasicAuthentication)
-    pagination_class = ProductPagination
+    #pagination_class = ProductPagination
     #permission_classes = (IsAuthenticated,)
     serializer_class = ProductExpandSerializer
     queryset = Products.objects.all()#.select_related()

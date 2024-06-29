@@ -1,9 +1,16 @@
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
-
-from .models import ProductImage, ProductWithImage, ProductImageSerializer, ProductWithImageSerializer
+from rest_framework import status 
+from .models import ProductImage, ProductWithImage, ProductImageSerializer, ProductWithImageSerializer, XProductWithImageSerializer
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
+
+class ProductPagination(LimitOffsetPagination):
+    default_limit = 4
+    limit_query_param = 'limit'
+    offset_query_param = 'offset'
+    max_limit = None
 
 class ProductImageView(ModelViewSet):
     serializer_class = ProductImageSerializer
@@ -24,6 +31,19 @@ class ProductImageView(ModelViewSet):
                 )
 
 class ProductWithImageView(ModelViewSet):
-    serializer_class = ProductWithImageSerializer
-    queryset = ProductWithImage.objects.all().select_related()
+    pagination_class = ProductPagination
+    serializer_class = XProductWithImageSerializer
+    queryset = ProductWithImage.objects.all().select_related().prefetch_related('images')
+    #.exclude(images=None)
+   
+    def create(self, request):
+        data = request.data
+        catser = ProductWithImageSerializer(data = data)
+        if catser.is_valid():
+            catser.save()
+            return Response({"data": catser.data}, status=status.HTTP_201_CREATED)
+        return Response(catser.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
     
