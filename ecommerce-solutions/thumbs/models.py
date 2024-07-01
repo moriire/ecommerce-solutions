@@ -39,6 +39,7 @@ class ProductImageSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class ProductWithImageSerializer(serializers.ModelSerializer):
+    images = ProductImageSerializer(many=True)
     class Meta:
         model = ProductWithImage
         fields = "__all__"
