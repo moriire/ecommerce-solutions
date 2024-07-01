@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-c+=02zv07*647ejmnqjn7+t=rbvl6j_mv9=k9dqye=7n==$o=s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.e.get("DEBUG", 0)
 
-ALLOWED_HOSTS = ["*", "http://localhost:5173", "www.megadey.org", "megadey.org", "ecs.pythonanywhere.com", "127.0.0.1", "localhost" ]
+ALLOWED_HOSTS = ["*"] #, "http://localhost:5173", "www.megadey.org", "megadey.org", "ecs.pythonanywhere.com", "127.0.0.1", "localhost" ]
 
 # Application definition
 
@@ -101,7 +101,7 @@ WSGI_APPLICATION = 'ecs.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
+        "ENGINE": os.e.get("SQL_ENGINE", "django.db.backends.sqlite3"),
         "NAME": os.environ.get("SQL_DATABASE", BASE_DIR / "db.sqlite3"),
         "USER": os.environ.get("SQL_USER", "user"),
         "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
