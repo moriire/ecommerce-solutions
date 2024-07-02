@@ -1,4 +1,5 @@
 from rest_framework.viewsets import GenericViewSet
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework import status 
@@ -16,6 +17,10 @@ class ProductImageView(ModelViewSet):
     serializer_class = ProductImageSerializer
     queryset = ProductImage.objects.all()
     parser_classes = [MultiPartParser, FormParser]
+
+    @action(detail=True, methods=['post'])
+    def multiple_upload(self, request, format=None):
+        files = request.FILES.getlist('files') 
 
     def list(self, request):
         items = self.get_queryset()
@@ -46,4 +51,3 @@ class ProductWithImageView(ModelViewSet):
     
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
-    

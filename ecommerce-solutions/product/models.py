@@ -1,6 +1,6 @@
 from django.db import models
 from users.models import CustomUsers
-from profiles.models import Profile, ProfileSerializer, ProfileExpandSerializer
+from profile.models import Profile, ProfileSerializer, ProfileExpandSerializer
 from packages.models import Packages, PackageSerializer
 from rest_framework import serializers
 from django.urls import reverse

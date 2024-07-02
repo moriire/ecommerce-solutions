@@ -1,138 +1,61 @@
+<!-- src/components/UploadComponent.vue -->
 <template>
-  <div class="drop-container"
-       @dragover.prevent="handleDragOver"
-       @dragenter.prevent="handleDragEnter"
-       @dragleave.prevent="handleDragLeave"
-       @drop.prevent="handleDrop">
-
-    <input type="file"
-           ref="fileInput"
-           style="display: none"
-           @change="handleFileChange">
-
-    <div class="drop-message"
-         :class="{ 'drag-over': isDragging }"
-         @click="openFilePicker">
-
-      <p v-if="!imageUrl">Drag & Drop your image here or click to select one.</p>
-
-      <img v-else :src="imageUrl" alt="Uploaded Image" class="preview-image" />
-
-    </div>
-    <button v-if="imageUrl" @click="uploadImage" class="btn btn-primary position position-relative my-4">Upload Image</button>
-
+  <div>
+      <input type="text" v-model="title" placeholder="Image Title" />
+      <file-pond
+          ref="pond"
+          name="img"
+          label-idle="Drag & Drop your files or <span class='filepond--label-action'>Browse</span>"
+          allow-multiple="true"
+          @processfile="handleProcessFile"
+      ></file-pond>
+      <button @click="submit">Upload</button>
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
+<script>
+import vueFilePond from 'vue-filepond';
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+import 'filepond/dist/filepond.min.css';
 import axios from 'axios';
-import { useRoute } from 'vue-router';
-const route = useRoute()
-const props = defineProps({
-    productID: {
-        type: Number,
-        required: true
-    }
-})
 
-    const fileInput = ref(null)
-    const imageUrl = ref(null);
-    let selectedFile = null;
-    const isDragging = ref(false);
+const FilePond = vueFilePond(FilePondPluginImagePreview);
 
-    const handleDragOver = (event) => {
-      event.preventDefault();
-      isDragging.value = true;
-    };
-
-    const handleDragEnter = (event) => {
-      event.preventDefault();
-      isDragging.value = true;
-    };
-
-    const handleDragLeave = () => {
-      isDragging.value = false;
-    };
-
-    const handleDrop = (event) => {
-      event.preventDefault();
-      isDragging.value = false;
-      const files = event.dataTransfer.files;
-      if (files.length > 0) {
-        selectedFile = files[0];
-        previewImage();
-      }
-    };
-
-    const handleFileChange = (event) => {
-      const files = event.target.files;
-      if (files.length > 0) {
-        selectedFile = files[0];
-        previewImage();
-      }
-    };
-
-    const previewImage = () => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        imageUrl.value = reader.result;
+export default {
+  components: {
+      FilePond
+  },
+  data() {
+      return {
+          title: '',
+          files: []
       };
-      reader.readAsDataURL(selectedFile);
-    };
-
-    const openFilePicker = () => {
-      const fileInput = fileInput.value;
-      if (fileInput.value) {
-        fileInput.click();
-      }
-    };
-
-    const uploadImage = async () => {
-      try {
-        const formData = new FormData();
-        formData.append('img', selectedFile);
-        formData.append('product', parseInt(props.productID));
-        // Replace with your API endpoint
-        const response = await axios.post('thumbs', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
+  },
+  methods: {
+      handleProcessFile(error, file) {
+          if (!error) {
+              this.files.push(file);
           }
-        });
+      },
+      async submit() {
+          const formData = new FormData();
+          this.files.forEach((file) => {
+            formData.append('product', this.title);
+              formData.append('img', file);
+          });
 
-        // Handle success response
-        console.log('Image uploaded successfully:', response.data);
-        // Optionally reset the component state after successful upload
-        imageUrl.value = null;
-        selectedFile = null;
-
-      } catch (error) {
-        // Handle error
-        console.error('Error uploading image:', error);
+          try {
+              const response = await axios.post('thumbs', formData, {
+                  headers: {
+                      'Content-Type': 'multipart/form-data'
+                  }
+              });
+              console.log(response.data);
+          } catch (error) {
+              console.error(error);
+          }
       }
-    };
+  }
+};
 </script>
-
-<style scoped>
-.drop-container {
-  border: 2px dashed #ccc;
-  padding: 20px;
-  text-align: center;
-  cursor: pointer;
-}
-
-.drop-message {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 210px;
-}
-
-.drag-over {
-  background-color: #f0f0f0;
-}
-
-.preview-image {
-  max-width: 100%;
-}
-</style>
