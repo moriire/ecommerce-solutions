@@ -8,6 +8,7 @@ from products.views import CategoryView, ProductView, ReviewsView
 from packages.views import PackagesView
 #from users.views import UsersView
 from profiles.views import ProfileView
+from shipping.views import ShippingViews
 from thumbs.views import ProductImageView, ProductWithImageView
 from flash.views import FlashSalesView
 from bargains.views import BargainVendorsView
@@ -53,6 +54,7 @@ route.register("products", ProductView)
 route.register("reviews", ReviewsView)
 #route.register("users", UsersView)
 route.register("profile", ProfileView)
+route.register("shipping", ShippingViews)
 route.register("thumbs", ProductImageView)
 route.register("product-with-images", ProductWithImageView)
 route.register("flash", FlashSalesView)
@@ -81,6 +83,7 @@ urlpatterns = [
         #path(f"{fast_settings.ADMIN_PREFIX}/", get_admin_urls())
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+#urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if bool(settings.DEBUG):
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

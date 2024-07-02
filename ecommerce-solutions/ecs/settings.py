@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-c+=02zv07*647ejmnqjn7+t=rbvl6j_mv9=k9dqye=7n==$o=s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", 0)
+DEBUG = os.environ.get("DEBUG", 1)
 
 ALLOWED_HOSTS = ["*"] #, "http://localhost:5173", "www.megadey.org", "megadey.org", "ecs.pythonanywhere.com", "127.0.0.1", "localhost" ]
 
@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "profiles",
     "products",
     "thumbs",
+    "shipping",
     "packages",
     "flash",
     "bargains",
