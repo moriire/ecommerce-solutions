@@ -4,12 +4,12 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 
 from rest_framework import routers
-from products.views import CategoryView, ProductView, ReviewsView
+from product.views import CategoryView, ProductView, ReviewsView
 from packages.views import PackagesView
 #from users.views import UsersView
-from profiles.views import ProfileView
+from profile.views import ProfileView
 from shipping.views import ShippingViews
-from thumbs.views import ProductImageView, ProductWithImageView
+from thumb.views import ProductImageView, ProductWithImageView
 from flash.views import FlashSalesView
 from bargains.views import BargainVendorsView
 from payment.views import TransactionView, PaystackHookView
@@ -50,12 +50,12 @@ schema_view = get_schema_view(
 route = routers.DefaultRouter(trailing_slash=False)
 route.register("packages", PackagesView)
 route.register("categories", CategoryView)
-route.register("products", ProductView)
+route.register("product", ProductView)
 route.register("reviews", ReviewsView)
 #route.register("users", UsersView)
 route.register("profile", ProfileView)
 route.register("shipping", ShippingViews)
-route.register("thumbs", ProductImageView)
+route.register("thumb", ProductImageView)
 route.register("product-with-images", ProductWithImageView)
 route.register("flash", FlashSalesView)
 route.register("bargains", BargainVendorsView)

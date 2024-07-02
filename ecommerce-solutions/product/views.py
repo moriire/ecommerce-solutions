@@ -8,7 +8,7 @@ from .models import (Products, Category, ProductSerializer, ProductExpandSeriali
 #from rest_framework import filters
 from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
 from users.models import CustomUsers
-from profiles.models import Profile
+from profile.models import Profile
 from packages.models import Packages
 
 class ProductPagination(LimitOffsetPagination):

@@ -1,5 +1,5 @@
 from django.db import models
-from profiles.models import Profile
+from profile.models import Profile
 class Shipping(models.Model):
     user = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name="profile_address")
     first_name = models.CharField("First Name", max_length=30, null=True, blank=True)

@@ -1,10 +1,10 @@
 from django.apps import AppConfig
 
 
-class ThumbsConfig(AppConfig):
+class ThumbConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'thumbs'
+    name = 'thumb'
 
     def ready(self) -> None:
-        import thumbs.signals
+        import thumb.signals
         return super().ready()

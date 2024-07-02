@@ -2,9 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-from profiles.models import Profile
+from profile.models import Profile
 from .models import ProfileSerializer, ProfileExpandSerializer
-
 from rest_framework import filters
 
 class ProfileView(ModelViewSet):

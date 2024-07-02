@@ -4,7 +4,7 @@ from rest_framework import serializers
 from utils import delete_img, image_resize
 import uuid
 from django.utils.translation import gettext_lazy as _
-from products.models import Products, ProductSerializer, ProductExpandSerializer
+from product.models import Products, ProductSerializer, ProductExpandSerializer
 
 def product_image_path(instance, filename):
     return '/'.join([instance.product.category.slug, instance.product.slug, filename])
