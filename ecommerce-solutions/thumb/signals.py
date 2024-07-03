@@ -7,6 +7,5 @@ from .models import ProductImage, ProductWithImage
 @receiver(post_save, sender=ProductImage) 
 def create_prodimage(sender, instance, created, **kwargs):
 	if created:
-		print(instance.product.id)
 		prodwi_instance = ProductWithImage.objects.get(product__id = instance.product.id)
 		prodwi_instance.images.add(instance)

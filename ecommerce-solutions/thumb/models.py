@@ -13,7 +13,6 @@ class ProductImage(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     product = models.ForeignKey(Products, related_name="product_image", on_delete=models.CASCADE)
     img = models.ImageField(_("Upload Image"), upload_to=product_image_path)
-    #caption=models.CharField(max_length=6)
     uploaded_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

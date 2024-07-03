@@ -13,8 +13,8 @@ export const useCategoryStore = defineStore('category', () => {
   const getCategories = async () => {
     try{
       const res = await axios.get("categories")
-      console.log(res.data)
       categories.value = res.data
+      console.log(res.data)
     } catch(e){
       console.log(e)
     }

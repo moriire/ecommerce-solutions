@@ -3,29 +3,14 @@ import { useProductcrudStore } from '@/stores/product-crud';
 import { RouterLink, RouterView } from 'vue-router';
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
-const packages = ref([])
-const categories = ref([])
-const getPackages = async () => {
-  try {
-    const res = await axios.get("packages")
-    packages.value = res.data
-  } catch (e) {
-    console.log(e)
-  }
-
-}
-const getCategories = async () => {
-  try {
-    const res = await axios.get("categories")
-    categories.value = res.data
-  } catch (e) {
-    console.log(e)
-  }
-}
+import { usePackageStore } from '@/stores/packages';
+import { useCategoryStore } from '@/stores/categories';
+const pack = usePackageStore()
+const cat = useCategoryStore()
 onMounted(async () => {
   await prodcrud.getUserProducts()
-  await getPackages()
-  await getCategories()
+  await pack.getPackages()
+  await cat.getCategories()
 })
 const prodcrud = useProductcrudStore()
 </script>
@@ -52,9 +37,9 @@ const prodcrud = useProductcrudStore()
               <tbody>
                 <tr v-for="(item, index) in prodcrud.registeredProducts" v-bind:key="index">
                   <td>{{ index + 1 }}</td>
-                  <td>{{ item.name }}</td>
-                  <td>{{ item.price }}</td>
-                  <td>{{ item.quantity }}</td>
+                  <td>{{ item.product.name }}</td>
+                  <td>{{ item.product.price }}</td>
+                  <td>{{ item.product.quantity }}</td>
                   <td>
                     <RouterLink :to="{name:'upload', params:{product: item.id}}">Upload</RouterLink>
                   </td>

@@ -1,7 +1,11 @@
 <script setup>
+import { useCategoryStore } from '@/stores/categories';
+import { usePackageStore } from '@/stores/packages';
 import { useProductcrudStore } from '@/stores/product-crud';
 import { RouterLink } from 'vue-router';
 const prodcrud = useProductcrudStore()
+const cat = useCategoryStore()
+const pack = usePackageStore()
 </script>
 <template>
 
@@ -55,7 +59,7 @@ const prodcrud = useProductcrudStore()
             <fieldset>
               <label class="label">Product Category</label>
               <select class="form-select" v-model="prodcrud.productData.category">
-                <option :selected="index == 0 ? 'selected' : ''" v-for="(cat, index) in categories" v-bind:key="index"
+                <option :selected="index == 0 ? 'selected' : ''" v-for="(cat, index) in cat.categories" v-bind:key="index"
                   :value="cat.id">{{ cat.name }}</option>
               </select>
             </fieldset>
@@ -79,7 +83,8 @@ const prodcrud = useProductcrudStore()
             <fieldset>
               <label class="label">Package</label>
               <select class="form-select" v-model="prodcrud.productData.package">
-                <option :selected="index == 0 ? 'selected' : ''" v-for="(pkg, index) in packages" v-bind:key="index"
+                {{ packages }}
+                <option :selected="index == 0 ? 'selected' : ''" v-for="(pkg, index) in pack.packages" v-bind:key="index"
                   :value="pkg.id">{{ pkg.name }}</option>
               </select>
             </fieldset>

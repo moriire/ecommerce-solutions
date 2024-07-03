@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "product",
     "thumb",
     "shipping",
+    "order",
     "packages",
     "flash",
     "bargains",

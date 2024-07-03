@@ -19,8 +19,9 @@ class ProductImageView(ModelViewSet):
     parser_classes = [MultiPartParser, FormParser]
 
     @action(detail=True, methods=['post'])
-    def multiple_upload(self, request, format=None):
-        files = request.FILES.getlist('files') 
+    def multiple(self, request, format=None):
+        files = request.FILES.getlist('files')
+        print(files) 
 
     def list(self, request):
         items = self.get_queryset()

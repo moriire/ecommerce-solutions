@@ -19,9 +19,13 @@ onMounted(async () => {
 <template>
     <HomeSkeleton>
         <template v-slot:header>
-            <HeroSlide :boostedProducts="prod.products" />
+            <HeroSlide :boostedProducts="prod.products" v-if="prod.products.length" />
+            <template v-else>
+                <div class="vh-100 d-flex justify-content-center align-items-center">
+                    <h2>No Products Uploaded yet</h2>
+                </div>
+            </template>
         </template>
-        
         <template v-slot:latest>
             <!-- collection start -->
             <div class="featured-collection mt-100 overflow-hidden">
@@ -31,7 +35,12 @@ onMounted(async () => {
                             <h2 class="section-heading">Latest Products</h2>
                         </div>
                         <div class="row">
-                            <ProductPage :products="prod.products" />
+                            <ProductPage :products="prod.products" v-if="prod.products.length" />
+                            <template v-else>
+                                <div class="vh-100 d-flex justify-content-center align-items-center">
+                                    <h2>No Products Uploaded yet</h2>
+                                </div>
+                            </template>
                         </div>
                         <div class="view-all text-center" data-aos="fade-up" data-aos-duration="700">
                             <RouterLink class="btn-primary" to="/shop">VIEW ALL</RouterLink>
@@ -56,7 +65,7 @@ onMounted(async () => {
             </div>
         </template>
     </HomeSkeleton>
-<i class="far fa-heart"></i>
+    <i class="far fa-heart"></i>
     <Testimonial />
     <!--div class="featured-collection mt-100 overflow-hidden">
         <div class="collection-tab-inner">

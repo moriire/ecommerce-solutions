@@ -14,7 +14,7 @@ const handleFileUpload = async (file) => {
   console.log('Uploaded file:', file);
   const fd = new FormData();
   fd.append("img", file)//, file.image_url.name)
-  fd.append("product", router.params.product)
+  fd.append("product", route.params.product)
   try {
     const res = await axios.post("thumbs", fd, headers = {
       "Content-Type": `multipart/form-data; boundary=${fd._boundary}`
