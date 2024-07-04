@@ -39,7 +39,7 @@ class ProductImageView(ModelViewSet):
 class ProductWithImageView(ModelViewSet):
     pagination_class = ProductPagination
     serializer_class = XProductWithImageSerializer
-    queryset = ProductWithImage.objects.all().select_related().prefetch_related('images')
+    queryset = ProductWithImage.objects.select_related().prefetch_related('images')
     #.exclude(images=None)
    
     def create(self, request):
@@ -51,4 +51,5 @@ class ProductWithImageView(ModelViewSet):
         return Response(catser.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def list(self, request, *args, **kwargs):
+        #self.get_queryset = self.get_queryset.exclude(images=None)
         return super().list(request, *args, **kwargs)
