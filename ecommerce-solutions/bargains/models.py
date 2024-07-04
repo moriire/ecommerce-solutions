@@ -1,6 +1,6 @@
 from django.db import models
 from users.models import CustomUsers
-from product.models import Products
+from product.models.product import Products
 from datetime import datetime 
 from rest_framework.serializers import ModelSerializer
 

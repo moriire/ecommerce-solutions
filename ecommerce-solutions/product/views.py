@@ -4,7 +4,9 @@ from rest_framework import status
 from rest_framework.parsers import JSONParser
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
-from .models import (Products, Category, ProductSerializer, ProductExpandSerializer, CategorySerializer, ReviewSerializer, Reviews)
+from .models.product import Products, Category
+from .serializers.product import ProductExpandSerializer, ProductSerializer, CategorySerializer
+from .serializers.review import ReviewSerializer, Reviews
 #from rest_framework import filters
 from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
 from users.models import CustomUsers
@@ -16,7 +18,6 @@ class ProductPagination(LimitOffsetPagination):
     limit_query_param = 'limit'
     offset_query_param = 'offset'
     max_limit = None
-
 
 class CategoryView(ModelViewSet):
     queryset = Category.objects.all()#.select_related()
@@ -65,12 +66,10 @@ class CategoryView(ModelViewSet):
 
 class ProductView(ModelViewSet):
     authentication_classes = (SessionAuthentication, BasicAuthentication)
-    #pagination_class = ProductPagination
-    #permission_classes = (IsAuthenticated,)
-    serializer_class = ProductExpandSerializer
+    serializer_class = ProductSerializer
     queryset = Products.objects.all()#.select_related()
 
-    def create(self, request):
+    def fcreate(self, request):
         data = request.data
         #print(type(data['profile']))
         #data["category"] = Category.objects.get(pk=data['category'])
@@ -82,6 +81,8 @@ class ProductView(ModelViewSet):
             catser.save()
             return Response({"data": catser.data}, status=status.HTTP_201_CREATED)
         return Response(catser.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
     """
     def list(self, request):
         items = self.get_queryset()
@@ -96,6 +97,7 @@ class ProductView(ModelViewSet):
                     }
                 )
     """
+
 class ReviewsView(ModelViewSet):
     serializer_class = ReviewSerializer
     queryset = Reviews.objects.all()

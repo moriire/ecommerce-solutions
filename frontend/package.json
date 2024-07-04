@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "deploy": "gh-pages -d dist",
     "preview": "vite preview",
     "test:unit": "vitest",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
@@ -20,6 +21,7 @@
     "filepond": "^4.31.1",
     "filepond-plugin-file-validate-type": "^1.2.9",
     "filepond-plugin-image-preview": "^4.6.12",
+    "gh-pages": "^6.1.1",
     "pinia": "^2.1.7",
     "slick-carousel": "^1.8.1",
     "swiper": "^11.1.4",

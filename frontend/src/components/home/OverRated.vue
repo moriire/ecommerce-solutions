@@ -12,14 +12,13 @@
         },
         '768': {
             slidesPerView: 2,
-            spaceBetween: 25,
+            spaceBetween: 20,
         },
         '1024': {
             slidesPerView: 3,
             spaceBetween: 20,
         },
-    }" :modules="modules" class="mySwiper">
-
+    }" :modules="modules" class="swiper">
 
         <swiper-slide >
             <a class="banner-item position-relative rounded" href="collection-left-sidebar.html">
