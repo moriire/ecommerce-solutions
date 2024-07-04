@@ -50,12 +50,12 @@ onMounted(async () => {
             </div>
             <!-- collection end -->
         </template>
-        <template v-slot:popular>
+        <template v-slot:discounted>
             <div class="featured-collection mt-100 overflow-hidden">
                 <div class="collection-tab-inner">
                     <div class="container">
                         <div class="section-header text-center">
-                            <h2 class="section-heading">Popular Products</h2>
+                            <h2 class="section-heading">Discounted Products</h2>
                         </div>
                         <div class="row">
                             <DiscountedSlide :products="prod.products" />
@@ -65,7 +65,6 @@ onMounted(async () => {
             </div>
         </template>
     </HomeSkeleton>
-    <i class="far fa-heart"></i>
     <Testimonial />
     <!--div class="featured-collection mt-100 overflow-hidden">
         <div class="collection-tab-inner">

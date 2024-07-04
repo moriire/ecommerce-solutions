@@ -1,6 +1,4 @@
 <script setup>
-import DiscountedSlide from './DiscountedSlide.vue';
-import OverRated from "./OverRated.vue"
 </script>
 <template>
     <slot name="header"></slot>
@@ -49,8 +47,7 @@ import OverRated from "./OverRated.vue"
         </div>
     </div>
     <slot name="latest"></slot>
-    <DiscountedSlide />
-    <OverRated />
+    <slot name="discounted"></slot>
     <slot name="popular"></slot>
 
 </template>

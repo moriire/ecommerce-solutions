@@ -65,17 +65,17 @@ class CategoryView(ModelViewSet):
     """
 
 class ProductView(ModelViewSet):
-    authentication_classes = (SessionAuthentication, BasicAuthentication)
+    #authentication_classes = (SessionAuthentication, BasicAuthentication)
     serializer_class = ProductSerializer
     queryset = Products.objects.all()#.select_related()
-
+    
     def fcreate(self, request):
         data = request.data
-        #print(type(data['profile']))
+        print(type(data['profile']))
         #data["category"] = Category.objects.get(pk=data['category'])
         #data["package"] = Packages.objects.get(pk=data['package'])
-        #data["profile"] = Profile.objects.get(user__pk=data['profile']).id
-        #print(data)
+        #data["profile"] = Profile.objects.get(user__pk=data['profile'])
+        print(data)
         catser = ProductSerializer(data = data)
         if catser.is_valid():
             catser.save()
