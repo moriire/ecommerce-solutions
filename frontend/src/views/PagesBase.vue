@@ -240,14 +240,15 @@ onMounted(async () => {
         </div>
     </div-->
     <!-- breadcrumb end -->
-     <!--BreadCrumb :loc="router.name"/-->
+    <!--BreadCrumb :loc="router.name"/-->
     <main id="MainContent" class="content-for-layout">
         <RouterView />
     </main>
 
+
     <!-- footer start -->
-    <footer class="mt-100 overflow-hidden footer-style-2">
-        <div class="footer-bottom bg-5">
+    <footer class="mt-100 overflow-hidden">
+        <div class="footer-bottom bg-4">
             <div class="container">
                 <div
                     class="footer-bottom-inner d-flex flex-wrap justify-content-md-between justify-content-center align-items-center">
@@ -255,7 +256,7 @@ onMounted(async () => {
                         <li class="footer-menu-item"><a href="about-us.html">Privacy policy</a></li>
                         <li class="footer-menu-item"><a href="about-us.html">Terms & Conditions</a></li>
                     </ul>
-                    <p class="copyright footer-text">©<span class="current-year"></span> Spree Themes.</p>
+                    <p class="copyright footer-text">©<span class="current-year"></span>Acsolot Integrated Services Limited</p>
                 </div>
             </div>
         </div>

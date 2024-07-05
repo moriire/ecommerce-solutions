@@ -3,8 +3,8 @@ import { ref, defineProps } from 'vue';
 const emit = defineEmits("addCart")
 
 function addedCart(param) {
-  emit("addCart", param)
-  window.console.log("hello")
+    emit("addCart", param)
+    window.console.log("hello")
 }
 defineProps({
     item: {
@@ -41,17 +41,18 @@ const modules = [FreeMode, Navigation, Thumbs]
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-12 col-12" v-if="item.images">
+                    <div class="row" >
+                        <div class="col-lg-6 col-md-12 col-12 " v-if="item.images" style="height: 80vh !important;">
                             <swiper :style="{
                                 '--swiper-navigation-color': '#fff',
                                 '--swiper-pagination-color': '#fff',
-                            }" :spaceBetween="10" :navigation="true" :thumbs="{ swiper: thumbsSwiper }" :modules="modules" class="mySwiper2">
+                            }" :spaceBetween="10" :navigation="true" :thumbs="{ swiper: thumbsSwiper }"
+                                :modules="modules" class="mySwiper2">
                                 <swiper-slide v-for="thumb in item.images">
                                     <img :src="thumb.img" />
                                 </swiper-slide>
                             </swiper>
-                            <swiper @swiper="setThumbsSwiper" :spaceBetween="10" :slidesPerView="4" :freeMode="true"
+                            <swiper @swiper="setThumbsSwiper" :spaceBetween="10" :slidesPerView="3" :freeMode="true"
                                 :watchSlidesProgress="true" :modules="modules" class="mySwiper">
                                 <swiper-slide v-for="thumb in item.images">
                                     <img :src="thumb.img" />
@@ -111,16 +112,17 @@ const modules = [FreeMode, Navigation, Thumbs]
                                     <strong class="label">SKU:</strong> 401
                                 </div-->
                                 <div class="product-vendor product-meta mb-3">
-                                    <strong class="label">Vendor:</strong> {{ item.product.profile.store_name}}
+                                    <strong class="label">Vendor:</strong> {{ item.product.profile.store_name }}
                                 </div>
-
                                 <div class="misc d-flex align-items-end justify-content-between mt-4">
                                     <div class="quantity d-flex align-items-center justify-content-between">
-                                        <button class="qty-btn dec-qty"><img src="/src/assets/img/icon/minus.svg"
-                                                alt="minus"></button>
+                                        <button class="qty-btn dec-qty">
+                                            <img src="/src/assets/img/icon/minus.svg" alt="minus">
+                                        </button>
                                         <input class="qty-input" type="number" name="qty" value="1" min="0">
-                                        <button class="qty-btn inc-qty"><img src="/src/assets/img/icon/plus.svg"
-                                                alt="plus"></button>
+                                        <button class="qty-btn inc-qty">
+                                            <img src="/src/assets/img/icon/plus.svg" alt="plus">
+                                        </button>
                                     </div>
                                     <div class="message-popup d-flex align-items-center">
                                         <span class="message-popup-icon">
@@ -138,8 +140,8 @@ const modules = [FreeMode, Navigation, Thumbs]
                                 <form class="product-form" action="#">
                                     <div
                                         class="product-form-buttons d-flex align-items-center justify-content-between mt-4">
-                                        <button type="submit"
-                                            class="position-relative btn-atc btn-add-to-cart loader" @click="addedCart">ADD TO
+                                        <button type="submit" class="position-relative btn-atc btn-add-to-cart loader"
+                                            @click="addedCart">ADD TO
                                             CART</button>
                                         <a href="#" class="product-wishlist">
                                             <svg class="icon icon-wishlist" width="26" height="22" viewBox="0 0 26 22"
@@ -156,7 +158,7 @@ const modules = [FreeMode, Navigation, Thumbs]
                                     </div>
                                 </form>
 
-                                <div class="guaranteed-checkout">
+                                <!--div class="guaranteed-checkout">
                                     <strong class="label mb-1 d-block">Guaranteed safe checkout:</strong>
                                     <ul class="list-unstyled checkout-icon-list d-flex align-items-center flex-wrap">
                                         <li class="checkout-icon-item">
@@ -343,7 +345,7 @@ const modules = [FreeMode, Navigation, Thumbs]
                                             </svg>
                                         </li>
                                     </ul>
-                                </div>
+                                </div-->
 
                                 <!--div class="share-area mt-4 d-flex align-items-center">
                                     <strong class="label mb-1 d-block">Share:</strong>
@@ -401,63 +403,65 @@ const modules = [FreeMode, Navigation, Thumbs]
 </template>
 <style scoped>
 .swiper {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
 
-  /* Center slide text vertically */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
+
 .swiper {
-  width: 100%;
-  height: 300px;
-  margin-left: auto;
-  margin-right: auto;
+    width: 100%;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .swiper-slide {
-  background-size: cover;
-  background-position: center;
+    background-size: cover;
+    background-position: center;
 }
 
 .mySwiper2 {
-  height: 80% !important;
-  width: 100%;
+    height: 80% !important;
+    width: 100%;
 }
 
 .mySwiper {
-  height: 20% !important;
-  box-sizing: border-box;
-  padding: 10px 0;
+    height: 20% !important;
+    box-sizing: border-box;
+    padding: 10px 0;
 }
 
 .mySwiper .swiper-slide {
-  width: 25%;
-  height: 100%;
-  opacity: 0.4;
+    width: 25%;
+    height: 100%;
+    opacity: 0.4;
 }
 
 .mySwiper .swiper-slide-thumb-active {
-  opacity: 1;
+    opacity: 1;
 }
 
 .swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+};
 </style>
