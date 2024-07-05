@@ -19,7 +19,7 @@ const onSubmit = async () => {
     <div class="row">
       <div class="col-12">
         <div class="mb-5">
-          <h3>Log in</h3>
+          <h3>Sign Up</h3>
         </div>
       </div>
     </div>
@@ -27,34 +27,53 @@ const onSubmit = async () => {
       <div class="row g2-3 gy-md-3 overflow-hidden">
         <div class="col-12">
           <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-          <input type="email" class="form-control" v-model="username" id="email" placeholder="name@example.com"
+          <input type="email" class="form-control" v-model="userData.email" id="email" placeholder="name@example.com"
             required>
         </div>
-        <div class="col-12">
-          <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-          <input type="password" class="form-control" v-model="password" id="password" value="" required>
+        <div class="col-12 col-md-6">
+          <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
+          <input class="form-control" v-model="userData.username" id="username" placeholder="@Mobolaji124"
+            required>
+        </div>
+        <div class="col-12 col-md-6">
+          <label for="phone" class="form-label">Phone Number <span class="text-danger">*</span></label>
+          <input class="form-control" v-model="userData.phone" id="phone" placeholder="08012345678"
+            required>
+        </div>
+        <div class="col-12 col-md-6">
+          <label for="password1" class="form-label">Password <span class="text-danger">*</span></label>
+          <input type="password" class="form-control" v-model="userData.password1" id="password1" required>
+        </div>
+        <div class="col-12 col-md-6">
+          <label for="password" class="form-label">Confirm Password <span class="text-danger">*</span></label>
+          <input type="password" class="form-control" v-model="userData.password2" id="password2" value="" required>
         </div>
         <div class="col-12">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
-            <label class="form-check-label text-secondary" for="remember_me">
-              Keep me logged in
+            <input v-model="userData.vendor" class="form-check-input" type="checkbox" id="vendor">
+            <label class="form-check-label text-secondary" for="vendor">
+             Are you a vendor?
             </label>
           </div>
         </div>
         <div class="col-12">
+          <label for="store" class="form-label">Phone Number <span class="text-danger">*</span></label>
+          <input class="form-control" v-model="userData.phone" id="store" placeholder="Acsolot Store"
+            required>
+        </div>
+        <div class="col-12">
           <div class="d-grid">
-            <button class="btn bsb-btn-xl btn-primary" type="submit">Log in now</button>
+            <button class="btn bsb-btn-xl btn-primary" type="submit">Sign Up</button>
           </div>
         </div>
       </div>
     </form>
     <div class="row">
       <div class="col-12">
-        <hr class="mt-5 mb-4 border-secondary-subtle">
+        <hr class="mt-4 mb-3 border-secondary-subtle">
         <div class="d-flex justify-content-between">
-          <RouterLink to="/auth/register" class="link-secondary text-decoration-none">Don't
-            have account yet? Signup</RouterLink>
+          <RouterLink to="/auth/login" class="link-secondary text-decoration-none">Don't
+            Already signed up? Login</RouterLink>
           <a href="#!" class="link-secondary text-decoration-none">Forgot password</a>
         </div>
       </div>
