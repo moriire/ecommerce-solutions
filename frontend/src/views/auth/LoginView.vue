@@ -21,12 +21,10 @@ const onSubmit = async () => {
 </script>
 
 <template>
-  <!-- Login 3 - Bootstrap Brain Component -->
-<section class="p-3 p-md-4 p-xl-5">
-  <div class="container">
+  <div class="container-fluid m-0">
     <div class="row">
       <div class="col-12 col-md-6 bsb-tpl-bg-platinum">
-        <div class="d-flex flex-column justify-content-between h-100 p-3 p-md-4 p-xl-5">
+        <div class="d-flex flex-column justify-content-between vh-100 p-3 p-md-4 p-xl-5">
           <h3 class="m-0">Welcome!</h3>
           <img class="img-fluid rounded mx-auto my-4" loading="lazy" src="./assets/img/bsb-logo.svg" width="245" height="80" alt="BootstrapBrain Logo">
           <p class="mb-0">Not a member yet? <a href="#!" class="link-secondary text-decoration-none">Register now</a></p>
@@ -103,9 +101,8 @@ const onSubmit = async () => {
       </div>
     </div>
   </div>
-</section>
     <!--Hero /-->
-    <div class="container">
+    <!--div class="container-fluid">
         <div class="row justify-content-center align-items-center vh-100">
            
             <form class="col-lg-4 col-sm-8 col-xs-10" @submit.prevent="onSubmit">
@@ -123,7 +120,7 @@ const onSubmit = async () => {
             </form>
         </div>
 
-    </div>
+    </div-->
 
 </template>
 <style scoped>
