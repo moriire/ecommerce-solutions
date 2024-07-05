@@ -7,7 +7,22 @@
   }" :navigation="true" :modules="modules" class="mySwiper">
 
     <swiper-slide>
-            <img class=".primary-img .display-block img img-responsive img-thumb"  src="https://lcci.pk/wp-content/uploads/2021/03/With-The-Advent-Of-Summer-Electronics-Products-Became-Expensive.jpg">
+      <div class="box-part text-center">
+					    
+					    <i class="fa fa-google-plus fa-3x" aria-hidden="true"></i>
+                    
+						<div class="title">
+							<h4>Google</h4>
+						</div>
+                        
+						<div class="text">
+							<span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
+						</div>
+                        
+						<a href="#">Learn More</a>
+                        
+					 </div>
+            <!--img class=".primary-img .display-block img img-thumbnail rounded"  src="https://lcci.pk/wp-content/uploads/2021/03/With-The-Advent-Of-Summer-Electronics-Products-Became-Expensive.jpg"-->
     </swiper-slide>
 
     <swiper-slide>
@@ -73,5 +88,19 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.box-part{
+    background:#FFF;
+    border-radius:0;
+    padding:60px 10px;
+    margin:30px 0px;
+}
+.text{
+    margin:20px 0px;
+}
+
+.fa{
+     color:#4183D7;
 }
 </style>
