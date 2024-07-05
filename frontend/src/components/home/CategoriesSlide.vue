@@ -5,53 +5,23 @@
   }" :pagination="{
     clickable: true,
   }" :navigation="true" :modules="modules" class="mySwiper">
-    <swiper-slide class="product-card">Slide 1</swiper-slide>
-    <swiper-slide>
-      <div class=".product-card">
-        <div class="product-card-img">
-          <a class="hover-switch" href="collection-left-sidebar.html">
-          <img class="primary-img" src="/src/assets/img/products/tools/2.jpg" alt="product-img">
-          </a>
-        </div>
-       
-      </div>
 
-    </swiper-slide>
-   
     <swiper-slide>
-      <div class=".product-card">
-        <div class="product-card-img">
-          <a class="hover-switch" href="collection-left-sidebar.html">
-          <img class="primary-img" src="/src/assets/img/products/tools/2.jpg" alt="product-img">
-          </a>
-        </div>
-      </div>
-
+            <img class=".primary-img .display-block img img-responsive img-thumb"  src="https://lcci.pk/wp-content/uploads/2021/03/With-The-Advent-Of-Summer-Electronics-Products-Became-Expensive.jpg">
     </swiper-slide>
 
     <swiper-slide>
-      <div class=".product-card">
-        <div class="product-card-img">
-          <a class="hover-switch" href="collection-left-sidebar.html">
-          <img class="primary-img" src="/src/assets/img/products/tools/2.jpg" alt="product-img">
-          </a>
-        </div>
-       
-      </div>
-
+            <img class=".primary-img" src="https://5.imimg.com/data5/SELLER/Default/2023/1/SM/GS/DW/44069440/acce-1000x1000.png" alt="product-img">
     </swiper-slide>
 
     <swiper-slide>
-      <div class=".product-card">
-        <div class="product-card-img d-flex justify-content-center align-items-center h-100">
-          <a class="hover-switch" href="collection-left-sidebar.html">
-          <img class="primary-img" src="/src/assets/img/products/tools/2.jpg" alt="product-img">
-          </a>
-        </div>
-       
-      </div>
-
+            <img class=".primary-img" src="/src/assets/img/products/tools/3.jpg" alt="product-img">
     </swiper-slide>
+
+    <swiper-slide>
+            <img class=".primary-img" src="/src/assets/img/products/tools/4.jpg" alt="product-img">
+    </swiper-slide>
+
   </swiper>
 </template>
 <script>
