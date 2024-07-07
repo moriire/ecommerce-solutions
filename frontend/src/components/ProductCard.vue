@@ -1,10 +1,18 @@
 <script setup>
-const emit = defineEmits("addCart")
+const emit = defineEmits(["addCart", "addWish"])
 
 function addedCart(param) {
   emit("addCart", param)
   window.console.log("hello")
 }
+
+//const wishEmit = defineEmits("addWish")
+
+function addedWish(param) {
+  emit("addCart", param)
+  window.console.log("hello")
+}
+
 defineProps({
   name: {
     type: String,
@@ -55,7 +63,7 @@ defineProps({
           <button  class="addtocart-btn btn-primary" type="button" @click="addedCart" >ADD TO CART</button>
         </div>
 
-        <a href="wishlist.html" class="wishlist-btn card-wishlist">
+        <a type="button" class="wishlist-btn card-wishlist"  @click="addedWish">
           <i class="far fa-heart fa-2x text-dark"></i>
         </a>
       </div>

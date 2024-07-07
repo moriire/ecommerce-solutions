@@ -12,8 +12,10 @@ defineProps({
 import QuickView from "./QuickView.vue";
 import ProductCard from "./ProductCard.vue"
 import { useProductStore } from '@/stores/products';
+import { useWishlistStore } from "@/stores/wishlist";
 import { ref } from "vue";
 const prod = useProductStore();
+const wish = useWishlistStore();
 const item = ref({})
 const modalShow = async (p)=>{
     item.value = p
@@ -28,7 +30,7 @@ const modalShow = async (p)=>{
         <!--button @click="prod.addToCart(product)">Add({{ prod.cartItems.length }})</button-->
         <ProductCard :name="product.product.name" :price="product.product.new_price" :costPrice="product.product.price" 
         v-if="product.images.length" :image="product.images[0].img"
-          :discount="product.product.discount" :condition="product.product.condition" @addCart="prod.addToCart(product)" @click="modalShow(product)" />
+          :discount="product.product.discount" :condition="product.product.condition" @addCart="prod.addToCart(product)" @addCart="prod.addToCart(product.product.id)" @click="modalShow(product)" />
       </template>
 
       <div class="pagination justify-content-center mt-100" v-if="show">
@@ -51,6 +53,6 @@ const modalShow = async (p)=>{
     </div>
   </div>
    <!-- product quickview start -->
-   <QuickView :item="item" @addCart="prod.addToCart(item)" />
+   <QuickView :item="item" @addCart="prod.addToCart(item)" @addWish="prod.addToCart(item.id)" />
     <!-- product quickview end -->
 </template>

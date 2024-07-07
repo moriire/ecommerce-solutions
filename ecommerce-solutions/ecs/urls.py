@@ -8,6 +8,7 @@ from product.views import CategoryView, ProductView, ReviewsView
 from packages.views import PackagesView
 #from users.views import UsersView
 from profile.views import ProfileView
+from wishlist.views import WishListView
 from shipping.views import ShippingViews
 from thumb.views import ProductImageView, ProductWithImageView
 from flash.views import FlashSalesView
@@ -52,6 +53,7 @@ route.register("packages", PackagesView)
 route.register("categories", CategoryView)
 route.register("product", ProductView)
 route.register("reviews", ReviewsView)
+route.register("wishlist", WishListView)
 #route.register("users", UsersView)
 route.register("profile", ProfileView)
 route.register("shipping", ShippingViews)

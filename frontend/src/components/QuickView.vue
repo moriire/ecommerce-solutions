@@ -65,7 +65,15 @@ const modules = [FreeMode, Navigation, Thumbs]
                                     <span class="product-availability">In Stock</span>
                                 </div>
                                 <h2 class="product-title mb-3">{{ item.product.name }}</h2>
+                                <div class="product-price-wrapper mb-4">
+                                    <span class="product-price regular-price">$ {{ item.product.new_price }}</span>
+                                    <del class="product-price compare-price ms-2">$ {{ item.product.price }}</del>
+                                </div>
+                                <div class="product-vendor product-meta mb-3">
+                                    <strong class="label">Vendor:</strong> {{ item.product.profile.store_name }}
+                                </div>
                                 <div>
+                                    <strong class="label">Description:</strong><br>
                                     <p>
                                         {{ item.product.description }}
                                     </p>
@@ -104,16 +112,11 @@ const modules = [FreeMode, Navigation, Thumbs]
                                         </svg>
                                     </span>
                                 </div-->
-                                <div class="product-price-wrapper mb-4">
-                                    <span class="product-price regular-price">$ {{ item.product.new_price }}</span>
-                                    <del class="product-price compare-price ms-2">$ {{ item.product.price }}</del>
-                                </div>
+                                
                                 <!--div class="product-sku product-meta mb-1">
                                     <strong class="label">SKU:</strong> 401
                                 </div-->
-                                <div class="product-vendor product-meta mb-3">
-                                    <strong class="label">Vendor:</strong> {{ item.product.profile.store_name }}
-                                </div>
+                               
                                 <div class="misc d-flex align-items-end justify-content-between mt-4">
                                     <div class="quantity d-flex align-items-center justify-content-between">
                                         <button class="qty-btn dec-qty">
@@ -136,13 +139,14 @@ const modules = [FreeMode, Navigation, Thumbs]
                                         <span class="message-popup-text ms-2">Message</span>
                                     </div>
                                 </div>
-
-                                <form class="product-form" action="#">
+                               
                                     <div
-                                        class="product-form-buttons d-flex align-items-center justify-content-between mt-4">
-                                        <button type="submit" class="position-relative btn-atc btn-add-to-cart loader"
+                                        class="product-form-buttons d-flex align-items-center justify-content-between mt-3">
+                                        <button type="button" class="me-2 .position-relative btn-atc btn-add-to-cart loader"
                                             @click="addedCart">ADD TO
                                             CART</button>
+                                            <button type="submit" class="me-2 .position-relative btn-atc btn-buyit-now">BUY IT
+                                                NOW</button>
                                         <a href="#" class="product-wishlist">
                                             <svg class="icon icon-wishlist" width="26" height="22" viewBox="0 0 26 22"
                                                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -151,13 +155,8 @@ const modules = [FreeMode, Navigation, Thumbs]
                                                     fill="#00234D"></path>
                                             </svg>
                                         </a>
+                                        
                                     </div>
-                                    <div class="buy-it-now-btn mt-2">
-                                        <button type="submit" class="position-relative btn-atc btn-buyit-now">BUY IT
-                                            NOW</button>
-                                    </div>
-                                </form>
-
                                 <!--div class="guaranteed-checkout">
                                     <strong class="label mb-1 d-block">Guaranteed safe checkout:</strong>
                                     <ul class="list-unstyled checkout-icon-list d-flex align-items-center flex-wrap">
