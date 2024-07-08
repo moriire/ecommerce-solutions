@@ -1,4 +1,4 @@
-<script>
+<script setup>
 </script>
 <template>
     <div class="wishlist-page mt-100">

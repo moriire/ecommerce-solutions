@@ -30,12 +30,12 @@ export const useWishlistStore = defineStore('wishlist', () => {
   const addWishlist = async (product) => {
     console.log(auth.userInfo)
     await getWishList()
-    alert(product)
+    alert([...wishes.value, product])
     try {
       const res = await axios.patch(`wishlist/${auth.userInfo.pk}`,
         {
             //user: auth.userInfo.pk,
-            products: product
+            products: [...wishes.value, product]
         }
       )
       wData = []
