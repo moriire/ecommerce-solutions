@@ -6,3 +6,4 @@ from .serializers import WishListSerializer
 class WishListView(ModelViewSet):
     queryset = WishList.objects.all()
     serializer_class = WishListSerializer
+    

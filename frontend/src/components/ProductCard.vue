@@ -1,4 +1,7 @@
 <script setup>
+import { useWishlistStore } from '@/stores/wishlist';
+
+
 const emit = defineEmits(["addCart", "addWish"])
 
 function addedCart(param) {

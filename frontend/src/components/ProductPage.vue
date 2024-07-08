@@ -31,6 +31,7 @@ const modalShow = async (p)=>{
         <ProductCard :name="product.product.name" :price="product.product.new_price" :costPrice="product.product.price" 
         v-if="product.images.length" :image="product.images[0].img" 
           :discount="product.product.discount" :condition="product.product.condition" @addCart="prod.addToCart(product)" @addWish="wish.addWishlist(product.product.id)" @click="modalShow(product)" />
+          {{ product.product.id }}
       </template>
 
       <div class="pagination justify-content-center mt-100" v-if="show">
