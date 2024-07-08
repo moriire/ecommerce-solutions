@@ -8,11 +8,14 @@ const x = 1
     <section class=".p-3 .p-md-4 .p-xl-5 m-0 p-0 vh-100">
         <div class="container-fluid m-0 vh-100 ">
             <div class="row">
-                <div class="col-12 col-md-6 bsb-tpl-bg-platinum">
-                    <div class="d-flex flex-column justify-content-between h-100 p-3 p-md-4 p-xl-5">
+                <div class="col-12 col-md-6 .bsb-tpl-bg-platinum" >
+                    <div class="d-flex flex-column justify-content-between h-100 p-3 p-md-4 p-xl-5" sstyle="background-image: url(/src/assets/img/auth_bg.png); background-position: center; background-size: cover; background-repeat: no-repeat">
                         <h3 class="m-0">Welcome!</h3>
-                        <img class="img-fluid rounded mx-auto my-3" loading="lazy" src="./assets/img/bsb-logo.svg"
-                            width="245" height="80" alt="BootstrapBrain Logo">
+                        <h2 class="text-end">
+                          Tag<span class="text-warning">Biz</span>
+                        </h2>
+                        <!--img class="img-fluid rounded mx-auto my-3" loading="lazy" src="/src/assets/img/auth_bg.png"
+                            width="245" height="100%" alt="BootstrapBrain Logo"-->
                         <p class="mb-0">Not a member yet? <a href="#!"
                                 class="link-secondary text-decoration-none">Register now</a></p>
                     </div>

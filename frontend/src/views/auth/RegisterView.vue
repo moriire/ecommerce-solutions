@@ -26,17 +26,17 @@ const onSubmit = async () => {
     <form @submit.prevent="onSubmit">
       <div class="row g2-3 gy-md-3 overflow-hidden">
         <div class="col-12">
-          <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+          <!--label for="email" class="form-label">Email <span class="text-danger">*</span></label-->
           <input type="email" class="form-control" v-model="userData.email" id="email" placeholder="name@example.com"
             required>
         </div>
         <div class="col-12 col-md-6">
-          <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
+          <!--label for="username" class="form-label">Username <span class="text-danger">*</span></label-->
           <input class="form-control" v-model="userData.username" id="username" placeholder="@Mobolaji124"
             required>
         </div>
         <div class="col-12 col-md-6">
-          <label for="phone" class="form-label">Phone Number <span class="text-danger">*</span></label>
+          <!--label for="phone" class="form-label">Phone Number <span class="text-danger">*</span></label-->
           <input class="form-control" v-model="userData.phone" id="phone" placeholder="08012345678"
             required>
         </div>
@@ -52,13 +52,13 @@ const onSubmit = async () => {
           <div class="form-check">
             <input v-model="userData.vendor" class="form-check-input" type="checkbox" id="vendor">
             <label class="form-check-label text-secondary" for="vendor">
-             Are you a vendor?
+             Are you a vendor? {{ userData.vendor }}
             </label>
           </div>
         </div>
-        <div class="col-12">
-          <label for="store" class="form-label">Phone Number <span class="text-danger">*</span></label>
-          <input class="form-control" v-model="userData.phone" id="store" placeholder="Acsolot Store"
+        <div class="col-12" v-show="userData.vendor">
+          <!--label for="store" class="form-label">Store Name / Business Name <span class="text-danger">*</span></label-->
+          <input class="form-control" v-model="userData.store_name" id="store" placeholder="Acsolot Store"
             required>
         </div>
         <div class="col-12">

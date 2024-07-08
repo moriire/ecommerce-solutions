@@ -9,7 +9,7 @@ function addedCart(param) {
 //const wishEmit = defineEmits("addWish")
 
 function addedWish(param) {
-  emit("addCart", param)
+  emit("addWish", param)
   window.console.log("hello")
 }
 

@@ -1,9 +1,9 @@
 from django.db import models
-from profile.models import Profile
 from product.models.product import Products
+from users.models import CustomUsers
 
 class WishList(models.Model):
-    user = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name="wish_user")
+    user = models.OneToOneField(CustomUsers, on_delete=models.CASCADE, related_name="wish_user", primary_key=True, unique=True)
     products = models.ManyToManyField(Products, blank=True)
 
     def __str__(self) -> str:
