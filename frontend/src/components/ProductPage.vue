@@ -17,30 +17,35 @@ import { ref } from "vue";
 const prod = useProductStore();
 const wish = useWishlistStore();
 const item = ref({})
-const modalShow = async (p)=>{
-    item.value = p
+const modalShow = async (p) => {
+  item.value = p
 }
 </script>
 
 <template>
   <div class="collection-product-container">
     <div class="row">
-      <template v-for="product in products" v-bind:key="product.product.slug">
-        <!--button @click="prod.addToCart(product)">Add({{ prod.cartItems.length }})</button-->
-        <ProductCard :name="product.product.name" :price="product.product.new_price" :costPrice="product.product.price" :product_id="product.product.id"
-        v-if="product.images.length" :image="product.images[0].img" 
-          :discount="product.product.discount" :condition="product.product.condition" @addCart="prod.addToCart(product)" @addWish="wish.addWishlist(product.product.id)" @click="modalShow(product)" />
+      <template v-for="(product, index) in products" v-bind:key="product.product.slug">
+        <div class="col-lg-3 col-md-4 col-6" sdata-aos="fade-up" :data-aos-duration="200 * (index + 1)">
+          <!--button @click="prod.addToCart(product)">Add({{ prod.cartItems.length }})</button-->
+          <ProductCard :name="product.product.name" :price="product.product.new_price"
+            :costPrice="product.product.price" :product_id="product.product.id" v-if="product.images.length"
+            :image="product.images[0].img" :discount="product.product.discount" :condition="product.product.condition"
+            @addCart="prod.addToCart(product)" @addWish="wish.addWishlist(product.product.id)"
+            @click="modalShow(product)" />
+        </div>
       </template>
 
       <div class="pagination justify-content-center mt-100" v-if="show">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
             <li class="page-item">
-              <button  class="page-link" aria-label="Previous"  @click="prod.prevPage" :disabled="!prod.hasPrev">
+              <button class="page-link" aria-label="Previous" @click="prod.prevPage" :disabled="!prod.hasPrev">
                 <span aria-hidden="true">&laquo;</span>
               </button>
             </li>
-            <li :class="`page-item ${i===prod.pages.offset+1 ? 'active' : ''}`" v-for="i in prod.pages.items()" v-bind:key="i"><a class="page-link" disabled>{{ i }}</a></li>
+            <li :class="`page-item ${i === prod.pages.offset + 1 ? 'active' : ''}`" v-for="i in prod.pages.items()"
+              v-bind:key="i"><a class="page-link" disabled>{{ i }}</a></li>
             <li class="page-item">
               <button class="page-link" aria-label="Next" @click="prod.nextPage" :disabled="!prod.hasNext">
                 <span aria-hidden="true">&raquo;</span>
@@ -51,7 +56,7 @@ const modalShow = async (p)=>{
       </div>
     </div>
   </div>
-   <!-- product quickview start -->
-   <QuickView :item="item" @addCart="prod.addToCart(item)" @addWish="prod.addToCart(item.id)" />
-    <!-- product quickview end -->
+  <!-- product quickview start -->
+  <QuickView :item="item" @addCart="prod.addToCart(item)" @addWish="prod.addToCart(item.id)" />
+  <!-- product quickview end -->
 </template>

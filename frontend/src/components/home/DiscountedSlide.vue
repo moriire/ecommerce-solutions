@@ -1,3 +1,34 @@
+<script setup>
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from 'swiper/vue';
+
+// Import Swiper styles
+import 'swiper/css';
+
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
+// import required modules
+import {
+    Pagination
+    //EffectFade 
+} from 'swiper/modules';
+import ProductCard from '../ProductCard.vue';
+
+
+defineProps({
+    products: {
+        type: Array,
+        required: true
+    },
+    title: {
+        type: String,
+        required: true
+    }
+})
+
+const modules = [Pagination]//, EffectFade],
+
+</script>
 <template>
     <swiper :effect="'fade'" :slidesPerView="3" :spaceBetween="30" :navigation="true" :pagination="{
         clickable: true,
@@ -16,8 +47,13 @@
         },
     }" :modules="modules" class="container mySwiper">
 
-        <swiper-slide v-for="(product, index) in products" v-bind:key="index">
-            <div class="row bg-dark">
+        <swiper-slide v-for="(product, index) in products" v-bind:key="index" >
+            <ProductCard :name="product.product.name" :price="product.product.new_price"
+            :costPrice="product.product.price" :product_id="product.product.id" v-if="product.images.length"
+            :image="product.images[0].img" :discount="product.product.discount" :condition="product.product.condition"
+            @addCart="prod.addToCart(product)" @addWish="wish.addWishlist(product.product.id)"
+            @click="modalShow(product)" />
+            <!--div class="row bg-dark">
                 <div class="col">
                     <div class="content-absolute content-slide">
                         <div class="container height-inherit d-flex align-items-center">
@@ -33,7 +69,7 @@
                     <img class="banner-img" :src="product.images[0].img" alt="banner-1" width="1000" height="446"
                         style="width: 1000; height: 446;">
                 </div>
-            </div>
+            </div-->
         </swiper-slide>
         <!--swiper-slide>
             <a class="banner-item rounded" href="collection-left-sidebar.html">
@@ -63,33 +99,6 @@
         </swiper-slide-->
     </swiper>
 </template>
-
-<script setup>
-// Import Swiper Vue.js components
-import { Swiper, SwiperSlide } from 'swiper/vue';
-
-// Import Swiper styles
-import 'swiper/css';
-
-import 'swiper/css/pagination';
-import 'swiper/css/effect-fade';
-// import required modules
-import {
-    Pagination
-    //EffectFade 
-} from 'swiper/modules';
-
-
-defineProps({
-    products: {
-        type: Array,
-        required: true
-    }
-})
-
-const modules = [Pagination]//, EffectFade],
-
-</script>
 
 <style scoped>
 .swiper-slide {

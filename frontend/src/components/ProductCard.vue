@@ -55,8 +55,7 @@ defineProps({
 })
 </script>
 <template>
-  <div class="col-lg-3 col-md-4 col-6" sdata-aos="fade-up" sdata-aos-duration="200">
-    <div class="product-card">
+  <div class="product-card">
       <div class="product-card-img">
         <RouterLink class="hover-switch" :to="{name: 'product-detail', params:{product: product_id}}">
           <div class="product-badge">
@@ -84,7 +83,6 @@ defineProps({
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <style scoped>

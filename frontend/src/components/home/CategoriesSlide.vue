@@ -6,35 +6,10 @@
     clickable: true,
   }" :navigation="true" :modules="modules" class="mySwiper">
 
-    <swiper-slide>
-      <div class="box-part text-center">
-					    
-					    <i class="fa fa-google-plus fa-3x" aria-hidden="true"></i>
-                    
-						<div class="title">
-							<h4>Google</h4>
-						</div>
-                        
-						<div class="text">
-							<span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-						</div>
-                        
-						<a href="#">Learn More</a>
-                        
-					 </div>
-            <!--img class=".primary-img .display-block img img-thumbnail rounded"  src="https://lcci.pk/wp-content/uploads/2021/03/With-The-Advent-Of-Summer-Electronics-Products-Became-Expensive.jpg"-->
-    </swiper-slide>
-
-    <swiper-slide>
-            <img class=".primary-img" src="https://5.imimg.com/data5/SELLER/Default/2023/1/SM/GS/DW/44069440/acce-1000x1000.png" alt="product-img">
-    </swiper-slide>
-
-    <swiper-slide>
-            <img class=".primary-img" src="/src/assets/img/products/tools/3.jpg" alt="product-img">
-    </swiper-slide>
-
-    <swiper-slide>
-            <img class=".primary-img" src="/src/assets/img/products/tools/4.jpg" alt="product-img">
+    <swiper-slide class="h-100 py-4 card d-block" style="height: 18rem !important;">
+      <div class="card-body bg-dark py-4 mx-3">
+            <h2>Food</h2>
+      </div>
     </swiper-slide>
 
   </swiper>
