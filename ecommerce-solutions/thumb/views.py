@@ -36,7 +36,17 @@ class ProductImageView(ModelViewSet):
                     }
                 )
 
+
 class ProductWithImageView(ModelViewSet):
+    serializer_class = XProductWithImageSerializer
+    queryset = ProductWithImage.objects.select_related().prefetch_related('images')
+    http_method_names = ("GET",)
+    
+    def list(self, request, *args, **kwargs):
+        #self.get_queryset = self.get_queryset.exclude(images=None)
+        return super().list(request, *args, **kwargs)
+
+class PagedProductWithImageView(ModelViewSet):
     pagination_class = ProductPagination
     serializer_class = XProductWithImageSerializer
     queryset = ProductWithImage.objects.select_related().prefetch_related('images')

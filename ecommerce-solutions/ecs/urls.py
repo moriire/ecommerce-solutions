@@ -10,7 +10,7 @@ from packages.views import PackagesView
 from profile.views import ProfileView
 from wishlist.views import WishListView
 from shipping.views import ShippingViews
-from thumb.views import ProductImageView, ProductWithImageView
+from thumb.views import ProductImageView, ProductWithImageView, PagedProductWithImageView
 from flash.views import FlashSalesView
 from bargains.views import BargainVendorsView
 from payment.views import TransactionView, PaystackHookView
@@ -22,13 +22,10 @@ from drf_yasg.views import get_schema_view
 from rest_framework.documentation import include_docs_urls
 
 
-
-
 from django.urls import path
 
 from fastadmin import get_django_admin_urls as get_admin_urls
 from fastadmin.settings import settings as fast_settings
-
 
 
 # Swagger documentation setup
@@ -58,7 +55,8 @@ route.register("wishlist", WishListView)
 route.register("profile", ProfileView)
 route.register("shipping", ShippingViews)
 route.register("thumbs", ProductImageView)
-route.register("product-with-images", ProductWithImageView)
+route.register("product-with-images", PagedProductWithImageView, basename="product_with_images")
+route.register("normal-product-with-images", ProductWithImageView, basename="normal_product_with_images")
 route.register("flash", FlashSalesView)
 route.register("bargains", BargainVendorsView)
 route.register("transaction", TransactionView, basename="transaction")
