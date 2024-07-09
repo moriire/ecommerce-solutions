@@ -1,5 +1,4 @@
-<script>
-import { defineProps } from 'vue';
+<script setup>
 defineProps({
     loc: {
         type: String

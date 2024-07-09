@@ -30,6 +30,7 @@ const prevPage = () => {
 };
 const count = ref(0)
 const products = ref([])
+const product = ref({})
 const paginatedProducts = ref([])
 const cartItems = ref([])
 const cartSubtotal = ref(0)
@@ -58,6 +59,8 @@ const deleteCart = async (item) => {
   getCartSubtotal()
   getCartTotalDiscount()
 }
+
+
 const getProducts = async () => {
   try {
     const res = await axios.get(`product-with-images?limit=${pages.limit}&offset=${pages.offset}`)
@@ -70,8 +73,21 @@ const getProducts = async () => {
   }
 }
 
+
+const singeProduct = async (product_id) => {
+  try {
+    const res = await axios.get(`product-with-images/${product_id}`)
+    product.value = res.data
+    //pages.items = pages.total/pages.limit;
+    console.log(res.data)
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 return {
   count,
+  product,
   products,
   cartItems,
   cartSubtotal,
@@ -84,5 +100,6 @@ return {
   addToCart,
   deleteCart,
   getProducts,
+  singeProduct,
 }
 })
