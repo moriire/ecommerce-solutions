@@ -10,17 +10,22 @@ import { useProductStore } from '@/stores/products';
 import CategoriesSlide from "@/components/home/CategoriesSlide.vue"
 import VendorSlide from '@/components/VendorSlide.vue';
 import DiscountedSlide from "@/components/home/DiscountedSlide.vue"
+import { useHomeStore } from '@/stores/home';
 const cat = useCategoryStore()
 const prod = useProductStore()
+const home = useHomeStore()
 prod.pages.limit = 8
 onMounted(async () => {
+    await home.getLatest(),
+    await home.getPromoted(),
+    await home.getDiscounted(),
     await prod.getProducts()
 })
 </script>
 <template>
     <HomeSkeleton>
         <template v-slot:header>
-            <HeroSlide :boostedProducts="prod.products" v-if="prod.products.length" />
+            <HeroSlide :boostedProducts="home.promotions" v-if="home.promotions.length" />
             <template v-else>
                 <div class="vh-100 d-flex justify-content-center align-items-center">
                     <h2>No Products Uploaded yet</h2>
@@ -62,7 +67,7 @@ onMounted(async () => {
                             <h2 class="section-heading">Latest Products</h2>
                         </div>
                         <div class="row">
-                            <ProductPage :products="prod.products" v-if="prod.products.length" />
+                            <ProductPage :products="home.latests" v-if="home.latests.length" />
                             <template v-else>
                                 <div class="vh-100 d-flex justify-content-center align-items-center">
                                     <h2>No Products Uploaded yet</h2>
@@ -85,7 +90,7 @@ onMounted(async () => {
                             <h2 class="section-heading">Discounted Products</h2>
                         </div>
                         <div class="row">
-                            <DiscountedSlide :products="prod.products" />
+                            <DiscountedSlide :products="home.discounteds" />
                         </div>
                     </div>
                 </div>

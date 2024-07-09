@@ -60,7 +60,6 @@ const deleteCart = async (item) => {
   getCartTotalDiscount()
 }
 
-
 const getProducts = async () => {
   try {
     const res = await axios.get(`product-with-images?limit=${pages.limit}&offset=${pages.offset}`)

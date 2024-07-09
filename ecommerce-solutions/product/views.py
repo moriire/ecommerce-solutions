@@ -13,8 +13,10 @@ from users.models import CustomUsers
 from profile.models import Profile
 from packages.models import Packages
 
+
+
 class ProductPagination(LimitOffsetPagination):
-    default_limit = 2
+    default_limit = 4
     limit_query_param = 'limit'
     offset_query_param = 'offset'
     max_limit = None

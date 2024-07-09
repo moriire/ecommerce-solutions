@@ -27,7 +27,7 @@ onMounted(async () => await prod.singeProduct(route.params.product))
     </div>
 
     <!-- product tab start -->
-    <div class="product-tab-section mt-100" data-aos="fade-up" data-aos-duration="700">
+    <!--div class="product-tab-section mt-100" data-aos="fade-up" data-aos-duration="700">
         <div class="container">
             <div class="tab-list product-tab-list">
                 <nav class="nav product-tab-nav">
@@ -168,11 +168,11 @@ onMounted(async () => await prod.singeProduct(route.params.product))
                 </div>
             </div>
         </div>
-    </div>
+    </div-->
     <!-- product tab end -->
 
     <!-- you may also like start -->
-    <div class="featured-collection-section mt-100 home-section overflow-hidden">
+    <!--div class="featured-collection-section mt-100 home-section overflow-hidden">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-heading">You may also like</h2>
@@ -484,6 +484,6 @@ onMounted(async () => await prod.singeProduct(route.params.product))
                 <div class="activate-arrows show-arrows-always article-arrows arrows-white"></div>
             </div>
         </div>
-    </div>
+    </div-->
     <!-- you may also lik end -->
 </template>

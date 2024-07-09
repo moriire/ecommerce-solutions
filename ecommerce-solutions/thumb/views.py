@@ -6,6 +6,7 @@ from rest_framework import status
 from .models import ProductImage, ProductWithImage, ProductImageSerializer, ProductWithImageSerializer, XProductWithImageSerializer
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
+from rest_framework.generics import ListAPIView
 
 class ProductPagination(LimitOffsetPagination):
     default_limit = 4
@@ -17,11 +18,6 @@ class ProductImageView(ModelViewSet):
     serializer_class = ProductImageSerializer
     queryset = ProductImage.objects.all()
     parser_classes = [MultiPartParser, FormParser]
-
-    @action(detail=True, methods=['post'])
-    def multiple(self, request, format=None):
-        files = request.FILES.getlist('files')
-        print(files) 
 
     def list(self, request):
         items = self.get_queryset()
@@ -36,7 +32,34 @@ class ProductImageView(ModelViewSet):
                     }
                 )
 
+class ProductWithImageView(ModelViewSet):
+    queryset = ProductWithImage.objects.all().order_by("-pk").select_related().prefetch_related("images")
+    serializer_class = XProductWithImageSerializer
 
+    def list(self, request):
+        items = self.get_queryset()
+        params = request.query_params
+        pp = params.dict()
+        print(pp)
+        if (params and pp.get('count')):
+            items = items[:int(pp.get('count'))]
+
+        elif (params and pp.get('discount')):
+            items = items.filter(product__discount__gte = int(pp.get('discount')))[:18]
+
+        elif (params and pp.get('promoted')):
+            items = items.filter(product__package__name = pp.get('promoted'))[:18]
+
+        else:
+            items = items.filter(**pp)[:12]
+        catser = self.get_serializer(items, many=True)
+        return Response(
+                {
+                    "data": catser.data,
+                    }
+                )
+
+"""
 class ProductWithImageView(ModelViewSet):
     serializer_class = XProductWithImageSerializer
     queryset = ProductWithImage.objects.select_related().prefetch_related('images')
@@ -45,6 +68,7 @@ class ProductWithImageView(ModelViewSet):
     def list(self, request, *args, **kwargs):
         #self.get_queryset = self.get_queryset.exclude(images=None)
         return super().list(request, *args, **kwargs)
+"""
 
 class PagedProductWithImageView(ModelViewSet):
     pagination_class = ProductPagination
