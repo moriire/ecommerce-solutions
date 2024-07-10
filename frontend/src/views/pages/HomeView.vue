@@ -11,6 +11,7 @@ import CategoriesSlide from "@/components/home/CategoriesSlide.vue"
 import VendorSlide from '@/components/VendorSlide.vue';
 import DiscountedSlide from "@/components/home/DiscountedSlide.vue"
 import { useHomeStore } from '@/stores/home';
+
 const cat = useCategoryStore()
 const prod = useProductStore()
 const home = useHomeStore()
@@ -23,6 +24,7 @@ onMounted(async () => {
 })
 </script>
 <template>
+    {{ categories }}
     <HomeSkeleton>
         <template v-slot:header>
             <HeroSlide :boostedProducts="home.promotions" v-if="home.promotions.length" />
@@ -50,7 +52,7 @@ onMounted(async () => {
                             </div>
                         </div>
                         <div class="col-lg-8 col-12 align-self-center">
-                            <CategoriesSlide />
+                            <CategoriesSlide :items="cat.categories" />
 
                         </div>
                     </div>
@@ -88,20 +90,7 @@ onMounted(async () => {
                     <div class="section-header">
                         <h2 class="section-heading">Highly Discounted Products</h2>
                     </div>
-                    <DiscountedSlide :products="home.latests" />
-                </div>
-            </div>
-
-            <div class="featured-collection mt-100 overflow-hidden">
-                <div class="collection-tab-inner">
-                    <div class="container">
-                        <div class="section-header text-center">
-                            <h2 class="section-heading">Discounted Products</h2>
-                        </div>
-                        <div class="row">
-                            <DiscountedSlide :products="home.discounteds" />
-                        </div>
-                    </div>
+                    <DiscountedSlide :products="home.latests" numSlide="4" />
                 </div>
             </div>
         </template>

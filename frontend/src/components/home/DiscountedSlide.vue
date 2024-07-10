@@ -14,23 +14,26 @@ import {
 } from 'swiper/modules';
 import ProductCard from '../ProductCard.vue';
 
-
 defineProps({
     products: {
         type: Array,
         required: true
     },
     title: {
-        type: String,
-        required: true
+        type: String
+    },
+    numSlide: {
+        type: Number,
+        default: 4
     }
+
 })
 
 const modules = [Pagination]//, EffectFade],
 
 </script>
 <template>
-    <swiper :effect="'fade'" :slidesPerView="3" :spaceBetween="30" :navigation="true" :pagination="{
+    <swiper :effect="'fade'" :slidesPerView="numSlide" :spaceBetween="30" :navigation="true" :pagination="{
         clickable: true,
     }" :breakpoints="{
         '640': {
@@ -42,7 +45,7 @@ const modules = [Pagination]//, EffectFade],
             spaceBetween: 30,
         },
         '1024': {
-            slidesPerView: 3,
+            slidesPerView: numSlide,
             spaceBetween: 30,
         },
     }" :modules="modules" class="container mySwiper">

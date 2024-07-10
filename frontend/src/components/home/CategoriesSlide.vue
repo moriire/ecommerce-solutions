@@ -1,3 +1,15 @@
+<script setup>
+import 'swiper/css';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+defineProps({
+  items: Array,
+  required: true
+})
+const modules = [Autoplay, Pagination, Navigation]
+</script>
 <template>
   <swiper :spaceBetween="10" :slidesPerView="3" :centeredSlides="true" :autoplay="{
     delay: 2500,
@@ -6,41 +18,15 @@
     clickable: true,
   }" :navigation="true" :modules="modules" class="mySwiper">
 
-    <swiper-slide class="h-100 py-4 card d-block" style="height: 18rem !important;">
+    <swiper-slide
+    v-for="(item, index) in items" v-bind:key="index" class="h-100 py-4 card d-block" style="height: 18rem !important;">
       <div class="card-body bg-dark py-4 mx-3">
-            <h2>Food</h2>
+            <h2>{{ item.name }}</h2>
       </div>
     </swiper-slide>
 
   </swiper>
 </template>
-<script>
-// Import Swiper Vue.js components
-import { Swiper, SwiperSlide } from 'swiper/vue';
-
-// Import Swiper styles
-import 'swiper/css';
-
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-
-//import './style.css';
-
-// import required modules
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-
-export default {
-  components: {
-    Swiper,
-    SwiperSlide,
-  },
-  setup() {
-    return {
-      modules: [Autoplay, Pagination, Navigation],
-    };
-  },
-};
-</script>
 <style>
 .swiper {
   width: 100%;

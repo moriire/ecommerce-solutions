@@ -1,8 +1,11 @@
 import { ref, computed, reactive } from 'vue'
 import { defineStore } from 'pinia'
 import axios from "axios"
+import { useAuthStore } from './auth'
+import router from '@/router'
 
 export const useProductStore = defineStore('product', () => {
+  const auth = useAuthStore();
   const pages = reactive({
     limit: 1,
     offset: 0,
@@ -49,10 +52,14 @@ const getCartTotalDiscount = () => {
 }
 
 const addToCart = (item) => {
-  cartItems.value.push(item)
-  alert("Already in cart" + item.name)
+  if (!auth.accessToken){
+    return router.push("/auth/login")
+  } else {
+    cartItems.value.push(item)
+    alert("Already in cart" + item.name)
   getCartSubtotal()
   getCartTotalDiscount()
+  }
 }
 const deleteCart = async (item) => {
   await cartItems.value.pop(item)
