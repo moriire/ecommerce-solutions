@@ -10,13 +10,15 @@ const prod = useProductStore()
 const cat = useCategoryStore()
 const auth = useAuthStore()
 onMounted(async () => {
-    await cat.getCategories()
-    await prod.getCart()
+    await cat.getCategories(),
+    await prod.getCart()//,
+   // await prod.getCartSubtotal()
 })
 
 </script>
 
 <template>
+    {{ prod.cartSubtotal }}
         <RouterView />
 </template>
 <style>

@@ -6,9 +6,9 @@ import { RouterLink } from 'vue-router';
 const prod = useProductStore()
 onMounted(async () => {
   await prod.getCart(),
-  await prod.getProducts(),
-  await prod.getCartSubtotal(),
-  await prod.getCartTotalDiscount()
+  //await prod.getCartSubtotal(),
+  //await prod.getCartTotalDiscount()
+  await prod.getProducts()
 })
 </script>
 
@@ -52,7 +52,7 @@ onMounted(async () => {
                 <tr class="cart-item" v-for="(cart, index) in prod.cartItems" v-bind:key="index">
                   <td class="cart-item-media">
                     <div class="mini-img-wrapper">
-                      <img class="mini-img" :src="cart.product.images[0].img" alt="img">
+                      <img class="mini-img" :src="'http://127.0.0.1'+cart.product.images[0].img" alt="img">
                     </div>
                   </td>
                   <td class="cart-item-details">

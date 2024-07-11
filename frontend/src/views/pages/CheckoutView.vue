@@ -1,7 +1,11 @@
 <script setup>
 import { useProductStore } from '@/stores/products';
+import { onMounted } from 'vue';
 import { RouterLink } from 'vue-router';
 const prod = useProductStore()
+onMounted( async () => {
+  prod.getCart()
+})
 </script>
 
 <template>
@@ -140,7 +144,7 @@ const prod = useProductStore()
               <h3 class="d-none d-lg-block mb-0 text-center heading_24 mb-4">Order summary</h3>
                 <div class="minicart-item d-flex" v-for="(cart, index) in prod.cartItems" v-bind:key="index">
                   <div class="mini-img-wrapper">
-                    <img class="mini-img" :src="cart.images[0].img" alt="img">
+                    <img class="mini-img" :src="cart.product.images[0].img" alt="img">
                   </div>
                   <div class="product-info">
                     <h2 class="product-title"><a href="#">{{ cart.product.name }}</a></h2>
