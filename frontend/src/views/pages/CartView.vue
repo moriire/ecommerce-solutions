@@ -5,9 +5,9 @@ import { onMounted } from 'vue';
 import { RouterLink } from 'vue-router';
 const prod = useProductStore()
 onMounted(async () => {
-  await prod.getCart()
-  await prod.getProducts()
-  await prod.getCartSubtotal()
+  await prod.getCart(),
+  await prod.getProducts(),
+  await prod.getCartSubtotal(),
   await prod.getCartTotalDiscount()
 })
 </script>
