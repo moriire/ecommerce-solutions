@@ -1,31 +1,38 @@
 <script setup>
 import CartItem from '@/components/CartItem.vue';
 import { useProductStore } from '@/stores/products';
+import { onMounted } from 'vue';
 import { RouterLink } from 'vue-router';
 const prod = useProductStore()
+onMounted(async () => {
+  await prod.getCart()
+  await prod.getProducts()
+  await prod.getCartSubtotal()
+  await prod.getCartTotalDiscount()
+})
 </script>
 
 <template>
   <!-- breadcrumb start -->
   <div class="breadcrumb">
-            <div class="container">
-                <ul class="list-unstyled d-flex align-items-center m-0">
-                    <li><a href="/">Home</a></li>
-                    <li>
-                        <svg class="icon icon-breadcrumb" width="64" height="64" viewBox="0 0 64 64" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g opacity="0.4">
-                                <path
-                                    d="M25.9375 8.5625L23.0625 11.4375L43.625 32L23.0625 52.5625L25.9375 55.4375L47.9375 33.4375L49.3125 32L47.9375 30.5625L25.9375 8.5625Z"
-                                    fill="#000" />
-                            </g>
-                        </svg>
-                    </li>
-                    <li>Cart</li>
-                </ul>
-            </div>
-        </div>
-        <!-- breadcrumb end -->
+    <div class="container">
+      <ul class="list-unstyled d-flex align-items-center m-0">
+        <li><a href="/">Home</a></li>
+        <li>
+          <svg class="icon icon-breadcrumb" width="64" height="64" viewBox="0 0 64 64" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.4">
+              <path
+                d="M25.9375 8.5625L23.0625 11.4375L43.625 32L23.0625 52.5625L25.9375 55.4375L47.9375 33.4375L49.3125 32L47.9375 30.5625L25.9375 8.5625Z"
+                fill="#000" />
+            </g>
+          </svg>
+        </li>
+        <li>Cart</li>
+      </ul>
+    </div>
+  </div>
+  <!-- breadcrumb end -->
   <div class="cart-page mt-100">
     <div class="container">
       <div class="cart-page-wrapper">
@@ -42,30 +49,29 @@ const prod = useProductStore()
               </thead>
 
               <tbody>
-                <tr class="cart-item" v-for="(cart, index) in prod.cartItems" v-bind:key="index" >
+                <tr class="cart-item" v-for="(cart, index) in prod.cartItems" v-bind:key="index">
                   <td class="cart-item-media">
                     <div class="mini-img-wrapper">
-                      <img class="mini-img" :src="cart.images[0].img" alt="img">
+                      <img class="mini-img" :src="cart.product.images[0].img" alt="img">
                     </div>
                   </td>
                   <td class="cart-item-details">
                     <h2 class="product-title"><a href="#">{{ cart.product.name }}</a></h2>
-                    <p class="product-vendor">{{ cart.product.profile.store_name }}</p>
+                    <p class="product-vendor">{{ cart.product.product.profile.store_name }}</p>
                   </td>
                   <td class="cart-item-quantity">
                     <div class="quantity d-flex align-items-center justify-content-between">
                       <button class="qty-btn dec-qty"><img src="/src/assets/img/icon/minus.svg" alt="minus"></button>
-                      <input class="qty-input" type="number" name="qty" value="1" min="0">
+                      <input class="qty-input" type="number" name="qty" value="1" min="1" max="100">
                       <button class="qty-btn inc-qty"><img src="/src/assets/img/icon/plus.svg" alt="plus"></button>
                     </div>
-                    <a href="#" class="product-remove mt-2" @removeCart="prod.deleteCart(cart)">Remove</a>
+                    <a href="#" class="product-remove mt-2" @removeCart="prod.deleteCart(cart.id)">Remove</a>
                   </td>
                   <td class="cart-item-price text-end">
-                    <div class="product-price">&#x20A6;{{ cart.product.price }}</div>
+                    <div class="product-price">&#x20A6;{{ cart.product.product.price }}</div>
                   </td>
                 </tr>
-               
-               
+
               </tbody>
             </table>
           </div>

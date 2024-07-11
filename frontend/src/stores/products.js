@@ -31,6 +31,7 @@ const prevPage = () => {
     getProducts()
   }
 };
+
 const count = ref(0)
 const products = ref([])
 const product = ref({})
@@ -38,19 +39,22 @@ const paginatedProducts = ref([])
 const cartItems = ref([])
 const cartSubtotal = ref(0)
 const cartTotalDiscount = ref(0)
+
 const getCartSubtotal = () => {
-  let numbers = cartItems.value.map(x => x.product.product.price)
+  let numbers = cartItems.value.map(x => x.product.product.price*x.count)
   const total = numbers.reduce((sum, num) => sum + num, 0);
   cartSubtotal.value = total
   //console.log(total)
 }
+
 const getCartTotalDiscount = () => {
-  let numbers = cartItems.value.map(x => x.product.product.discounted_price)
+  let numbers = cartItems.value.map(x => x.product.product.discounted_price*x.count)
   const total = numbers.reduce((sum, num) => sum + num, 0);
   cartTotalDiscount.value = total
   //console.log(total)
 }
-const getCart = async (pk)=>{
+
+const getCart = async ()=>{
   try{
     const res = await axios.get(`cart?user=${auth.userInfo.pk}`)
     cartItems.value = res.data.data
@@ -72,7 +76,7 @@ const addToCart = async (product_id) => {
         }
       )
       console.log(res.data)
-      getCart(res.data.id)
+      getCart()
       getCartSubtotal()
       getCartTotalDiscount()
     } catch(e){
@@ -84,10 +88,53 @@ const addToCart = async (product_id) => {
   //getCartTotalDiscount()
   }
 }
-const deleteCart = async (item) => {
-  await cartItems.value.pop(item)
-  getCartSubtotal()
-  getCartTotalDiscount()
+
+const deleteCart = async (item_id) => {
+  try{
+    const res = await axios.delete(`cart/${item_id}`)
+    //.value = res.data.data
+    console.log(res)
+    getCart()
+    getCartSubtotal()
+    getCartTotalDiscount()
+  } catch(e){
+    console.log(e)
+  }
+}
+
+const incCart = async (item_id, val) => {
+  try{
+    const res = await axios.patch(`cart/${item_id}`, 
+      {
+        count: val
+      }
+    )
+    //.value = res.data.data
+    console.log(res)
+    getCart()
+    getCartSubtotal()
+    getCartTotalDiscount()
+  } catch(e){
+    console.log(e)
+  }
+}
+
+
+const decCart = async (item_id, val) => {
+  try{
+    const res = await axios.patch(`cart/${item_id}`, 
+      {
+        count: val
+      }
+    )
+    //.value = res.data.data
+    console.log(res)
+    getCart()
+    getCartSubtotal()
+    getCartTotalDiscount()
+  } catch(e){
+    console.log(e)
+  }
 }
 
 const getProducts = async () => {
@@ -101,7 +148,6 @@ const getProducts = async () => {
     console.log(e)
   }
 }
-
 
 const singeProduct = async (product_id) => {
   try {
@@ -131,5 +177,7 @@ return {
   getProducts,
   singeProduct,
   getCart,
+  incCart,
+  decCart,
 }
 })
