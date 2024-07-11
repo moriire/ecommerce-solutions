@@ -11,6 +11,7 @@ const cat = useCategoryStore()
 const auth = useAuthStore()
 onMounted(async () => {
     await cat.getCategories()
+    await prod.getCart()
 })
 
 </script>

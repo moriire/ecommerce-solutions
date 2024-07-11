@@ -21,9 +21,9 @@ const prod = useProductStore()
             </div>
             <div class="offcanvas-body p-0">
                 <div class="cart-content-area d-flex justify-content-between flex-column">
-                    <div class="minicart-loop custom-scrollbar">
+                    <div class="minicart-loop custom-scrollbar"> 
                       <template v-for="(cart, index) in cartItems" v-bind:key="index">
-                        <CartItem 
+                         <CartItem 
                          :item = "cart"
                           @removeCart="prod.deleteCart(cart)" 
                         />

@@ -24,6 +24,7 @@ const modalShow = async (p) => {
 
 <template>
   <div class="collection-product-container">
+    {{ prod.cartItems }}
     <div class="row">
       <template v-for="(product, index) in products" v-bind:key="product.product.slug">
         <div class="col-lg-3 col-md-4 col-6" sdata-aos="fade-up" :data-aos-duration="200 * (index + 1)">
@@ -31,7 +32,7 @@ const modalShow = async (p) => {
           <ProductCard :name="product.product.name" :price="product.product.new_price"
             :costPrice="product.product.price" :product_id="product.product.id" v-if="product.images.length"
             :image="product.images[0].img" :discount="product.product.discount" :condition="product.product.condition"
-            @addCart="prod.addToCart(product)" @addWish="wish.addWishlist(product.product.id)"
+            @addCart="prod.addToCart(product.id)" @addWish="wish.addWishlist(product.product.id)"
             @click="modalShow(product)" />
         </div>
       </template>

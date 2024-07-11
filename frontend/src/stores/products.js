@@ -39,26 +39,49 @@ const cartItems = ref([])
 const cartSubtotal = ref(0)
 const cartTotalDiscount = ref(0)
 const getCartSubtotal = () => {
-  let numbers = cartItems.value.map(x => x.product.price)
+  let numbers = cartItems.value.map(x => x.product.product.price)
   const total = numbers.reduce((sum, num) => sum + num, 0);
   cartSubtotal.value = total
   //console.log(total)
 }
 const getCartTotalDiscount = () => {
-  let numbers = cartItems.value.map(x => x.product.discounted_price)
+  let numbers = cartItems.value.map(x => x.product.product.discounted_price)
   const total = numbers.reduce((sum, num) => sum + num, 0);
   cartTotalDiscount.value = total
   //console.log(total)
 }
+const getCart = async (pk)=>{
+  try{
+    const res = await axios.get(`cart?user=${auth.userInfo.pk}`)
+    cartItems.value = res.data.data
+    console.log(cartItems.value)
+  } catch(e){
+    console.log(e)
+  }
+}
 
-const addToCart = (item) => {
+const addToCart = async (product_id) => {
   if (!auth.accessToken){
     return router.push("/auth/login")
   } else {
-    cartItems.value.push(item)
-    alert("Already in cart" + item.name)
-  getCartSubtotal()
-  getCartTotalDiscount()
+    try{
+      const res = await axios.post('cart',
+        {
+          user: auth.userInfo.pk,
+          product: product_id
+        }
+      )
+      console.log(res.data)
+      getCart(res.data.id)
+      getCartSubtotal()
+      getCartTotalDiscount()
+    } catch(e){
+      console.log(e)
+    }
+    //cartItems.value.push(item)
+    alert("Already in cart" + product_id)
+  //getCartSubtotal()
+  //getCartTotalDiscount()
   }
 }
 const deleteCart = async (item) => {
@@ -107,5 +130,6 @@ return {
   deleteCart,
   getProducts,
   singeProduct,
+  getCart,
 }
 })

@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "profile",
     "product",
     "thumb",
+    "cart",
     "wishlist",
     "shipping",
     "order",
