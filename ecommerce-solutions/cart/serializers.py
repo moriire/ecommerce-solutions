@@ -13,3 +13,4 @@ class XCartSerializer(ModelSerializer):
     class Meta:
         model = Cart
         fields = "__all__"
+        depth=3

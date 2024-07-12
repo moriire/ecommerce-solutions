@@ -52,7 +52,7 @@ onMounted(async () => {
                 <tr class="cart-item" v-for="(cart, index) in prod.cartItems" v-bind:key="index">
                   <td class="cart-item-media">
                     <div class="mini-img-wrapper">
-                      <img class="mini-img" :src="'http://127.0.0.1'+cart.product.images[0].img" alt="img">
+                      <img class="mini-img" :src="'http://127.0.0.1/8000'+cart.product.images[0].img" alt="img">
                     </div>
                   </td>
                   <td class="cart-item-details">
@@ -61,11 +61,11 @@ onMounted(async () => {
                   </td>
                   <td class="cart-item-quantity">
                     <div class="quantity d-flex align-items-center justify-content-between">
-                      <button class="qty-btn dec-qty"><img src="/src/assets/img/icon/minus.svg" alt="minus"></button>
-                      <input class="qty-input" type="number" name="qty" value="1" min="1" max="100">
-                      <button class="qty-btn inc-qty"><img src="/src/assets/img/icon/plus.svg" alt="plus"></button>
+                      <button class="qty-btn dec-qty" @click="prod.decCart(cart.id, cart.count)"><img src="/src/assets/img/icon/minus.svg" alt="minus"></button>
+                      <input class="qty-input" type="number" v-model="cart.count"  min="1" >
+                      <button class="qty-btn inc-qty" @click="prod.incCart(cart.id, cart.count)"><img src="/src/assets/img/icon/plus.svg" alt="plus"></button>
                     </div>
-                    <a href="#" class="product-remove mt-2" @removeCart="prod.deleteCart(cart.id)">Remove</a>
+                    <a href="#" class="product-remove mt-2" @click="prod.deleteCart(cart.id)">Remove</a>
                   </td>
                   <td class="cart-item-price text-end">
                     <div class="product-price">&#x20A6;{{ cart.product.product.price }}</div>

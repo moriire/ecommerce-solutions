@@ -29,7 +29,7 @@ defineProps({
     <!-- minicart item -->
     <div class="minicart-item d-flex" v-if="item">
         <div class="mini-img-wrapper">
-            <img class="mini-img" :src="item.product.images[0].img" alt="img">
+            <img class="mini-img" :src="'http://127.0.0.1:8000'+item.product.images[0].img" alt="img">
         </div>
         <div class="product-info">{{  item.count }}
             <h2 class="product-title"><a href="#">{{ item.product.name }}</a></h2>
@@ -37,7 +37,7 @@ defineProps({
             <div class="misc d-flex align-items-end justify-content-between">
                 <div class="quantity d-flex align-items-center justify-content-between">
                     <button class="qty-btn dec-qty" @click="subFromCount" ><img src="/src/assets/img/icon/minus.svg" alt="minus"></button>
-                    <input class="qty-input" type="number" v-model="item.count" value="100" min="1">
+                    <input class="qty-input" type="number" v-model="item.count" min="1">
                     <button class="qty-btn inc-qty"  @click="AddToCount" ><img src="/src/assets/img/icon/plus.svg" alt="plus"></button>
                 </div>
                 <div class="product-remove-area d-flex flex-column align-items-end">
