@@ -24,7 +24,6 @@ onMounted(async () => {
 })
 </script>
 <template>
-    {{ categories }}
     <HomeSkeleton>
         <template v-slot:header>
             <HeroSlide :boostedProducts="home.promotions" v-if="home.promotions.length" />
@@ -90,12 +89,12 @@ onMounted(async () => {
                     <div class="section-header">
                         <h2 class="section-heading">Highly Discounted Products</h2>
                     </div>
-                    <DiscountedSlide :products="home.latests" numSlide="4" />
+                    <DiscountedSlide :products="home.latests" :numSlide="4" />
                 </div>
             </div>
         </template>
     </HomeSkeleton>
-    <Testimonial />
+    <!--Testimonial /-->
     <!--div class="featured-collection mt-100 overflow-hidden">
         <div class="collection-tab-inner">
             <div class="container">

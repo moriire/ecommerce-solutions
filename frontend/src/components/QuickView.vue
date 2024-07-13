@@ -1,15 +1,14 @@
 <script setup>
 import { ref } from 'vue';
 import ProductSingle from "@/components/ProductSingle.vue"
-const emit = defineEmits("addCart")
 
-function addedCart(param) {
-    emit("addCart", param)
-    window.console.log("hello")
-}
 defineProps({
     item: {
         type: Object,
+        required: true
+    },
+    add_cart: {
+        type: Function,
         required: true
     }
 })
@@ -42,7 +41,7 @@ const modules = [FreeMode, Navigation, Thumbs]
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <ProductSingle :item="item" />
+                    <ProductSingle :product="item.product" :images="item.images" @addCart="add_cart" @addWish="wish.addWishlist(item.id)" />
                 </div>
             </div>
         </div>

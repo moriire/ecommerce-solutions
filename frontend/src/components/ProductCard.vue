@@ -1,7 +1,8 @@
 <script setup>
 import { useWishlistStore } from '@/stores/wishlist';
 import { RouterLink } from 'vue-router';
-
+import AtcButton from "./buttons/AtcButton.vue"
+import AtwButton from './buttons/AtwButton.vue';
 
 const emit = defineEmits(["addCart", "addWish"])
 
@@ -9,8 +10,6 @@ function addedCart(param) {
   emit("addCart", param)
   window.console.log("hello")
 }
-
-//const wishEmit = defineEmits("addWish")
 
 function addedWish(param) {
   emit("addWish", param)
@@ -67,12 +66,11 @@ defineProps({
 
         <div class="product-card-action product-card-action-2">
           <a href="#quickview-modal" class="quickview-btn btn-primary" data-bs-toggle="modal">QUICKVIEW</a>
-          <button  class="addtocart-btn btn-primary" type="button" @click="addedCart" >ADD TO CART</button>
+          
+              <AtcButton :product_id="product_id" />
+          <!--button  class="addtocart-btn btn-primary" type="button" @click="addedCart" >ADD TO CART</button-->
         </div>
-
-        <a type="button" class="wishlist-btn card-wishlist"  @click="addedWish">
-          <i class="far fa-heart fa-2x text-dark"></i>
-        </a>
+        <AtwButton :product_id="product_id" />
       </div>
       <div class="product-card-details text-center">
         <h3 class="product-card-title"><a href="collection-left-sidebar.html">{{ name }}</a>

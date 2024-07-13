@@ -1,14 +1,23 @@
 <script setup>
 import { ref } from 'vue';
-const emit = defineEmits("addCart")
+const emit = defineEmits(["addCart", "addWish"])
 
 function addedCart(param) {
     emit("addCart", param)
     window.console.log("hello")
 }
+function addedWish(param) {
+    emit("addWish", param)
+    window.console.log("hello")
+}
+
 defineProps({
-    item: {
+    product: {
         type: Object,
+        required: true
+    },
+    images: {
+        type: Array,
         required: true
     }
 })
@@ -24,6 +33,7 @@ import 'swiper/css/thumbs';
 
 // import required modules
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import AtcButton from './buttons/AtcButton.vue';
 
 const thumbsSwiper = ref(null);
 
@@ -34,40 +44,40 @@ const modules = [FreeMode, Navigation, Thumbs]
 </script>
 <template>
     <div class="row">
-        <div class="col-lg-6 col-md-12 col-12 " v-if="item.images" style="height: 80vh !important;">
+        <div class="col-lg-6 col-md-12 col-12 " v-if="images" style="height: 80vh !important;">
             <swiper :style="{
                 '--swiper-navigation-color': '#fff',
                 '--swiper-pagination-color': '#fff',
             }" :spaceBetween="10" :navigation="true" :thumbs="{ swiper: thumbsSwiper }"
                 :modules="modules" class="mySwiper2">
-                <swiper-slide v-for="thumb in item.images">
-                    <img :src="thumb.img" />
+                <swiper-slide v-for="thumb in images">
+                    <img :src="thumb.img.startsWith('http://')? thumb.img: 'http://127.0.0.1:8000'+ thumb.img" />
                 </swiper-slide>
             </swiper>
             <swiper @swiper="setThumbsSwiper" :spaceBetween="10" :slidesPerView="3" :freeMode="true"
                 :watchSlidesProgress="true" :modules="modules" class="mySwiper">
-                <swiper-slide v-for="thumb in item.images">
-                    <img :src="thumb.img" />
+                <swiper-slide v-for="thumb in images">
+                    <img :src="thumb.img.startsWith('http://')? thumb.img: 'http://127.0.0.1:8000'+ thumb.img" />
                 </swiper-slide>
             </swiper>
         </div>
-        <div class="col-lg-6 col-md-12 col-12" v-if="item.product">
+        <div class="col-lg-6 col-md-12 col-12" v-if="product">
             <div class="product-details ps-lg-4">
                 <div class="mb-3">
                     <span class="product-availability">In Stock</span>
                 </div>
-                <h2 class="product-title mb-3">{{ item.product.name }}</h2>
+                <h2 class="product-title mb-3">{{ product.name }}</h2>
                 <div class="product-price-wrapper mb-4">
-                    <span class="product-price regular-price">$ {{ item.product.new_price }}</span>
-                    <del class="product-price compare-price ms-2">$ {{ item.product.price }}</del>
+                    <span class="product-price regular-price">$ {{ product.new_price }}</span>
+                    <del class="product-price compare-price ms-2">$ {{ product.price }}</del>
                 </div>
                 <div class="product-vendor product-meta mb-3">
-                    <strong class="label">Vendor:</strong> {{ item.product.profile.store_name }}
+                    <strong class="label">Vendor:</strong> {{ product.profile.user.store_name }}
                 </div>
                 <div>
                     <strong class="label">Description:</strong><br>
                     <p>
-                        {{ item.product.description }}
+                        {{ product.description }}
                     </p>
                 </div>
                 <!--div class="product-rating d-flex align-items-center mb-3">
@@ -133,12 +143,11 @@ const modules = [FreeMode, Navigation, Thumbs]
                 </div>
 
                 <div class="product-form-buttons d-flex align-items-center justify-content-between mt-3">
-                    <button type="button" class="me-2 .position-relative btn-atc btn-add-to-cart loader"
-                        @click="addedCart">ADD TO
-                        CART</button>
+                    <AtcButton :product_id="product.id" class="me-2 .position-relative btn-atc btn-add-to-cart loader" />
+
                     <button type="submit" class="me-2 .position-relative btn-atc btn-buyit-now">BUY IT
                         NOW</button>
-                    <a href="#" class="product-wishlist">
+                    <a href="#" class="product-wishlist"  @click="addedWish">
                         <svg class="icon icon-wishlist" width="26" height="22" viewBox="0 0 26 22" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
