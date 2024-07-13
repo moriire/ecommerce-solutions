@@ -9,7 +9,7 @@ class WishListView(ModelViewSet):
     queryset = WishList.objects.all()
     serializer_class = WishListSerializer
 
-    def retrieve(self, request, pk=None):
+    def list(self, request, pk=None):
         items = self.get_queryset()
         params = request.query_params
         pp = params.dict()

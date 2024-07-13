@@ -1,8 +1,10 @@
 <script setup>
+import { useAuthStore } from '@/stores/auth';
 import { useProductStore } from '@/stores/products';
 import { onMounted } from 'vue';
 import { RouterLink } from 'vue-router';
 const prod = useProductStore()
+const auth = useAuthStore()
 onMounted( async () => {
   prod.getCart()
 })
@@ -18,7 +20,7 @@ onMounted( async () => {
               <h2 class="section-heading">Check out</h2>
             </div>
 
-            <div class="checkout-progress overflow-hidden">
+            <!--div class="checkout-progress overflow-hidden">
               <ol class="checkout-bar px-0">
                 <li class="progress-step step-done"><a href="cart.html">Cart</a></li>
                 <li class="progress-step step-active"><a href="checkout.html">Your Details</a></li>
@@ -26,19 +28,19 @@ onMounted( async () => {
                 <li class="progress-step step-todo"><a href="checkout.html">Payment</a></li>
                 <li class="progress-step step-todo"><a href="checkout.html">Review</a></li>
               </ol>
-            </div>
+            </div-->
 
-            <div class="checkout-user-area overflow-hidden d-flex align-items-center">
+            <div class=".checkout-user-area overflow-hidden d-flex align-items-center border border-top p-3 text-dark">
               <div class="checkout-user-img me-4">
                 <img src="/src/assets/img/checkout/user.jpg" alt="img">
               </div>
               <div class="checkout-user-details d-flex align-items-center justify-content-between w-100">
                 <div class="checkout-user-info">
-                  <h2 class="checkout-user-name">Susan Gardner</h2>
-                  <p class="checkout-user-address mb-0">2752 avenue Royale, Quebec, G1R 2B2, Canada</p>
+                  <h2 class=".checkout-user-name">{{ auth.userInfo.username }}</h2>
+                  <p class=".checkout-user-address mb-0">2752 avenue Royale, Quebec, G1R 2B2, Canada</p>
                 </div>
 
-                <a href="#" class="edit-user btn-secondary">EDIT PROFILE</a>
+                <RouterLink to="/profile" class="edit-user btn-secondary">EDIT PROFILE</RouterLink>
               </div>
             </div>
 
@@ -144,11 +146,11 @@ onMounted( async () => {
               <h3 class="d-none d-lg-block mb-0 text-center heading_24 mb-4">Order summary</h3>
                 <div class="minicart-item d-flex" v-for="(cart, index) in prod.cartItems" v-bind:key="index">
                   <div class="mini-img-wrapper">
-                    <img class="mini-img" :src="cart.product.images[0].img" alt="img">
+                    <img class="mini-img" :src="'http://127.0.0.1:8000'+cart.product.images[0].img" alt="img">
                   </div>
                   <div class="product-info">
-                    <h2 class="product-title"><a href="#">{{ cart.product.name }}</a></h2>
-                    <p class="product-vendor">&#x20A6;150 x 1</p>
+                    <h2 class="product-title"><a href="#">{{ cart.product.product.name }}</a></h2>
+                    <p class="product-vendor">&#x20A6;{{ cart.product.product.new_price }} x {{ cart.count }}</p>
                   </div>
                 </div>
 

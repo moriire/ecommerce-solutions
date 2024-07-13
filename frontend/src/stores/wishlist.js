@@ -20,25 +20,24 @@ export const useWishlistStore = defineStore('wishlist', () => {
 
   const getWishList = async () => {
     try {
-      const res = await axios.get(`wishlist/${auth.userInfo.pk}`)
-      wishes.value = res.data
+      const res = await axios.get(`wishlist?user=${auth.userInfo.pk}`)
+      wishes.value = res.data.data
     } catch(e){
       console.log(e.response)
     }
   }
 
   const addWishlist = async (product) => {
-    console.log(auth.userInfo)
     await getWishList()
-    alert([...wishes.value, product])
+    //alert([...wishes.value, product])
     try {
-      const res = await axios.patch(`wishlist/${auth.userInfo.pk}`,
+      const res = await axios.post(`wishlist`,
         {
-            //user: auth.userInfo.pk,
-            products: [...wishes.value, product]
+            user: auth.userInfo.pk,
+            product: product
         }
       )
-      wData = []
+      //wishes.value = res.data
       //wishes.value = res.data
       console.log(res.data)
       //getUserProducts()
@@ -51,6 +50,9 @@ export const useWishlistStore = defineStore('wishlist', () => {
     productData,
     addWishlist,
     registeredProducts,
-    getUserProducts
+    getUserProducts,
+    getWishList,
+    addWishlist,
+    wishes
   }
 })

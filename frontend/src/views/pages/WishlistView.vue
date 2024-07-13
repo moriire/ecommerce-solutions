@@ -1,4 +1,12 @@
 <script setup>
+import ProductPage from '@/components/ProductPage.vue';
+import { useWishlistStore } from '@/stores/wishlist';
+import { onMounted } from 'vue';
+const wishes = useWishlistStore()
+import WishListPage from "@/components/WishListPage.vue"
+onMounted( async () => { 
+    await wishes.getWishList()
+})
 </script>
 <template>
     <div class="wishlist-page mt-100">
@@ -38,7 +46,9 @@
                             </div>  
                         </div>
                         <hr>
-                        <div class="row">
+                    
+                        <WishListPage :products="wishes.wishes" />
+                        <!--div class="row">
                             <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
                                 <div class="product-card">
                                     <div class="product-card-img">
@@ -511,7 +521,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div-->
                     </div>
                 </div>            
             </div>
