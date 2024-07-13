@@ -1,12 +1,13 @@
 <script setup>
 import { useAuthStore } from '@/stores/auth';
 import { useProductStore } from '@/stores/products';
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import { RouterLink } from 'vue-router';
 const prod = useProductStore()
 const auth = useAuthStore()
+const current = ref(true)
 onMounted( async () => {
-  prod.getCart()
+  await prod.getCart()
 })
 </script>
 
@@ -43,8 +44,16 @@ onMounted( async () => {
                 <RouterLink to="/profile" class="edit-user btn-secondary">EDIT PROFILE</RouterLink>
               </div>
             </div>
-
-            <div class="shipping-address-area">
+            <div class="shipping-address-area billing-area">
+              <h2 class="shipping-address-heading pb-1">Billing address</h2>
+              <div class="form-checkbox d-flex align-items-center mt-4">
+                <input class="form-check-input mt-0" type="checkbox" v-model="current">
+                <label class="form-check-label ms-2">
+                  Same as shipping address ?
+                </label>
+              </div>
+            </div>
+            <div class="shipping-address-area" v-if="!current">
               <h2 class="shipping-address-heading pb-1">Shipping address</h2>
               <div class="shipping-address-form-wrapper">
                 <form action="#" class="shipping-address-form common-form">
@@ -73,12 +82,7 @@ onMounted( async () => {
                         <input type="text" />
                       </fieldset>
                     </div>
-                    <div class="col-lg-6 col-md-12 col-12">
-                      <fieldset>
-                        <label class="label">Company</label>
-                        <input type="text" />
-                      </fieldset>
-                    </div>
+                   
                     <div class="col-lg-6 col-md-12 col-12">
                       <fieldset>
                         <label class="label">Country</label>
@@ -101,39 +105,19 @@ onMounted( async () => {
                         </select>
                       </fieldset>
                     </div>
-                    <div class="col-lg-6 col-md-12 col-12">
-                      <fieldset>
-                        <label class="label">Zip code</label>
-                        <input type="text" />
-                      </fieldset>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-12">
+                    <div class="col-md-12 col-12">
                       <fieldset>
                         <label class="label">Address 1</label>
                         <input type="text" />
                       </fieldset>
                     </div>
-                    <div class="col-lg-6 col-md-12 col-12">
-                      <fieldset>
-                        <label class="label">Address 2</label>
-                        <input type="text" />
-                      </fieldset>
-                    </div>
+                   
                   </div>
 
                 </form>
               </div>
             </div>
 
-            <div class="shipping-address-area billing-area">
-              <h2 class="shipping-address-heading pb-1">Billing address</h2>
-              <div class="form-checkbox d-flex align-items-center mt-4">
-                <input class="form-check-input mt-0" type="checkbox">
-                <label class="form-check-label ms-2">
-                  Same as shipping address
-                </label>
-              </div>
-            </div>
             <div class="shipping-address-area billing-area">
               <div class="minicart-btn-area d-flex align-items-center justify-content-between flex-wrap">
                 <RouterLink to="/cart" class="checkout-page-btn minicart-btn btn-secondary">BACK TO CART</RouterLink>

@@ -5,13 +5,20 @@ from users.models import CustomUsers
 from rest_framework import serializers
 from django.template.defaultfilters import slugify # new
 #from utils import image_resize
+class LocationPricing(models.Model):
+    state = models.CharField(max_length=20)
+    price = models.FloatField(default=0.0)
 
+    def __str__(self):
+        return f"{self.state} {self.price}"
+    
 class Profile(models.Model):
     user = models.OneToOneField(CustomUsers, related_name="user_profile", on_delete=models.CASCADE, primary_key=True)
     img = models.ImageField(_("upload image"),  upload_to="store/banner", null=True, blank=True)
     store_name = models.CharField(max_length=100, unique=True)
     store_slug = models.SlugField(unique=True, editable=False)
     address = models.TextField(blank=True, null=True)
+    state = models.ForeignKey(LocationPricing, blank=True, null=True, on_delete=models.CASCADE, related_name="location_pricing")
     merchandise = models.TextField(blank=True, null=True)
     facebook = models.URLField()
     instagram = models.URLField()
