@@ -105,7 +105,7 @@ onMounted(async () => {
                                         <ul class="submenu list-unstyled">
                                             <template v-if="auth.accessToken">
                                                 <li class="menu-list-item nav-item-sub">
-                                                    <RouterLink class="nav-link-sub nav-text-sub" to="/auth/login">
+                                                    <RouterLink class="nav-link-sub nav-text-sub" to="/profile">
                                                         Profile
                                                     </RouterLink>
                                                 </li>

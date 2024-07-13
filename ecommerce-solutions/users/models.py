@@ -23,7 +23,7 @@ class CustomUsers(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = "username"
 
-    REQUIRED_FIELDS = ["email", "first_name", "last_name"]
+    REQUIRED_FIELDS = ["email", "first_name", "last_name", "phone"]
 
     def __str__(self):
         return self.username

@@ -99,7 +99,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ecs.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -138,7 +137,7 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.AllowAny",
     ],
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        #"rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
         #"rest_framework.authentication.TokenAuthentication",
         'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
     ],
@@ -153,7 +152,7 @@ AUTHENTICATION_BACKENDS = [
 REST_AUTH = {
     #'LOGIN_SERIALIZER':  'users.models.CustomLoginSerializer',
     'REGISTER_SERIALIZER': 'users.models.CustomRegisterSerializer',
-    #"USER_DETAILS_SERIALIZER":'users.models.CustomUserDetailsSerializer',
+    'USER_DETAILS_SERIALIZER': 'users.serializers.UserSerializer',
     "USE_JWT": True,
     'JWT_AUTH_RETURN_EXPIRATION': not False,
     'JWT_AUTH_COOKIE' :'mega-auth',

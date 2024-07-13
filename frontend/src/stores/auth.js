@@ -49,10 +49,31 @@ export const useAuthStore = defineStore('auth', () => {
     router.push("/")
   };
   
-  const userdetail = async (token) => {
-    const response = await fetchUserDetails(token);
-  };
-
+const user = ref({
+  "username": "",
+  "first_name": "",
+  "last_name": "",
+  "phone": "",
+  "profile": {
+      "img": null,
+      "store_name": "",
+      "address": null,
+      "merchandise": null,
+      "facebook": "",
+      "instagram": "",
+      "twitter": "",
+      "state": null,
+      "viewed_by": []
+  }});
+const getProfile = async () => {
+  try {
+    const res = await fetchUserDetails(accessToken.value);
+    console.log(res.data)
+    user.value = res.data
+  } catch (error) {
+    console.error('Failed to get user:', error);
+  }
+};
   return {
     accessToken,
     refreshToken,
@@ -61,6 +82,7 @@ export const useAuthStore = defineStore('auth', () => {
     refreshAccessToken,
     logoutAction,
     registerAction,
-    userdetail
+    getProfile,
+    user
   };
 });

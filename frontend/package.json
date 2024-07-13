@@ -15,6 +15,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.2",
     "@popperjs/core": "^2.11.8",
+    "alertifyjs": "^1.14.0",
     "aos": "^2.3.4",
     "axios": "^1.7.2",
     "bootstrap": "5.3.3",

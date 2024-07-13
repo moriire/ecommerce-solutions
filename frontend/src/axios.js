@@ -27,6 +27,12 @@ axiosInstance.interceptors.response.use(
       return axiosInstance(originalRequest);
     }
 
+    if (error.response.status === 403 && !originalRequest._retry) {
+      localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        window.location.href = '/auth/login';
+    }
+
     return Promise.reject(error);
   }
 );

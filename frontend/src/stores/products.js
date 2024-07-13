@@ -1,8 +1,9 @@
 import { ref, computed, reactive } from 'vue'
 import { defineStore } from 'pinia'
-import axios from "axios"
+import axiosInstance from "@/axios"
 import { useAuthStore } from './auth'
 import router from '@/router'
+import alertify from '@/services/alertify'
 
 export const useProductStore = defineStore('product', () => {
   const auth = useAuthStore();
@@ -56,7 +57,7 @@ const getCartTotalDiscount = () => {
 
 const getCart = async ()=>{
   try{
-    const res = await axios.get(`cart?user=${auth.userInfo.pk}`)
+    const res = await axiosInstance.get(`cart?user=${auth.userInfo.pk}`)
     cartItems.value = res.data.data
     console.log(cartItems.value)
     getCartSubtotal();
@@ -71,12 +72,13 @@ const addToCart = async (product_id) => {
     return router.push("/auth/login")
   } else {
     try{
-      const res = await axios.post('cart',
+      const res = await axiosInstance.post('cart',
         {
           user: auth.userInfo.pk,
           product: product_id
         }
       )
+      alertify.alert("yes")
       //console.log(res.data)
       getCart()
      // getCartSubtotal()
@@ -85,7 +87,7 @@ const addToCart = async (product_id) => {
       console.log(e)
     }
     //cartItems.value.push(item)
-    alert("Already in cart" + product_id)
+    alertify.notify("yes", 'success', 10)// ("Already in cart" + product_id)
   //getCartSubtotal()
   //getCartTotalDiscount()
   }
@@ -93,7 +95,7 @@ const addToCart = async (product_id) => {
 
 const deleteCart = async (item_id) => {
   try{
-    const res = await axios.delete(`cart/${item_id}`)
+    const res = await axiosInstance.delete(`cart/${item_id}`)
     //.value = res.data.data
     console.log(res)
     getCart()
@@ -105,7 +107,7 @@ const deleteCart = async (item_id) => {
 const incCart = async (item_id, val) => {
   getCart()
   try{
-    const res = await axios.patch(`cart/${item_id}`, 
+    const res = await axiosInstance.patch(`cart/${item_id}`, 
       {
         count: val
       }
@@ -121,7 +123,7 @@ const incCart = async (item_id, val) => {
 
 const decCart = async (item_id, val) => {
   try{
-    const res = await axios.patch(`cart/${item_id}`, 
+    const res = await axiosInstance.patch(`cart/${item_id}`, 
       {
         count: val
       }
@@ -136,7 +138,7 @@ const decCart = async (item_id, val) => {
 
 const getProducts = async () => {
   try {
-    const res = await axios.get(`product-with-images?limit=${pages.limit}&offset=${pages.offset}`)
+    const res = await axiosInstance.get(`product-with-images?limit=${pages.limit}&offset=${pages.offset}`)
     products.value = res.data.results
     pages.total = res.data.count;
     //pages.items = pages.total/pages.limit;
@@ -148,7 +150,7 @@ const getProducts = async () => {
 
 const singeProduct = async (product_id) => {
   try {
-    const res = await axios.get(`product-with-images/${product_id}`)
+    const res = await axiosInstance.get(`product-with-images/${product_id}`)
     product.value = res.data
     //pages.items = pages.total/pages.limit;
     console.log(res.data)

@@ -8,7 +8,7 @@ import "bootstrap/dist/js/bootstrap.min.js"
 import "@fortawesome/fontawesome-free/js/all.min.js"
 //import "/src/assets/js/vendor.js"
 //import "/src/assets/js/main.js"
-
+import "alertifyjs/build/css/alertify.min.css"
 
 // import function to register Swiper custom elements
 import AOS from 'aos';
