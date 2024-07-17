@@ -18,7 +18,6 @@ onMounted(async () => {
 </script>
 
 <template>
-    {{ prod.cartSubtotal }}
         <RouterView />
 </template>
 <style>

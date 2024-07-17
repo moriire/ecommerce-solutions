@@ -7,15 +7,19 @@ import { useAuthStore } from '../../stores/auth.js';
 
 const username = ref('');
 const password = ref('');
-
+const loading = ref(false);
+const disabled = loading.value? 'disabled': ''
 const authStore = useAuthStore();
 
 const onSubmit = async () => {
+  loading.value = true;
   try {
     await authStore.loginAction(username.value, password.value);
     // Redirect to a protected route
   } catch (error) {
     console.error('Failed to login:', error);
+  } finally {
+    loading.value = false
   }
 };
 </script>
@@ -33,8 +37,7 @@ const onSubmit = async () => {
       <div class="row g2-3 gy-md-3 overflow-hidden">
         <div class="col-12">
           <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-          <input type="email" class="form-control" v-model="username" id="email" placeholder="name@example.com"
-            required>
+          <input class="form-control" v-model="username" id="email" placeholder="name@example.com" required>
         </div>
         <div class="col-12">
           <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
@@ -48,9 +51,12 @@ const onSubmit = async () => {
             </label>
           </div>
         </div>
-        <div class="col-12">
-          <div class="d-grid">
-            <button class="btn bsb-btn-xl btn-primary" type="submit">Log in now</button>
+
+        <div class="col-12 input-group d-flex">
+          <button class="btn btn-primary d-block btn-block">Login Now</button>
+          <div class="input-group-text btn-primary" id="basic" v-show="loading" :disbled="disabled" >
+            <span class="spinner-border spinner-border-sm" aria-hidden="true">
+            </span>
           </div>
         </div>
       </div>

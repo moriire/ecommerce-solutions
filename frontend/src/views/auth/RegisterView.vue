@@ -1,9 +1,14 @@
 <script setup>
+import { ref } from 'vue';
 import ProductCard from '@/components/ProductCard.vue';
 import { useAuthStore } from '../../stores/auth.js';
 import { reactive } from 'vue';
 const userData = reactive({username:"", phone: "", email: "", password1: "", password2: "", vendor: false, store_name: ""})
 const authStore = useAuthStore();
+const loading = ref(false)
+const disabled = loading.value? 'disabled': ''
+
+
 const onSubmit = async () => {
   try {
     await authStore.registerAction(userData);
@@ -61,9 +66,11 @@ const onSubmit = async () => {
           <input class="form-control" v-model="userData.store_name" id="store" placeholder="Acsolot Store"
             required>
         </div>
-        <div class="col-12">
-          <div class="d-grid">
-            <button class="btn bsb-btn-xl btn-primary" type="submit">Sign Up</button>
+        <div class="col-12 input-group d-flex">
+          <button class="btn btn-primary d-block btn-block">Sign Up</button>
+          <div class="input-group-text btn-primary" id="basic" v-show="loading" :disbled="disabled" >
+            <span class="spinner-border spinner-border-sm" aria-hidden="true">
+            </span>
           </div>
         </div>
       </div>

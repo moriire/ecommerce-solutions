@@ -11,18 +11,33 @@ defineProps({
 const modules = [Autoplay, Pagination, Navigation]
 </script>
 <template>
-  <swiper :spaceBetween="10" :slidesPerView="3" :centeredSlides="true" :autoplay="{
-    delay: 2500,
+  <swiper :spaceBetween="10" :slidesPerView="3" :autoplay="{
+    delay: 3000,
     disableOnInteraction: false,
-  }" :pagination="{
+  }"
+  :breakpoints="{
+      '602': {
+        slidesPerView: 1,
+        spaceBetween: 20,
+      },
+      '768': {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      '1024': {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+    }" 
+  :pagination="{
     clickable: true,
   }" :navigation="true" :modules="modules" class="mySwiper">
 
-    <swiper-slide
-    v-for="(item, index) in items" v-bind:key="index" class="h-100 py-4 card d-block" style="height: 18rem !important;">
-      <div class="card-body bg-dark py-4 mx-3">
-            <h2>{{ item.name }}</h2>
-      </div>
+    <swiper-slide  :style="`background-image: url(${item.img}); background-position: center;background-repeat: no-repeat; background-size: cover; height: 18rem !important;`"
+    v-for="(item, index) in items" v-bind:key="index" class=" py-4 card d-block d-flex align-items-center">
+      
+            <h3 class="text-dark">{{ item.name }}</h3>
+     
     </swiper-slide>
 
   </swiper>
