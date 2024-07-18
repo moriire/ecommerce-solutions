@@ -49,7 +49,8 @@ class ProductWithImageView(ModelViewSet):
 
         elif (params and pp.get('promoted')):
             items = items.filter(product__package__name = pp.get('promoted'))[:18]
-
+        
+        
         else:
             items = items.filter(**pp)[:12]
         catser = self.get_serializer(items, many=True)

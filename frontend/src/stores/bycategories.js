@@ -4,11 +4,11 @@ import axios from "axios"
 
 export const useBycategoriesStore = defineStore('bycategories', () => {
   const count = ref(0)
-  const productsInCatgory = ref([])
+  const productsInCategory = ref([])
   const getProductsByCategory = async (category_slug) => {
     try {
-      const res = await axios.get(`products?category__slug=${category_slug}`)
-      productsInCatgory.value = res.data.data
+      const res = await axios.get(`normal-product-with-images?product__category__slug=${category_slug}`)
+      productsInCategory.value = res.data.data
       console.log(res.data.data)
     } catch (e) {
       console.log(e)
@@ -16,7 +16,7 @@ export const useBycategoriesStore = defineStore('bycategories', () => {
   }
   return {
     count,
-    productsInCatgory,
+    productsInCategory,
     getProductsByCategory
   }
 })

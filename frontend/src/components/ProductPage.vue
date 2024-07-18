@@ -24,10 +24,9 @@ const modalShow = async (p) => {
 </script>
 
 <template>
-  <div class="collection-product-container">
-    <div class="row">
-      <template v-for="(product, index) in products" v-bind:key="product.product.slug">
-        <div class="col-lg-3 col-md-4 col-6" data-aos="fade-up" :data-aos-duration="200 * (index + 1)">
+  <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-3 col-md-4 col-6" data-aos="fade-up"  :data-aos-duration="200 * (index + 1)" v-for="(product, index) in products" v-bind:key="product.product.slug" >
           <!--button @click="prod.addToCart(product)">Add({{ prod.cartItems.length }})</button-->
           <ProductCard :name="product.product.name" :price="product.product.new_price"
             :costPrice="product.product.price" :product_id="product.product.id" v-if="product.images.length"
@@ -37,7 +36,6 @@ const modalShow = async (p) => {
             @click="modalShow(product)" />
 
         </div>
-      </template>
 
       <div class="pagination justify-content-center mt-100" v-if="show">
         <nav aria-label="Page navigation example">
