@@ -32,11 +32,11 @@ class UserSerializer(UserDetailsSerializer):
     class Meta(UserDetailsSerializer.Meta):
         model = CustomUsers
         #fields = ("first_name", "phone", "profile")
-        fields = UserDetailsSerializer.Meta.fields + ('profile', "phone")
+        fields = UserDetailsSerializer.Meta.fields + ('profile', "phone")# + ("username",)
 
     def update(self, instance, validated_data):
         userprofile_serializer = self.fields['profile']
-        userprofile_instance = instance.userprofile
+        userprofile_instance = instance.user_profile
         userprofile_data = validated_data.pop('userprofile', {})
 
         # to access the 'company_name' field in here
@@ -44,6 +44,5 @@ class UserSerializer(UserDetailsSerializer):
 
         # update the userprofile fields
         userprofile_serializer.update(userprofile_instance, userprofile_data)
-
         instance = super().update(instance, validated_data)
         return instance

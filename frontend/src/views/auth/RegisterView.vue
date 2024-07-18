@@ -66,7 +66,7 @@ const onSubmit = async () => {
           <input class="form-control" v-model="userData.store_name" id="store" placeholder="Acsolot Store"
             required>
         </div>
-        <div class="col-12 input-group d-flex">
+        <div class="col-12 input-group d-grid">
           <button class="btn btn-primary d-block btn-block">Sign Up</button>
           <div class="input-group-text btn-primary" id="basic" v-show="loading" :disbled="disabled" >
             <span class="spinner-border spinner-border-sm" aria-hidden="true">

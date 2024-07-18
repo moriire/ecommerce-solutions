@@ -52,8 +52,8 @@ const onSubmit = async () => {
           </div>
         </div>
 
-        <div class="col-12 input-group d-flex">
-          <button class="btn btn-primary d-block btn-block">Login Now</button>
+        <div class="col-12 input-group d-flex justify-content-center">
+          <button class="btn btn-primary">Login Now</button>
           <div class="input-group-text btn-primary" id="basic" v-show="loading" :disbled="disabled" >
             <span class="spinner-border spinner-border-sm" aria-hidden="true">
             </span>

@@ -35,9 +35,9 @@ const modules = [Autoplay, Pagination, Navigation]
 
     <swiper-slide  :style="`background-image: url(${item.img}); background-position: center;background-repeat: no-repeat; background-size: cover; height: 18rem !important;`"
     v-for="(item, index) in items" v-bind:key="index" class=" py-4 card d-block d-flex align-items-center">
-      
-            <h3 class="text-dark">{{ item.name }}</h3>
-     
+    <RouterLink :to="{name: 'categories', params: {categories_slug: item.slug}}">
+            <h3 class="text-dark bg-light m-2 py-2 px-3 rounded">{{ item.name }}</h3>
+     </RouterLink>
     </swiper-slide>
 
   </swiper>

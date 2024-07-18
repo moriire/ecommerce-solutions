@@ -20,7 +20,7 @@ onMounted(async () => await prod.singeProduct(route.params.product))
         <div class="container">
             <div class="row">
                 <!-- product quickview start -->
-                <ProductSingle :images="prod.images" :product="prod.product" @addCart="prod.addToCart(prod.product)"
+                <ProductSingle :images="prod.product.images" :product="prod.product" @addCart="prod.addToCart(prod.product)"
                     @addWish="prod.addToCart(prod.product.id)" />
                 <!-- product quickview end -->
             </div>
