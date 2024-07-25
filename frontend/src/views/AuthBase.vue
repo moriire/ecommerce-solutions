@@ -1,9 +1,20 @@
-<script setup>
+<script>
 import { RouterView } from 'vue-router';
+import axios from 'axios';
 
-const x = 1
+export default {
+  methods: {
+    async socialLogin(provider) {
+      try {
+        const response = await axios.get(`/dj-rest-auth/${provider}/`);
+        window.location.href = response.data.authorization_url;
+      } catch (error) {
+        console.error('Error during social login:', error);
+      }
+    }
+  }
+};
 </script>
-
 <template>
     <section class=".p-3 .p-md-4 .p-xl-5 m-0 p-0 vh-100">
         <div class="container-fluid m-0 vh-100 ">

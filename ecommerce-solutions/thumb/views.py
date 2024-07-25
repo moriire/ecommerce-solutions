@@ -18,7 +18,7 @@ class ProductImageView(ModelViewSet):
     serializer_class = ProductImageSerializer
     queryset = ProductImage.objects.all()
     parser_classes = [MultiPartParser, FormParser]
-
+    
     def list(self, request):
         items = self.get_queryset()
         params = request.query_params
@@ -48,8 +48,7 @@ class ProductWithImageView(ModelViewSet):
             items = items.filter(product__discount__gte = int(pp.get('discount')))[:18]
 
         elif (params and pp.get('promoted')):
-            items = items.filter(product__package__name = pp.get('promoted'))[:18]
-        
+            items = items.filter(product__package__name ='Basic')[:18]
         
         else:
             items = items.filter(**pp)[:12]
@@ -70,13 +69,18 @@ class ProductWithImageView(ModelViewSet):
         #self.get_queryset = self.get_queryset.exclude(images=None)
         return super().list(request, *args, **kwargs)
 """
-
+#pagedproductwithimageview
 class PagedProductWithImageView(ModelViewSet):
     pagination_class = ProductPagination
     serializer_class = XProductWithImageSerializer
     queryset = ProductWithImage.objects.select_related().prefetch_related('images')
     #.exclude(images=None)
-   
+    @action(detail=True, methods=['GET'])
+    def get_vendor_products(self, request, pk=None):
+        items = self.get_queryset().filter(product__profile__user__vendor = True, product__profile__store_slug = pk) 
+        ser = self.serializer_class(items, many=True)
+        return Response({'data': ser.data})
+    
     def create(self, request):
         data = request.data
         catser = ProductWithImageSerializer(data = data)
@@ -84,7 +88,3 @@ class PagedProductWithImageView(ModelViewSet):
             catser.save()
             return Response({"data": catser.data}, status=status.HTTP_201_CREATED)
         return Response(catser.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-    def list(self, request, *args, **kwargs):
-        #self.get_queryset = self.get_queryset.exclude(images=None)
-        return super().list(request, *args, **kwargs)

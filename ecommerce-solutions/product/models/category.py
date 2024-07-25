@@ -18,9 +18,9 @@ class Category(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
-        if self.img.file:
+        if self.img:
             image_resize(self.img, 500, 600)
-        super().save(*args, **kwargs)
+        return super().save(*args, **kwargs)
 
         return super().save(*args, **kwargs)
     

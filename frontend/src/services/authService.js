@@ -12,7 +12,7 @@ export const register = async (data) => {
 export const login = async (username, password) => {
   const response = await axiosInstance.post(`auth/login/`, { username, password });
   console.log(response.data)
-  return response.data;
+  return response;
 };
 
 export const refreshToken = async (refreshToken) => {
@@ -21,6 +21,8 @@ export const refreshToken = async (refreshToken) => {
 };
 
 export const logout = async () => {
+  const response = await axiosInstance.post("auth/logout/")
+  return response
   // Add any logout logic if necessary, like invalidating tokens on the server
 };
 

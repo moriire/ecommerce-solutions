@@ -56,7 +56,7 @@ const modules = [Autoplay,  Navigation]//, EffectFade],
                     :costPrice="product.product.price" :product_id="product.product.id"
                     :image="product.images[0].img" :discount="product.product.discount"
                     :condition="product.product.condition" @addCart="prod.addToCart(product)"
-                    @addWish="wish.addWishlist(product.product.id)" @click="modalShow(product)" />
+                    @addWish="wish.addWishlist(product.id)" @click="modalShow(product)" />
                     </swiper-slide>
         </template>
         <!--div class="row bg-dark">

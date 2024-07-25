@@ -21,14 +21,10 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 #from rest_framework.schemas import get_schema_view
 from rest_framework.documentation import include_docs_urls
-
-
+from dj_rest_auth.registration.views import VerifyEmailView
+from dj_rest_auth.views import PasswordResetView, PasswordResetConfirmView
 from django.urls import path
-
-from fastadmin import get_django_admin_urls as get_admin_urls
-from fastadmin.settings import settings as fast_settings
-
-
+from users.views import FacebookLogin, GoogleLogin, TwitterLogin
 # Swagger documentation setup
 schema_view = get_schema_view(
     openapi.Info(
@@ -70,8 +66,12 @@ urlpatterns = [
         path('api/auth/', include('dj_rest_auth.urls')),
         path('auth/email-success', views.email_verified, name="email-success"),
         path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
+        path("password-reset-confirm/<uidb64>/<token>/", PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
         re_path(r'^api/', include(route.urls)),
         path("", views.index, name="home"),
+        path('api/auth/facebook/connect/', FacebookLogin.as_view(), name='fb_connect'),
+        path('api/auth/twitter/connect/', TwitterLogin.as_view(), name='twitter_connect'),
+        path('api/auth/google/connect/', GoogleLogin.as_view(), name='github_connect'),
         #path("<str:page>", views.index, name="home_one"),
         #path("<str:page>/<str:path>", views.index, name="home_two"),
         #path("<str:page>/<str:path>/<str:others>", views.index, name="home_three"),

@@ -1,10 +1,11 @@
 <script setup>
 import ProductCard from '@/components/ProductCard.vue';
 import { RouterLink } from 'vue-router';
-
+import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 import { useAuthStore } from '../../stores/auth.js';
-
+import alertify from 'alertifyjs';
+const router = useRouter();
 const username = ref('');
 const password = ref('');
 const loading = ref(false);
@@ -14,12 +15,19 @@ const authStore = useAuthStore();
 const onSubmit = async () => {
   loading.value = true;
   try {
-    await authStore.loginAction(username.value, password.value);
-    // Redirect to a protected route
+    const res = await authStore.loginAction(username.value, password.value);
+    //console.log(res)
+    if (res.status == 200){
+      alertify.error("success")
+      router.push("/shop")
+    }
   } catch (error) {
-    console.error('Failed to login:', error);
+    if (error.code==="ERR_BAD_REQUEST"){
+      alertify.error("Incorrect Username or Password")
+    }
+    //console.error('Failed to login:', error);
   } finally {
-    loading.value = false
+    setTimeout(()=>loading.value = false, 2000)
   }
 };
 </script>
@@ -67,7 +75,7 @@ const onSubmit = async () => {
         <div class="d-flex justify-content-between">
           <RouterLink to="/auth/register" class="link-secondary text-decoration-none">Don't
             have account yet? Signup</RouterLink>
-          <a href="#!" class="link-secondary text-decoration-none">Forgot password</a>
+          <RouterLink :to="{name: 'reset-password'}" class="link-secondary text-decoration-none">Forgot password</RouterLink>
         </div>
       </div>
     </div>

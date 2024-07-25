@@ -15,14 +15,12 @@ onMounted(async () => {
 const prodcrud = useProductcrudStore()
 </script>
 <template>
-  <div class="checkout-page mt-100">
-    <div class="container">
-      <div class="checkout-page-wrapper">
+    <div class="container mt-100">
         <div class="row">
           <div class="col-xl-6 col-lg-6 col-md-12 col-12">
             <RouterView />
           </div>
-          <div class="col-xl-5 col-lg-6 col-md-12 col-12">
+          <div class="col-xl-6 col-lg-6 col-md-12 col-12">
             <table class="table table-striped table-hovered .table-bordered">
               <thead>
                 <tr>
@@ -31,7 +29,7 @@ const prodcrud = useProductcrudStore()
                   <th>Quantity</th>
                   <th>Price</th>
                   <th>Status</th>
-
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -43,13 +41,15 @@ const prodcrud = useProductcrudStore()
                   <td>
                     <RouterLink :to="{name:'upload', params:{product: item.id}}">Upload</RouterLink>
                   </td>
-                  <td>#</td>
+                  <td>
+                    <button class="btn btn-outline-danger" @click="prodcrud.deleteProduct(item.product.id)"><i class="fa fa-trash"></i></button>
+                    <RouterLink to="/"><i class="fa fa-edit"></i></RouterLink>
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-      </div>
     </div>
-  </div>
+  
 </template>

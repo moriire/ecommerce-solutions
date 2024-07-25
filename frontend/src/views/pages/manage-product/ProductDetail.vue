@@ -1,8 +1,7 @@
 <script setup>
-import QuickView from '@/components/QuickView.vue';
 import { useProductStore } from '@/stores/products';
 import { useWishlistStore } from "@/stores/wishlist";
-import { onMounted, ref, watch, watchEffect } from 'vue';
+import { onMounted, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import ProductSingle from '@/components/ProductSingle.vue';
 import DiscountedSlide from '@/components/home/DiscountedSlide.vue';
@@ -20,7 +19,7 @@ onMounted(async () => await prod.singeProduct(route.params.product))
         <div class="container">
             <div class="row">
                 <!-- product quickview start -->
-                <ProductSingle :images="prod.product.images" :product="prod.product" @addCart="prod.addToCart(prod.product)"
+                <ProductSingle :images="prod.product.images" :product="prod.product.product" @addCart="prod.addToCart(prod.product)"
                     @addWish="prod.addToCart(prod.product.id)" />
                 <!-- product quickview end -->
             </div>

@@ -29,7 +29,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   const loginAction = async (username, password) => {
     const response = await login(username, password);
-    setTokens(response.access, response.refreshToken, response.user);
+    setTokens(response.data.access, response.data.refreshToken, response.data.user);
     router.push("/shop")
   };
 
@@ -45,7 +45,8 @@ export const useAuthStore = defineStore('auth', () => {
   const logoutAction = () => {
     clearTokens();
     userInfo.value = null;
-    logout();
+    const res = logout();
+    console.log(res)
     router.push("/")
   };
   

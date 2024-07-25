@@ -118,6 +118,10 @@ onMounted(async () => {
                                                     <a class="nav-link-sub nav-text-sub" @click="auth.logoutAction"
                                                         type="button">Logout</a>
                                                 </li>
+                                                <li class="menu-list-item nav-item-sub">
+                                                    <RouterLink class="nav-link-sub nav-text-sub"
+                                                        to="/product/add">Add New Products</RouterLink>
+                                                </li>
                                             </template>
                                             <template v-if="!auth.accessToken">
                                                 <li class="menu-list-item nav-item-sub">

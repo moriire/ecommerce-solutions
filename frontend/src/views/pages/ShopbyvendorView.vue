@@ -1,15 +1,25 @@
 <script setup>
-import { onMounted, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import ProductPage from "@/components/ProductPage.vue"
 import { useProductStore } from '@/stores/products';
 import { useFilterStore } from '@/stores/filter';
+import axiosInstance from '@/axios';
 const prod = useProductStore()
 const filter = useFilterStore()
 const route = useRoute()
-
+const vendorProducts = ref([]);
+const getVendor = async (vendor_slug) => {
+    try{
+        const res  = await axiosInstance.get(`product-with-images/${vendor_slug}/get_vendor_products`)
+        vendorProducts.value = res.data.data
+    }catch(e){
+        console.log(e)
+    }
+    
+};
 onMounted(async () =>
-    await filter.doPagination()
+    await getVendor(route.params.vendor_slug)
 );
 //watch(route, ()=> prod.getProducts())
 </script>
@@ -65,8 +75,8 @@ onMounted(async () =>
                     </div>
                     <div class="collection-product-container">
                         <div class="row">
-
-                            <ProductPage :products="filter.filtered" />
+                         
+                            <ProductPage :products="vendorProducts" />
 
                         </div>
                     </div>
@@ -74,7 +84,7 @@ onMounted(async () =>
                         <nav>
                             <ul class="pagination pagination-md">
                                 <li class="page-item">
-                                    <a class="link" @click="filter.doPagination()">
+                                    <a class="link" @click="filter">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round" class="icon icon-left">

@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import ProductCard from '@/components/ProductCard.vue';
 import { useAuthStore } from '../../stores/auth.js';
 import { reactive } from 'vue';
+import alertify from 'alertifyjs';
 const userData = reactive({username:"", phone: "", email: "", password1: "", password2: "", vendor: false, store_name: ""})
 const authStore = useAuthStore();
 const loading = ref(false)
@@ -11,8 +12,11 @@ const disabled = loading.value? 'disabled': ''
 
 const onSubmit = async () => {
   try {
-    await authStore.registerAction(userData);
-    // Redirect to a protected route
+    const res = await authStore.registerAction(userData);
+    console.log(res)
+    if (res.status===200){
+      alertify.success("Login Successful... Welcome!!")
+    }
   } catch (error) {
     console.error('Failed to login:', error);
   }

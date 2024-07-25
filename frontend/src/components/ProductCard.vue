@@ -60,7 +60,7 @@ defineProps({
           <div class="product-badge">
             <span class="badge-label badge-percentage rounded">{{ discount > 0 ? `-${discount}%` : condition }}</span>
           </div>
-          <img class="primary-img" :src="image" alt="product-img">
+          <img class="primary-img" :src="image.startsWith('/media')? 'http://127.0.0.1:8000'+ image:image" alt="product-img">
           <!--img class="primary-img" src="/src/assets/img/products/bags/1.jpg" alt="product-img"-->
         </RouterLink>
 

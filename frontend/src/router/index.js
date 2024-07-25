@@ -44,13 +44,13 @@ const router = createRouter({
               path: 'add',
               name: 'add',
               component: () => import('../views/pages/manage-product/AddProduct.vue'),
-              meta: { requiresAuth: true }
+              //meta: { requiresAuth: true }
             },
             {
               path: 'upload/:product',
               name: 'upload',
               component: () => import('../views/pages/manage-product/UploadImageView.vue'),
-              meta: { requiresAuth: true }
+              //meta: { requiresAuth: true }
             },
           ]
         },
@@ -104,6 +104,14 @@ const router = createRouter({
           path: 'register',
           name: 'register',
           component: () => import('../views/auth/RegisterView.vue')
+        },
+        { path: '/reset-password', 
+          name: "reset-password",
+          component: () => import("../views/auth/PasswordResetRequest.vue") 
+        },
+        { path: '/reset-password-confirm', 
+          name: "reset-password-confirm",
+          component: () => "../views/auth/PasswordRestConfirm" 
         },
         {
           path: '/verify-email',

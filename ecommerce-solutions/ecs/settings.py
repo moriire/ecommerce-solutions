@@ -35,22 +35,22 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    "fastadmin",
+    #"fastadmin",
     'django.contrib.staticfiles',
     'django.contrib.messages',
     "corsheaders",
     #"storages",
     "rest_framework",
-    #'knox',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
     'allauth',
     'allauth.account',
+    'dj_rest_auth.registration',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.twitter',
     'dj_rest_auth',
-    'dj_rest_auth.registration',
     "users",
     "profile",
     "product",
@@ -149,6 +149,11 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
+from datetime import timedelta
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+}
 REST_AUTH = {
     #'LOGIN_SERIALIZER':  'users.models.CustomLoginSerializer',
     'REGISTER_SERIALIZER': 'users.models.CustomRegisterSerializer',
@@ -160,9 +165,6 @@ REST_AUTH = {
     'JWT_AUTH_REFRESH_COOKIE': 'mega-refresh-token'
 }
 
-REST_AUTH_REGISTER_SERIALIZERS = {                            
-    'REGISTER_SERIALIZER': 'users.models.RegisterSerializer',
-}
 #ACCOUNT_ADAPTER = 'users.forms.NewAllauthAdapter'
 AUTH_USER_MODEL = "users.CustomUsers"
 SITE_ID = 4
@@ -176,17 +178,10 @@ SOCIALACCOUNT_QUERY_EMAIL = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ]
-    },
     'facebook': {
-        'SCOPE': [
-            'public_profile',
-            'email',
-        ],
+        'METHOD': 'oauth2',
+        'SCOPE': ['email'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
         'FIELDS': [
             'id',
             'email',
@@ -198,11 +193,25 @@ SOCIALACCOUNT_PROVIDERS = {
             'timezone',
             'link',
             'gender',
-            'updated_time',
+            'updated_time'
         ],
-        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-        'INIT_PARAMS': {'cookie': True},
-    }
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': lambda request: 'en_US',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v7.0',
+    },
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+    },
+    'twitter': {
+        # Twitter does not require additional configuration
+    },
 }
 #ACCOUNT_SIGNUP_FORM_CLASS='users.forms.SocialPasswordedSignupForm'
 SOCIALACCOUNT_FORMS = {
