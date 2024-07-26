@@ -39,7 +39,9 @@ const prodcrud = useProductcrudStore()
                   <td>{{ item.product.price }}</td>
                   <td>{{ item.product.quantity }}</td>
                   <td>
-                    <RouterLink :to="{name:'upload', params:{product: item.id}}">Upload</RouterLink>
+                    <RouterLink :to="{name:'upload', params:{product: item.id}}" :class="item.status==='approved'? 'text-success' : 'text-danger'">
+                      {{ item.status }}
+                    </RouterLink>
                   </td>
                   <td>
                     <button class="btn btn-outline-danger" @click="prodcrud.deleteProduct(item.product.id)"><i class="fa fa-trash"></i></button>
