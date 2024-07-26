@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Parallax, Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 defineProps({
   boostedProducts: {
     type: Array,
@@ -18,48 +18,41 @@ const onAutoplayTimeLeft = (s, time, progress) => {
   progressCircle.value.style.setProperty('--progress', 1 - progress);
   progressContent.value.textContent = `${Math.ceil(time / 1000)}s`;
 };
-const modules = [Parallax, Autoplay, Pagination, Navigation]
+const modules = [Autoplay, Pagination, Navigation]
 </script>
 <template>
   <swiper v-if="boostedProducts" :spaceBetween="30" :centeredSlides="true" :autoplay="{
-    delay: 3000,
+    delay: 5000,
     disableOnInteraction: false,
-  }" 
-  :speed="600"
-  :parallax="true"
-  :pagination="{
+  }" :pagination="{
     clickable: true,
-  }" 
-  :navigation="true" 
-  :modules="modules" @autoplayTimeLeft="onAutoplayTimeLeft" 
-  class="mySwiper">
-  <div
-      slot="container-start"
-      class="parallax-bg"
-      :style="{
-        'background-image':
-          'url(https://swiperjs.com/demos/images/nature-1.jpg)',
-      }"
-      data-swiper-parallax="-23%"
-    ></div>
+  }" :navigation="true" :modules="modules" @autoplayTimeLeft="onAutoplayTimeLeft" class="mySwiper">
     <swiper-slide v-for="(prod, index) in boostedProducts" v-bind:key="index">
-       <div class="title" data-swiper-parallax="-300">Slide 3</div>
-      <div class="subtitle" data-swiper-parallax="-200">Subtitle</div>
-      <div class="text" data-swiper-parallax="-100">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-          dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
-          laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
-          Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
-          Aliquam hendrerit lorem at elit facilisis rutrum. Ut at ullamcorper
-          velit. Nulla ligula nisi, imperdiet ut lacinia nec, tincidunt ut
-          libero. Aenean feugiat non eros quis feugiat.
-        </p>
-      </div>
-     
-  </swiper-slide>
+      <div class="row  align-items-center">
+        <div class="col-lg-7 text-dark text-align-center">
+          <h1 class="text-start ">{{ prod.product.name }}</h1>
+          <h2 class="text-start text-warning">{{ prod.product.category.name }}</h2>
+          <p class="">
+            {{ prod.product.description || 'no description' }}
+          </p>
+          <div class="row column py-3">
+            <div class=" col d-grid gap-2">
+              <button class="btn btn-primary">Add To Cart</button>
+            </div>
+            <div class="col d-grid gap-2">
+              <button class="btn btn-warning">Buy Now</button>
+            </div>
+          </div>
 
-  <template #container-end>
+        </div>
+        <div :style="`background: #ffff url(${prod.images[0].img}) no-repeat center; min-height:100%;`"
+          class="min-height-100 col-5 mb-3 order-first order-lg-1" style="height:40vh">
+        </div>
+
+      </div>
+    </swiper-slide>
+
+    <template #container-end>
       <div class="autoplay-progress">
         <svg viewBox="0 0 48 48" ref="progressCircle">
           <circle cx="24" cy="24" r="20"></circle>
@@ -69,17 +62,10 @@ const modules = [Parallax, Autoplay, Pagination, Navigation]
     </template>
   </swiper>
 </template>
-<style>
-html,
-body {
-  position: relative;
-  height: 100%;
-}
-
-.swiper {
+<style scoped>
+.swiper{
   width: 100%;
-  height: 100%;
-  background: #000;
+  height: 72vh;
 }
 
 .swiper-slide {
@@ -118,32 +104,5 @@ body {
   stroke-dashoffset: calc(125.6px * (1 - var(--progress)));
   stroke-dasharray: 125.6;
   transform: rotate(-90deg);
-}
-
-.parallax-bg {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 130%;
-  height: 100%;
-  -webkit-background-size: cover;
-  background-size: cover;
-  background-position: center;
-}
-
-
-.swiper-slide .title {
-  font-size: 41px;
-  font-weight: 300;
-}
-
-.swiper-slide .subtitle {
-  font-size: 21px;
-}
-
-.swiper-slide .text {
-  font-size: 14px;
-  max-width: 400px;
-  line-height: 1.3;
 }
 </style>
