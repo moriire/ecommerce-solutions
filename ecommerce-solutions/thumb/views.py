@@ -9,7 +9,7 @@ from rest_framework.pagination import PageNumberPagination, LimitOffsetPaginatio
 from rest_framework.generics import ListAPIView
 
 class ProductPagination(LimitOffsetPagination):
-    default_limit = 4
+    default_limit = 8
     limit_query_param = 'limit'
     offset_query_param = 'offset'
     max_limit = None
@@ -18,7 +18,8 @@ class ProductImageView(ModelViewSet):
     serializer_class = ProductImageSerializer
     queryset = ProductImage.objects.all()
     parser_classes = [MultiPartParser, FormParser]
-    
+
+   
     def list(self, request):
         items = self.get_queryset()
         params = request.query_params
@@ -36,7 +37,8 @@ class ProductWithImageView(ModelViewSet):
     queryset = ProductWithImage.objects.all().order_by("-pk").select_related().prefetch_related("images")
     serializer_class = XProductWithImageSerializer
 
-    def list(self, request):
+    @action(detail=False, methods=["GET"])
+    def approved(self, request):
         items = self.get_queryset()
         params = request.query_params
         pp = params.dict()
@@ -58,18 +60,7 @@ class ProductWithImageView(ModelViewSet):
                     "data": catser.data,
                     }
                 )
-
-"""
-class ProductWithImageView(ModelViewSet):
-    serializer_class = XProductWithImageSerializer
-    queryset = ProductWithImage.objects.select_related().prefetch_related('images')
-    http_method_names = ("GET",)
     
-    def list(self, request, *args, **kwargs):
-        #self.get_queryset = self.get_queryset.exclude(images=None)
-        return super().list(request, *args, **kwargs)
-"""
-#pagedproductwithimageview
 class PagedProductWithImageView(ModelViewSet):
     pagination_class = ProductPagination
     serializer_class = XProductWithImageSerializer
@@ -77,6 +68,12 @@ class PagedProductWithImageView(ModelViewSet):
     #.exclude(images=None)
     @action(detail=True, methods=['GET'])
     def get_vendor_products(self, request, pk=None):
+        items = self.get_queryset().filter(product__profile__user__vendor = True, product__profile__store_slug = pk) 
+        ser = self.serializer_class(items, many=True)
+        return Response({'data': ser.data})
+    
+    @action(detail=True, methods=['GET'])
+    def get_vendor_productss(self, request, pk=None):
         items = self.get_queryset().filter(product__profile__user__vendor = True, product__profile__store_slug = pk) 
         ser = self.serializer_class(items, many=True)
         return Response({'data': ser.data})

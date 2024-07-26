@@ -30,8 +30,14 @@ class ProductImage(models.Model):
         super(ProductImage, self).delete(*args, **kwargs)
 
 class ProductWithImage(models.Model):
+    class Status(models.TextChoices):
+        approved = "APPROVED"
+        rejected = "REJECTED"
+        pending = "PENDING"
+
     product = models.OneToOneField(Products, related_name="product_product", on_delete=models.CASCADE)
     images = models.ManyToManyField(ProductImage, related_name="product_images", blank=True)
+    status = models.CharField(max_length=8, choices=Status.choices)
                                 
 class ProductImageSerializer(serializers.ModelSerializer):
     class Meta:
