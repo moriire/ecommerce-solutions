@@ -1,0 +1,9 @@
+workers = 4
+threads = 4
+log_level = "debug"
+max_requests = 2000
+timeout = 30
+bind = "0.0.0.0:8001"
+preload_app = True
+accesslog = "./logs/access.log"
+errorlog = "./logs/error.log"

@@ -1,5 +1,5 @@
    # develop stage
-   FROM node:18.12.1-alpine as develop-stage
+   FROM node:18.12.1-alpine AS develop-stage
    
    RUN apk --no-cache add nodejs yarn --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
 
@@ -16,7 +16,7 @@
    RUN yarn run build
 
 
-   FROM nginx:alpine as production-build
+   FROM nginx:alpine AS production-build
    COPY ./nginx.conf /etc/nginx/nginx.conf
 
    ## Remove default nginx index page

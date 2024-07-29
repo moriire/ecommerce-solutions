@@ -79,7 +79,7 @@ const onSubmit = async () => {
         </div>
       </div>
     </div>
-    <div class="row">
+    <!--div class="row">
       <div class="col-12">
         <p class="mt-4 mb-3">Or sign in with</p>
         <div class="d-flex gap-3 flex-column flex-xl-row">
@@ -109,6 +109,6 @@ const onSubmit = async () => {
           </a>
         </div>
       </div>
-    </div>
+    </div-->
   </div>
 </template>

@@ -6,11 +6,10 @@ services:
     volumes:
       - 'static_volume:/home/backend/staticfiles'
       - 'media_volume:/home/backend/mediafiles'
-      - './:/backend'
-      - './logs:/home/backend/logs'
+      - './ecommerce-solutions:/backend'
+      - './ecommerce-solutions/logs:/home/backend/logs'
     ports:
       - 8000:8000
-    restart: on-failure
     networks:
       - ecs_network
     env_file:
@@ -23,7 +22,7 @@ services:
     container_name: ecs_frontend
     build: ./frontend
     volumes:
-      - ./src:/app/src
+      - '.:/app'
     ports:
       - 80:80
     networks:
@@ -31,11 +30,8 @@ services:
     depends_on:
       - db
       - web
-    environment:
-      - NODE_ENV=production
 
   db:
-    container_name: ecs_database
     image: postgres:16.0-alpine
     restart: always
     healthcheck:
@@ -54,18 +50,22 @@ services:
 
   redis:
     image: "redis:alpine"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 1s
+      timeout: 3s
+      retries: 30
     networks:
       - ecs_network
 
   nginx:
-    image: nginx:latest
+    build: ./nginx
     volumes:
-      - ./frontend/dist:/usr/share/nginx/html
       - 'static_volume:/home/backend/staticfiles'
       - 'media_volume:/home/backend/mediafiles'
     ports:
-      - 8001:8000
-      - 5137:80
+      - 8000:80
     networks:
       - ecs_network
     depends_on:

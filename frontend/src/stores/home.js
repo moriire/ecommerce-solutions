@@ -29,8 +29,8 @@ export const useHomeStore = defineStore('home', () => {
 
     const getPromoted = async () => {
         try {
-            const res = await axiosInstance.get(`normal-product-with-images?promoted=Electronics`)
-            promotions.value = res.data.data
+            const res = await axiosInstance.get(`normal-product-with-images`)
+            promotions.value = res.data
             console.log(res.data)
         } catch (e) {
             console.log(e)

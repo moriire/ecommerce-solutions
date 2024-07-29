@@ -1,10 +1,9 @@
 <script setup>
-import { onMounted, ref, watch } from 'vue';
+import { onMounted } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 import { useCategoryStore } from '@/stores/categories';
 import HomeSkeleton from "@/components/home/HomeSkeleton.vue"
 import HeroSlide from "@/components/home/HeroSlide.vue"
-//import Testimonial from "@/components/home/Testimonial.vue"
 import ProductPage from "@/components/ProductPage.vue"
 import { useProductStore } from '@/stores/products';
 import CategoriesSlide from "@/components/home/CategoriesSlide.vue"

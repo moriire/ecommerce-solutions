@@ -11,7 +11,7 @@ class Products(models.Model):
         ("new", "New"),
         ("used", "Used")
     )
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="user_product")
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="user_profile")
     package = models.ForeignKey(Packages, on_delete=models.CASCADE, related_name="user_packages")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="product_category")
     name = models.CharField(max_length=100)

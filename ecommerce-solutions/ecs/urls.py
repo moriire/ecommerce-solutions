@@ -83,9 +83,8 @@ urlpatterns = [
         path('docs/', include_docs_urls(title='Megadey Api Endpoints')),
         re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
         #path(f"{fast_settings.ADMIN_PREFIX}/", get_admin_urls())
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
+]
 #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-if bool(settings.DEBUG):
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if settings.DEBUG:
+    # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

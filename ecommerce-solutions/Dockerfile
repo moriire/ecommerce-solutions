@@ -22,6 +22,7 @@ RUN apt-get update \
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV PYTHONFAULTHANDLER 1
 RUN apt update -y
 RUN pip install --upgrade pip
 COPY ./requirements.txt .

@@ -18,7 +18,7 @@ class Profile(models.Model):
     store_name = models.CharField(max_length=100, unique=True)
     store_slug = models.SlugField(unique=True, editable=False)
     address = models.TextField(blank=True, null=True)
-    state = models.ForeignKey(LocationPricing, blank=True, null=True, on_delete=models.CASCADE, related_name="location_pricing")
+    location = models.ForeignKey(LocationPricing, blank=True, null=True, on_delete=models.CASCADE, related_name="location_pricing")
     merchandise = models.TextField(blank=True, null=True)
     facebook = models.URLField()
     instagram = models.URLField()

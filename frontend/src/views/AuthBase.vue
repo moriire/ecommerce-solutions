@@ -31,7 +31,7 @@ export default {
                                 class="link-secondary text-decoration-none">Register now</a></p>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 bsb-tpl-bg-lotion">
+                <div class="col-12 col-md-6 ">
                     <RouterView />    
                 </div>
             </div>
