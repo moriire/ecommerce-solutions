@@ -1,5 +1,5 @@
 # develop stage
-FROM node:18.12.1-alpine AS develop-stage
+FROM node:lts-alpine AS build-stage
 
 RUN apk --no-cache add nodejs yarn --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
 
@@ -13,18 +13,16 @@ RUN yarn install
 COPY . .
 
 # Build the project
-RUN yarn run build
+RUN yarn build
 
+FROM nginx:alpine AS production-stage
 
-FROM nginx:alpine AS production-build
-COPY ./nginx/default.conf /etc/nginx/nginx.conf
-
-## Remove default nginx index page
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copy from the stahg 1
-COPY --from=develop-stage /app/dist /usr/share/nginx/html
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
-
+# Start Nginx to serve the application
 CMD ["nginx", "-g", "daemon off;"]
