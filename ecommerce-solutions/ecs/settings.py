@@ -136,6 +136,10 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
 
+if not DEBUG:
+    REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = (
+            "rest_framework.renderers.JSONRenderer",
+        )
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     "allauth.account.auth_backends.AuthenticationBackend",
@@ -225,12 +229,12 @@ USE_I18N = True
 USE_TZ = True
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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'
-EMAIL_PORT = 587
-DEFAULT_FROM_EMAIL = "mail@megadey.org"
+EMAIL_USE_TLS = bool(int(os.environ.get("EMAIL_USE_TLS")))
+EMAIL_HOST = os.environ.get("EMAIL_HOST", "localhost")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = int(os.environ.get("EMAIL_PORT"))
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL")
 
 #ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = 'email-success'  # if you are not logged in
 
@@ -249,43 +253,35 @@ MEDIA_ROOT = BASE_DIR / "mediafiles"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ORIGIN_ALLOW_ALL = True
-
+CSRF_COOKIE_SECURE = True
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
     "http://127.0.0.1:3000"
     ]
 
-"""
+CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOWED_ORIGINS = [
-    "https://www.megadey.org",
-    "http://localhost:5173"
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "http://localhost:3000"
+    "http://127.0.0.1:3000"
 ]
-"""
 
-AWS_ACCESS_KEY_ID = "AKIA6PO6FQSVJMLA7F6E"
-AWS_SECRET_ACCESS_KEY = "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"
-AWS_STORAGE_BUCKET_NAME = "megadey"
-AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY ")
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+AWS_S3_SIGNATURE_VERSION = os.environ.get("AWS_S3_SIGNATURE_VERSION")
 #AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 # s3 static settings
-#AWS_LOCATION = 'static'
-AWS_S3_REGION_NAME = "us-east-1"
-#STATIC_LOCATION = 'static'
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
-AWS_S3_VERIFY = True
-
-#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_LOCATION = os.environ.get("AWS_LOCATION")
+AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME")
+STATIC_LOCATION = os.environ.get("STATIC_LOCATION")
+AWS_S3_FILE_OVERWRITE = bool(int(os.environ.get("AWS_S3_FILE_OVERWRITE")))
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 #STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-#CSRF_TRUSTED_ORIGINS = ["megadey.org", "*"]
-
-CSRF_COOKIE_SECURE = not True
-
 #############################ADMIN CONFIGURATION #################################
-
 # Celery settings
 CELERY_BROKER_URL = 'redis://redis:6379/0'
 CELERY_RESULT_BACKEND = 'redis://redis:6379/0'

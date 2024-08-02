@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
 from rest_framework.response import Response
@@ -8,8 +8,8 @@ from .serializers import UsersSerializer, UserSerializer
 from rest_framework import filters
 
 def index(request, **kw):
-    return render(request, "users/index.html", {})
-
+    return HttpResponseRedirect("/api/")
+    
 def privacy_policy(request):
     return render(request, "account/verification_success.html", {})
 
