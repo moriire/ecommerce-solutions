@@ -1,4 +1,5 @@
 workers = 4
+worker_class = "uvicorn.workers.UvicornWorker"
 threads = 4
 log_level = "debug"
 max_requests = 2000
