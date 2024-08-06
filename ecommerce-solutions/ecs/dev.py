@@ -69,8 +69,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+    #'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -128,6 +129,55 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REST_FRAMEWORK = {
+    #'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination', 
+    #'PAGE_SIZE': 2, 
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        #"rest_framework.authentication.TokenAuthentication",
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
+}
+
+if not DEBUG:
+    REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = (
+            "rest_framework.renderers.JSONRenderer",
+        )
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+
+from datetime import timedelta
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+}
+REST_AUTH = {
+    #'LOGIN_SERIALIZER':  'users.models.CustomLoginSerializer',
+    'REGISTER_SERIALIZER': 'users.models.CustomRegisterSerializer',
+    'USER_DETAILS_SERIALIZER': 'users.serializers.UserSerializer',
+    "USE_JWT": True,
+    'JWT_AUTH_RETURN_EXPIRATION': not False,
+    'JWT_AUTH_COOKIE' :'mega-auth',
+    'JWT_AUTH_HTTPONLY':False,
+    'JWT_AUTH_REFRESH_COOKIE': 'mega-refresh-token'
+}
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:5173"
+    ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 AUTH_USER_MODEL = "users.CustomUsers"
 SITE_ID = 1

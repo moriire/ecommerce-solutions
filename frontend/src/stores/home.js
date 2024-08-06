@@ -10,7 +10,7 @@ export const useHomeStore = defineStore('home', () => {
     const getLatest = async () => {
         try {
             const res = await axiosInstance.get(`normal-product-with-images?count=8`)
-            latests.value = res.data.data
+            latests.value = res.data
             console.log(res.data)
         } catch (e) {
             console.log(e)
@@ -30,8 +30,8 @@ export const useHomeStore = defineStore('home', () => {
     const getPromoted = async () => {
         try {
             const res = await axiosInstance.get(`normal-product-with-images`)
+            console.log(res.data.length)
             promotions.value = res.data
-            console.log(res.data)
         } catch (e) {
             console.log(e)
         }

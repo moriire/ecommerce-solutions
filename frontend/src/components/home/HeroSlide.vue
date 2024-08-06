@@ -30,22 +30,22 @@ const modules = [Autoplay, Pagination, Navigation]
     <swiper-slide v-for="(prod, index) in boostedProducts" v-bind:key="index">
       <div class="row  align-items-center">
         <div class="col-lg-7 text-dark text-align-center">
-          <h1 class="text-start ">{{ prod.product.name }}</h1>
-          <h2 class="text-start text-warning">{{ prod.product.category.name }}</h2>
+          <h1 class="text-start ">{{ prod.product.name }} <span class="text-start text-warning h5">{{ prod.product.category.name }}</span> </h1>
+          <!--h2 class="text-start text-warning"> {{ prod.product.category.name }} </h2-->
           <p class="">
             {{ prod.product.description || 'no description' }}
           </p>
           <div class="row column py-3">
             <div class=" col d-grid gap-2">
-              <button class="btn btn-primary">Add To Cart</button>
+              <button class="btn btn-primary">Contact Seller</button>
             </div>
             <div class="col d-grid gap-2">
-              <button class="btn btn-warning">Buy Now</button>
+              <button class="btn btn-warning">Chat Now</button>
             </div>
           </div>
 
         </div>
-        <div :style="`background: #ffff url(${prod.images[0].img}) no-repeat center; min-height:100%;`"
+        <div :style="`background-image: url(${prod.images[0].img}); background-repeat: no-repeat; background-position:center; min-height:100%;`"
           class="min-height-100 col-5 mb-3 order-first order-lg-1" style="height:40vh">
         </div>
 
