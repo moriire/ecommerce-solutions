@@ -28,7 +28,8 @@ defineProps({
 <template>
     <!-- minicart item -->
     <div class="minicart-item d-flex" v-if="item">
-        <div class="mini-img-wrapper">
+        {{ item }}
+        <!--div class="mini-img-wrapper">
             <img class="mini-img" :src="'http://127.0.0.1:8000'+item.product.images[0].img" alt="img">
         </div>
         <div class="product-info">{{  item.count }}
@@ -45,6 +46,6 @@ defineProps({
                     <a href="#" class="product-remove" @click="removedCart" type="button">Remove</a>
                 </div>
             </div>
-        </div>
+        </div-->
     </div>
 </template>

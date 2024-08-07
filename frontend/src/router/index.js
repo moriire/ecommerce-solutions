@@ -28,7 +28,8 @@ const router = createRouter({
         {
           path: 'wishlist',
           name: 'wishlist',
-          component: () => import('../views/pages/WishlistView.vue')
+          component: () => import('../views/pages/WishlistView.vue'),
+          meta: { requiresAuth: true }
         },
         {
           path: ':categories_slug',
@@ -69,7 +70,7 @@ const router = createRouter({
           path: '/cart',
           name: 'cart',
           component: () => import('../views/pages/CartView.vue'),
-          meta: { requiresAuth: true }
+          //meta: { requiresAuth: true }
         },
         {
           path: '/checkout',
@@ -81,7 +82,7 @@ const router = createRouter({
           path: 'shop',
           name: 'shop',
           component: () => import('../views/pages/ShopView.vue'),
-          meta: { requiresAuth: true }
+          // meta: { requiresAuth: true }
         },
         {
           path: '/about',

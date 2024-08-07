@@ -4,82 +4,45 @@ import { RouterLink } from 'vue-router';
 import AtcButton from "./buttons/AtcButton.vue"
 import AtwButton from './buttons/AtwButton.vue';
 
-const emit = defineEmits(["addCart", "addWish"])
-
-function addedCart(param) {
-  emit("addCart", param)
-  window.console.log("hello")
-}
-
-function addedWish(param) {
-  emit("addWish", param)
-  window.console.log("hello")
-}
-
 defineProps({
-  product_id: {
-    type: Number,
-    required: true
-  },
-  name: {
-    type: String,
-    required: true
-  },
-  category: {
-    type: String,
-    //required: true,
-    default: "Something"
-  },
-  costPrice: {
-    type: Number,
-    required: true
-  },
-  price: {
-    type: Number,
+  product: {
+    type: Object,
     required: true
   },
   image: {
     type: String,
     required: true
   },
-  discount: {
-    type: Number,
-    required: true
-  },
-  condition: {
-    type: String,
-    required: true
-  },
-
 })
 </script>
 <template>
+   {{  product  }}
   <div class="product-card">
+   
       <div class="product-card-img">
-        <RouterLink class="hover-switch" :to="{name: 'product-detail', params:{product: product_id}}">
+        <RouterLink class="hover-switch" :to="{name: 'product-detail', params:{product: product.id}}">
           <div class="product-badge">
-            <span class="badge-label badge-percentage rounded">{{ discount > 0 ? `-${discount}%` : condition }}</span>
+            <span class="badge-label badge-percentage rounded">{{ product.discount > 0 ? `-${product.discount}%` : product.condition }}</span>
           </div>
           <img class="primary-img" :src="image.startsWith('/media')? 'http://127.0.0.1:8000'+ image:image" alt="product-img">
-          <!--img class="primary-img" src="/src/assets/img/products/bags/1.jpg" alt="product-img"-->
-        </RouterLink>
+          </RouterLink>
 
         <div class="product-card-action product-card-action-2">
           <a href="#quickview-modal" class="quickview-btn btn-primary" data-bs-toggle="modal">QUICKVIEW</a>
           
-              <AtcButton :product_id="product_id" />
-          <!--button  class="addtocart-btn btn-primary" type="button" @click="addedCart" >ADD TO CART</button-->
+              <AtcButton :product="product" />
         </div>
-        <AtwButton :product_id="product_id" />
+        <AtwButton :product="product.id" />
       </div>
       <div class="product-card-details text-center">
-        <h3 class="product-card-title"><a href="collection-left-sidebar.html">{{ name }}</a>
+        <h3 class="product-card-title"><a href="collection-left-sidebar.html">{{ product.name }}</a>
         </h3>
-        <div class="product-card-price">
-          <span class="card-price-regular">&#x20A6;{{ price }}</span>
-          <span class="card-price-compare text-decoration-line-through" v-if="discount>0">&#x20A6;{{ costPrice }}</span>
+        <div class="product-card-product.price">
+          <span class="card-product.price-regular">&#x20A6;{{ product.price }}</span>
+          <span class="card-product.price-compare text-decoration-line-through" v-if="product.discount>0">&#x20A6;{{ product.new_price }}</span>
         </div>
       </div>
+
     </div>
 </template>
 

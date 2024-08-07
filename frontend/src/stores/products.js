@@ -37,7 +37,7 @@ const count = ref(0)
 const products = ref([])
 const product = ref({})
 const paginatedProducts = ref([])
-const cartItems = ref([])
+const cartItems = ref(JSON.parse(localStorage.getItem("userCart")) || []); //ref([])
 const cartSubtotal = ref(0)
 const cartTotalDiscount = ref(0)
 
@@ -56,16 +56,30 @@ const getCartTotalDiscount = () => {
 }
 
 const getCart = async ()=>{
-  try{
-    const res = await axiosInstance.get(`cart?user=${auth.userInfo.pk}`)
-    cartItems.value = res.data.data
-    console.log(cartItems.value)
     getCartSubtotal();
     getCartTotalDiscount()
-  } catch(e){
-    console.log(e)
-  }
 }
+
+
+const productStore = ref(JSON.parse(localStorage.getItem("userCart")) || [])
+
+const addToCartLocal = async (product_obj) => {
+    productStore.value.push(product_obj)
+    const cartArray = JSON.stringify(productStore.value)
+    localStorage.setItem("userCart", cartArray)
+    console.log(productStore.value)
+    
+      getCart()
+     // getCartSubtotal()
+      //getCartTotalDiscount()
+  
+    //cartItems.value.push(item)
+    //alertify.notify("yes", 'success', 10)// ("Already in cart" + product_id)
+  //getCartSubtotal()
+  //getCartTotalDiscount()
+  
+}
+
 
 const addToCart = async (product_id) => {
   if (!auth.accessToken){
@@ -180,5 +194,6 @@ return {
   getCart,
   incCart,
   decCart,
+  addToCartLocal,
 }
 })

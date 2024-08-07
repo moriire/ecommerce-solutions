@@ -4,30 +4,6 @@ from profile.models import ProfileSerializer, ProfileExpandSerializer
 from packages.models import PackageSerializer
 from .category import CategorySerializer
 
-class ProductExpandSerializer(serializers.ModelSerializer):
-    package = PackageSerializer()
-    category = CategorySerializer()
-    profile = ProfileExpandSerializer()
-    class Meta:
-        model = Products
-        fields = (
-            "id", #user id
-            "package", # subscribed package e.g Jumbo superstor, dandy
-            "category",# Product category
-             "profile", #user
-            "name",# Product name
-            "new_price",
-            "discounted_price",
-            "slug",
-            "quantity",
-            "description", #detailed product description less than 200
-            "price", #product price
-            "discount",
-            "brand",
-            "condition",
-            "new_price",
-            )
-
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Products
@@ -48,3 +24,9 @@ class ProductSerializer(serializers.ModelSerializer):
             "condition",
             "new_price",
             )
+
+
+class ProductExpandSerializer(ProductSerializer):
+    package = PackageSerializer()
+    category = CategorySerializer()
+    profile = ProfileExpandSerializer()

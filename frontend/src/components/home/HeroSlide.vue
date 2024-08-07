@@ -28,14 +28,18 @@ const modules = [Autoplay, Pagination, Navigation]
     clickable: true,
   }" :navigation="true" :modules="modules" @autoplayTimeLeft="onAutoplayTimeLeft" class="mySwiper">
     <swiper-slide v-for="(prod, index) in boostedProducts" v-bind:key="index">
-      <div class="row  align-items-center">
-        <div class="col-lg-7 text-dark text-align-center">
-          <h1 class="text-start ">{{ prod.product.name }} <span class="text-start text-warning h5">{{ prod.product.category.name }}</span> </h1>
-          <!--h2 class="text-start text-warning"> {{ prod.product.category.name }} </h2-->
+      <div class="row  align-items-center justify-content-between vh-100 w-100">
+        <div class="col-lg-6 text-dark">
+          <h1 class="text-start ">{{ prod.product.name }} <sup class="text-light bg-dark p-2 rounded-circle" style="vertical-align: super;font-size: 0.4em;">New</sup><span class="text-start text-warning h5">{{ prod.product.category.name }}</span> </h1>
+          <h1 class="text-start text-warning"> 	&#8358; {{ prod.product.new_price }} 
+            
+              <span style="text-decoration-line: line-through;" class="fs-5 text-dark"> &#8358; {{ prod.product.price }}</span> 
+            
+          </h1>
           <p class="">
             {{ prod.product.description || 'no description' }}
           </p>
-          <div class="row column py-3">
+          <div class="row  py-3">
             <div class=" col d-grid gap-2">
               <button class="btn btn-primary">Contact Seller</button>
             </div>
@@ -43,12 +47,12 @@ const modules = [Autoplay, Pagination, Navigation]
               <button class="btn btn-warning">Chat Now</button>
             </div>
           </div>
-
+          
         </div>
-        <div :style="`background-image: url(${prod.images[0].img}); background-repeat: no-repeat; background-position:center; min-height:100%;`"
-          class="min-height-100 col-5 mb-3 order-first order-lg-1" style="height:40vh">
+        
+        <div :style="`background-image: url(${prod.images[0].img}); background-repeat: no-repeat; background-position:center; min-height:100%`+';'"
+          class="h-100 col-5 mb-3 order-first order-lg-1 rounded-circle" style="height:60vh">
         </div>
-
       </div>
     </swiper-slide>
 
