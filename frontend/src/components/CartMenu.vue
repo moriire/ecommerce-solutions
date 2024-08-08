@@ -25,8 +25,8 @@ const prod = useProductStore()
                       <template v-for="(cart, index) in cartItems" v-bind:key="index">
                          <CartItem 
                          :item = "cart"
-                          @removeCart="prod.deleteCart(cart.id)" 
-                          
+                          @removeCart="prod.deleteCartLocal(cart)" 
+                          @AddToCount = "prod.incCartLocal(cart.id, prod.cartItemsCount[cart.id]+1)"
                         />
                       </template>
                     </div>

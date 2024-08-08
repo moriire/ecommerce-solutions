@@ -38,38 +38,35 @@ const products = ref([])
 const product = ref({})
 const paginatedProducts = ref([])
 const cartItems = ref(JSON.parse(localStorage.getItem("userCart")) || []); //ref([])
+const cartItemsCount = reactive(JSON.parse(localStorage.getItem("userCartCounter")) || {})
 //const cartSubtotal = ref(0)
 //const cartTotalDiscount = ref(0)
 
 const cartSubtotal = computed(() => {
   console.log(cartItems.value)
-  let numbers = cartItems.value.map(x => x.product.price * 2);
+  let numbers = cartItems.value.map(x => x.product.price * cartItemsCount[x.id]);
   return numbers.reduce((sum, num) => sum + num, 0);
-  //cartSubtotal.value = total
-  //console.log(total)
 })
 
 const cartTotalDiscount = computed(()=>{
-  let numbers = cartItems.value.map(x => x.product.discounted_price * 2);
+  let numbers = cartItems.value.map(x => x.product.discounted_price * cartItemsCount[x.id]);
   return numbers.reduce((sum, num) => sum + num, 0)
-  //cartTotalDiscount.value = total
-  //console.log(total)
 })
 
 const getCart = ()=>{
   console.log("hello")
-  
 }
 
-
-const productStore = ref(JSON.parse(localStorage.getItem("userCart")) || [])
-
 const addToCartLocal =  (product_obj) => {
-  console.log(product_obj)
+  console.log(product_obj.id);
+  console.log(cartItems.value.map(x=>x.id))
+    if (product_obj.id in cartItems.value.map(x=>x.id).entries()){
+      window.alert("Already in cart");
+    }/*
     cartItems.value.push(product_obj)
     const cartArray = JSON.stringify(cartItems.value)
     localStorage.setItem("userCart", cartArray);
-    console.log(cartArray);
+    console.log(cartArray);*/
     getCart()
      // getCartSubtotal()
       //getCartTotalDiscount()
@@ -108,6 +105,13 @@ const addToCart = async (product_id) => {
   }
 }
 
+const deleteCartLocal = async (item) => {
+  cartItems.value.pop(item);
+  const cartArray = JSON.stringify(cartItems.value);
+  localStorage.setItem("userCart", cartArray);
+  getCart()
+}
+
 const deleteCart = async (item_id) => {
   try{
     const res = await axiosInstance.delete(`cart/${item_id}`)
@@ -117,6 +121,16 @@ const deleteCart = async (item_id) => {
   } catch(e){
     console.log(e)
   }
+}
+
+const incCartLocal = async (item_id, val) => {
+  getCart();
+  let toBeIncreased = cartItems.value.filter(x => x.id == item_id);
+  console.log(toBeIncreased);
+  cartItemsCount[toBeIncreased.id] = val;
+  localStorage.setItem("userCartCounter", cartItemsCount);
+  console.log(cartItemsCount)
+  getCart()
 }
 
 const incCart = async (item_id, val) => {
@@ -190,10 +204,12 @@ return {
   //getCartTotalDiscount,
   addToCart,
   deleteCart,
+  deleteCartLocal,
   getProducts,
   singeProduct,
   getCart,
   incCart,
+  incCartLocal,
   decCart,
   addToCartLocal,
 }
