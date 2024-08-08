@@ -21,6 +21,10 @@ defineProps({
     item: {
         type: Object,
         required: true
+    },
+    itemCount: {
+        type: Object,
+        required: true,
     }
 })
 </script>
@@ -37,8 +41,8 @@ defineProps({
             <div class="misc d-flex align-items-end justify-content-between">
                 <div class="quantity d-flex align-items-center justify-content-between">
                     <button class="qty-btn dec-qty" @click="subFromCount" ><img src="/src/assets/img/icon/minus.svg" alt="minus"></button>
-                    <input class="qty-input" type="number" value="1" min="1" max="12">
-                    <button class="qty-btn inc-qty"  @click="AddToCount" ><img src="/src/assets/img/icon/plus.svg" alt="plus"></button>
+                    <input class="qty-input" type="number" v-model="item.count"  min="1" max="12">
+                    <button class="qty-btn inc-qty"  @click="()=>item.count+=1" ><img src="/src/assets/img/icon/plus.svg" alt="plus"></button>
                 </div>
                 <div class="product-remove-area d-flex flex-column align-items-end">
                     <div class="product-price">&#x20A6;{{ item.product.price }}</div>

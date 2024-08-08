@@ -44,12 +44,12 @@ const cartItemsCount = reactive(JSON.parse(localStorage.getItem("userCartCounter
 
 const cartSubtotal = computed(() => {
   console.log(cartItems.value)
-  let numbers = cartItems.value.map(x => x.product.price * cartItemsCount[x.id]);
+  let numbers = cartItems.value.map(x => x.product.price * x.count);
   return numbers.reduce((sum, num) => sum + num, 0);
 })
 
 const cartTotalDiscount = computed(()=>{
-  let numbers = cartItems.value.map(x => x.product.discounted_price * cartItemsCount[x.id]);
+  let numbers = cartItems.value.map(x => x.product.discounted_price * x.count);
   return numbers.reduce((sum, num) => sum + num, 0)
 })
 
@@ -58,24 +58,17 @@ const getCart = ()=>{
 }
 
 const addToCartLocal =  (product_obj) => {
-  console.log(product_obj.id);
-  console.log(cartItems.value.map(x=>x.id))
-    if (product_obj.id in cartItems.value.map(x=>x.id).entries()){
-      window.alert("Already in cart");
-    }/*
+    if (cartItems.value.map(x => x.id).includes(product_obj.id)){
+      alert("Already in cart");
+      return
+    } else {
+    product_obj["count"] = 1
     cartItems.value.push(product_obj)
     const cartArray = JSON.stringify(cartItems.value)
     localStorage.setItem("userCart", cartArray);
-    console.log(cartArray);*/
     getCart()
-     // getCartSubtotal()
-      //getCartTotalDiscount()
-  
-    //cartItems.value.push(item)
-    //alertify.notify("yes", 'success', 10)// ("Already in cart" + product_id)
-  //getCartSubtotal()
-  //getCartTotalDiscount()
-  
+    return 
+    }
 }
 
 
@@ -123,13 +116,12 @@ const deleteCart = async (item_id) => {
   }
 }
 
-const incCartLocal = async (item_id, val) => {
+const incCartLocal = async () => {
   getCart();
-  let toBeIncreased = cartItems.value.filter(x => x.id == item_id);
-  console.log(toBeIncreased);
-  cartItemsCount[toBeIncreased.id] = val;
-  localStorage.setItem("userCartCounter", cartItemsCount);
+  //product_obj.count = val;
   console.log(cartItemsCount)
+  const cartArray = JSON.stringify(cartItems.value)
+    localStorage.setItem("userCart", cartArray);
   getCart()
 }
 

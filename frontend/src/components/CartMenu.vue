@@ -26,7 +26,6 @@ const prod = useProductStore()
                          <CartItem 
                          :item = "cart"
                           @removeCart="prod.deleteCartLocal(cart)" 
-                          @AddToCount = "prod.incCartLocal(cart.id, prod.cartItemsCount[cart.id]+1)"
                         />
                       </template>
                     </div>

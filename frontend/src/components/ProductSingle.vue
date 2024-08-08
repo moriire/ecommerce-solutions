@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+const count = ref(1)
 const emit = defineEmits(["addCart", "addWish"])
 
 function addedCart(param) {
@@ -19,6 +20,10 @@ defineProps({
     images: {
         type: Array,
         required: true
+    },
+    count: {
+        type: Number,
+        default: 1,
     }
 })
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -121,11 +126,11 @@ const modules = [FreeMode, Navigation, Thumbs]
 
                 <div class="misc d-flex align-items-end justify-content-between mt-4">
                     <div class="quantity d-flex align-items-center justify-content-between">
-                        <button class="qty-btn dec-qty">
+                        <button class="qty-btn dec-qty" @click="count-=1">
                             <img src="/src/assets/img/icon/minus.svg" alt="minus">
                         </button>
-                        <input class="qty-input" type="number" name="qty" value="1" min="0">
-                        <button class="qty-btn inc-qty">
+                        <input class="qty-input" type="number" name="qty" v-model="count" min="0">
+                        <button class="qty-btn inc-qty" @click="count+=1">
                             <img src="/src/assets/img/icon/plus.svg" alt="plus">
                         </button>
                     </div>
