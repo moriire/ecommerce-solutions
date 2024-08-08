@@ -28,10 +28,9 @@ const wish = useWishlistStore()
       <template v-for="(product, index) in products" v-bind:key="product.product.product.slug" >
         <div class="col-lg-3 col-md-4 col-6" data-aos="fade-up" :data-aos-duration="200 * (index + 1)">
           
-          <ProductCard :name="product.product.product.name" :price="product.product.product.new_price"
+          <ProductCard :product="product.product" :price="product.product.product.new_price"
             :costPrice="product.product.product.price" :product_id="product.product.id" v-if="product.product.images.length"
             :image="'http://127.0.0.1:8000'+product.product.images[0].img" :discount="product.product.product.discount" :condition="product.product.condition"
-            @addCart="prod.addToCart(product.product.id)" @addWish="wish.addWishlist(product.product.product.id)"
             @click="modalShow(product)" />
         </div>
       </template>

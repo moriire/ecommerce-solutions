@@ -1,7 +1,7 @@
 workers = 4
 #worker_class = "uvicorn.workers.UvicornWorker"
 threads = 4
-log_level = "debug"
+log_level = "info"
 max_requests = 2000
 timeout = 30
 bind = "0.0.0.0:8000"

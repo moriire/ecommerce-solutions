@@ -15,7 +15,7 @@ const prod = useProductStore()
      <!-- drawer cart start -->
      <div class="offcanvas offcanvas-end" tabindex="-1" id="drawer-cart">
             <div class="offcanvas-header border-btm-black">
-                <h5 class="cart-drawer-heading text_16">Your Cart ({{ cartItems }})</h5>
+                <h5 class="cart-drawer-heading text_16">Your Cart ({{ cartItems.length }})</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>
             </div>
@@ -26,8 +26,7 @@ const prod = useProductStore()
                          <CartItem 
                          :item = "cart"
                           @removeCart="prod.deleteCart(cart.id)" 
-                          @subCount="prod.decCart(cart.id, cart.count-1)"
-                          @addCount="prod.incCart(cart.id, cart.count+1)"
+                          
                         />
                       </template>
                     </div>

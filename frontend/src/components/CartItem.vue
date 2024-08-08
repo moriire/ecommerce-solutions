@@ -28,13 +28,12 @@ defineProps({
 <template>
     <!-- minicart item -->
     <div class="minicart-item d-flex" v-if="item">
-        {{ item }}
-        <!--div class="mini-img-wrapper">
-            <img class="mini-img" :src="'http://127.0.0.1:8000'+item.product.images[0].img" alt="img">
+        <div class="mini-img-wrapper">
+            <img class="mini-img" :src="item.images[0].img.startsWith('/media') ? 'http://127.0.0.1:8000' + item.images[0].img: item.images[0].img" alt="img" >
         </div>
-        <div class="product-info">{{  item.count }}
+        <div class="product-info">
             <h2 class="product-title"><a href="#">{{ item.product.name }}</a></h2>
-            <p class="product-vendor">{{ item.product.product.profile.user.store_name || item.product.product.profile.user.username  }}</p>
+            <p class="product-vendor">{{ item.product.profile.user.store_name || item.product.profile.user.username  }}</p>
             <div class="misc d-flex align-items-end justify-content-between">
                 <div class="quantity d-flex align-items-center justify-content-between">
                     <button class="qty-btn dec-qty" @click="subFromCount" ><img src="/src/assets/img/icon/minus.svg" alt="minus"></button>
@@ -42,10 +41,10 @@ defineProps({
                     <button class="qty-btn inc-qty"  @click="AddToCount" ><img src="/src/assets/img/icon/plus.svg" alt="plus"></button>
                 </div>
                 <div class="product-remove-area d-flex flex-column align-items-end">
-                    <div class="product-price">&#x20A6;{{ item.product.product.price }}</div>
+                    <div class="product-price">&#x20A6;{{ item.product.price }}</div>
                     <a href="#" class="product-remove" @click="removedCart" type="button">Remove</a>
                 </div>
             </div>
-        </div-->
+        </div>
     </div>
 </template>

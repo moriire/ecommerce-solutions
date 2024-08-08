@@ -38,38 +38,39 @@ const products = ref([])
 const product = ref({})
 const paginatedProducts = ref([])
 const cartItems = ref(JSON.parse(localStorage.getItem("userCart")) || []); //ref([])
-const cartSubtotal = ref(0)
-const cartTotalDiscount = ref(0)
+//const cartSubtotal = ref(0)
+//const cartTotalDiscount = ref(0)
 
-const getCartSubtotal = () => {
-  let numbers = cartItems.value.map(x => x.product.product.price*x.count)
-  const total = numbers.reduce((sum, num) => sum + num, 0);
-  cartSubtotal.value = total
+const cartSubtotal = computed(() => {
+  console.log(cartItems.value)
+  let numbers = cartItems.value.map(x => x.product.price * 2);
+  return numbers.reduce((sum, num) => sum + num, 0);
+  //cartSubtotal.value = total
   //console.log(total)
-}
+})
 
-const getCartTotalDiscount = () => {
-  let numbers = cartItems.value.map(x => x.product.product.discounted_price*x.count)
-  const total = numbers.reduce((sum, num) => sum + num, 0);
-  cartTotalDiscount.value = total
+const cartTotalDiscount = computed(()=>{
+  let numbers = cartItems.value.map(x => x.product.discounted_price * 2);
+  return numbers.reduce((sum, num) => sum + num, 0)
+  //cartTotalDiscount.value = total
   //console.log(total)
-}
+})
 
-const getCart = async ()=>{
-    getCartSubtotal();
-    getCartTotalDiscount()
+const getCart = ()=>{
+  console.log("hello")
+  
 }
 
 
 const productStore = ref(JSON.parse(localStorage.getItem("userCart")) || [])
 
-const addToCartLocal = async (product_obj) => {
-    productStore.value.push(product_obj)
-    const cartArray = JSON.stringify(productStore.value)
-    localStorage.setItem("userCart", cartArray)
-    console.log(productStore.value)
-    
-      getCart()
+const addToCartLocal =  (product_obj) => {
+  console.log(product_obj)
+    cartItems.value.push(product_obj)
+    const cartArray = JSON.stringify(cartItems.value)
+    localStorage.setItem("userCart", cartArray);
+    console.log(cartArray);
+    getCart()
      // getCartSubtotal()
       //getCartTotalDiscount()
   
@@ -185,8 +186,8 @@ return {
   pages,
   nextPage,
   prevPage,
-  getCartSubtotal,
-  getCartTotalDiscount,
+  //getCartSubtotal,
+  //getCartTotalDiscount,
   addToCart,
   deleteCart,
   getProducts,
