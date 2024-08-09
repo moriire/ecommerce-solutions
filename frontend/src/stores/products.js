@@ -141,7 +141,6 @@ const incCart = async (item_id, val) => {
   }
 }
 
-
 const decCart = async (item_id, val) => {
   try{
     const res = await axiosInstance.patch(`cart/${item_id}`, 

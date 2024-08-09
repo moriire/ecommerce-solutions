@@ -35,7 +35,7 @@ const modules = [FreeMode, Navigation, Thumbs]
 <template>
     <!-- product quickview start -->
     <div class="modal fade" tabindex="-1" id="quickview-modal" v-if="item">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-dialog modal-dialog-centered modal-xl">{{ item }}
             <div class="modal-content">
                 <div class="modal-header border-0">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

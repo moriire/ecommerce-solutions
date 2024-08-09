@@ -148,8 +148,7 @@ const modules = [FreeMode, Navigation, Thumbs]
                 </div>
 
                 <div class="product-form-buttons d-flex align-items-center justify-content-between mt-3">
-                    <AtcButton :product_id="product.id" class="me-2 .position-relative btn-atc btn-add-to-cart loader" />
-
+                    <AtcButton :product_obj="product" class="me-2 .position-relative btn-atc btn-add-to-cart loader" />
                     <button type="submit" class="me-2 .position-relative btn-atc btn-buyit-now">BUY IT
                         NOW</button>
                     <a href="#" class="product-wishlist"  @click="addedWish">

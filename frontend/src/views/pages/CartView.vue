@@ -6,8 +6,6 @@ import { RouterLink } from 'vue-router';
 const prod = useProductStore()
 onMounted(async () => {
   await prod.getCart(),
-  //await prod.getCartSubtotal(),
-  //await prod.getCartTotalDiscount()
   await prod.getProducts()
 })
 </script>
@@ -51,23 +49,23 @@ onMounted(async () => {
                 <tr class="cart-item" v-for="(cart, index) in prod.cartItems" v-bind:key="index">
                   <td class="cart-item-media">
                     <div class="mini-img-wrapper">
-                      <img class="mini-img" :src="'http://127.0.0.1:8000'+cart.product.images[0].img" alt="img">
+                      <img class="mini-img" :src="cart.images[0].img.startsWith('/media') ? 'http://127.0.0.1:8000' + cart.images[0].img: cart.images[0].img" alt="img">
                     </div>
                   </td>
                   <td class="cart-item-details">
-                    <h2 class="product-title"><RouterLink :to="{name: 'product-detail', params: { product: cart.product.product.id} }">{{ cart.product.product.name }}</RouterLink></h2>
-                    <p class="product-vendor">{{ cart.product.product.profile.user.store_name || cart.product.product.profile.user.last_name  }}</p>
+                    <h2 class="product-title"><RouterLink :to="{name: 'product-detail', params: { product: cart.product.id} }">{{ cart.product.name }}</RouterLink></h2>
+                    <p class="product-vendor">{{ cart.product.profile.user.store_name || cart.product.profile.user.last_name  }}</p>
                   </td>
                   <td class="cart-item-quantity">
                     <div class="quantity d-flex align-items-center justify-content-between">
-                      <button class="qty-btn dec-qty" @click="prod.decCart(cart.id, cart.count + 1)" ><img src="/src/assets/img/icon/minus.svg" alt="minus"></button>
-                      <input class="qty-input" type="number" v-model="cart.count"  min="1" >
-                      <button class="qty-btn inc-qty" @click="prod.incCart(cart.id, cart.count + 1)" ><img src="/src/assets/img/icon/plus.svg" alt="plus"></button>
+                      <button class="qty-btn dec-qty" @click="()=>cart.count -= 1" ><img src="/src/assets/img/icon/minus.svg" alt="minus"></button>
+                      <input class="qty-input" type="number" v-model="cart.count"  :min="1" :max="12" >
+                      <button class="qty-btn inc-qty" @click="()=>cart.count += 1" ><img src="/src/assets/img/icon/plus.svg" alt="plus"></button>
                     </div>
-                    <a href="#" class="product-remove mt-2" @click="prod.deleteCart(cart.id)">Remove</a>
+                    <a href="#" class="product-remove mt-2" @click="prod.deleteCartLocal(cart)">Remove</a>
                   </td>
                   <td class="cart-item-price text-end">
-                    <div class="product-price">&#x20A6;{{ cart.product.product.price }}</div>
+                    <div class="product-price">&#x20A6;{{ cart.product.price }}</div>
                   </td>
                 </tr>
 
