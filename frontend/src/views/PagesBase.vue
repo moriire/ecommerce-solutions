@@ -42,7 +42,7 @@ onMounted(async () => {
                     <div class="col-lg-2 col-md-4 col-4">
                         <div class="header-logo">
                             <RouterLink to="/" class="logo-main">
-                                <h2>TagBiz </h2>
+                                <h2>Doo<span class="text-warning">Doo</span></h2>
                                 <!--img src="/src/assets/img/logo.png" loading="lazy" alt="tagbiz"-->
                             </RouterLink>
                         </div>
