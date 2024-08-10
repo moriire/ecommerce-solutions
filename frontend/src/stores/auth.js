@@ -1,13 +1,14 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { login, refreshToken, logout, register, fetchUserDetails } from '../services/authService';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 
 export const useAuthStore = defineStore('auth', () => {
   const accessToken = ref(localStorage.getItem('accessToken') || null);
   const refreshToken = ref(localStorage.getItem('refreshToken') || null);
   const userInfo = ref(JSON.parse(localStorage.getItem('user')) || null);
   const router = useRouter();
+  const route = useRoute();
 
   const setTokens = (access, refresh, user) => {
     accessToken.value = access;
@@ -30,7 +31,12 @@ export const useAuthStore = defineStore('auth', () => {
   const loginAction = async (username, password) => {
     const response = await login(username, password);
     setTokens(response.data.access, response.data.refreshToken, response.data.user);
-    router.push("/shop")
+    let nextPage = route.query;
+    if (nextPage){
+      router.push(nextPage.next)
+    } else{
+      router.push("/shop")
+    }
   };
 
  const registerAction = async (data) => {
