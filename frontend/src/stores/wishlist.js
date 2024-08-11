@@ -1,7 +1,8 @@
-import { reactive, ref } from 'vue'
+import { reactive, ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import axios from "axios"
 import { useAuthStore } from './auth'
+import axiosInstance from '@/axios'
 
 export const useWishlistStore = defineStore('wishlist', () => {
   const auth = useAuthStore();
@@ -17,7 +18,7 @@ export const useWishlistStore = defineStore('wishlist', () => {
       console.log(e)
     }
   }
-
+  const wishesCount = computed(()=> wishes.value.length)
   const getWishList = async () => {
     try {
       const res = await axios.get(`wishlist?user=${auth.userInfo.pk}`)
@@ -31,7 +32,7 @@ export const useWishlistStore = defineStore('wishlist', () => {
     await getWishList()
     //alert([...wishes.value, product])
     try {
-      const res = await axios.post(`wishlist`,
+      const res = await axiosInstance.post('wishlist',
         {
             user: auth.userInfo.pk,
             product: product
@@ -53,6 +54,7 @@ export const useWishlistStore = defineStore('wishlist', () => {
     getUserProducts,
     getWishList,
     addWishlist,
-    wishes
+    wishes,
+    wishesCount
   }
 })

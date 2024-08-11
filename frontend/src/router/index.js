@@ -134,9 +134,7 @@ router.beforeEach(async (to, from, next) => {
   if (to.meta.requiresAuth && !authStore.accessToken) {
     next(`/auth/login?next=${to.path}`);
     //next('/auth/login');
-   
   }else if (authStore.accessToken) {
-    
     // Check if the token is expired and refresh it if necessary
     const isTokenExpired = false; // Add your logic to check token expiration
     if (isTokenExpired) {

@@ -6,9 +6,7 @@ import { RouterLink } from 'vue-router';
 const prod = useProductStore()
 const auth = useAuthStore()
 const current = ref(true)
-onMounted( async () => {
-  await prod.getCart()
-})
+
 </script>
 
 <template>
@@ -111,17 +109,14 @@ onMounted( async () => {
                         <input type="text" />
                       </fieldset>
                     </div>
-                   
                   </div>
-
                 </form>
               </div>
             </div>
-
             <div class="shipping-address-area billing-area">
               <div class="minicart-btn-area d-flex align-items-center justify-content-between flex-wrap">
                 <RouterLink to="/cart" class="checkout-page-btn minicart-btn btn-secondary">BACK TO CART</RouterLink>
-                <a href="checkout.html" class="checkout-page-btn minicart-btn btn-primary">PROCEED TO SHIPPING</a>
+                <button @click="prod.addForShipping" class="checkout-page-btn minicart-btn btn-primary">PROCEED TO SHIPPING</button>
               </div>
             </div>
           </div>
@@ -130,11 +125,11 @@ onMounted( async () => {
               <h3 class="d-none d-lg-block mb-0 text-center heading_24 mb-4">Order summary</h3>
                 <div class="minicart-item d-flex" v-for="(cart, index) in prod.cartItems" v-bind:key="index">
                   <div class="mini-img-wrapper">
-                    <img class="mini-img" :src="'http://127.0.0.1:8000'+cart.product.images[0].img" alt="img">
+                    <img class="mini-img" :src="cart.images[0].img.startsWith('/media') ? 'http://127.0.0.1:8000' + cart.images[0].img: cart.images[0].img" alt="img">
                   </div>
                   <div class="product-info">
-                    <h2 class="product-title"><a href="#">{{ cart.product.product.name }}</a></h2>
-                    <p class="product-vendor">&#x20A6;{{ cart.product.product.new_price }} x {{ cart.count }}</p>
+                    <h2 class="product-title"><a href="#">{{ cart.product.name }}</a></h2>
+                    <p class="product-vendor">&#x20A6;{{ cart.product.new_price }} x {{ cart.count }}</p>
                   </div>
                 </div>
 

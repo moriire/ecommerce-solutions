@@ -30,7 +30,7 @@ const prop = defineProps({
           
               <AtcButton :product_obj="prop.product" />
         </div>
-        <AtwButton :product="prop.product.product.id" />
+        <AtwButton :product_id="prop.product.product.id" />
       </div>
       <div class="product-card-details text-center">
         <h3 class="product-card-title"><a href="collection-left-sidebar.html">{{ prop.product.product.name }}</a>

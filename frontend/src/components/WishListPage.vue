@@ -35,24 +35,6 @@ const wish = useWishlistStore()
         </div>
       </template>
 
-      <div class="pagination justify-content-center mt-100" v-if="show">
-        <nav aria-label="Page navigation example">
-          <ul class="pagination">
-            <li class="page-item">
-              <button class="page-link" aria-label="Previous" @click="prod.prevPage" :disabled="!prod.hasPrev">
-                <span aria-hidden="true">&laquo;</span>
-              </button>
-            </li>
-            <li :class="`page-item ${i === prod.pages.offset + 1 ? 'active' : ''}`" v-for="i in prod.pages.items()"
-              v-bind:key="i"><a class="page-link" disabled>{{ i }}</a></li>
-            <li class="page-item">
-              <button class="page-link" aria-label="Next" @click="prod.nextPage" :disabled="!prod.hasNext">
-                <span aria-hidden="true">&raquo;</span>
-              </button>
-            </li>
-          </ul>
-        </nav>
-      </div>
     </div>
   </div>
   <!-- product quickview start -->

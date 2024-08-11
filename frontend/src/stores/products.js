@@ -177,8 +177,48 @@ const singeProduct = async (product_id) => {
   } catch (e) {
     console.log(e)
   }
-}
+};
+const addCartForShipping = async (user, product, count) => {
+  try {
+    const res = await axiosInstance.post(`cart`,
+      {
+          user: auth.userInfo.pk,
+          product: product,
+          count: count
+      }
+    )
+    //cartContents.value = res.data
+    //cartContents.value = res.data
+    console.log(res.data)
+    //getUserProducts()
+  } catch (e) {
+    console.log(e)
+  }
+};
 
+const cartObj = (product, count, user) => {product:product, user=user, count=count}
+
+const cartForShipping = computed(() => {
+  return cartItems.value.map(x => 
+    {
+      return {product: x.id, user: auth.userInfo.pk, count: x.count}
+    })
+})
+
+const addForShipping = async () => {
+  console.log(cartForShipping.value)
+  try {
+    const res = await axiosInstance.post('cart/bulk_cart', cartForShipping.value)
+    //cartContents.value = res.data
+    //cartContents.value = res.data
+    console.log(res)
+    console.log(res.data)
+    localStorage.removeItem("userCart")
+    //getUserProducts()
+  } catch (e) {
+    console.log(e)
+  }
+};
 return {
   count,
   product,
@@ -193,6 +233,7 @@ return {
   prevPage,
   //getCartSubtotal,
   //getCartTotalDiscount,
+  addForShipping,
   addToCart,
   deleteCart,
   deleteCartLocal,
