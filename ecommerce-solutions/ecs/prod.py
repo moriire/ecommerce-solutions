@@ -102,13 +102,15 @@ DATABASES = {
         "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
         "HOST": os.environ.get("SQL_HOST", "localhost"),
         "PORT": os.environ.get("SQL_PORT", "5432"),
-         "OPTIONS": {
-            "pool": {
-                "min_size": os.environ.get("POOL_MIN_SIZE"),
-                "max_size": os.environ.get("POOL_MAX_SIZE"),
-                "timeout": os.environ.get("POOL_TIMEOUT"),
-            }
-        },
+        
+         #"OPTIONS": {
+          #  "pool": {
+          #      "min_size": os.environ.get("POOL_MIN_SIZE"),
+          #      "max_size": os.environ.get("POOL_MAX_SIZE"),
+          #      "timeout": os.environ.get("POOL_TIMEOUT"),
+          #  }
+        #},
+        
     }
 }
 
@@ -154,7 +156,7 @@ AUTHENTICATION_BACKENDS = [
 
 from datetime import timedelta
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
 }
 REST_AUTH = {
