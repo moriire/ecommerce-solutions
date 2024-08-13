@@ -1,11 +1,12 @@
 <script setup>
 import ProductCard from '@/components/ProductCard.vue';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRoute } from 'vue-router';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 import { useAuthStore } from '../../stores/auth.js';
 import alertify from 'alertifyjs';
 const router = useRouter();
+const route = useRoute();
 const username = ref('');
 const password = ref('');
 const loading = ref(false);
@@ -16,10 +17,13 @@ const onSubmit = async () => {
   loading.value = true;
   try {
     const res = await authStore.loginAction(username.value, password.value);
-    //console.log(res)
+    let nextPage = route.query;
     if (res.status == 200){
-      alertify.error("success")
-      router.push("/shop")
+      if (nextPage){
+        router.push(nextPage.next)
+      } else{
+        router.push("/shop")
+      }
     }
   } catch (error) {
     if (error.code==="ERR_BAD_REQUEST"){

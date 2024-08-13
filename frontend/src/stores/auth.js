@@ -31,12 +31,7 @@ export const useAuthStore = defineStore('auth', () => {
   const loginAction = async (username, password) => {
     const response = await login(username, password);
     setTokens(response.data.access, response.data.refreshToken, response.data.user);
-    let nextPage = route.query;
-    if (nextPage){
-      router.push(nextPage.next)
-    } else{
-      router.push("/shop")
-    }
+    return response
   };
 
  const registerAction = async (data) => {
