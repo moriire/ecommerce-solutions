@@ -23,7 +23,7 @@ import router from './router'
 const app = createApp(App)
 
 app.config.globalProperties.$axios = axios
-axios.defaults.baseURL = process.env.BACKEND_API_ENDPOINT
+axios.defaults.baseURL = import.meta.env.BACKEND_API_ENDPOINT
 app.use(createPinia())
 app.use(router)
 AOS.init()

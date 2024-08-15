@@ -62,9 +62,9 @@ const getImages = async (product_id) => {
           
           <div class="col-lg-4 col-md-12 col-12 my-2">
             <fieldset>
-              <label class="label">Product Category</label>
-              <select required class="form-select" v-model="prodcrud.productData.category">
-                <option selected value="" disabled>Product Category</option>
+              <label class="label" id="category">Product Category</label>
+              <select for="category" required class="form-select" v-model="prodcrud.productData.category">
+                <option selected value=""  disabled >Product Category</option>
                 <option :selected="index == 0 ? 'selected' : ''" v-for="(cat, index) in cat.categories"
                   v-bind:key="index" :value="cat.id">{{ cat.name }}</option>
               </select>

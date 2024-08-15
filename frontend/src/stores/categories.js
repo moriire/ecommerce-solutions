@@ -2,6 +2,7 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import axios from "axios"
 import { useProductStore } from './products'
+import axiosInstance from '@/axios'
 export const useCategoryStore = defineStore('category', () => {
   const products = useProductStore()
   const count = ref(0)
@@ -12,7 +13,7 @@ export const useCategoryStore = defineStore('category', () => {
 
   const getCategories = async () => {
     try{
-      const res = await axios.get("categories")
+      const res = await axiosInstance.get("categories")
       categories.value = res.data
       console.log(res.data)
     } catch(e){

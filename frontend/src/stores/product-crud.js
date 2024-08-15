@@ -44,6 +44,7 @@ export const useProductcrudStore = defineStore('productcrud', () => {
       if (res.status === 201) {
         console.log(res)
         await uploadImages(res.data.id);
+        setTimeout(()=>{productData.value={}}, 2000)
       }
       //products.value = res.data.data
       console.log(res.data)
