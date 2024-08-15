@@ -157,7 +157,6 @@ REST_AUTH = {
     'JWT_AUTH_REFRESH_COOKIE': 'mega-refresh-token'
 }
 
-
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",

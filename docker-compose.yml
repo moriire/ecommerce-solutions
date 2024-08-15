@@ -1,6 +1,6 @@
 services:
   web:
-    container_name: ecs_backend
+    image: moriire/ecommerce-solutions:ecs_backend
     build: ./ecommerce-solutions
     command: gunicorn ecs.wsgi:application --config gunicorn.py
     volumes:
@@ -11,15 +11,13 @@ services:
     expose:
       - 8000
     restart: on-failure
-    env_file:
-      - ./.env/.env.web
+
     depends_on:
       db:
         condition: service_healthy
   
   frontend_nginx:
-    container_name: ecs_frontend_nginx
-    image: nginx:alpine
+    image: moriire/ecommerce-solutions:ecs_frontend_nginx
     ports:
       - 80:80
     volumes:
@@ -29,7 +27,7 @@ services:
       - frontend
 
   frontend:
-    container_name: ecs_frontend
+    image: moriire/ecommerce-solutions:ecs_frontend
     build: ./frontend
     ports:
       - 3000:80
@@ -43,7 +41,7 @@ services:
 
   nginx_backend:
     build: ./ecommerce-solutions/nginx
-    container_name: nginx_backend
+    image: moriire/ecommerce-solutions:nginx_backend
     ports:
       - 8000:80
     volumes:
@@ -54,25 +52,21 @@ services:
       - web
    
   db:
-    container_name: ecs_database
-    image: postgres:16.0-alpine
+    image: moriire/ecommerce-solutions/ecs_database
     restart: always
     healthcheck:
       test: [ "CMD", "pg_isready", "-U", "ecs" ]
       interval: 5s
       timeout: 5s
       retries: 5
-    env_file:
-      - ./.env/.env.db
     ports:
       - "5432:5432"
     volumes:
       - 'db_data:/var/lib/postgresql/data/'
 
   redis:
-    image: "redis:alpine"
+    image: moriire/ecommerce-solutions/redis
     
-
 volumes:
   db_data:
   static_volume:

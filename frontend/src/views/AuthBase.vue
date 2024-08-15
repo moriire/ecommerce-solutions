@@ -21,7 +21,7 @@ export default {
             <div class="row">
                 <div class="col-12 col-md-6 .bsb-tpl-bg-platinum" >
                     <div class="d-flex flex-column justify-content-between h-100 p-3 p-md-4 p-xl-5" sstyle="background-image: url(/src/assets/img/auth_bg.png); background-position: center; background-size: cover; background-repeat: no-repeat">
-                        <h3 class="m-0">Welcome!</h3>
+                        <h3 class="m-0">Welcome!hghghfh</h3>
                         <h2 class="text-end">
                           Tag<span class="text-warning">Biz</span>
                         </h2>
