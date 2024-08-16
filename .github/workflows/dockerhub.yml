@@ -33,7 +33,7 @@ jobs:
 
       - name: Build Docker images
         id: build
-        run: docker compose build -f docker-compose-services.yml
+        run: docker compose build docker-compose-services.yml
         
       - name: Push Docker image
         id: push
