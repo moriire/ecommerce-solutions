@@ -6,8 +6,8 @@ on:
     branches: [ "master", "main" ]
 
 env:
-  AWS_REGION: us-east-1                  
-  ECR_REPOSITORY: moriire/ecommerce-solutions          
+  AWS_REGION: "us-east-1"                  
+  ECR_REPOSITORY: "moriire/ecommerce-solutions"          
   
 permissions:
   contents: read
