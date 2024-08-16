@@ -45,7 +45,7 @@ services:
     environment:
       - NODE_ENV=production
     env_file:
-      - ./.env.production
+      - ./ecommerce-solutions/.env.production
 
   nginx_backend:
     build: ./ecommerce-solutions/nginx
@@ -68,7 +68,7 @@ services:
       timeout: 5s
       retries: 5
     env_file:
-      - ./ecommerce-solutions/.env
+      - ./frontend/.env.production
     ports:
       - "5432:5432"
     volumes:
