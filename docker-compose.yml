@@ -11,8 +11,12 @@ services:
     expose:
       - 8000
     restart: on-failure
+
+    environment:
+      - name=value
+
     env_file:
-      - ./.env
+      - ./.env.production
     depends_on:
       db:
         condition: service_healthy
@@ -41,7 +45,7 @@ services:
     environment:
       - NODE_ENV=production
     env_file:
-      - ./.env
+      - ./.env.production
 
   nginx_backend:
     build: ./ecommerce-solutions/nginx
