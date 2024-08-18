@@ -4,9 +4,14 @@ import axiosInstance from "@/axios"
 import { useAuthStore } from './auth'
 import router from '@/router'
 import alertify from '@/services/alertify'
+import { useRouter } from 'vue-router'
+import { useShippingStore } from './shipping'
+
 
 export const useProductStore = defineStore('product', () => {
   const auth = useAuthStore();
+  const shipping = useShippingStore();
+  const router = useRouter()
   const pages = reactive({
     limit: 1,
     offset: 0,
@@ -37,10 +42,17 @@ const count = ref(0)
 const products = ref([])
 const product = ref({})
 const paginatedProducts = ref([])
+const cartItemsReview = ref([])
 const cartItems = ref(JSON.parse(localStorage.getItem("userCart")) || []); //ref([])
 const cartItemsCount = reactive(JSON.parse(localStorage.getItem("userCartCounter")) || {})
 //const cartSubtotal = ref(0)
 //const cartTotalDiscount = ref(0)
+
+const cartSubtotalReview = computed(() => {
+  console.log(cartItemsReview.value)
+  let numbers = cartItemsReview.value.map(x => x.cost);
+  return numbers.reduce((sum, num) => sum + num, 0);
+})
 
 const cartSubtotal = computed(() => {
   console.log(cartItems.value)
@@ -53,8 +65,13 @@ const cartTotalDiscount = computed(()=>{
   return numbers.reduce((sum, num) => sum + num, 0)
 })
 
-const getCart = ()=>{
-  console.log("hello")
+const getCart = async ()=>{
+  try {
+    const res = await axiosInstance.get(`cart?user=${auth.userInfo.pk}`)
+    cartItemsReview.value = res.data.data
+  } catch(e){
+    console.log("Error", e)
+  }
 }
 
 const addToCartLocal =  (product_obj) => {
@@ -66,7 +83,7 @@ const addToCartLocal =  (product_obj) => {
     cartItems.value.push(product_obj)
     const cartArray = JSON.stringify(cartItems.value)
     localStorage.setItem("userCart", cartArray);
-    getCart()
+    //getCart()
     return 
     }
 }
@@ -189,7 +206,7 @@ const addCartForShipping = async (user, product, count) => {
     )
     //cartContents.value = res.data
     //cartContents.value = res.data
-    console.log(res.data)
+    console.log(res.status)
     //getUserProducts()
   } catch (e) {
     console.log(e)
@@ -206,7 +223,7 @@ const cartForShipping = computed(() => {
 })
 
 const addForShipping = async () => {
-  console.log(cartForShipping.value)
+  shipping.saveOrder()
   try {
     const res = await axiosInstance.post('cart/bulk_cart', cartForShipping.value)
     //cartContents.value = res.data
@@ -214,6 +231,7 @@ const addForShipping = async () => {
     console.log(res)
     console.log(res.data)
     localStorage.removeItem("userCart")
+    window.location.href="/orders"
     //getUserProducts()
   } catch (e) {
     console.log(e)
@@ -224,8 +242,10 @@ return {
   product,
   products,
   cartItems,
+  cartItemsReview,
   cartSubtotal,
   cartTotalDiscount,
+  cartSubtotalReview,
   hasNext,
   hasPrev,
   pages,

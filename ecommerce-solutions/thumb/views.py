@@ -38,20 +38,34 @@ class ProductWithImageView(ModelViewSet):
     serializer_class = XProductWithImageSerializer
 
     @action(detail=False, methods=["GET"])
-    def approved(self, request):
+    def discounted(self, request):
+        items = self.get_queryset()
+        items = items.filter(product__discount__gte = 20)[:18]
+        catser = self.get_serializer(items, many=True)
+        return Response(
+                {
+                    "data": catser.data,
+                    }
+                )
+    @action(detail=False, methods=["GET"])
+    def promoted(self, request):
+        items = self.get_queryset()
+        items = items.filter(product__package__name ='free')[:18]
+        catser = self.get_serializer(items, many=True)
+        return Response(
+                {
+                    "data": catser.data,
+                    }
+                )
+    
+    #@action(detail=False, methods=["GET"])
+    def list(self, request):
         items = self.get_queryset()
         params = request.query_params
         pp = params.dict()
         print(pp)
         if (params and pp.get('count')):
             items = items[:int(pp.get('count'))]
-
-        elif (params and pp.get('discount')):
-            items = items.filter(product__discount__gte = int(pp.get('discount')))[:18]
-
-        elif (params and pp.get('promoted')):
-            items = items.filter(product__package__name ='Basic')[:18]
-        
         else:
             items = items.filter(**pp)[:12]
         catser = self.get_serializer(items, many=True)

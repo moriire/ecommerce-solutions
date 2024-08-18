@@ -31,11 +31,10 @@ defineProps({
 
 })
 
-const modules = [Autoplay,  Navigation]//, EffectFade],
+const modules = [Autoplay, Navigation]//, EffectFade],
 </script>
 <template>
-    <swiper :slidesPerView="5" :spaceBetween="20" :navigation="true"
-     :breakpoints="{
+    <swiper :slidesPerView="5" :spaceBetween="20" :navigation="true" :breakpoints="{
         '640': {
             slidesPerView: 1,
             spaceBetween: 20,
@@ -49,17 +48,16 @@ const modules = [Autoplay,  Navigation]//, EffectFade],
             spaceBetween: 20,
         },
     }" :modules="modules" class=".container mySwiper">
-        <template v-for="(product, index) in products" v-bind:key="index" >
-            <swiper-slide  v-if="product.images.length" >
-                <ProductCard :name="product.product.name" :price="product.product.new_price"
-               
-                    :costPrice="product.product.price" :product_id="product.product.id"
-                    :image="product.images[0].img" :discount="product.product.discount"
-                    :condition="product.product.condition" @addCart="prod.addToCart(product)"
-                    @addWish="wish.addWishlist(product.id)" @click="modalShow(product)" />
-                    </swiper-slide>
-        </template>
-        <!--div class="row bg-dark">
+            
+            <swiper-slide v-for="(product, index) in products" v-bind:key="index">
+                <ProductCard
+                    :product="product"
+                    :image="product.images[0].img"
+                    @addCart="prod.addToCart(product)" @addWish="wish.addWishlist(product.id)"
+                    @click="modalShow(product)" 
+                />
+            </swiper-slide>
+            <!--div class="row bg-dark">
                 <div class="col">
                     <div class="content-absolute content-slide">
                         <div class="container height-inherit d-flex align-items-center">

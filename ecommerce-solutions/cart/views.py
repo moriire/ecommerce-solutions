@@ -8,6 +8,7 @@ from product.models.product import Products
 from users.models import CustomUsers
 from thumb.models import ProductWithImage
 from order.models import Order
+from shipping.models import Shipping
 
 class CartView(ModelViewSet):
     queryset = Cart.objects.all()
@@ -16,17 +17,18 @@ class CartView(ModelViewSet):
     @action(detail=False, methods=["POST"])
     def bulk_cart(self, request):
         items = request.data
+        user = items[0].get('user')
         get_user = lambda user_id: CustomUsers.objects.get(pk=int(user_id))
-        orders, created= Order.objects.get_or_create(created_by=get_user(items[0].get('user')))
-        print(created, orders)
+        orders, created= Order.objects.get_or_create(created_by=get_user(user))
         product_data = []
         for item in items:
             item["user"] = get_user(item.get('user'))
             item["product"] = ProductWithImage.objects.get(product=item.get("product"))
             cart_obj = Cart(**item)
             product_data.append(cart_obj)
-            
         items_obj = Cart.objects.bulk_create(product_data)
+        shipping = Shipping.objects.get(created_by=get_user(user))
+        orders.shipping = shipping
         orders.carts.add(*items_obj)
         ser = XCartSerializer(items_obj, many=True)
         return Response(ser.data)

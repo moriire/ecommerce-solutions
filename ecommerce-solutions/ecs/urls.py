@@ -11,7 +11,7 @@ from profile.views import ProfileView
 from cart.views import CartView
 from order.views import OrderView
 from wishlist.views import WishListView
-from shipping.views import ShippingViews
+from shipping.views import ShippingViews, LocationPricingViews
 from thumb.views import ProductImageView, ProductWithImageView, PagedProductWithImageView
 from flash.views import FlashSalesView
 from bargains.views import BargainVendorsView
@@ -54,6 +54,7 @@ route.register("wishlist", WishListView)
 route.register("users", views.ProfileView)
 route.register("profile", ProfileView)
 route.register("shipping", ShippingViews)
+route.register("shipping-cost", LocationPricingViews)
 route.register("thumbs", ProductImageView)
 route.register("product-with-images", PagedProductWithImageView, basename="product_with_images")
 route.register("normal-product-with-images", ProductWithImageView, basename="normal_product_with_images")

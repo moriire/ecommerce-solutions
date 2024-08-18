@@ -3,11 +3,19 @@ import { useWishlistStore } from '@/stores/wishlist';
 import { RouterLink } from 'vue-router';
 import AtcButton from "./buttons/AtcButton.vue"
 import AtwButton from './buttons/AtwButton.vue';
+import RfcButton from './buttons/RfcButton.vue';
 
 const prop = defineProps({
   product: {
     type: Object,
     required: true
+  },
+  delObjectId: {
+    type: Number
+  },
+  cta: {
+    type: String,
+    default: "add"
   },
   image: {
     type: String,
@@ -30,7 +38,8 @@ const prop = defineProps({
           
               <AtcButton :product_obj="prop.product" />
         </div>
-        <AtwButton :product_id="prop.product.product.id" />
+        <AtwButton :product_id="prop.product.product.id" v-if="cta == 'add'" />
+        <RfcButton :product_id="prop.delObjectId" v-if="cta === 'remove'" />
       </div>
       <div class="product-card-details text-center">
         <h3 class="product-card-title"><a href="collection-left-sidebar.html">{{ prop.product.product.name }}</a>

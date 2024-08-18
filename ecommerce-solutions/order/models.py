@@ -19,4 +19,4 @@ class Order(models.Model):
     created_on = models.DateTimeField(auto_now=True)
     
     def __str__(self) -> str:
-        return super().__str__()
+        return self.created_by.get_full_name

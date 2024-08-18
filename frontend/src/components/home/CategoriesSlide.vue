@@ -11,22 +11,19 @@ defineProps({
 const modules = [Autoplay, Pagination, Navigation]
 </script>
 <template>
-  <swiper :spaceBetween="10" :slidesPerView="3" :autoplay="{
+  <swiper :spaceBetween="20" :slidesPerView="1" :autoplay="{
     delay: 3000,
-    disableOnInteraction: false,
+    disableOnInteraction: true,
   }"
   :breakpoints="{
-      '602': {
+      '374': {
         slidesPerView: 1,
-        spaceBetween: 20,
       },
-      '768': {
-        slidesPerView: 2,
-        spaceBetween: 20,
+      '760': {
+        slidesPerView: 2
       },
-      '1024': {
-        slidesPerView: 3,
-        spaceBetween: 30,
+      '1020': {
+        slidesPerView: 3
       },
     }" 
   :pagination="{
@@ -34,7 +31,7 @@ const modules = [Autoplay, Pagination, Navigation]
   }" :navigation="true" :modules="modules" class="mySwiper">
 
     <swiper-slide  :style="`background-image: url(${item.img}); background-position: center;background-repeat: no-repeat; background-size: cover; height: 18rem !important;`"
-    v-for="(item, index) in items" v-bind:key="index" class=" py-4 card d-block d-flex align-items-center">
+    v-for="(item, index) in items" v-bind:key="index" class=" py-4 card d-block d-flex align-items-center mb-3">
     <RouterLink :to="{name: 'categories', params: {categories_slug: item.slug}}">
             <h3 class="text-dark bg-light m-2 py-2 px-3 rounded">{{ item.name }}</h3>
      </RouterLink>

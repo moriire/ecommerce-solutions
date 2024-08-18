@@ -4,13 +4,9 @@ import { useCategoryStore } from '@/stores/categories';
 import { usePackageStore } from '@/stores/packages';
 import { useProductcrudStore } from '@/stores/product-crud';
 import { ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
 const prodcrud = useProductcrudStore()
 const cat = useCategoryStore()
 const pack = usePackageStore()
-const route = useRoute()
-
-const router = useRouter();
 const productID = ref(null);
 
 

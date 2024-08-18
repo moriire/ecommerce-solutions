@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 import { useCategoryStore } from '@/stores/categories';
 import HomeSkeleton from "@/components/home/HomeSkeleton.vue"
@@ -10,20 +10,26 @@ import CategoriesSlide from "@/components/home/CategoriesSlide.vue"
 import VendorSlide from '@/components/VendorSlide.vue';
 import DiscountedSlide from "@/components/home/DiscountedSlide.vue"
 import { useHomeStore } from '@/stores/home';
+import GridedProducts from '@/components/GridedProducts.vue';
+import LoaderSpinner from "@/components/LoaderSpinner.vue"
 
 const cat = useCategoryStore()
 const prod = useProductStore()
 const home = useHomeStore()
 prod.pages.limit = 8
+const loading = ref(false)
 onMounted(async () => {
+    loading.value = true
     await home.getLatest(),
         await home.getPromoted(),
         await home.getDiscounted(),
-        await prod.getProducts()
+        await prod.getProducts(),
+        loading.value=false
 })
 </script>
 <template>
-    <HomeSkeleton>
+    <LoaderSpinner  v-if="loading" />
+    <HomeSkeleton v-else>
         <template v-slot:header>
             <HeroSlide :boostedProducts="home.promotions" v-if="home.promotions.length" />
             <template v-else>
@@ -50,7 +56,7 @@ onMounted(async () => {
                             </div>
                         </div>
                         <div class="col-lg-8 col-12 align-self-center">
-                            <CategoriesSlide :items="cat.categories" />
+                            <CategoriesSlide :items="cat.categories" v-if="cat.categories.length"/>
 
                         </div>
                     </div>
@@ -88,7 +94,7 @@ onMounted(async () => {
                     <div class="section-header">
                         <h2 class="section-heading">Highly Discounted Products</h2>
                     </div>
-                    <DiscountedSlide :products="home.latests" :numSlide="4" />
+                    <DiscountedSlide :products="home.discounteds" :numSlide="4" v-if="home.discounteds.length" />
                 </div>
             </div>
         </template>
@@ -106,6 +112,6 @@ onMounted(async () => {
             </div>
         </div>
     </div-->
-
+   
 </template>
 <style scoped></style>

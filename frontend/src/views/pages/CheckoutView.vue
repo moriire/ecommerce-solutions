@@ -1,23 +1,28 @@
 <script setup>
 import { useAuthStore } from '@/stores/auth';
 import { useProductStore } from '@/stores/products';
-import { onMounted, ref } from 'vue';
+import { useShippingStore } from '@/stores/shipping';
+import { onBeforeMount, onMounted, ref } from 'vue';
 import { RouterLink } from 'vue-router';
 const prod = useProductStore()
+const ship = useShippingStore()
 const auth = useAuthStore()
-const current = ref(true)
-
+const current = ref(!true)
+onMounted(async ()=> {
+  await ship.getShipping(),
+  await ship.getShippingCost()
+})
 </script>
 
 <template>
   <div class="checkout-page mt-100">
-    <div class="container">
+    <div class="container">{{ ship.getShippingCostData }}
       <div class="checkout-page-wrapper">
         <div class="row">
           <div class="col-xl-9 col-lg-8 col-md-12 col-12">
-            <div class="section-header mb-3">
+            <!--div class="section-header mb-3">
               <h2 class="section-heading">Check out</h2>
-            </div>
+            </div-->
 
             <!--div class="checkout-progress overflow-hidden">
               <ol class="checkout-bar px-0">
@@ -29,7 +34,7 @@ const current = ref(true)
               </ol>
             </div-->
 
-            <div class=".checkout-user-area overflow-hidden d-flex align-items-center border border-top p-3 text-dark">
+            <!--div class=".checkout-user-area overflow-hidden d-flex align-items-center border border-top p-3 text-dark">
               <div class="checkout-user-img me-4">
                 <img src="/src/assets/img/checkout/user.jpg" alt="img">
               </div>
@@ -41,9 +46,9 @@ const current = ref(true)
 
                 <RouterLink to="/profile" class="edit-user btn-secondary">EDIT PROFILE</RouterLink>
               </div>
-            </div>
-            <div class="shipping-address-area billing-area">
-              <h2 class="shipping-address-heading pb-1">Billing address</h2>
+            </div-->
+            <div class=".shipping-address-area .billing-area">
+              <h2 class=".shipping-address-heading .pb-1">Billing address</h2>
               <div class="form-checkbox d-flex align-items-center mt-4">
                 <input class="form-check-input mt-0" type="checkbox" v-model="current">
                 <label class="form-check-label ms-2">
@@ -54,59 +59,55 @@ const current = ref(true)
             <div class="shipping-address-area" v-if="!current">
               <h2 class="shipping-address-heading pb-1">Shipping address</h2>
               <div class="shipping-address-form-wrapper">
-                <form action="#" class="shipping-address-form common-form">
+                <form v-set="ship.shippingDetail" class="shipping-address-form common-form">
                   <div class="row">
                     <div class="col-lg-6 col-md-12 col-12">
                       <fieldset>
                         <label class="label">First name</label>
-                        <input type="text" />
+                        <input v-model="ship.shippingDetail.first_name" />
                       </fieldset>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
                       <fieldset>
                         <label class="label">Last name</label>
-                        <input type="text" />
+                        <input v-model="ship.shippingDetail.last_name" />
                       </fieldset>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
                       <fieldset>
                         <label class="label">Email address</label>
-                        <input type="email" />
+                        <input type="email" v-model="ship.shippingDetail.email" />
                       </fieldset>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
                       <fieldset>
                         <label class="label">Phone number</label>
-                        <input type="text" />
+                        <input v-model="ship.shippingDetail.phone" />
                       </fieldset>
                     </div>
                    
                     <div class="col-lg-6 col-md-12 col-12">
                       <fieldset>
                         <label class="label">Country</label>
-                        <select class="form-select">
-                          <option selected="ca">Canada</option>
-                          <option value="us">USA</option>
-                          <option value="au">Australia</option>
-                          <option value="me">Mexico</option>
+                        <select class="form-select" v-model="ship.shippingDetail.country">
+                          <option selected value="Nigeria" >Nigeria</option>
                         </select>
                       </fieldset>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
                       <fieldset>
                         <label class="label">City</label>
-                        <select class="form-select">
-                          <option selected="ca">Toronto</option>
-                          <option value="us">Quebec</option>
-                          <option value="au">Windsor</option>
-                          <option value="me">Calgary</option>
+                        <select class="form-select" v-model="ship.shippingDetail.city">
+                          <option selected value="">Select City</option>
+                          <option :value="loc.id" v-for="loc in ship.getShippingCostData">{{ loc.city }}</option>
+                          
                         </select>
                       </fieldset>
                     </div>
                     <div class="col-md-12 col-12">
                       <fieldset>
-                        <label class="label">Address 1</label>
-                        <input type="text" />
+                        <label class="label">Address</label>
+                        <input v-model="ship.shippingDetail.address" />
                       </fieldset>
                     </div>
                   </div>
@@ -116,7 +117,7 @@ const current = ref(true)
             <div class="shipping-address-area billing-area">
               <div class="minicart-btn-area d-flex align-items-center justify-content-between flex-wrap">
                 <RouterLink to="/cart" class="checkout-page-btn minicart-btn btn-secondary">BACK TO CART</RouterLink>
-                <button @click="prod.addForShipping" class="checkout-page-btn minicart-btn btn-primary">PROCEED TO SHIPPING</button>
+                <button @click="prod.addForShipping" class="checkout-page-btn minicart-btn btn-primary">CREATE ORDER</button>
               </div>
             </div>
           </div>
@@ -140,7 +141,8 @@ const current = ref(true)
                   </div>
                   <div class="subtotal-item shipping-box">
                     <h4 class="subtotal-title">Shipping:</h4>
-                    <p class="subtotal-value">&#x20A6;10.00</p>
+                    <p class="subtotal-value" v-if="!ship.shippingCost[0]">loading</p>
+                    <p class="subtotal-value" v-else>&#x20A6;{{ ship.shippingCost[0].price || 0 }}</p>
                   </div>
                   <div class="subtotal-item discount-box">
                     <h4 class="subtotal-title">Discount:</h4>
@@ -149,7 +151,7 @@ const current = ref(true)
                   <hr />
                   <div class="subtotal-item discount-box">
                     <h4 class="subtotal-title">Total:</h4>
-                    <p class="subtotal-value">&#x20A6;{{ prod.cartSubtotal - prod.cartTotalDiscount }}</p>
+                    <p class="subtotal-value" v-if="ship.shippingCost[0]">&#x20A6;{{ prod.cartSubtotal + ship.shippingCost[0].price - prod.cartTotalDiscount }}</p>
                   </div>
                   <!--div class="mt-4 checkout-promo-code">
                     <input class="input-promo-code" type="text" placeholder="Promo code" />

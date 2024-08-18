@@ -9,7 +9,6 @@ export const useWishlistStore = defineStore('wishlist', () => {
   const auth = useAuthStore();
   const wishes = ref([]);
   const registeredProducts = ref([])
-  const productData = reactive({ package: null, description: "", name: "", category: null, price: 500, quantity: 1, profile: parseInt(auth.userInfo.pk), brand: "", discount: 5, condition: "new" })
   const getUserProducts = async () => {
     try {
       const res = await axiosInstance.get(`product-with-images?product__profile__user__id=${auth.userInfo.pk}&limit=${8}`)
@@ -20,7 +19,7 @@ export const useWishlistStore = defineStore('wishlist', () => {
     }
   }
   const wishesCount = computed(() => wishes.value.length || 0)
-  const wishesIds = computed(() => wishes.value.map(x => x.id))
+  const wishesIds = computed(() => wishes.value.map(x => x.product.id))
   const getWishList = async () => {
     try {
       const res = await axiosInstance.get(`wishlist?user=${auth.userInfo.pk}`)
@@ -32,36 +31,53 @@ export const useWishlistStore = defineStore('wishlist', () => {
     }
   }
 
-  const addWishlist = async (product) => {
-    await getWishList()
-    if (wishesIds.value.includes(product)) {
-      alertify.error("already in cart")
-    } else {
-      try {
-        const res = await axiosInstance.post('wishlist',
-          {
-            user: auth.userInfo.pk,
-            product: product
-          }
-        )
-        //wishes.value = res.data
-        //wishes.value = res.data
-        console.log(res.data)
-        //getUserProducts()
-      } catch (e) {
-        console.log(e)
-      }
+
+  const deleteWish = async (item_id) => {
+    try {
+      const res = await axiosInstance.delete(`wishlist/${item_id}`)
+      //.value = res.data.data
+      console.log(res)
+      getWishList()
+    } catch (e) {
+      console.log(e)
     }
   }
 
-  return {
-    productData,
-    addWishlist,
-    registeredProducts,
-    getUserProducts,
-    getWishList,
-    addWishlist,
-    wishes,
-    wishesCount
+  const addWishlist = async (product) => {
+    await getWishList()
+    console.log(wishesIds.value)
+    console.log(product)
+    if (wishesIds.value.includes(product)) {
+      alertify.error("already in cart")
+    } else if (!auth.accessToken) {
+      return router.push("/auth/login")
+    
+  }else {
+    try {
+      const res = await axiosInstance.post('wishlist',
+        {
+          user: auth.userInfo.pk,
+          product: product
+        }
+      )
+        //wishes.value = res.data
+        //wishes.value = res.data
+        console.log(res.data)
+  //getUserProducts()
+} catch (e) {
+  console.log(e)
+}
+    }
   }
+
+return {
+  addWishlist,
+  registeredProducts,
+  getUserProducts,
+  getWishList,
+  addWishlist,
+  deleteWish,
+  wishes,
+  wishesCount
+}
 })

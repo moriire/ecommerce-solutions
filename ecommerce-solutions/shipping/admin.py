@@ -1,4 +1,9 @@
 from django.contrib import admin
-from .models import Shipping
+from .models import Shipping, LocationPriceModel
 admin.site.register(Shipping)
-# Register your models here.
+
+class LocationPricingModelAdmin(admin.ModelAdmin):
+    list_display = ['city', "price"]
+
+admin.site.register(LocationPriceModel, LocationPricingModelAdmin)
+

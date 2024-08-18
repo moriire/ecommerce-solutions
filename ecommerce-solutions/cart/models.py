@@ -10,5 +10,9 @@ class Cart(models.Model):
     count = models.IntegerField(default=1)
     
     def __str__(self) -> str:
-        return super().__str__()
+        return self.product.product.slug
+    
+    def cost(self):
+        return self.count * self.product.product.new_price()
+    
     
