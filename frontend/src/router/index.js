@@ -85,6 +85,12 @@ const router = createRouter({
           meta: { requiresAuth: true }
         },
         {
+          path: '/payment-success',
+          name: 'payment-success',
+          component: () => import('../views/pages/SuccessView.vue'),
+          meta: { requiresAuth: true }
+        },
+        {
           path: 'shop',
           name: 'shop',
           component: () => import('../views/pages/ShopView.vue'),

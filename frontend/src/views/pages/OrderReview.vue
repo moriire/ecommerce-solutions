@@ -1,9 +1,12 @@
 <script setup>
 import CartItem from '@/components/CartItem.vue';
+import { usePaymentStore } from '@/stores/payment';
 import { useProductStore } from '@/stores/products';
 import { onMounted } from 'vue';
 import { RouterLink } from 'vue-router';
-const prod = useProductStore()
+const prod = useProductStore();
+const pay = usePaymentStore();
+
 onMounted(async () => {
   await prod.getCart()
 })
@@ -91,6 +94,7 @@ onMounted(async () => {
                 </div>
                 <p class="shipping_text">Shipping & taxes calculated at checkout</p>
                 <div class="d-flex justify-content-center mt-4">
+                  <button class="btn btn-secondary" @click="pay.doPayment('ibmabdulalam@gmail.com', 20000)">Pay</button>
                   <RouterLink to="/checkout" class="position-relative btn-primary text-uppercase">
                     Procced to checkout
                   </RouterLink>
