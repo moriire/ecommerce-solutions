@@ -10,7 +10,7 @@ const route = useRoute();
 const username = ref('');
 const password = ref('');
 const loading = ref(false);
-const disabled = loading.value? 'disabled': ''
+const disabled = loading.value ? 'disabled' : ''
 const authStore = useAuthStore();
 
 const onSubmit = async () => {
@@ -18,20 +18,19 @@ const onSubmit = async () => {
   try {
     const res = await authStore.loginAction(username.value, password.value);
     let nextPage = route.query;
-    if (res.status == 200){
-      if (nextPage){
-        router.push(nextPage.next)
-      } else{
-        router.push("/shop")
-      }
+    console.log()
+    if (res.status === 200 && nextPage.next) {
+      router.push(nextPage.next)
+    } else {
+      router.push("/shop")
     }
   } catch (error) {
-    if (error.code==="ERR_BAD_REQUEST"){
+    if (error.code === "ERR_BAD_REQUEST") {
       alertify.error("Incorrect Username or Password")
     }
     //console.error('Failed to login:', error);
   } finally {
-    setTimeout(()=>loading.value = false, 2000)
+    setTimeout(() => loading.value = false, 2000)
   }
 };
 </script>
@@ -66,7 +65,7 @@ const onSubmit = async () => {
 
         <div class="col-12 input-group d-flex justify-content-center">
           <button class="btn btn-primary">Login Now</button>
-          <div class="input-group-text btn-primary" id="basic" v-show="loading" :disbled="disabled" >
+          <div class="input-group-text btn-primary" id="basic" v-show="loading" :disbled="disabled">
             <span class="spinner-border spinner-border-sm" aria-hidden="true">
             </span>
           </div>
@@ -79,7 +78,8 @@ const onSubmit = async () => {
         <div class="d-flex justify-content-between">
           <RouterLink to="/auth/register" class="link-secondary text-decoration-none">Don't
             have account yet? Signup</RouterLink>
-          <RouterLink :to="{name: 'reset-password'}" class="link-secondary text-decoration-none">Forgot password</RouterLink>
+          <RouterLink :to="{ name: 'reset-password' }" class="link-secondary text-decoration-none">Forgot password
+          </RouterLink>
         </div>
       </div>
     </div>
