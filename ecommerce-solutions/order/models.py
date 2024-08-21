@@ -15,6 +15,8 @@ class Order(models.Model):
     created_by = models.ForeignKey(CustomUsers, on_delete=models.CASCADE, related_name="order_by")
     carts = models.ManyToManyField(Cart, blank=True)
     shipping = models.ForeignKey(Shipping, related_name="order_shipping", on_delete=models.CASCADE, null=True, blank=True)
+    authorization_code = models.CharField(max_length=16, blank=True, null=True)
+    reference_code = models.CharField(max_length=12, blank=True, null=True)
     status = models.CharField(max_length=9, choices=OrderStatus.choices, default="UNPAID")
     created_on = models.DateTimeField(auto_now=True)
     

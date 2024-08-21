@@ -15,14 +15,29 @@ export const usePaymentStore = defineStore('payment', () => {
         {
           "email": email,
           "amount": amount,
-          "callback_url": "http://127.0.0.1:5173/success"
+          "callback_url": "http://127.0.0.1:5173/success",
+          "metadata": {
+            "cart_id": 398,
+            "custom_fields": [
+              {
+                "display_name": "user",
+                "variable_name": "user",
+                "value": 2
+              },
+              {
+                "display_name": "Cart Items",
+                "variable_name": "cart_items",
+                "value": "3 bananas, 12 mangoes"
+              }
+            ]
+          }
         },
         {
           headers: {
-          Authorization: `Bearer ${SECRET_KEY}`,
-          'Content-Type': 'application/json'
+            Authorization: `Bearer ${SECRET_KEY}`,
+            'Content-Type': 'application/json'
+          }
         }
-      }
       );
       console.log(res.data.data)
       paymentData.value = res.data.data

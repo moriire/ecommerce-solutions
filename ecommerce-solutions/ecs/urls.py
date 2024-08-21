@@ -61,7 +61,6 @@ route.register("normal-product-with-images", ProductWithImageView, basename="nor
 route.register("flash", FlashSalesView)
 route.register("bargains", BargainVendorsView)
 route.register("transaction", TransactionView, basename="transaction")
-route.register("payhook", PaystackHookView)
 
 urlpatterns = [
         #path('api/auth/facebook/', views.FacebookLogin.as_view(), name='fb_login'),
