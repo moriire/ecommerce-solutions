@@ -17,7 +17,7 @@ class ProductImage(models.Model):
     uploaded_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.product.product.slug
+        return self.product.slug
     
     def save(self, *args, **kwargs):
         if self.img.file:
@@ -37,10 +37,10 @@ class ProductWithImage(models.Model):
 
     product = models.OneToOneField(Products, related_name="product_product", on_delete=models.CASCADE)
     images = models.ManyToManyField(ProductImage, related_name="product_images", blank=True)
-    status = models.CharField(max_length=8, choices=Status.choices)
+    status = models.CharField(max_length=8, choices=Status.choices, default="PENDING")
 
     def __str__(self):
-        return self.product.product.slug    
+        return self.product.slug    
     
 class ProductImageSerializer(serializers.ModelSerializer):
     class Meta:

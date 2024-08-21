@@ -18,8 +18,14 @@ class ShippingViews(ModelViewSet):
     @action(detail=False, methods=["POST"])
     def shipping_address(self, request):
         created_by = request.data.get("created_by")
+        user = self.request.user
+        print(created_by)
         item = self.get_queryset()
-        obj, created = item.get_or_create(created_by=created_by)
-        #print(obj, created)
-        ser = self.get_serializer(obj)
-        return Response({"data": ser.data})
+        obj, created = item.get_or_create(created_by=user)
+        serd = self.get_serializer(obj)
+        if created:
+            ser = self.get_serializer(data = obj)
+            if ser.is_valid():
+                ser.save()
+                return Response({"data": ser.data})
+        return Response({"data": serd.data})

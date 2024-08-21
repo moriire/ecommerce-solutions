@@ -17,17 +17,16 @@ class CartView(ModelViewSet):
     @action(detail=False, methods=["POST"])
     def bulk_cart(self, request):
         items = request.data
-        user = items[0].get('user')
-        get_user = lambda user_id: CustomUsers.objects.get(pk=int(user_id))
-        orders, created= Order.objects.get_or_create(created_by=get_user(user))
+        user =self.request.user
+        orders, created= Order.objects.get_or_create(created_by=user)
         product_data = []
         for item in items:
-            item["user"] = get_user(item.get('user'))
+            item["user"] = user
             item["product"] = ProductWithImage.objects.get(product=item.get("product"))
             cart_obj = Cart(**item)
             product_data.append(cart_obj)
         items_obj = Cart.objects.bulk_create(product_data)
-        shipping = Shipping.objects.get(created_by=get_user(user))
+        shipping = Shipping.objects.get(created_by=user)
         orders.shipping = shipping
         orders.carts.add(*items_obj)
         ser = XCartSerializer(items_obj, many=True)
