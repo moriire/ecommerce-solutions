@@ -15,4 +15,3 @@ class Cart(models.Model):
     def cost(self):
         return self.count * self.product.product.new_price()
     
-    
