@@ -78,6 +78,7 @@ services:
     environment:
       - NODE_ENV=production
       - BACKEND_API_ENDPOINT=http://127.0.0.1/api/
+      
 
   nginx_backend:
     build: ./ecommerce-solutions/nginx

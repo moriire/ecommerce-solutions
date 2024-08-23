@@ -43,7 +43,7 @@ onMounted(async () => await getImages(route.params.product))
 <template>
   <div class="container mt-5">
     <div class="row">
-      <div v-if="productImages.length" class="col-lg-4 p-2" v-for="img in productImages" v-bind:key="img.id">
+      <div v-if="productImages.length" class="col-lg-4 col-md-4 p-2" v-for="img in productImages" v-bind:key="img.id">
         <img :src="img.img" alt="">
       </div>
       <div class="col-12" v-else>

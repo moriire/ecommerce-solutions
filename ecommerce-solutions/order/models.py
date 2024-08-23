@@ -6,10 +6,9 @@ from users.models import CustomUsers
 from shipping.models import Shipping
 from thumb.models import ProductWithImage
 
-
-class PreOrder(models.Model):
-    user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE, related_name="cart_user")
-    product = models.ForeignKey(ProductWithImage, on_delete=models.CASCADE, blank=True, null=True, related_name="added_product")
+class Ordered(models.Model):
+    user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE, related_name="preorder_user")
+    product = models.ForeignKey(ProductWithImage, on_delete=models.CASCADE, blank=True, null=True, related_name="ordered_product")
     count = models.IntegerField(default=1)
     
     def __str__(self) -> str:
@@ -26,7 +25,7 @@ class Order(models.Model):
         COMPLETED = "completed"
 
     created_by = models.ForeignKey(CustomUsers, on_delete=models.CASCADE, related_name="order_by")
-    carts = models.ManyToManyField(PreOrder, blank=True)
+    carts = models.ManyToManyField(Ordered, blank=True)
     shipping = models.ForeignKey(Shipping, related_name="order_shipping", on_delete=models.CASCADE, null=True, blank=True)
     authorization_code = models.CharField(max_length=16, blank=True, null=True)
     reference_code = models.CharField(max_length=12, blank=True, null=True)

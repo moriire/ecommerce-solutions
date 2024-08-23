@@ -223,7 +223,6 @@ const cartForShipping = computed(() => {
 })
 
 const addForShipping = async () => {
-  shipping.saveOrder()
   try {
     const res = await axiosInstance.post('cart/bulk_cart', cartForShipping.value)
     //cartContents.value = res.data
@@ -231,6 +230,7 @@ const addForShipping = async () => {
     console.log(res)
     console.log(res.data)
     localStorage.removeItem("userCart")
+    await shipping.saveOrder();
     window.location.href="/orders"
     //getUserProducts()
   } catch (e) {

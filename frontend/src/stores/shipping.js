@@ -25,7 +25,7 @@ export const useShippingStore = defineStore('Shipping', () => {
       const res = await axiosInstance.post('shipping/shipping_address', { created_by: auth.userInfo.pk })
       shippingDetail.value = res.data.data
       //shippingDetail.value.city = res.data.data.city
-      console.log(shippingDetail)
+      //console.log(shippingDetail)
     } catch (e) {
       console.log(e.response)
     }
@@ -39,13 +39,12 @@ export const useShippingStore = defineStore('Shipping', () => {
     }
   };
   const saveOrder = async () => {
-    alert(getShippingCostData.value[0].id)
     try {
-      const res = await axiosInstance.put(`shipping/${shippingDetail.value.id}`, shippingDetail.value)
+      const res = await axiosInstance.patch(`shipping/${shippingDetail.value.id}`, shippingDetail.value)
       //getShippingCostData.value = res.data
       console.log(res)
     } catch (e) {
-      console.log(e.response)
+      console.log(e)
     }
   }
 

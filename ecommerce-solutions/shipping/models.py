@@ -22,5 +22,5 @@ class Shipping(models.Model):
     zip_code = models.CharField("Zip Code", max_length=8, null=True, blank=True)
 
     def __str__(self) -> str:
-        return self.city.city
+        return f"shipping for {self.first_name}"
     

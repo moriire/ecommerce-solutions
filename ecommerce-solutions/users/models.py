@@ -11,6 +11,7 @@ class CustomUsers(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(_("Username"), max_length=12, unique=True)
     first_name = models.CharField(_("First Name"), max_length=50)
     last_name = models.CharField(_("last Name"), max_length=50)
+    store_name = models.CharField(_("Store Name"), max_length=50, null=True, blank=True)
     email = models.EmailField(_("email address"), unique=True,)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)

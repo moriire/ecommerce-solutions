@@ -14,9 +14,7 @@ const onSubmit = async () => {
   try {
     const res = await authStore.registerAction(userData);
     console.log(res)
-    if (res.status===200){
-      alertify.success("Login Successful... Welcome!!")
-    }
+    alertify.success("Login Successful... Welcome!!")
   } catch (error) {
     console.error('Failed to login:', error);
   }
@@ -32,7 +30,7 @@ const onSubmit = async () => {
         </div>
       </div>
     </div>
-    <form @submit.prevent="onSubmit">
+    <form @submit.prevent="onSubmit" novalidate>
       <div class="row g2-3 gy-md-3 overflow-hidden">
         <div class="col-12">
           <!--label for="email" class="form-label">Email <span class="text-danger">*</span></label-->
@@ -67,7 +65,7 @@ const onSubmit = async () => {
         </div>
         <div class="col-12" v-show="userData.vendor">
           <!--label for="store" class="form-label">Store Name / Business Name <span class="text-danger">*</span></label-->
-          <input class="form-control" v-model="userData.store_name" id="store" placeholder="Acsolot Store"
+          <input class="form-control" v-model="userData.store_name"  placeholder="Acsolot Store"
             required>
         </div>
         <div class="col-12 input-group d-grid">

@@ -6,7 +6,7 @@
     </div>
     <div v-if="images.length > 0" >
       <div class="row">
-        <div class="col-md-4" v-for="(image, index) in images" :key="index">
+        <div class="col" v-for="(image, index) in images" :key="index">
           <div class="card">
             <img :src="image.preview" class="card-img-top" alt="Image Preview">
             <div class="card-body">

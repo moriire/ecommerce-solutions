@@ -16,7 +16,7 @@ onMounted(async ()=> {
 
 <template>
   <div class="checkout-page mt-100">
-    <div class="container">{{ ship.getShippingCostData }}
+    <div class="container">
       <div class="checkout-page-wrapper">
         <div class="row">
           <div class="col-xl-9 col-lg-8 col-md-12 col-12">
@@ -49,47 +49,47 @@ onMounted(async ()=> {
             </div-->
             <div class=".shipping-address-area .billing-area">
               <h2 class=".shipping-address-heading .pb-1">Billing address</h2>
-              <div class="form-checkbox d-flex align-items-center mt-4">
+              <!--div class="form-checkbox d-flex align-items-center mt-4">
                 <input class="form-check-input mt-0" type="checkbox" v-model="current">
                 <label class="form-check-label ms-2">
                   Same as shipping address ?
                 </label>
-              </div>
+              </div-->
             </div>
             <div class="shipping-address-area" v-if="!current">
               <h2 class="shipping-address-heading pb-1">Shipping address</h2>
               <div class="shipping-address-form-wrapper">
-                <form v-set="ship.shippingDetail" class="shipping-address-form common-form">
+                <form class=".shipping-address-form common-form" @submit.prevent="prod.addForShipping" >
                   <div class="row">
                     <div class="col-lg-6 col-md-12 col-12">
                       <fieldset>
                         <label class="label">First name</label>
-                        <input v-model="ship.shippingDetail.first_name" />
+                        <input v-model="ship.shippingDetail.first_name" required />
                       </fieldset>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
                       <fieldset>
                         <label class="label">Last name</label>
-                        <input v-model="ship.shippingDetail.last_name" />
+                        <input v-model="ship.shippingDetail.last_name" required />
                       </fieldset>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
                       <fieldset>
                         <label class="label">Email address</label>
-                        <input type="email" v-model="ship.shippingDetail.email" />
+                        <input type="email" v-model="ship.shippingDetail.email" required  />
                       </fieldset>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
                       <fieldset>
                         <label class="label">Phone number</label>
-                        <input v-model="ship.shippingDetail.phone" />
+                        <input v-model="ship.shippingDetail.phone" required />
                       </fieldset>
                     </div>
                    
                     <div class="col-lg-6 col-md-12 col-12">
                       <fieldset>
                         <label class="label">Country</label>
-                        <select class="form-select" v-model="ship.shippingDetail.country">
+                        <select required class="form-select" v-model="ship.shippingDetail.country">
                           <option selected value="Nigeria" >Nigeria</option>
                         </select>
                       </fieldset>
@@ -97,7 +97,7 @@ onMounted(async ()=> {
                     <div class="col-lg-6 col-md-12 col-12">
                       <fieldset>
                         <label class="label">City</label>
-                        <select class="form-select" v-model="ship.shippingDetail.city">
+                        <select required class="form-select" v-model="ship.shippingDetail.city">
                           <option selected value="">Select City</option>
                           <option :value="loc.id" v-for="loc in ship.getShippingCostData">{{ loc.city }}</option>
                           
@@ -107,7 +107,7 @@ onMounted(async ()=> {
                     <div class="col-md-12 col-12">
                       <fieldset>
                         <label class="label">Address</label>
-                        <input v-model="ship.shippingDetail.address" />
+                        <input v-model="ship.shippingDetail.address" required length="20" />
                       </fieldset>
                     </div>
                   </div>
@@ -117,7 +117,7 @@ onMounted(async ()=> {
             <div class="shipping-address-area billing-area">
               <div class="minicart-btn-area d-flex align-items-center justify-content-between flex-wrap">
                 <RouterLink to="/cart" class="checkout-page-btn minicart-btn btn-secondary">BACK TO CART</RouterLink>
-                <button @click="prod.addForShipping" class="checkout-page-btn minicart-btn btn-primary">CREATE ORDER</button>
+                <button class="checkout-page-btn minicart-btn btn-primary" type="submit">CREATE ORDER</button>
               </div>
             </div>
           </div>

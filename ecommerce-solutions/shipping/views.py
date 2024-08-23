@@ -5,7 +5,6 @@ from .models import Shipping, LocationPriceModel
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-
 class LocationPricingViews(ModelViewSet):
     queryset = LocationPriceModel.objects.all()
     serializer_class = LocationPriceSerializer
@@ -23,6 +22,7 @@ class ShippingViews(ModelViewSet):
         item = self.get_queryset()
         obj, created = item.get_or_create(created_by=user)
         serd = self.get_serializer(obj)
+        print(obj)
         if created:
             ser = self.get_serializer(data = obj)
             if ser.is_valid():
