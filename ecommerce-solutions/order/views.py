@@ -25,15 +25,17 @@ class OrderView(ModelViewSet):
         match data["event"]:
             case 'charge.success':
                 details = data["data"]
-                authorization_code = details["authorization"].get("authorization_code")
-                reference = details.get("reference")
-                self.get_queryset().get()
-                print(details)
-                print(
-                     "success", 
-                      authorization_code, 
-                      reference
-                      )
+                authorization_code, reference, metadata = (
+                    details["authorization"].get("authorization_code"),
+                    details.get("reference"), 
+                    details.get("metadata")
+                )
+                cart_id = metadata.get("cart_id")
+                order_obj = self.get_queryset().get(pk=cart_id)
+                order_obj.reference_code = reference
+                order_obj.authorization_code = authorization_code
+                order_obj.status = "PAID"
+                order_obj.save()
                 return Response({"data": "received"})
             case _:
-                print(type(data))
+                print(data)
