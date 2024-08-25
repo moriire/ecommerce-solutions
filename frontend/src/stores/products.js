@@ -10,7 +10,7 @@ import { useShippingStore } from './shipping'
 
 export const useProductStore = defineStore('product', () => {
   const auth = useAuthStore();
-  const shipping = useShippingStore();
+  const ship = useShippingStore();
   const router = useRouter()
   const pages = reactive({
     limit: 1,
@@ -37,7 +37,7 @@ const prevPage = () => {
     getProducts()
   }
 };
-
+const orders = ref({})
 const count = ref(0)
 const products = ref([])
 const product = ref({})
@@ -74,6 +74,15 @@ const getCart = async ()=>{
   }
 }
 
+
+const getOrders = async ()=>{
+  try {
+    const res = await axiosInstance.get(`order/${auth.userInfo.pk}/get_orders`)
+    orders.value = res.data
+  } catch(e){
+    console.log("Error", e)
+  }
+}
 const addToCartLocal =  (product_obj) => {
     if (cartItems.value.map(x => x.id).includes(product_obj.id)){
       alert("Already in cart");
@@ -127,6 +136,7 @@ const deleteCart = async (item_id) => {
     const res = await axiosInstance.delete(`cart/${item_id}`)
     //.value = res.data.data
     console.log(res)
+    getOrders()
     getCart()
   } catch(e){
     console.log(e)
@@ -143,7 +153,6 @@ const incCartLocal = async () => {
 }
 
 const incCart = async (item_id, val) => {
-  getCart()
   try{
     const res = await axiosInstance.patch(`cart/${item_id}`, 
       {
@@ -152,6 +161,7 @@ const incCart = async (item_id, val) => {
     )
     //.value = res.data.data
     console.log(res)
+    getOrders()
     getCart()
   } catch(e){
     console.log(e)
@@ -167,6 +177,7 @@ const decCart = async (item_id, val) => {
     )
     //.value = res.data.data
     console.log(res)
+    getOrders()
     getCart()
   } catch(e){
     console.log(e)
@@ -228,16 +239,20 @@ const addForShipping = async () => {
     //cartContents.value = res.data
     //cartContents.value = res.data
     console.log(res)
-    console.log(res.data)
+    ship.saveOrder();
     localStorage.removeItem("userCart")
-    await shipping.saveOrder();
-    window.location.href="/orders"
+    setTimeout(() => {
+      window.location.href="/orders"
+    }, 2000)
+    //window.location.href="/orders"
     //getUserProducts()
   } catch (e) {
     console.log(e)
-  }
+  } 
 };
 return {
+  orders,
+  getOrders,
   count,
   product,
   products,

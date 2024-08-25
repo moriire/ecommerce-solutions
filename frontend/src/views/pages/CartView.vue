@@ -82,7 +82,7 @@ onMounted(async () => {
                 </div>
                 <div class="subtotal-item shipping-box">
                   <h4 class="subtotal-title">Shipping:</h4>
-                  <p class="subtotal-value">&#x20A6;10.00</p>
+                  <p class="subtotal-value">&#x20A6;0.00</p>
                 </div>
                 <div class="subtotal-item discount-box">
                   <h4 class="subtotal-title">Discount:</h4>

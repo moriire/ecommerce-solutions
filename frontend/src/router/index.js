@@ -155,7 +155,7 @@ router.beforeEach(async (to, from, next) => {
         next();
       } catch (error) {
         authStore.logoutAction();
-        next('/auth/login');
+        next(`/auth/login?next=${to.path}`);
       }
     } else {
       next();

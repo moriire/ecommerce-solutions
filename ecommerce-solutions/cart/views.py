@@ -31,7 +31,7 @@ class CartView(ModelViewSet):
         items_obj = Cart.objects.bulk_create(cart_data)
         ordered_obj = Ordered.objects.bulk_create(ordered_data)
         orders.shipping = shipping
-        orders.carts.add(*ordered_obj)
+        orders.carts.add(*items_obj)
         ser = XCartSerializer(items_obj, many=True)
         return Response(ser.data)
         

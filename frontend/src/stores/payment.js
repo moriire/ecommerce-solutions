@@ -9,28 +9,15 @@ export const usePaymentStore = defineStore('payment', () => {
   const auth = useAuthStore();
   const router = useRouter();
   const paymentData = ref({})
-  const doPayment = async (email, amount) => {
+  const doPayment = async (email, amount, metadata) => {
     try {
       const res = await axios.post("https://api.paystack.co/transaction/initialize",
         {
           "email": email,
           "amount": amount,
           "callback_url": "http://127.0.0.1:5173/success",
-          "metadata": {
-            "cart_id": 398,
-            "custom_fields": [
-              {
-                "display_name": "user",
-                "variable_name": "user",
-                "value": 2
-              },
-              {
-                "display_name": "Cart Items",
-                "variable_name": "cart_items",
-                "value": "3 bananas, 12 mangoes"
-              }
-            ]
-          }
+          "channel": ["card"],
+          "metadata": metadata
         },
         {
           headers: {

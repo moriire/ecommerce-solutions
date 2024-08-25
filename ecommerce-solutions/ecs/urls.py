@@ -9,7 +9,7 @@ from packages.views import PackagesView
 #from users.views import UsersView
 from profile.views import ProfileView
 from cart.views import CartView
-from order.views import OrderView
+from order.views import OrderView, OrderedView
 from wishlist.views import WishListView
 from shipping.views import ShippingViews, LocationPricingViews
 from thumb.views import ProductImageView, ProductWithImageView, PagedProductWithImageView
@@ -48,6 +48,7 @@ route.register("packages", PackagesView)
 route.register("categories", CategoryView)
 route.register("product", ProductView)
 route.register("cart", CartView)
+route.register("ordered", OrderedView)
 route.register("order", OrderView)
 route.register("reviews", ReviewsView)
 route.register("wishlist", WishListView)

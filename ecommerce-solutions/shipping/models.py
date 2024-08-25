@@ -19,8 +19,9 @@ class Shipping(models.Model):
     city = models.ForeignKey(LocationPriceModel, on_delete=models.CASCADE, related_name="shipping_city", null=True, blank=True)
     country = models.CharField("Country", max_length=24, default="Nigeria")
     address = models.CharField("Address", max_length=128, null=True, blank=True)
+    phone = models.CharField("Phone", max_length=8, null=True, blank=True)
     zip_code = models.CharField("Zip Code", max_length=8, null=True, blank=True)
 
     def __str__(self) -> str:
-        return f"shipping for {self.first_name}"
+        return f"shipping for {self.created_by.first_name}"
     

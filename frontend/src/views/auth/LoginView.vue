@@ -54,14 +54,14 @@ const onSubmit = async () => {
           <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
           <input type="password" class="form-control" v-model="password" id="password" value="" required>
         </div>
-        <div class="col-12">
+        <!--div class="col-12">
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
             <label class="form-check-label text-secondary" for="remember_me">
               Keep me logged in
             </label>
           </div>
-        </div>
+        </div-->
 
         <div class="col-12 input-group d-flex justify-content-center">
           <button class="btn btn-primary">Login Now</button>

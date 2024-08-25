@@ -25,7 +25,7 @@ class Order(models.Model):
         COMPLETED = "completed"
 
     created_by = models.ForeignKey(CustomUsers, on_delete=models.CASCADE, related_name="order_by")
-    carts = models.ManyToManyField(Ordered, blank=True)
+    carts = models.ManyToManyField(Cart, blank=True)
     shipping = models.ForeignKey(Shipping, related_name="order_shipping", on_delete=models.CASCADE, null=True, blank=True)
     authorization_code = models.CharField(max_length=16, blank=True, null=True)
     reference_code = models.CharField(max_length=12, blank=True, null=True)
@@ -33,6 +33,4 @@ class Order(models.Model):
     created_on = models.DateTimeField(auto_now=True)
     
     def __str__(self) -> str:
-        return self.created_by.get_full_name
-    
-
+        return self.created_by.get_full_name()

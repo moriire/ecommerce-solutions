@@ -14,6 +14,7 @@ class ShippingViews(ModelViewSet):
     queryset = Shipping.objects.all()
     serializer_class = ShippingSerializer
 
+
     @action(detail=False, methods=["POST"])
     def shipping_address(self, request):
         created_by = request.data.get("created_by")

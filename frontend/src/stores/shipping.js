@@ -17,6 +17,7 @@ export const useShippingStore = defineStore('Shipping', () => {
     email: "",
     country: "Nigeria",
     address: "",
+    phone: "",
     created_by: null,
   });
 
@@ -39,8 +40,9 @@ export const useShippingStore = defineStore('Shipping', () => {
     }
   };
   const saveOrder = async () => {
+    //await getShipping()
     try {
-      const res = await axiosInstance.patch(`shipping/${shippingDetail.value.id}`, shippingDetail.value)
+      const res = await axiosInstance.put(`shipping/${shippingDetail.value.id}`, shippingDetail.value)
       //getShippingCostData.value = res.data
       console.log(res)
     } catch (e) {
