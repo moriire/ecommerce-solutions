@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils.translation import gettext as _
 from django.utils import timezone
@@ -8,6 +9,7 @@ from rest_framework import serializers
 from django.core.exceptions import ValidationError as DjangoValidationError
 
 class CustomUsers(AbstractBaseUser, PermissionsMixin):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     username = models.CharField(_("Username"), max_length=12, unique=True)
     first_name = models.CharField(_("First Name"), max_length=50)
     last_name = models.CharField(_("last Name"), max_length=50)

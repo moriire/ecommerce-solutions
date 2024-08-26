@@ -12,7 +12,7 @@ class LocationPriceModel(models.Model):
         verbose_name_plural = "Shipping Informations"
         
 class Shipping(models.Model):
-    created_by = models.OneToOneField(CustomUsers, on_delete=models.CASCADE, related_name="shipping_user")
+    created_by = models.OneToOneField(CustomUsers, on_delete=models.CASCADE, related_name="shipping_user", primary_key=True)
     first_name = models.CharField("First Name", max_length=30, null=True, blank=True)
     last_name = models.CharField("Last Name", max_length=30, null=True, blank=True)
     email = models.EmailField("Email", null=True, blank=True)
