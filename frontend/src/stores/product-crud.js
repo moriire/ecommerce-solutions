@@ -8,7 +8,7 @@ export const useProductcrudStore = defineStore('productcrud', () => {
   const auth = useAuthStore();
   const router = useRouter();
   const registeredProducts = ref([]);
-  const productData = reactive({ package: "", description: "", name: "", category: "", price: 500, quantity: 1, profile: parseInt(auth.userInfo.pk), brand: "", discount: 5, condition: "" })
+  const productData = reactive({ package: "", description: "", name: "", category: "", price: 500, quantity: 1, profile: auth.userInfo.user.pk, brand: "", discount: 5, condition: "" })
   const productImages = ref([]);
   const images = ref([]);
   const getUserProducts = async () => {

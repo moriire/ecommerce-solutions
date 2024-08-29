@@ -26,7 +26,7 @@ class Profile(models.Model):
     viewed_by = models.ManyToManyField(CustomUsers, related_name="profile_viewed_by", blank=True,)
 
     def __str__(self):
-        return self.user.username
+        return str(self.username)
 
     def save(self, *args, **kwargs):
         if not self.store_slug:
@@ -60,3 +60,4 @@ class ProfileExpandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = "__all__"
+        #depth = 2

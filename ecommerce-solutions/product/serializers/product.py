@@ -3,7 +3,7 @@ from product.models.product import Products
 from profile.models import ProfileSerializer, ProfileExpandSerializer
 from packages.models import PackageSerializer
 from .category import CategorySerializer
-
+from users.serializers import UserSerializer
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Products
@@ -29,4 +29,5 @@ class ProductSerializer(serializers.ModelSerializer):
 class ProductExpandSerializer(ProductSerializer):
     package = PackageSerializer()
     category = CategorySerializer()
-    profile = ProfileExpandSerializer()
+    profile =  UserSerializer()#ProfileExpandSerializer()
+    #depth = 2 

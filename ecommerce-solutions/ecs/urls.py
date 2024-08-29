@@ -15,7 +15,7 @@ from shipping.views import ShippingViews, LocationPricingViews
 from thumb.views import ProductImageView, ProductWithImageView, PagedProductWithImageView
 from flash.views import FlashSalesView
 from bargains.views import BargainVendorsView
-from payment.views import TransactionView, PaystackHookView
+#from payment.views import TransactionView, PaystackHookView
 from rest_framework import permissions
 from users import views
 from drf_yasg import openapi
@@ -61,7 +61,7 @@ route.register("product-with-images", PagedProductWithImageView, basename="produ
 route.register("normal-product-with-images", ProductWithImageView, basename="normal_product_with_images")
 route.register("flash", FlashSalesView)
 route.register("bargains", BargainVendorsView)
-route.register("transaction", TransactionView, basename="transaction")
+#route.register("transaction", TransactionView, basename="transaction")
 
 urlpatterns = [
         #path('api/auth/facebook/', views.FacebookLogin.as_view(), name='fb_login'),

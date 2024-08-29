@@ -26,7 +26,7 @@ const modules = [Autoplay, Pagination, Navigation]
     disableOnInteraction: false,
   }" :pagination="{
     clickable: true,
-  }" :navigation="true" :modules="modules" @autoplayTimeLeft="onAutoplayTimeLeft" class="mySwiper">
+  }" :navigation="true" :modules="modules" @autoplayTimeLeft="onAutoplayTimeLeft" class="mySwiper content-box slide-content">
     <swiper-slide v-for="(prod, index) in boostedProducts" v-bind:key="index">
       <div class="row align-items-center justify-content-between vh-100 w-100">
         <div class="col-lg-6 col-md-6 col-12 text-dark">

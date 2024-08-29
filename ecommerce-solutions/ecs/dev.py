@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     "corsheaders",
     #"storages",
     "rest_framework",
+    'coreapi',
+    'drf_yasg',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
     'allauth',
@@ -52,8 +54,6 @@ INSTALLED_APPS = [
     "flash",
     "bargains",
     "payment",
-    'coreapi', # Coreapi for coreapi documentation
-    'drf_yasg', # drf_yasg fro Swagger documentatio
 ]
 
 MIDDLEWARE = [
