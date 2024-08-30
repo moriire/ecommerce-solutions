@@ -11,6 +11,7 @@ export const useProductcrudStore = defineStore('productcrud', () => {
   const productData = reactive({ package: "", description: "", name: "", category: "", price: 500, quantity: 1, profile: auth.userInfo.user.pk, brand: "", discount: 5, condition: "" })
   const productImages = ref([]);
   const images = ref([]);
+
   const getUserProducts = async () => {
     try {
       const res = await axiosInstance.get(`product-with-images?product__profile__user__id=${auth.userInfo.pk}&limit=${8}`)
@@ -34,7 +35,6 @@ export const useProductcrudStore = defineStore('productcrud', () => {
     } catch (e) {
       console.log(e.response)
     }
-    // Handle the uploaded file, e.g., send it to a server
   }
   const addProduct = async () => {
     try {
@@ -44,7 +44,7 @@ export const useProductcrudStore = defineStore('productcrud', () => {
       if (res.status === 201) {
         console.log(res)
         await uploadImages(res.data.id);
-        setTimeout(()=>{productData.value={}}, 2000)
+        setTimeout(() => { productData.value = {} }, 2000)
       }
       //products.value = res.data.data
       console.log(res.data)
@@ -53,8 +53,6 @@ export const useProductcrudStore = defineStore('productcrud', () => {
       console.log(e)
     }
   }
-
-
   const showFileUpload = (event) => {
     const files = event.target.files;
     for (let i = 0; i < files.length; i++) {
@@ -72,7 +70,7 @@ export const useProductcrudStore = defineStore('productcrud', () => {
   const deleteProduct = async (productId) => {
     const res = await axiosInstance.delete(`product/${productId}`)
     console.log(res)
-    if(res.data.status===204){
+    if (res.data.status === 204) {
       await getUserProducts()
     }
   };
@@ -90,15 +88,13 @@ export const useProductcrudStore = defineStore('productcrud', () => {
             images.value[i].progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
           }
         });
-        setTimeout(()=> router.push(`/product/upload/${productID}`), 2000)
+        setTimeout(() => router.push(`/product/upload/${productID}`), 2000)
       } catch (error) {
         //router.push(`/product/upload/${productID}`)
         console.error('Error uploading image:', error);
       }
     }
-
   }
-
   return {
     productData,
     addProduct,

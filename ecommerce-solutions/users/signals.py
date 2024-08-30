@@ -8,7 +8,7 @@ from profile.models import Profile
 @receiver(post_save, sender=CustomUsers) 
 def create_profile(sender, instance, created, **kwargs):
 	if created:
-		if instance.vendor:
-			Profile.objects.create(user=instance, store_name=instance.username)
-		else:
-			Profile.objects.create(user=instance)
+		print(instance)
+		Profile.objects.create(user = instance, store_name=instance.username)
+		#instance.user_profile.save()
+		
