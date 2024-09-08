@@ -11,7 +11,7 @@ export const useWishlistStore = defineStore('wishlist', () => {
   const registeredProducts = ref([])
   const getUserProducts = async () => {
     try {
-      const res = await axiosInstance.get(`product-with-images?product__profile__user__id=${auth.userInfo.pk}&limit=${8}`)
+      const res = await axiosInstance.get(`product-with-images?product__profile__user__id=${auth.userInfo.id}&limit=${8}`)
       registeredProducts.value = res.data.results
       console.log(res.data)
     } catch (e) {
@@ -22,7 +22,7 @@ export const useWishlistStore = defineStore('wishlist', () => {
   const wishesIds = computed(() => wishes.value.map(x => x.product.id))
   const getWishList = async () => {
     try {
-      const res = await axiosInstance.get(`wishlist?user=${auth.userInfo.pk}`)
+      const res = await axiosInstance.get(`wishlist?user=${auth.userInfo.id}`)
       wishes.value = res.data.data
       console.log(res)
 
@@ -56,7 +56,7 @@ export const useWishlistStore = defineStore('wishlist', () => {
     try {
       const res = await axiosInstance.post('wishlist',
         {
-          user: auth.userInfo.pk,
+          user: auth.userInfo.id,
           product: product
         }
       )

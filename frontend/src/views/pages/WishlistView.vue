@@ -10,9 +10,15 @@ onMounted(async () => {
 </script>
 <template>
     <div class="container mt-100">
-            <h2 class=".section-heading">My Wishlist</h2>
+            <h2 class="section-heading">My Wishlist</h2>
 
-        <WishListPage :products="wishes.wishes" />
+        <WishListPage :products="wishes.wishes" v-if="wishes.wishes.length" />
+        <template v-else >
+            <div class="row align-items-center justify-content-center vh-100 text-center">
+
+               <h2> No Item on your wishes</h2>
+            </div>
+        </template>
         <!--div class="row">
                             <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
                                 <div class="product-card">

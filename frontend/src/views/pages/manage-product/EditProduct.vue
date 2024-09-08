@@ -1,43 +1,59 @@
 <script setup>
+import axiosInstance from '@/axios';
 import { useCategoryStore } from '@/stores/categories';
 import { usePackageStore } from '@/stores/packages';
 import { useProductcrudStore } from '@/stores/product-crud';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
+const route = useRoute()
 const prodcrud = useProductcrudStore()
 const cat = useCategoryStore()
 const pack = usePackageStore()
 const productID = ref(null);
+const productDetails = ref({})
+const getImages = async (product_id) => {
+  try {
+    const res = await axiosInstance.get(`normal-product-with-images/${product_id}/edit_single`)
+    productDetails.value = res.data.data
+    console.log(res.data.data)
+  } catch (e) {
+    console.log(e)
+  }
+}
+onMounted(()=>{
+  getImages(route.params.product)
+})
 </script>
 <template>
-    <h2 class="pb-1">Add New Products</h2>
-      <form  @submit.prevent="prodcrud.addProduct">
+    <h2 class="pb-1">Edit Products</h2>
+      <form  @submit.prevent="prodcrud.addProduct" v-if="productDetails.images">
         <div class="row">
           <div class="col-lg-6 col-md-12 col-12 my-2">
               <label class="label">Product Name</label>
-              <input class="form-control" required v-model="prodcrud.productData.name" />
+              <input class="form-control" required v-model="productDetails.product.name" />
           </div>
           <div class="col-lg-3 col-md-12 col-12 my-2">
             <label class="label">Price</label>
             <div class="input-group">
               <span class="input-group-text" id="inputGroup-sizing-default">&#x20A6;</span>
-              <input required class="form-control" v-model="prodcrud.productData.price" type="number" min="500" max="1000000" />
+              <input required class="form-control" v-model="productDetails.product.price" type="number" min="500" max="1000000" />
 
             </div>
           </div>
           <div class="col-lg-3 col-md-12 col-12 my-2">
               <label class="label">Discount</label>
               <div class="input-group">
-                <input class="form-control" required v-model="prodcrud.productData.discount" type="number" min="5" max="50" />
+                <input class="form-control" required v-model="productDetails.product.discount" type="number" min="5" max="50" />
                 <span class="input-group-text" id="inputGroup-sizing-default">%</span>
               </div>
           </div>
           <div class="col-lg-3 col-md-12 col-12 my-2">
               <label class="label">Quantity</label>
-              <input class="form-control" required v-model="prodcrud.productData.quantity" type="number" min="0" />
+              <input class="form-control" required v-model="productDetails.product.quantity" type="number" min="0" />
           </div>
           <div class="col-lg-5 col-md-12 col-12 my-2">
               <label class="label">Condition</label>
-              <select required v-model="prodcrud.productData.condition" class="form-select form-control" >
+              <select required v-model="productDetails.product.condition" class="form-select form-control" >
                 <option selected value="" disabled>Product Condition</option>
                 <option value="used">Used</option>
                 <option value="new">New</option>
@@ -47,7 +63,7 @@ const productID = ref(null);
           <div class="col-lg-4 col-md-12 col-12 my-2">
             <fieldset>
               <label class="label" id="category">Product Category</label>
-              <select for="category" required class="form-select" v-model="prodcrud.productData.category">
+              <select for="category" required class="form-select" v-model="productDetails.product.category">
                 <option selected value=""  disabled >Product Category</option>
                 <option :selected="index == 0 ? 'selected' : ''" v-for="(cat, index) in cat.categories"
                   v-bind:key="index" :value="cat.id">{{ cat.name }}</option>
@@ -56,19 +72,19 @@ const productID = ref(null);
           </div>
           <div class="col-lg-6 col-md-12 col-12 my-2">
               <label class="label">Product Brand</label>
-              <input required v-model="prodcrud.productData.brand" class="form-control">
+              <input required v-model="productDetails.product.brand" class="form-control">
           </div>
           <div class="col-lg-6 col-md-12 col-12 my-2">
               <label class="label">Package</label>
-              <select required class="form-select" v-model="prodcrud.productData.package">
-                {{ packages }}
+              <select required class="form-select" v-model="productDetails.product.package">
+                {{ pack }}
                 <option :selected="index == 0 ? 'selected' : ''" v-for="(pkg, index) in pack.packages"
                   v-bind:key="index" :value="pkg.id">{{ pkg.name }}</option>
               </select>
           </div>
           <div class="col-lg-12 col-md-12 col-12 my-2">
               <label class="label">Product Description</label>
-              <textarea required v-model="prodcrud.productData.description" class="form-control"></textarea>
+              <textarea required v-model="productDetails.product.description" class="form-control"></textarea>
           </div>
         </div>
         <div class="row">
@@ -76,7 +92,7 @@ const productID = ref(null);
             <img :src="img.img" alt="">
           </div>
           <div class="col-12 my-2" v-else>
-            <h3>No Product Image Uploaded Yet!!</h3>
+            <h3>Click to Change Image</h3>
           </div>
         </div>
         <div class="row">
@@ -85,17 +101,17 @@ const productID = ref(null);
               <label for="imageUpload" class="form-label">Upload Images</label>
               <input required type="file" class="form-control" id="imageUpload" multiple @change="prodcrud.showFileUpload">
             </div>
-            <div v-if="prodcrud.images.length > 0">
+            <div v-if="productDetails.images.length > 0">
               <div class="row">
-                <div class="col-md-4" v-for="(image, index) in prodcrud.images" :key="index">
+                <div class="col-md-4" v-for="(image, index) in productDetails.images" :key="index">
                   <div class="card">
-                    <img :src="image.preview" class="card-img-top" alt="Image Preview">
-                    <div class="card-body">
+                    <img :src="image.img" class="card-img-top" alt="Image Preview">
+                    <!--div class="card-body">
                       <p class="card-text">Progress: {{ image.progress }}%</p>
                       <div class="progress">
                         <div class="progress-bar" :style="{ width: image.progress + '%' }" role="progressbar"></div>
                       </div>
-                    </div>
+                    </div-->
                   </div>
                 </div>
               </div>

@@ -8,13 +8,13 @@ export const useProductcrudStore = defineStore('productcrud', () => {
   const auth = useAuthStore();
   const router = useRouter();
   const registeredProducts = ref([]);
-  const productData = reactive({ package: "", description: "", name: "", category: "", price: 500, quantity: 1, profile: auth.userInfo.user.pk, brand: "", discount: 5, condition: "" })
+  const productData = reactive({ package: "", description: "", name: "", category: "", price: 500, quantity: 1, profile: auth.userInfo.id, brand: "", discount: 5, condition: "" })
   const productImages = ref([]);
   const images = ref([]);
 
   const getUserProducts = async () => {
     try {
-      const res = await axiosInstance.get(`product-with-images?product__profile__user__id=${auth.userInfo.pk}&limit=${8}`)
+      const res = await axiosInstance.get(`product-with-images?product__profile__user__id=${auth.userInfo.id}&limit=${8}`)
       registeredProducts.value = res.data.results
       console.log(res.data)
     } catch (e) {

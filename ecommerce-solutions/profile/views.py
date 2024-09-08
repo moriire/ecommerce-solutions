@@ -19,7 +19,9 @@ class ProfileView(ModelViewSet):
         return Response({"data": catser.data,})
 
     def retrieve(self, request, pk):
-        item = self.get_queryset().get(store_slug = pk)
+        #item = self.get_queryset().get(store_slug = pk)
+        item = self.get_queryset().get(pk = pk)
+        print(dir(item.user))
         catser = ProfileExpandSerializer(item)
         return Response({"data": catser.data,})
     #filter_backends = [filters.SearchFilter]

@@ -5,28 +5,18 @@ import ProductPage from "@/components/ProductPage.vue"
 import { useProductStore } from '@/stores/products';
 import { useFilterStore } from '@/stores/filter';
 import axiosInstance from '@/axios';
+import { useByvendorsStore } from '@/stores/byvendors';
 const prod = useProductStore()
 const filter = useFilterStore()
-const route = useRoute()
-const vendorProducts = ref([]);
-const getVendor = async (vendor_slug) => {
-    try{
-        const res  = await axiosInstance.get(`product-with-images/${vendor_slug}/get_vendor_products`)
-        vendorProducts.value = res.data.data
-    }catch(e){
-        console.log(e)
-    }
-    
-};
-onMounted(async () =>
-    await getVendor(route.params.vendor_slug)
-);
+const vendor = useByvendorsStore()
+
+
 //watch(route, ()=> prod.getProducts())
 </script>
 
 <template>
     <!--Hero /-->
-    <div class="collection mt-100">
+    <div class="collection mt-100" v-if="vendor.vendorData.products">
         <div class="container">
             <div class="row">
                 <!-- product area start -->
@@ -34,7 +24,8 @@ onMounted(async () =>
                     <div class="filter-sort-wrapper d-flex justify-content-between flex-wrap">
                         <div class="collection-title-wrap d-flex align-items-end">
                             <h2 class="collection-title heading_24 mb-0">All products</h2>
-                            <p class="collection-counter text_16 mb-0 ms-2">({{ prod.products.length }} items)</p>
+                            <p class="collection-counter text_16 mb-0 ms-2">({{ vendor.vendorData.products.length }}
+                                items)</p>
                         </div>
                         <div class="filter-sorting">
                             <div class="collection-sorting position-relative d-none d-lg-block">
@@ -75,9 +66,7 @@ onMounted(async () =>
                     </div>
                     <div class="collection-product-container">
                         <div class="row">
-                         
-                            <ProductPage :products="vendorProducts" />
-
+                            <ProductPage :products="vendor.vendorData.products" />
                         </div>
                     </div>
                     <div class="pagination justify-content-center mt-100">

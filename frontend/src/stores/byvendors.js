@@ -5,19 +5,21 @@ import axiosInstance from '@/axios'
 
 export const useByvendorsStore = defineStore('byvendors', () => {
   const count = ref(0)
-  const productsInVendor = ref([])
-  const getProductsByVendor = async (Vendor_slug) => {
-    try {
-      const res = await axiosInstance.get(`profile?Vendor__slug=${Vendor_slug}`)
-      productsInVendor.value = res.data.data
-      console.log(res.data.data)
-    } catch (e) {
+  const vendorData = ref({})
+  
+  const getVendor = async ()=>{
+    try{
+      const res = await axiosInstance.get(`normal-product-with-images/get_profile`)
+      vendorData.value = res.data
+    } catch(e){
       console.log(e)
+    } finally{
+  
     }
   }
   return {
     count,
-    productsInVendor,
-    getProductsByVendor
+    vendorData,
+    getVendor
   }
 })

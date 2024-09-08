@@ -55,3 +55,11 @@ class ProductWithImageSerializer(serializers.ModelSerializer):
 
 class XProductWithImageSerializer(ProductWithImageSerializer):
     product = ProductExpandSerializer()
+
+class XYProductWithImageSerializer(serializers.ModelSerializer):
+    images = ProductImageSerializer(many=True)
+    product = ProductSerializer()
+
+    class Meta:
+        model = ProductWithImage
+        fields = "__all__"

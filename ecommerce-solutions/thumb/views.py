@@ -2,7 +2,9 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework import status 
-from .models import ProductImage, ProductWithImage, ProductImageSerializer, ProductWithImageSerializer, XProductWithImageSerializer
+from .models import ProductImage, ProductWithImage, ProductImageSerializer, ProductWithImageSerializer, XProductWithImageSerializer, XYProductWithImageSerializer
+from profile.models import ProfileExpandSerializer
+from django.forms.models import model_to_dict
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
 from rest_framework.generics import ListAPIView
@@ -37,6 +39,36 @@ class ProductWithImageView(ModelViewSet):
     serializer_class = XProductWithImageSerializer
 
     @action(detail=False, methods=["GET"])
+    def get_profile(self, request):
+        pk = request.user.id
+        profile = self.request.user.user_profile
+        pro_ser = ProfileExpandSerializer(profile)
+        item = self.get_queryset()
+        item = item.filter(product__profile__id=pk)
+        print(item)
+        catser = XProductWithImageSerializer(item, many=True)
+        #new_pro_ser = dict(pro_ser.data)
+        #new_pro_ser["vendor_info"] = item
+        #print(new_pro_ser)
+        return Response(
+                {
+                    "vendor": pro_ser.data,
+                    "products": catser.data
+                    #"vendor": pro_ser.data
+                    }
+                )
+    @action(detail=True, methods=["GET"])
+    def edit_single(self, request, pk=None):
+        item = self.get_queryset()
+        item = item.filter(pk=pk).first()
+        catser = XYProductWithImageSerializer(item)
+        return Response(
+                {
+                    "data": catser.data,
+                    }
+                )
+    
+    @action(detail=False, methods=["GET"])
     def discounted(self, request):
         items = self.get_queryset()
         items = items.filter(product__discount__gte = 20)[:18]
@@ -49,7 +81,7 @@ class ProductWithImageView(ModelViewSet):
     @action(detail=False, methods=["GET"])
     def promoted(self, request):
         items = self.get_queryset()
-        items = items.filter(product__package__name ='free')[:18]
+        items = items.filter(product__package__name ='Basic')[:18]
         catser = self.get_serializer(items, many=True)
         return Response(
                 {

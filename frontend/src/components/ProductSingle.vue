@@ -77,7 +77,7 @@ const modules = [FreeMode, Navigation, Thumbs]
                     <del class="product-price compare-price ms-2">$ {{ product.price }}</del>
                 </div>
                 <div class="product-vendor product-meta mb-3">
-                    <strong class="label">Vendor:</strong> {{ product.profile.store_name || product.profile.user.username }}
+                    <strong class="label">Vendor:</strong> {{ product.profile.store_name || product.profile.username }}
                 </div>
                 <div>
                     <strong class="label">Description:</strong><br>

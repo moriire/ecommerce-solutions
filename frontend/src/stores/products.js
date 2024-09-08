@@ -47,7 +47,6 @@ const cartItems = ref(JSON.parse(localStorage.getItem("userCart")) || []); //ref
 const cartItemsCount = reactive(JSON.parse(localStorage.getItem("userCartCounter")) || {})
 //const cartSubtotal = ref(0)
 //const cartTotalDiscount = ref(0)
-
 const cartSubtotalReview = computed(() => {
   console.log(cartItemsReview.value)
   let numbers = cartItemsReview.value.map(x => x.cost);
@@ -67,7 +66,7 @@ const cartTotalDiscount = computed(()=>{
 
 const getCart = async ()=>{
   try {
-    const res = await axiosInstance.get(`cart?user=${auth.userInfo.pk}`)
+    const res = await axiosInstance.get(`cart?user=${auth.userInfo.id}`)
     cartItemsReview.value = res.data.data
   } catch(e){
     console.log("Error", e)
@@ -77,7 +76,7 @@ const getCart = async ()=>{
 
 const getOrders = async ()=>{
   try {
-    const res = await axiosInstance.get(`order/${auth.userInfo.pk}/get_orders`)
+    const res = await axiosInstance.get(`order/${auth.userInfo.id}/get_orders`)
     orders.value = res.data
   } catch(e){
     console.log("Error", e)
@@ -105,7 +104,7 @@ const addToCart = async (product_id) => {
     try{
       const res = await axiosInstance.post('cart',
         {
-          user: auth.userInfo.pk,
+          user: auth.userInfo.id,
           product: product_id
         }
       )
