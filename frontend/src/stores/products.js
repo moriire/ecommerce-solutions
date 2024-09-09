@@ -55,7 +55,7 @@ const cartSubtotalReview = computed(() => {
 
 const cartSubtotal = computed(() => {
   console.log(cartItems.value)
-  let numbers = cartItems.value.map(x => x.product.price * x.count);
+  let numbers = cartItems.value.map(x => x.price * x.count);
   return numbers.reduce((sum, num) => sum + num, 0);
 })
 

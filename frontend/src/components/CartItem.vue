@@ -31,7 +31,7 @@ defineProps({
 
 <template>
     <!-- minicart item -->
-    <div class="minicart-item d-flex" v-if="item">
+    <div class="minicart-item d-flex" v-if="item.images">
         <div class="mini-img-wrapper">
             <img class="mini-img" :src="item.images[0].img.startsWith('/media') ? 'http://127.0.0.1:8000' + item.images[0].img: item.images[0].img" alt="img" >
         </div>
