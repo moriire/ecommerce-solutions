@@ -16,37 +16,9 @@ export default {
 };
 </script>
 <template>
-    <section class=".p-3 .p-md-4 .p-xl-5 m-0 p-0 vh-100">
-        <div class="container-fluid m-0 vh-100 ">
-            <div class="row">
-                <div class="col-12 col-md-6 .bsb-tpl-bg-platinum" >
-                    <div class="d-flex flex-column justify-content-between h-100 p-3 p-md-4 p-xl-5" sstyle="background-image: url(/src/assets/img/auth_bg.png); background-position: center; background-size: cover; background-repeat: no-repeat">
-                        <h3 class="m-0">Welcome!hghghfh</h3>
-                        <h2 class="text-end">
-                          Tag<span class="text-warning">Biz</span>
-                        </h2>
-                        <!--img class="img-fluid rounded mx-auto my-3" loading="lazy" src="/src/assets/img/auth_bg.png"
-                            width="245" height="100%" alt="BootstrapBrain Logo"-->
-                        <p class="mb-0">Not a member yet? <a href="#!"
-                                class="link-secondary text-decoration-none">Register now</a></p>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 ">
-                    <RouterView />    
-                </div>
-            </div>
-        </div>
-    </section>
+  <RouterView />
 </template>
-
 <style scoped>
-.bsb-btn-xl {
-  --bs-btn-padding-y: 0.625rem;
-  --bs-btn-padding-x: 1.25rem;
-  --bs-btn-font-size: calc(1.26rem + 0.12vw);
-  --bs-btn-border-radius: var(--bs-border-radius-lg)
-}
-
 @media(min-width:1200px) {
   .bsb-btn-xl {
     --bs-btn-font-size: 1.35rem
