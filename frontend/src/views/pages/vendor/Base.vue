@@ -15,7 +15,7 @@ onMounted(async () => {
 const prodcrud = useProductcrudStore()
 </script>
 <template>
-  <div class="container mt-100">{{ vendor.vendorData.products }}
+  <div class="container mt-100">
     <div class="row">
       <div class="checkout-user-area overflow-hidden d-flex align-items-center">
         <div class="checkout-user-img me-lg-4 col-md-2 col-sm-10 col-xs-12">
@@ -27,11 +27,8 @@ const prodcrud = useProductcrudStore()
             <h2 class="checkout-user-name">{{ vendor.vendorData.vendor.store_name }}</h2>
             <p class="checkout-user-address mb-0">{{ vendor.vendorData.vendor.address || "No Address Set Yet!!!" }}</p>
           </div>
-          <!--div class="checkout-user-info col-lg-4">
-            <h2 class="checkout-user-name">{{ vendor.vendorData.vendor.store_name }}</h2>
-            <p class="checkout-user-address mb-0">{{ vendor.vendorData.vendor.address || "No Address Set Yet!!!" }}</p>
-          </div-->
-          <a href="#" class="edit-user btn-secondary">EDIT PROFILE</a>
+          
+          <RouterLink to="/vendors/profile" class="edit-user btn-secondary">EDIT PROFILE</RouterLink>
         </div>
       </div>
     </div>

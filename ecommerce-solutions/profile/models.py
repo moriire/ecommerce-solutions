@@ -20,9 +20,9 @@ class Profile(models.Model):
     address = models.TextField(blank=True, null=True)
     location = models.ForeignKey(LocationPricing, blank=True, null=True, on_delete=models.CASCADE, related_name="location_pricing")
     merchandise = models.TextField(blank=True, null=True)
-    facebook = models.URLField()
-    instagram = models.URLField()
-    twitter = models.URLField()
+    facebook = models.URLField(blank=True, null=True)
+    instagram = models.URLField(blank=True, null=True)
+    twitter = models.URLField(blank=True, null=True)
     viewed_by = models.ManyToManyField(CustomUsers, related_name="profile_viewed_by", blank=True,)
 
     def __str__(self):

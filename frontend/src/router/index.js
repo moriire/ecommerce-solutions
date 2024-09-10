@@ -10,12 +10,6 @@ const router = createRouter({
       name: 'pages',
       children: [
         {
-          path: 'profile',
-          name: 'profile',
-          component: () => import('../views/pages/ProfileView.vue'),
-          meta: { requiresAuth: true }
-        },
-        {
           path: '',
           name: 'home',
           component: () => import('../views/pages/HomeView.vue')
@@ -65,6 +59,12 @@ const router = createRouter({
               name: 'vendors_slug',
               component: () => import('../views/pages/vendor/ShopbyvendorView.vue'),
               meta: { requiresAuth: true }
+            },
+            {
+              path: 'profile',
+              name: 'profile',
+              component: () => import('../views/pages/ProfileView.vue'),
+              meta: { requiresAuth: true, loafs:{home: "/", vendor: "/vendor", profile:"/profile"} }
             },
           ]
         },
