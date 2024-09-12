@@ -15,9 +15,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.sites',
@@ -30,18 +28,9 @@ INSTALLED_APPS = [
     "corsheaders",
     #"storages",
     "rest_framework",
-    'coreapi',
-    'drf_yasg',
-    'rest_framework.authtoken',
     'rest_framework_simplejwt',
-    'allauth',
-    'allauth.account',
-    'dj_rest_auth.registration',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.twitter',
-    'dj_rest_auth',
+     'rest_framework_simplejwt.token_blacklist',
+    "djoser",
     "users",
     "profile",
     "product",
@@ -54,6 +43,8 @@ INSTALLED_APPS = [
     "flash",
     "bargains",
     "payment",
+    'coreapi',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -65,7 +56,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "allauth.account.middleware.AccountMiddleware"
 ]
 
 ROOT_URLCONF = 'ecs.urls'
@@ -118,17 +108,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 REST_FRAMEWORK = {
-    #'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination', 
-    #'PAGE_SIZE': 2, 
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.AllowAny",
-    ],
-    "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.SessionAuthentication",
-        #"rest_framework.authentication.TokenAuthentication",
-        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
-    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
 
@@ -137,25 +124,9 @@ if not DEBUG:
             "rest_framework.renderers.JSONRenderer",
         )
 AUTHENTICATION_BACKENDS = [
+    'user.serializers.EmailOrUsernameBackend',  # Custom backend for email or username login
     'django.contrib.auth.backends.ModelBackend',
-    "allauth.account.auth_backends.AuthenticationBackend",
 ]
-
-from datetime import timedelta
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
-}
-REST_AUTH = {
-    #'LOGIN_SERIALIZER':  'users.models.CustomLoginSerializer',
-    'REGISTER_SERIALIZER': 'users.models.CustomRegisterSerializer',
-    'USER_DETAILS_SERIALIZER': 'users.serializers.UserSerializer',
-    "USE_JWT": True,
-    'JWT_AUTH_RETURN_EXPIRATION': not False,
-    'JWT_AUTH_COOKIE' :'mega-auth',
-    'JWT_AUTH_HTTPONLY':False,
-    'JWT_AUTH_REFRESH_COOKIE': 'mega-refresh-token'
-}
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
@@ -193,3 +164,21 @@ MEDIA_ROOT = BASE_DIR / "mediafiles"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+DJOSER = {
+    'LOGIN_FIELD': 'email',  # If you want to authenticate by email
+     'SERIALIZERS': {
+        'user_create': 'user.serializers.UserCreateSerializer',
+        'user': 'user.serializers.UserSerializer',
+        'current_user': 'user.serializers.UserSerializer',
+    },
+}
+
+from datetime import timedelta
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'ALGORITHM': 'HS256',
+}

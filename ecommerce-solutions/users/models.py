@@ -5,7 +5,7 @@ from django.utils.translation import gettext as _
 from django.utils import timezone
 from .manager import UserManager
 from rest_framework import serializers
-#from utils import image_resize
+from utils import image_resize
 from django.core.exceptions import ValidationError as DjangoValidationError
 
 class CustomUsers(AbstractBaseUser, PermissionsMixin):
@@ -37,21 +37,7 @@ class CustomUsers(AbstractBaseUser, PermissionsMixin):
     def save(self, *args, **kwargs):
         #self.profile.create(user=self, store_name=self.username)
         return super().save(*args, **kwargs)
-    
-from allauth.account.models import EmailAddress
-
-def email_address_exists(email):
-    return EmailAddress.objects.filter(email=email).exists()
-
-from allauth.account import app_settings as allauth_settings
-#from allauth.utils import email_address_exists
-from allauth.account.adapter import get_adapter
-from allauth.account.utils import setup_user_email
-from rest_framework.exceptions import ValidationError
-
-from django.utils.translation import gettext_lazy as _
-from dj_rest_auth.registration.serializers import RegisterSerializer
-    
+"""   
 class CustomRegisterSerializer(RegisterSerializer):
     #first_name = serializers.CharField(required=True, write_only=True)
     #last_name = serializers.CharField(required=True, write_only=True)
@@ -91,3 +77,4 @@ class CustomRegisterSerializer(RegisterSerializer):
         setup_user_email(request, user, [])
         return user
 
+""" 
