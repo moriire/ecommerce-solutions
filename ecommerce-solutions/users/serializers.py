@@ -1,19 +1,25 @@
-from djoser.serializers import TokenCreateSerializer
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from rest_framework_simplejwt.tokens import RefreshToken
-from .models import CustomUsers
-#from djoser.serializers import UserSerializer
 User = get_user_model()
-class CustomTokenCreateSerializer(TokenCreateSerializer):
+
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+from django.contrib.auth import get_user_model
+User = get_user_model()
+class TokenObtainSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
-        User = get_user_model()
-        user = User.objects.get(username=self.user.username)
-        data['id'] = self.user.id
-        data['username'] = self.user.username
+        refresh = self.get_token(self.user)
+        data["refresh"] = str(refresh)
+        data["access"] = str(refresh.access_token)
+        data["user"] = self.user.USERNAME_FIELD
+        data["id"] = self.user.id
 
         return data
+    
+class CutomObtainPairView(TokenObtainPairView):
+    serializer_class = TokenObtainSerializer
+
 class UsersSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

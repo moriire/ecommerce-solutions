@@ -17,18 +17,6 @@ ALLOWED_HOSTS = ["*"]
 
 # Application definition
 INSTALLED_APPS = [
-    "users",
-    "profile",
-    "product",
-    "thumb",
-    "cart",
-    "wishlist",
-    "shipping",
-    "order",
-    "packages",
-    "flash",
-    "bargains",
-    "payment",
     'django.contrib.admin',
     'django.contrib.sites',
     'django.contrib.auth',
@@ -45,6 +33,18 @@ INSTALLED_APPS = [
      "corsheaders",
     'coreapi',
     'drf_yasg',
+    "users",
+    "profile",
+    "product",
+    "thumb",
+    "cart",
+    "wishlist",
+    "shipping",
+    "order",
+    "packages",
+    "flash",
+    "bargains",
+    "payment",
 ]
 
 MIDDLEWARE = [
@@ -167,11 +167,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 DJOSER = {
-    'LOGIN_FIELD': 'email',  # If you want to authenticate by email
+    'LOGIN_FIELD': 'username',
      "USER_ID_FIELD": "id",
-     'SERIALIZERS': {
-        'token_create': 'users.serializers.CustomTokenCreateSerializer',
-    },
+     
 }
 
 from datetime import timedelta
