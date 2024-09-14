@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext as _
 from django.utils import timezone
 from users.models import CustomUsers
+from users.serializers import UsersSerializer
 from rest_framework import serializers
 from django.template.defaultfilters import slugify # new
 #from utils import image_resize
@@ -34,21 +35,6 @@ class Profile(models.Model):
             return super().save(*args, **kwargs)
    
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CustomUsers
-        fields = (
-            "id",
-            "username",
-            "first_name",
-            "last_name",
-            "email",
-            "phone",
-            "img",
-            "vendor",
-            "subscribe")
-
-
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
@@ -56,7 +42,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class ProfileExpandSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
+    user = UsersSerializer()
     class Meta:
         model = Profile
         fields = "__all__"

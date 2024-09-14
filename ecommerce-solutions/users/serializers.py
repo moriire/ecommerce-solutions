@@ -1,40 +1,22 @@
+from djoser.serializers import TokenCreateSerializer
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer
-from djoser.serializers import UserSerializer as BaseUserSerializer
-from django.contrib.auth.backends import ModelBackend
+from rest_framework_simplejwt.tokens import RefreshToken
 from .models import CustomUsers
-from djoser.serializers import UserSerializer
+#from djoser.serializers import UserSerializer
+User = get_user_model()
+class CustomTokenCreateSerializer(TokenCreateSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        User = get_user_model()
+        user = User.objects.get(username=self.user.username)
+        data['id'] = self.user.id
+        data['username'] = self.user.username
 
-class UserCreateSerializer(BaseUserCreateSerializer):
-    class Meta(BaseUserCreateSerializer.Meta):
-        model = CustomUser
-        fields = ('id', "first_name", "last_name", 'username', 'email', 'password')
-
-class EmailOrUsernameBackend(ModelBackend):
-    def authenticate(self, request, username=None, password=None, **kwargs):
-        try:
-            user = User.objects.get(email=username) if '@' in username else User.objects.get(username=username)
-        except User.DoesNotExist:
-            return None
-        
-        if user.check_password(password) and self.user_can_authenticate(user):
-            return user
-        return None
-
-class UserSerializer(BaseUserSerializer):
-    class Meta(BaseUserSerializer.Meta):
-        model = User
-        fields = ('id', 'username')
-
-
-class CustomUserSerializer(UserSerializer):
-    class Meta(UserSerializer.Meta):
-        model = CustomUsers
-        fields = ['id', 'username' ]
-
+        return data
 class UsersSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CustomUsers
+        model = User
         fields = (
                     "id",
                     "username",

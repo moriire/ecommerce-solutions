@@ -17,20 +17,6 @@ ALLOWED_HOSTS = ["*"]
 
 # Application definition
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.sites',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    #"fastadmin",
-    'django.contrib.staticfiles',
-    'django.contrib.messages',
-    "corsheaders",
-    #"storages",
-    "rest_framework",
-    'rest_framework_simplejwt',
-     'rest_framework_simplejwt.token_blacklist',
-    "djoser",
     "users",
     "profile",
     "product",
@@ -43,6 +29,20 @@ INSTALLED_APPS = [
     "flash",
     "bargains",
     "payment",
+    'django.contrib.admin',
+    'django.contrib.sites',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    #"fastadmin",
+    'django.contrib.staticfiles',
+    'django.contrib.messages',
+    #"storages",
+    "djoser",
+    "rest_framework",
+    'rest_framework_simplejwt',
+     'rest_framework_simplejwt.token_blacklist',
+     "corsheaders",
     'coreapi',
     'drf_yasg',
 ]
@@ -124,7 +124,7 @@ if not DEBUG:
             "rest_framework.renderers.JSONRenderer",
         )
 AUTHENTICATION_BACKENDS = [
-    'user.serializers.EmailOrUsernameBackend',  # Custom backend for email or username login
+    'users.backend.EmailOrUsernameBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
 
@@ -138,7 +138,7 @@ CSRF_TRUSTED_ORIGINS = [
 CORS_ORIGIN_ALLOW_ALL = True
 
 AUTH_USER_MODEL = "users.CustomUsers"
-SITE_ID = 1
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -168,10 +168,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DJOSER = {
     'LOGIN_FIELD': 'email',  # If you want to authenticate by email
+     "USER_ID_FIELD": "id",
      'SERIALIZERS': {
-        'user_create': 'user.serializers.UserCreateSerializer',
-        'user': 'user.serializers.UserSerializer',
-        'current_user': 'user.serializers.UserSerializer',
+        'token_create': 'users.serializers.CustomTokenCreateSerializer',
     },
 }
 

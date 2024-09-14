@@ -9,8 +9,8 @@ onMounted(async () => {
 })
 </script>
 <template>
-    <div class="container mt-100">
-            <h2 class="section-heading">My Wishlist</h2>
+    <div class="container mt-3">
+            <!--h2 class="section-heading">My Wishlist</h2-->
 
         <WishListPage :products="wishes.wishes" v-if="wishes.wishes.length" />
         <template v-else >

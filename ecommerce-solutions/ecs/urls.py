@@ -22,11 +22,7 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 #from rest_framework.schemas import get_schema_view
 from rest_framework.documentation import include_docs_urls
-from dj_rest_auth.registration.views import VerifyEmailView
-from dj_rest_auth.views import PasswordResetView, PasswordResetConfirmView
 from django.urls import path
-from users.views import FacebookLogin, GoogleLogin, TwitterLogin
-# Swagger documentation setup
 schema_view = get_schema_view(
     openapi.Info(
         title="Megadey API Snippets",
@@ -64,26 +60,14 @@ route.register("bargains", BargainVendorsView)
 #route.register("transaction", TransactionView, basename="transaction")
 
 urlpatterns = [
-        #path('api/auth/facebook/', views.FacebookLogin.as_view(), name='fb_login'),
-        #path('api/auth/google/', views.GoogleLogin.as_view(), name='google_login'),
-        #path('api/auth/', include('dj_rest_auth.urls')),
-        path('auth/email-success', views.email_verified, name="email-success"),
-        path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
-        path("password-reset-confirm/<uidb64>/<token>/", PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
         re_path(r'^api/', include(route.urls)),
         path("", views.index, name="home"),
         path('api/auth/', include('djoser.urls')),
+        path('api/auth/', include('djoser.social.urls')),
         path('api/auth/', include('djoser.urls.jwt')),
-        #path('api/auth/facebook/connect/', FacebookLogin.as_view(), name='fb_connect'),
-        #path('api/auth/twitter/connect/', TwitterLogin.as_view(), name='twitter_connect'),
-        #path('api/auth/google/connect/', GoogleLogin.as_view(), name='github_connect'),
-        #path("<str:page>", views.index, name="home_one"),
-        #path("<str:page>/<str:path>", views.index, name="home_two"),
-        #path("<str:page>/<str:path>/<str:others>", views.index, name="home_three"),
-        #path("<str:page>/<str:path>/<str:others>/<str:last>", views.index, name="home_four"),
-        path('check/privacy_policy/', views.privacy_policy, name="privacy_policy"),
-        path('check/terms_of_service/', views.terms_of_service, name="terms_of_service"),
-        path('check/account_delete/', views.account_delete, name="account_delete"),
+        #path('check/privacy_policy/', views.privacy_policy, name="privacy_policy"),
+        #path('check/terms_of_service/', views.terms_of_service, name="terms_of_service"),
+        #path('check/account_delete/', views.account_delete, name="account_delete"),
        path('admin/', admin.site.urls),
         path('docs/', include_docs_urls(title='Megadey Api Endpoints')),
         re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
