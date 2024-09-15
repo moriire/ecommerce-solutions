@@ -1,98 +1,79 @@
 <script setup>
 import { ref } from 'vue';
 import { useAuthStore } from '../../stores/auth.js';
-import alertify from 'alertifyjs';
-const userData = ref({ username: "", phone: "", email: "", password1: "", password2: "", vendor: false, store_name: "" })
+const userData = ref({ email: "", username: "", password: "", vendor: false, store_name: "" })
 const authStore = useAuthStore();
 const loading = ref(false)
+const errorMessage = ref("");
+const successMessage = ref("");
 const disabled = loading.value ? 'disabled' : ''
-const isPasswordVisible = ref(false);
+var isPasswordVisible = ref(false);
 
 const togglePasswordVisibility = () => {
   isPasswordVisible = !isPasswordVisible;
 };
 
 const onSubmit = async () => {
+  //userData.value.username = userData.value.email.split("@")[0]
   try {
     const res = await authStore.registerAction(userData.value);
-    console.log(res)
-    alertify.success("Login Successful... Welcome!!")
+    //console.log(res.data)
+    successMessage.value = 'Registration successful! Please check your email to activate your account.';
+    errorMessage.value = '';
   } catch (error) {
-    console.error('Failed to login:', error);
+    console.error('Failed to login:', error.response);
+    errorMessage.value = error.response.data.email[0] || error.response.data.username[0] || 'Registration failed';
+    successMessage.value = '';
   }
 };
 </script>
 
 <template>
   <div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="card shadow p-4" style="max-width: 600px; width: 100%;">
+    <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
       <h2 class="text-center mb-4">Sign Up</h2>
-      <!-- Username/Email Input -->
-
-      <div class="row mb-3">
-        <div class="col-lg-6 mb-xs-5">
-
-          <div class="form-floating mb-3 position-relative">
-            <input v-model="userData.first_name" class="form-control" id="firstName" placeholder="name@example.com">
-            <label for="firstName">First Name</label>
-            <i class="fas fa-envelope position-absolute end-0 top-50 translate-middle-y me-3"></i>
-          </div>
+      <form @submit.prevent="onSubmit">
+        <!-- Username/Email Input -->
+        <div class="form-floating mb-3 position-relative">
+          <input required v-model="userData.email" class="form-control" id="emailInput" placeholder="name@example.com">
+          <label for="emailInput">Email or Username</label>
+          <i class="fas fa-envelope position-absolute end-0 top-50 translate-middle-y me-3"></i>
         </div>
-        <div class="col-lg-6 mb-xs-5">
 
-          <div class="form-floating mb-3 position-relative">
-            <input v-model="userData.last_name" class="form-control" id="lastName" placeholder="name@example.com">
-            <label for="lastName">Last Name</label>
-            <i class="fas fa-envelope position-absolute end-0 top-50 translate-middle-y me-3"></i>
-          </div>
+        <!-- Password Input -->
+        <div class="form-floating mb-3 position-relative">
+          <input required type="password" v-model="userData.password" class="form-control" id="passwordInput"
+            placeholder="Password">
+          <label for="passwordInput">Password</label>
+          <i class="fas fa-lock position-absolute end-0 top-50 translate-middle-y me-3"></i>
         </div>
-      </div>
 
-      <div class="row mb-3">
-        <div class="col-lg-6 mb-xs-5">
-          <div class="form-floating mb-3 position-relative">
-            <input type="email" v-model="userData.username" class="form-control" id="emailInput"
-              placeholder="name@example.com">
-            <label for="emailInput">Email</label>
-            <i class="fas fa-envelope position-absolute end-0 top-50 translate-middle-y me-3"></i>
-          </div>
+        <!-- Password Input -->
+        <div class=".form-floating form-check mb-3 .position-relative">
+          <input type="checkbox" v-model="userData.vendor" class="form-check-input" id="vendorInput">
+          <label for="vendorInput" class="form-check-label">Are you a vendor?</label>
+          <!--i class="fas fa-lock position-absolute end-0 top-50 translate-middle-y me-3"></i-->
         </div>
-        <div class="col-lg-6 mb-xs-5">
-          <div class="form-floating position-relative">
-            <input :type="isPasswordVisible ? 'text' : 'password'" v-model="userData.password1" class="form-control"
-              id="passwordInput" placeholder="Password">
-            <label for="passwordInput">Password</label>
-            <i :class="isPasswordVisible ? 'fas fa-eye-slash' : 'fas fa-eye'"
-              class="position-absolute end-0 top-50 translate-middle-y me-3" @click="togglePasswordVisibility"
-              style="cursor: pointer;"></i>
-            <!--i class="fas fa-lock position-absolute end-0 top-50 translate-middle-y me-3"></i-->
-          </div>
-        </div>
-      </div>
-      <div class="row mb-3">
 
-        <div class="col-lg-12 mb-xs-5" >
-          <div class="form-check">
-            <input v-model="userData.vendor" class="form-check-input" type="checkbox" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-              Are you a vendor?
-            </label>
-          </div>
-          <div class="form-floating mb-3 position-relative" v-if="userData.vendor">
-            <input v-model="userData.store_name" class="form-control" id="emailInput" placeholder="name@example.com">
-            <label for="emailInput">Store Name</label>
-            <i class="fas fa-envelope position-absolute end-0 top-50 translate-middle-y me-3"></i>
-          </div>
+        <!-- Password Input -->
+        <div class="form-floating mb-3 position-relative" v-if="userData.vendor">
+          <input :required="userData.vendor" v-model="store_name" class="form-control" id="storenameInput"
+            placeholder="Business or Store Name">
+          <label for="passwordInput">Business/Store Name</label>
+          <i class="fas fa-lock position-absolute end-0 top-50 translate-middle-y me-3"></i>
         </div>
-      </div>
-      <!-- Submit Button -->
-      <div class="d-grid">
-        <button class="btn btn-primary btn-lg" @click="onSubmit">Register</button>
-      </div>
-
+        <!-- Submit Button -->
+        <div class="d-grid">
+          <button class="btn btn-primary btn-lg" type="submit">Register</button>
+        </div>
+        <div>
+          <p v-if="errorMessage" class="text-danger mt-2">{{ errorMessage }}</p>
+          <p v-if="successMessage" class="text-success mt-2">{{ successMessage }}</p>
+        </div>
+      </form>
       <!-- Social Logins -->
       <div class="text-center mt-4">
-        <p>Or signup with</p>
+        <p>Or register with</p>
         <button class="btn btn-outline-danger me-2" @click="socialLogin('google')">
           <i class="fab fa-google"></i> Google
         </button>

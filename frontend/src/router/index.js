@@ -120,6 +120,10 @@ const router = createRouter({
           name: 'register',
           component: () => import('../views/auth/RegisterView.vue')
         },
+        { path: 'activate/:uid/:token', 
+          name: "activate",
+          component: () => import("../views/auth/ActivationView.vue") 
+        },
         { path: '/reset-password', 
           name: "reset-password",
           component: () => import("../views/auth/PasswordResetRequest.vue") 

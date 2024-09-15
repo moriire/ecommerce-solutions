@@ -30,7 +30,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   const loginAction = async (username, password) => {
     const response = await login(username, password);
-    setTokens(response.data.access, response.data.refreshToken, response.data.user);
+    setTokens(response.data.access, response.data.refresh, response.data.user);
     return response
   };
 

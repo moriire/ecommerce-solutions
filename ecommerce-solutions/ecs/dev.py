@@ -63,7 +63,7 @@ ROOT_URLCONF = 'ecs.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR, 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -114,7 +114,8 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        #'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ),
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
@@ -124,6 +125,9 @@ if not DEBUG:
             "rest_framework.renderers.JSONRenderer",
         )
 AUTHENTICATION_BACKENDS = [
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',  
     'users.backend.EmailOrUsernameBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
@@ -165,11 +169,32 @@ MEDIA_ROOT = BASE_DIR / "mediafiles"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 DJOSER = {
-    'LOGIN_FIELD': 'username',
+    "EMAIL_FRONTEND_PROTOCOL": "http",
+    "EMAIL_FRONTEND_DOMAIN": "localhost:5173",
+    "EMAIL_FRONTEND_SITE_NAME": "hfhfhfh",
+
+
+   'LOGIN_FIELD' : 'email',
+    'USERNAME_CHANGED_EMAIL_CONFIRMATION' : True,
+    'PASSWORD_CHANGED_EMAIL_CONFIRMATION' : True,
+    'SEND_EMAIL_CONFIRMATION' : True,
+    'SET_USERNAME_RETYPE' : True,
+    'SET_PASSWORD_RETYPE' : True,
+    'USERNAME_RESET_CONFIRM_URL' : 'password/reset/confirm/{uid}/{token}',
+    'PASSWORD_RESET_CONFIRM_URL' : 'email/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL' : 'auth/activate/{uid}/{token}',
+    "SEND_CONFIRMATION_EMAIL": True,
+    'SEND_ACTIVATION_EMAIL' : True,
      "USER_ID_FIELD": "id",
-     
+     "EMAIL": {"activation": "users.emails.ActivationEmail"},
+     "SERIALIZERS":{
+         "token_create": "users.serializers.CustomTokenObtainSerializer",
+          
+     },
+     'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': [
+        'http://localhost:8000/temporary-redirect-for-testing/',
+    ]
 }
 
 from datetime import timedelta
@@ -179,3 +204,25 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
     'ALGORITHM': 'HS256',
 }
+SITE_ID = 1
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_HOST = "127.0.0.1"
+#EMAIL_PORT = 1025
+
+DEFAULT_FROM_EMAIL = 'webmaster@localhost'  # Set your email address
+EMAIL_SUBJECT_PREFIX = '[Your Project]'  # Optional: Add a prefix to email subject lines
+SERVER_EMAIL = 'root@localhost'
+
+# Social Auth keys (Get these from Google/Facebook/Twitter developer console)
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
+
+SOCIAL_AUTH_FACEBOOK_KEY = ''
+SOCIAL_AUTH_FACEBOOK_SECRET = ''
+
+SOCIAL_AUTH_TWITTER_KEY = ''
+SOCIAL_AUTH_TWITTER_SECRET = ''
+
+# Default redirect for successful social login
+SOCIAL_AUTH_REDIRECT_IS_HTTPS = True

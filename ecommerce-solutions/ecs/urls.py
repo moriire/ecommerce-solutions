@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
-from users.serializers import CutomObtainPairView
+from users.serializers import CustomTokenView
 from rest_framework import routers
 from product.views import CategoryView, ProductView, ReviewsView
 from packages.views import PackagesView
@@ -62,10 +62,11 @@ route.register("bargains", BargainVendorsView)
 urlpatterns = [
         re_path(r'^api/', include(route.urls)),
         path("", views.index, name="home"),
-        path('auth/jwt/create/', CutomObtainPairView.as_view(), name='customtoken'),
+         path('api/auth/jwt/create/',CustomTokenView.as_view(), name='customtoken'),
         path('api/auth/', include('djoser.urls')),
         path('api/auth/', include('djoser.social.urls')),
         path('api/auth/', include('djoser.urls.jwt')),
+       
         #path('check/privacy_policy/', views.privacy_policy, name="privacy_policy"),
         #path('check/terms_of_service/', views.terms_of_service, name="terms_of_service"),
         #path('check/account_delete/', views.account_delete, name="account_delete"),
