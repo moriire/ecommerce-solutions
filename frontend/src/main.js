@@ -16,14 +16,10 @@ import AOS from 'aos';
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import axios from "axios"
 import App from './App.vue'
 import router from './router'
 
 const app = createApp(App)
-
-app.config.globalProperties.$axios = axios
-axios.defaults.baseURL = import.meta.env.BACKEND_API_ENDPOINT
 app.use(createPinia())
 app.use(router)
 AOS.init()

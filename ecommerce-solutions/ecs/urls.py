@@ -3,6 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
 from users.serializers import CustomTokenView
+from users.views import  LogoutView
 from rest_framework import routers
 from product.views import CategoryView, ProductView, ReviewsView
 from packages.views import PackagesView
@@ -63,10 +64,11 @@ urlpatterns = [
         re_path(r'^api/', include(route.urls)),
         path("", views.index, name="home"),
          path('api/auth/jwt/create/',CustomTokenView.as_view(), name='customtoken'),
+         path('api/auth/logout/', LogoutView.as_view(), name='auth_logout'),
         path('api/auth/', include('djoser.urls')),
         path('api/auth/', include('djoser.social.urls')),
         path('api/auth/', include('djoser.urls.jwt')),
-       
+        path('api/auth/logout/', LogoutView.as_view(), name='auth_logout'),
         #path('check/privacy_policy/', views.privacy_policy, name="privacy_policy"),
         #path('check/terms_of_service/', views.terms_of_service, name="terms_of_service"),
         #path('check/account_delete/', views.account_delete, name="account_delete"),

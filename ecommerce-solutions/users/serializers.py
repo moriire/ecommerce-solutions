@@ -43,6 +43,4 @@ class UsersSerializer(serializers.ModelSerializer):
                       "subscribe",
                       "is_active",
                       "is_superuser",
-                      "img",
-                      "get_full_name"
                       )

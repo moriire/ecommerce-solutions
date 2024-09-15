@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     "djoser",
     "rest_framework",
     'rest_framework_simplejwt',
-     'rest_framework_simplejwt.token_blacklist',
+     #'rest_framework_simplejwt.token_blacklist',
      "corsheaders",
     'coreapi',
     'drf_yasg',
@@ -172,9 +172,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DJOSER = {
     "EMAIL_FRONTEND_PROTOCOL": "http",
     "EMAIL_FRONTEND_DOMAIN": "localhost:5173",
-    "EMAIL_FRONTEND_SITE_NAME": "hfhfhfh",
-
-
+    "EMAIL_FRONTEND_SITE_NAME": "DooDoo",
    'LOGIN_FIELD' : 'email',
     'USERNAME_CHANGED_EMAIL_CONFIRMATION' : True,
     'PASSWORD_CHANGED_EMAIL_CONFIRMATION' : True,
@@ -205,10 +203,10 @@ SIMPLE_JWT = {
     'ALGORITHM': 'HS256',
 }
 SITE_ID = 1
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-#EMAIL_HOST = "127.0.0.1"
-#EMAIL_PORT = 1025
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = "127.0.0.1"
+EMAIL_PORT = 1025
 
 DEFAULT_FROM_EMAIL = 'webmaster@localhost'  # Set your email address
 EMAIL_SUBJECT_PREFIX = '[Your Project]'  # Optional: Add a prefix to email subject lines

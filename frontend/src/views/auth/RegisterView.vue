@@ -21,7 +21,7 @@ const onSubmit = async () => {
     successMessage.value = 'Registration successful! Please check your email to activate your account.';
     errorMessage.value = '';
   } catch (error) {
-    console.error('Failed to login:', error.response);
+    console.error('Failed to login:', error);
     errorMessage.value = error.response.data.email[0] || error.response.data.username[0] || 'Registration failed';
     successMessage.value = '';
   }

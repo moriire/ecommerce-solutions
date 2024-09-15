@@ -1,7 +1,5 @@
 import axiosInstance from '@/axios';
 
-
-
 export const register = async (data) => {
   const response = await axiosInstance.post('auth/users/', data);
   return response
@@ -13,13 +11,13 @@ export const login = async (username, password) => {
   return response;
 };
 
-export const refreshToken = async (refresh) => {
-  const response = await axiosInstance.post(`auth/refresh`, { refresh });
+export const getRefreshToken = async (refresh) => {
+  const response = await axiosInstance.post(`auth/jwt/refresh/`, { refresh });
   return response.data;
 };
 
-export const logout = async () => {
-  const response = await axiosInstance.post("auth/jwt/logout/")
+export const logout = async (refresh_token) => {
+  const response = await axiosInstance.post("auth/users/logout/", {refresh_token})
   return response
   // Add any logout logic if necessary, like invalidating tokens on the server
 };
