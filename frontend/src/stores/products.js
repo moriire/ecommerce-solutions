@@ -13,28 +13,38 @@ export const useProductStore = defineStore('product', () => {
   const ship = useShippingStore();
   const router = useRouter()
   const pages = reactive({
-    limit: 1,
+    url: `product-with-images`,
+    previous: null,
+    next: null,
+    limit: 2,
     offset: 0,
-    count: 3,
-    item: 4
+    count: 0
   })
   const hasPrev = computed(() =>
-    pages.offset > 0
+    pages.previous === null
   );
 
   const hasNext = computed(() =>
-    pages.offset + pages.limit < pages.total
+    pages.next === null
 );
+
+const perPage = (index) => {
+  let new_url = `product-with-images?limit=${pages.limit}&offset=${index}`
+  pages.url = new_url
+  getProducts()
+};
+
 const nextPage = () => {
-  pages.offset += pages.limit;
+  pages.offset += 1;
+  pages.url=pages.next
   getProducts()
 };
 const prevPage = () => {
-  if (pages.offset > 0) {
-    pages.offset -= pages.limit;
+    pages.offset -= 1;
+    pages.url=pages.previous
     getProducts()
-  }
 };
+
 const orders = ref({})
 const count = ref(0)
 const products = ref([])
@@ -45,6 +55,20 @@ const cartItems = ref(JSON.parse(localStorage.getItem("userCart")) || []); //ref
 const cartItemsCount = reactive(JSON.parse(localStorage.getItem("userCartCounter")) || {})
 //const cartSubtotal = ref(0)
 //const cartTotalDiscount = ref(0)
+
+
+const getProducts = async () => {
+  try {
+    const res = await axiosInstance.get(pages.url)
+    products.value = res.data.results
+    pages.count = res.data.count;
+    pages.next = res.data.next;
+    pages.previous = res.data.previous;
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 const cartSubtotalReview = computed(() => {
   console.log(cartItemsReview.value)
   let numbers = cartItemsReview.value.map(x => x.cost);
@@ -181,18 +205,6 @@ const decCart = async (item_id, val) => {
   }
 }
 
-const getProducts = async () => {
-  try {
-    const res = await axiosInstance.get(`product-with-images?limit=${pages.limit}&offset=${pages.offset}`)
-    products.value = res.data.results
-    pages.total = res.data.count;
-    //pages.items = pages.total/pages.limit;
-    console.log(res.data)
-  } catch (e) {
-    console.log(e)
-  }
-}
-
 const singeProduct = async (product_id) => {
   try {
     const res = await axiosInstance.get(`product-with-images/${product_id}`)
@@ -263,6 +275,7 @@ return {
   pages,
   nextPage,
   prevPage,
+  perPage,
   //getCartSubtotal,
   //getCartTotalDiscount,
   addForShipping,

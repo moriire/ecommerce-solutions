@@ -9,7 +9,7 @@ const prod = useProductStore()
 const filter = useFilterStore()
 const route = useRoute()
 const loading = ref(true)
-prod.pages.limit = 6
+prod.pages.limit = 3
 onMounted(async ()=>{
     await prod.getProducts();
     setTimeout(()=>loading.value=false, 2000)
