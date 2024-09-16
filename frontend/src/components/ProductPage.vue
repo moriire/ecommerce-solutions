@@ -42,7 +42,7 @@ const modalShow = async (p) => {
                 <span aria-hidden="true">&laquo;</span>
               </button>
             </li>
-            <li :class="`page-item ${i === prod.pages.offset + 1 ? 'active' : ''}`" v-for="i in prod.pages.items()"
+            <li :class="`page-item ${i === prod.pages.offset + 1 ? 'active' : ''}`" v-for="i in prod.pages.count"
               v-bind:key="i"><a class="page-link" disabled>{{ i }}</a></li>
             <li class="page-item">
               <button class="page-link" aria-label="Next" @click="prod.nextPage" :disabled="!prod.hasNext">

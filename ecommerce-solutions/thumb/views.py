@@ -10,7 +10,7 @@ from rest_framework.pagination import PageNumberPagination, LimitOffsetPaginatio
 from rest_framework.generics import ListAPIView
 
 class ProductPagination(LimitOffsetPagination):
-    default_limit = 8
+    default_limit = 1
     limit_query_param = 'limit'
     offset_query_param = 'offset'
     max_limit = None

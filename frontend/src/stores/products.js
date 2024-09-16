@@ -15,10 +15,8 @@ export const useProductStore = defineStore('product', () => {
   const pages = reactive({
     limit: 1,
     offset: 0,
-    total: 0,
-    items: function(){
-      return Math.ceil(this.total/this.limit)
-    }
+    count: 3,
+    item: 4
   })
   const hasPrev = computed(() =>
     pages.offset > 0
