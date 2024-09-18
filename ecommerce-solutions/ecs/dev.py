@@ -224,3 +224,8 @@ SOCIAL_AUTH_TWITTER_SECRET = ''
 
 # Default redirect for successful social login
 SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
+
+
+# Celery settings
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
