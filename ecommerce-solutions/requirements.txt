@@ -74,3 +74,4 @@ vine
 wcwidth
 wsproto
 djoser
+celery

@@ -6,6 +6,10 @@ import uuid
 from django.utils.translation import gettext_lazy as _
 from product.models.product import Products
 from product.serializers.product import ProductSerializer, ProductExpandSerializer
+from django.contrib.auth import get_user_model
+from .tasks import send_notification_email_to_customers_task
+
+User = get_user_model()
 
 def product_image_path(instance, filename):
     return '/'.join([instance.product.category.slug, instance.product.slug, filename])
@@ -41,6 +45,19 @@ class ProductWithImage(models.Model):
 
     def __str__(self):
         return self.product.slug    
+    
+    def save(self, instance, *a, **b):
+        customers = User.objects.filter(vendor = not True).values("email")
+        print(customers)
+        emails = [email.get("email") for email in customers]
+        print(emails)
+        item = instance
+        print(item.images.all()[0].img)
+        send_notification_email_to_customers_task.delay(emails, product_detail={ 
+            "product_name" : item.product.name,
+            "product_image_url": item.images.all()[0].img.url
+        })
+        return super().save(*a, **b)
     
 class ProductImageSerializer(serializers.ModelSerializer):
     class Meta:

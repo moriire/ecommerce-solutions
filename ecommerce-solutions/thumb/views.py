@@ -20,7 +20,6 @@ class ProductImageView(ModelViewSet):
     queryset = ProductImage.objects.all()
     parser_classes = [MultiPartParser, FormParser]
 
-   
     def list(self, request):
         items = self.get_queryset()
         params = request.query_params
