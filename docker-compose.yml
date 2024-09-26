@@ -13,27 +13,20 @@ services:
     restart: on-failure
 
     environment:
-      - DEBUG
+      - DEBUG=1
       - CONN_MAX_AGE
       - SECRET_KEY
       - DJANGO_SETTINGS_MODULE
+      - DJANGO_DB
       - DJANGO_ALLOWED_HOSTS
       - DJANGO_SUPERUSERNAME
       - DJANGO_SUPERUSER_EMAIL
       - DJANGO_SUPERUSER_PASSWORD
+      - CELERY_BROKER_URL="redis://redis:6379/0"
+      - CELERY_RESULT_BACKEND="redis://redis:6379/0"
       - POSTGRES_USER
       - POSTGRES_PASSWORD
       - POSTGRES_DB
-      - POOL_MIN_SIZE
-      - POOL_MAX_SIZE
-      - POOL_TIMEOUT
-      - SQL_ENGINE
-      - SQL_DATABASE
-      - SQL_USER
-      - SQL_PASSWORD
-      - SQL_HOST
-      - SQL_PORT
-      - DATABASE
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
       - AWS_STORAGE_BUCKET_NAME
@@ -53,7 +46,24 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    
+  
+  celery:
+    build: ./ecommerce-solutions
+    command: celery -A core worker -l info
+    volumes:
+      - ./ecommerce-solutions/:/home/backend
+    environment:
+      - DEBUG=1
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+    depends_on:
+      - redis
+      
+  celery-beat:
+    build: ./ecommerce-solutions
+    command: celery -A core beat -l info
+    volumes:
+      - ./ecommerce-solutions/:/home/backend
+
   frontend_nginx:
     container_name: ecs_frontend_nginx
     image: nginx:alpine
@@ -79,7 +89,6 @@ services:
       - NODE_ENV=production
       - BACKEND_API_ENDPOINT=http://127.0.0.1/api/
       
-
   nginx_backend:
     build: ./ecommerce-solutions/nginx
     container_name: nginx_backend
@@ -105,11 +114,18 @@ services:
       - "5432:5432"
     volumes:
       - 'db_data:/var/lib/postgresql/data/'
+    
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
 
   redis:
-    image: "redis:alpine"
+    restart: unless-stopped
+    image: redis:7.0.5-alpine 
+    expose:
+      - 6379
     
-
 volumes:
   db_data:
   static_volume:
