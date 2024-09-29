@@ -40,7 +40,7 @@ export const useAuthStore = defineStore('auth', () => {
  }
   const refreshAccessToken = async () => {
     const response = await getRefreshToken(refreshToken.value);
-    setTokens(response.access, response.refresh, response.user);
+    localStorage.setItem('accessToken', response.access);
   };
 
   const logoutAction = () => {

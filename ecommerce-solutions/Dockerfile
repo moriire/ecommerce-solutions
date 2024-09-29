@@ -1,4 +1,4 @@
-FROM python:3.11.4-slim-buster
+FROM python:3.12.6-slim-bullseye
 
 ENV APP_HOME=/home/backend
 RUN mkdir $APP_HOME
@@ -28,3 +28,4 @@ RUN pip install --upgrade pip
 COPY ./requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
+RUN chmod +x server-entry.sh

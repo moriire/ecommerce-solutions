@@ -2,7 +2,8 @@ services:
   web:
     container_name: ecs_backend
     build: ./ecommerce-solutions
-    command: gunicorn ecs.wsgi:application --config gunicorn.py
+    entrypoint: /home/backend/server-entry.sh
+    # command: gunicorn ecs.wsgi:application --config gunicorn.py
     volumes:
       - 'static_volume:/home/backend/staticfiles'
       - 'media_volume:/home/backend/mediafiles'
@@ -13,11 +14,13 @@ services:
     restart: on-failure
 
     environment:
+      - DJANGO_SUPERUSER_EMAIL=acsolotltd@email.com
+      - DJANGO_SUPERUSER_USERNAME=acsolotltd
+      - DJANGO_SUPERUSER_PASSWORD=acsolotltd
       - DEBUG=1
       - CONN_MAX_AGE
       - SECRET_KEY
       - DJANGO_SETTINGS_MODULE
-      - DJANGO_DB
       - DJANGO_ALLOWED_HOSTS
       - DJANGO_SUPERUSERNAME
       - DJANGO_SUPERUSER_EMAIL
@@ -47,20 +50,20 @@ services:
       db:
         condition: service_healthy
   
-  celery:
+  worker:
     build: ./ecommerce-solutions
-    command: celery -A core worker -l info
+    command: celery -A ecs worker -l info
     volumes:
       - ./ecommerce-solutions/:/home/backend
     environment:
-      - DEBUG=1
+      - DEBUG
       - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
     depends_on:
       - redis
       
-  celery-beat:
+  scheduler:
     build: ./ecommerce-solutions
-    command: celery -A core beat -l info
+    command: celery -A ecs beat -l info
     volumes:
       - ./ecommerce-solutions/:/home/backend
 
