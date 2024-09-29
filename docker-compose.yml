@@ -2,8 +2,11 @@ services:
   ecs_web:
     container_name: ecs_backend
     build: ./ecommerce-solutions
-    entrypoint: ./ecommerce-solutions/server-entry
-    # command: gunicorn ecs.wsgi:application --config gunicorn.py
+    #entrypoint: ./server-entry
+    command: python3 manage.py migrate && \
+              python3 manage.py collectstatic --noinput && \
+              python3 manage.py createsuperuser --noinput && \
+              gunicorn ecs.wsgi:application --config gunicorn.py
     volumes:
       - 'static_volume:/home/backend/staticfiles'
       - 'media_volume:/home/backend/mediafiles'
