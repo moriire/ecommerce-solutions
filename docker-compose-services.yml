@@ -1,5 +1,5 @@
 services:
-  web:
+  ecs_web:
     image: moriire/ecommerce-solutions:ecs_backend
     build: ./ecommerce-solutions
     entrypoint: ./ecommerce-solutions/server-entry
@@ -101,7 +101,7 @@ services:
       
     depends_on:
       - web 
-  db:
+  ecs_db:
     image: moriire/ecommerce-solutions/ecs_database
     restart: always
     healthcheck:
@@ -120,7 +120,7 @@ services:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
 
-  redis:
+  ecs_redis:
     restart: unless-stopped
     image: moriire/ecommerce-solutions/redis
     expose:
