@@ -5,7 +5,7 @@ RUN mkdir $APP_HOME
 RUN mkdir $APP_HOME/staticfiles
 RUN mkdir $APP_HOME/mediafiles
 WORKDIR $APP_HOME
-RUN cp server-entry.sh $APP_HOME
+RUN cp ./server-entry.sh $APP_HOME
 RUN apt-get update \
   # dependencies for building Python packages
   && apt-get install -y build-essential \
