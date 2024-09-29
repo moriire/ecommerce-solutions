@@ -2,7 +2,7 @@ services:
   web:
     image: moriire/ecommerce-solutions:ecs_backend
     build: ./ecommerce-solutions
-    entrypoint: server-entry.sh
+    entrypoint: ./ecommerce-solutions/server-entry.sh
     volumes:
       - 'static_volume:/home/backend/staticfiles'
       - 'media_volume:/home/backend/mediafiles'
