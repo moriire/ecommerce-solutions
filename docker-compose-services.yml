@@ -46,7 +46,7 @@ services:
       - DEFAULT_FROM_EMAIL
 
     depends_on:
-      db:
+      ecs_db:
         condition: service_healthy
   
   worker:
@@ -85,7 +85,7 @@ services:
     volumes:
       - ./frontend:/app
     depends_on:
-      - web
+      - ecs_web
     environment:
       - NODE_ENV=production
       - BACKEND_API_ENDPOINT=http://127.0.0.1/api/
@@ -100,7 +100,7 @@ services:
       - 'media_volume:/home/backend/mediafiles'
       
     depends_on:
-      - web 
+      - ecs_web 
   ecs_db:
     image: moriire/ecommerce-solutions/ecs_database
     restart: always
