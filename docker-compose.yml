@@ -59,7 +59,7 @@ services:
       - DEBUG
       - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
     depends_on:
-      - redis
+      - ecs_redis
       
   scheduler:
     build: ./ecommerce-solutions
