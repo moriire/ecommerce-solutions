@@ -5,7 +5,7 @@ RUN mkdir $APP_HOME
 RUN mkdir $APP_HOME/staticfiles
 RUN mkdir $APP_HOME/mediafiles
 WORKDIR $APP_HOME
-
+COPY server-entry.sh $APP_HOME
 RUN apt-get update \
   # dependencies for building Python packages
   && apt-get install -y build-essential \
@@ -28,7 +28,5 @@ RUN pip install --upgrade pip
 COPY ./requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
-RUN ls $APP_HOME
-COPY ./server-entry.sh /home/backend/
 RUN ls $APP_HOME
 RUN chmod -x server-entry.sh
