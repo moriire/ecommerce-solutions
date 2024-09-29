@@ -2,7 +2,8 @@ services:
   web:
     container_name: ecs_backend
     build: ./ecommerce-solutions
-    command: gunicorn ecs.wsgi:application --config gunicorn.py
+    entrypoint: /home/backend/server-entry.sh
+    # command: gunicorn ecs.wsgi:application --config gunicorn.py
     volumes:
       - 'static_volume:/home/backend/staticfiles'
       - 'media_volume:/home/backend/mediafiles'
@@ -11,12 +12,61 @@ services:
     expose:
       - 8000
     restart: on-failure
-    env_file:
-      - ./.env/.env.web
+
+    environment:
+      - DJANGO_SUPERUSER_EMAIL=acsolotltd@email.com
+      - DJANGO_SUPERUSER_USERNAME=acsolotltd
+      - DJANGO_SUPERUSER_PASSWORD=acsolotltd
+      - DEBUG=1
+      - CONN_MAX_AGE
+      - SECRET_KEY
+      - DJANGO_SETTINGS_MODULE
+      - DJANGO_ALLOWED_HOSTS
+      - DJANGO_SUPERUSERNAME
+      - DJANGO_SUPERUSER_EMAIL
+      - DJANGO_SUPERUSER_PASSWORD
+      - CELERY_BROKER_URL="redis://redis:6379/0"
+      - CELERY_RESULT_BACKEND="redis://redis:6379/0"
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_STORAGE_BUCKET_NAME
+      - AWS_S3_SIGNATURE_VERSION
+      - AWS_S3_REGION_NAME
+      - STATIC_LOCATION
+      - AWS_S3_FILE_OVERWRITE
+      - AWS_LOCATION
+      - AWS_S3_VERIFY
+      - EMAIL_USE_TLS
+      - EMAIL_HOST
+      - EMAIL_HOST_USER
+      - EMAIL_HOST_PASSWORD
+      - EMAIL_PORT
+      - DEFAULT_FROM_EMAIL
+
     depends_on:
       db:
         condition: service_healthy
   
+  worker:
+    build: ./ecommerce-solutions
+    command: celery -A ecs worker -l info
+    volumes:
+      - ./ecommerce-solutions/:/home/backend
+    environment:
+      - DEBUG
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+    depends_on:
+      - redis
+      
+  scheduler:
+    build: ./ecommerce-solutions
+    command: celery -A ecs beat -l info
+    volumes:
+      - ./ecommerce-solutions/:/home/backend
+
   frontend_nginx:
     container_name: ecs_frontend_nginx
     image: nginx:alpine
@@ -40,7 +90,8 @@ services:
       - web
     environment:
       - NODE_ENV=production
-
+      - BACKEND_API_ENDPOINT=http://127.0.0.1/api/
+      
   nginx_backend:
     build: ./ecommerce-solutions/nginx
     container_name: nginx_backend
@@ -51,8 +102,7 @@ services:
       - 'media_volume:/home/backend/mediafiles'
       
     depends_on:
-      - web
-   
+      - web 
   db:
     container_name: ecs_database
     image: postgres:16.0-alpine
@@ -62,17 +112,23 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-    env_file:
-      - ./.env/.env.db
+    
     ports:
       - "5432:5432"
     volumes:
       - 'db_data:/var/lib/postgresql/data/'
+    
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
 
   redis:
-    image: "redis:alpine"
+    restart: unless-stopped
+    image: redis:7.0.5-alpine 
+    expose:
+      - 6379
     
-
 volumes:
   db_data:
   static_volume:

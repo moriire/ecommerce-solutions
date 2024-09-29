@@ -38,14 +38,15 @@ const modalShow = async (p) => {
         <nav aria-label="Page navigation example">
           <ul class="pagination">
             <li class="page-item">
-              <button class="page-link" aria-label="Previous" @click="prod.prevPage" :disabled="!prod.hasPrev">
+              <button class="page-link" aria-label="Previous" @click="prod.prevPage" :disabled="prod.hasPrev">
                 <span aria-hidden="true">&laquo;</span>
               </button>
             </li>
-            <li :class="`page-item ${i === prod.pages.offset + 1 ? 'active' : ''}`" v-for="i in prod.pages.items()"
-              v-bind:key="i"><a class="page-link" disabled>{{ i }}</a></li>
+            <li class="page-item" v-for="i in prod.pages.count"
+              v-bind:key="i" @click="prod.perPage(i-1)">
+              <a :class="`page-link ${i === prod.pages.offset + 1 ? 'active' : ''}`" :disabled="i !== prod.pages.offset + 1" >{{ i }}</a></li>
             <li class="page-item">
-              <button class="page-link" aria-label="Next" @click="prod.nextPage" :disabled="!prod.hasNext">
+              <button class="page-link" aria-label="Next" @click="prod.nextPage" :disabled="prod.hasNext">
                 <span aria-hidden="true">&raquo;</span>
               </button>
             </li>

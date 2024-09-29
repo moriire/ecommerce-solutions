@@ -228,7 +228,9 @@ onMounted(async () => {
         </div>
     </header>
     <!-- header end -->
-
+    
+     <bread-crumb></bread-crumb>
+    
     <!-- breadcrumb start -->
     <!--div class="breadcrumb">
         <div class="container">

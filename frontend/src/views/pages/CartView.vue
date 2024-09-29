@@ -54,7 +54,7 @@ onMounted(async () => {
                   </td>
                   <td class="cart-item-details">
                     <h2 class="product-title"><RouterLink :to="{name: 'product-detail', params: { product: cart.product.id} }">{{ cart.product.name }}</RouterLink></h2>
-                    <p class="product-vendor">{{ cart.product.profile.user.store_name || cart.product.profile.user.last_name  }}</p>
+                    <p class="product-vendor">{{ cart.product.profile.store_name || cart.product.profile.last_name  }}</p>
                   </td>
                   <td class="cart-item-quantity">
                     <div class="quantity d-flex align-items-center justify-content-between">
@@ -82,7 +82,7 @@ onMounted(async () => {
                 </div>
                 <div class="subtotal-item shipping-box">
                   <h4 class="subtotal-title">Shipping:</h4>
-                  <p class="subtotal-value">&#x20A6;10.00</p>
+                  <p class="subtotal-value">&#x20A6;0.00</p>
                 </div>
                 <div class="subtotal-item discount-box">
                   <h4 class="subtotal-title">Discount:</h4>

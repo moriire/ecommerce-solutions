@@ -10,7 +10,7 @@ const route = useRoute();
 const username = ref('');
 const password = ref('');
 const loading = ref(false);
-const disabled = loading.value? 'disabled': ''
+const disabled = loading.value ? 'disabled' : ''
 const authStore = useAuthStore();
 
 const onSubmit = async () => {
@@ -18,25 +18,76 @@ const onSubmit = async () => {
   try {
     const res = await authStore.loginAction(username.value, password.value);
     let nextPage = route.query;
-    if (res.status == 200){
-      if (nextPage){
-        router.push(nextPage.next)
-      } else{
-        router.push("/shop")
-      }
+    console.log()
+    if (res.status === 200 && nextPage.next) {
+      router.push(nextPage.next)
+    } else {
+      router.push("/shop")
     }
   } catch (error) {
-    if (error.code==="ERR_BAD_REQUEST"){
+    if (error.code === "ERR_BAD_REQUEST") {
       alertify.error("Incorrect Username or Password")
     }
     //console.error('Failed to login:', error);
   } finally {
-    setTimeout(()=>loading.value = false, 2000)
+    setTimeout(() => loading.value = false, 2000)
   }
 };
 </script>
+<!--template>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow">
+          <div class="card-header text-center bg-primary text-white">
+            <h3>Login to Your Account</h3>
+          </div>
+          <div class="card-body">
+            <form @submit.prevent="login">
+              <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <div class="input-group">
+                  <span class="input-group-text">
+                    <i class="fas fa-envelope"></i>
+                  </span>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    v-model="email"
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group">
+                  <span class="input-group-text">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    v-model="password"
+                    placeholder="Enter your password"
+                    required
+                  />
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                Login
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template-->
 
-<template>
+<!--template>
   <div class="p-3 p-md-4 p-xl-5">
     <div class="row">
       <div class="col-12">
@@ -55,18 +106,11 @@ const onSubmit = async () => {
           <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
           <input type="password" class="form-control" v-model="password" id="password" value="" required>
         </div>
-        <div class="col-12">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
-            <label class="form-check-label text-secondary" for="remember_me">
-              Keep me logged in
-            </label>
-          </div>
-        </div>
+       
 
         <div class="col-12 input-group d-flex justify-content-center">
           <button class="btn btn-primary">Login Now</button>
-          <div class="input-group-text btn-primary" id="basic" v-show="loading" :disbled="disabled" >
+          <div class="input-group-text btn-primary" id="basic" v-show="loading" :disbled="disabled">
             <span class="spinner-border spinner-border-sm" aria-hidden="true">
             </span>
           </div>
@@ -79,40 +123,135 @@ const onSubmit = async () => {
         <div class="d-flex justify-content-between">
           <RouterLink to="/auth/register" class="link-secondary text-decoration-none">Don't
             have account yet? Signup</RouterLink>
-          <RouterLink :to="{name: 'reset-password'}" class="link-secondary text-decoration-none">Forgot password</RouterLink>
+          <RouterLink :to="{ name: 'reset-password' }" class="link-secondary text-decoration-none">Forgot password
+          </RouterLink>
         </div>
       </div>
     </div>
-    <!--div class="row">
-      <div class="col-12">
-        <p class="mt-4 mb-3">Or sign in with</p>
-        <div class="d-flex gap-3 flex-column flex-xl-row">
-          <a href="#!" class="btn bsb-btn-xl btn-outline-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google"
-              viewBox="0 0 16 16">
-              <path
-                d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
-            </svg>
-            <span class="ms-2 fs-6">Google</span>
-          </a>
-          <a href="#!" class="btn bsb-btn-xl btn-outline-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook"
-              viewBox="0 0 16 16">
-              <path
-                d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
-            </svg>
-            <span class="ms-2 fs-6">Facebook</span>
-          </a>
-          <a href="#!" class="btn bsb-btn-xl btn-outline-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter"
-              viewBox="0 0 16 16">
-              <path
-                d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
-            </svg>
-            <span class="ms-2 fs-6">Twitter</span>
-          </a>
+   
+</template-->
+<!--template>
+  <div class="login-container d-flex justify-content-center align-items-center vh-100">
+    <div class="card login-card p-4 shadow-lg">
+      <h2 class="text-center mb-4 text-gold">Login</h2>
+      <form @submit.prevent="onSubmit">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" v-model="username" placeholder="Enter email" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" v-model="password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 btn-deep-purple">Login</button>
+      </form>
+      <div class="text-center mt-3 text-gold">
+        <span>or login with</span>
+      </div>
+      <div class="d-flex justify-content-around mt-3">
+        <button class="btn btn-outline-dark social-btn" @click="socialLogin('google')">
+          <i class="bi bi-google"></i> Google
+        </button>
+        <button class="btn btn-outline-dark social-btn" @click="socialLogin('facebook')">
+          <i class="bi bi-facebook"></i> Facebook
+        </button>
+        <button class="btn btn-outline-dark social-btn" @click="socialLogin('twitter')">
+          <i class="bi bi-twitter"></i> Twitter
+        </button>
+      </div>
+    </div>
+  </div>
+</template-->
+<!--template>
+  <div class="container vh-100 d-flex justify-content-center align-items-center">
+    <div class="card login-card shadow" style="width: 400px; background-color: #fff;">
+      <div class="card-body p-4">
+        <h3 class="card-title text-center mb-4" style="color: #4A148C;">Login</h3>
+
+        
+        <form @submit.prevent="login">
+          <div class="mb-3">
+            <label for="email" class="form-label" style="color: #4A148C;">Email address</label>
+            <input type="email" v-model="email" class="form-control" id="email" placeholder="Enter your email" required />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label" style="color: #4A148C;">Password</label>
+            <input type="password" v-model="password" class="form-control" id="password" placeholder="Enter your password" required />
+          </div>
+          <button type="submit" class="btn btn-primary w-100" style="background-color: #4A148C; border-color: #4A148C;">Login</button>
+        </form>
+
+        
+        <div class="text-center mt-4">
+          <p class="text-muted">or login with</p>
+          <button class="btn btn-outline-dark w-100 mb-2" @click="socialLogin('google')" style="color: #DB4437;">
+            <i class="fab fa-google"></i> Google
+          </button>
+          <button class="btn btn-outline-dark w-100 mb-2" @click="socialLogin('facebook')" style="color: #3b5998;">
+            <i class="fab fa-facebook-f"></i> Facebook
+          </button>
+          <button class="btn btn-outline-dark w-100" @click="socialLogin('twitter')" style="color: #1DA1F2;">
+            <i class="fab fa-twitter"></i> Twitter
+          </button>
+        </div>
+
+      
+        <div class="text-center mt-3">
+          <a href="#" class="text-muted">Don't have an account? Sign up</a>
         </div>
       </div>
-    </div-->
+    </div>
+  </div>
+</template-->
+<template>
+  <div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
+      <h2 class="text-center mb-4">Login</h2>
+
+      <!-- Username/Email Input -->
+      <div class="form-floating mb-3 position-relative">
+        <input type="email" v-model="username" class="form-control" id="emailInput" placeholder="name@example.com">
+        <label for="emailInput">Email or Username</label>
+        <i class="fas fa-envelope position-absolute end-0 top-50 translate-middle-y me-3"></i>
+      </div>
+
+      <!-- Password Input -->
+      <div class="form-floating mb-3 position-relative">
+        <input type="password" v-model="password" class="form-control" id="passwordInput" placeholder="Password">
+        <label for="passwordInput">Password</label>
+        <i class="fas fa-lock position-absolute end-0 top-50 translate-middle-y me-3"></i>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="d-grid">
+        <button class="btn btn-primary btn-lg" @click="onSubmit">Login</button>
+      </div>
+
+      <!-- Social Logins -->
+      <div class="text-center mt-4">
+        <p>Or login with</p>
+        <button class="btn btn-outline-danger me-2" @click="socialLogin('google')">
+          <i class="fab fa-google"></i> Google
+        </button>
+        <button class="btn btn-outline-primary me-2" @click="socialLogin('facebook')">
+          <i class="fab fa-facebook-f"></i> Facebook
+        </button>
+        <button class="btn btn-outline-info" @click="socialLogin('twitter')">
+          <i class="fab fa-twitter"></i> Twitter
+        </button>
+      </div>
+      <div class="text-center mt-3">
+        <RouterLink to="/auth/register" class="text-muted">Don't have an account? Sign up</RouterLink>
+        </div>
+    </div>
   </div>
 </template>
+<style scoped>
+.card {
+  border-radius: 10px;
+}
+
+i {
+  pointer-events: none;
+}
+</style>

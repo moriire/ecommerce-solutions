@@ -31,13 +31,13 @@ defineProps({
 
 <template>
     <!-- minicart item -->
-    <div class="minicart-item d-flex" v-if="item">
+    <div class="minicart-item d-flex" v-if="item.images">
         <div class="mini-img-wrapper">
             <img class="mini-img" :src="item.images[0].img.startsWith('/media') ? 'http://127.0.0.1:8000' + item.images[0].img: item.images[0].img" alt="img" >
         </div>
         <div class="product-info">
             <h2 class="product-title"><a href="#">{{ item.product.name }}</a></h2>
-            <p class="product-vendor">{{ item.product.profile.user.store_name || item.product.profile.user.username  }}</p>
+            <p class="product-vendor">{{ item.product.profile.store_name || item.product.profile.username  }}</p>
             <div class="misc d-flex align-items-end justify-content-between">
                 <div class="quantity d-flex align-items-center justify-content-between">
                     <button class="qty-btn dec-qty" @click="()=>item.count-=1" ><img src="/src/assets/img/icon/minus.svg" alt="minus"></button>

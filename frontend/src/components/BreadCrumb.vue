@@ -1,4 +1,6 @@
 <script setup>
+import { useRoute } from "vue-router";
+const route = useRoute();
 defineProps({
     loc: {
         type: String
@@ -6,28 +8,15 @@ defineProps({
 })
 </script>
 <template>
-    <!-- breadcrumb start -->
-    <div class="breadcrumb">
-        <div class="container">
-            <ul class="list-unstyled d-flex align-items-center m-0">
-
-                <li>
-                    <RouterLink to="/">Home</RouterLink>
+    <!--Teleport to="#breadcrumb"-->
+    <div class="breadcrumb py-5 bg-warning m-0" id="breadcrumb" v-if="route.meta.loafs" >
+        <div class="container .d-flex .justify-content-between text-center">
+            <h2 class="text-center">WishList</h2>
+            <ul class="list-unstyled m-0 breadcrumb text-center">
+                <li v-for="k in Object.keys(route.meta.loafs)" class="breadcrumb-item">
+                    <RouterLink :to="route.meta.loafs[k]">{{ k }}</RouterLink>
                 </li>
-                <li>{{ loc }}</li>
-                <li>
-                    <svg class="icon icon-breadcrumb" width="64" height="64" viewBox="0 0 64 64" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <g opacity="0.4">
-                            <path
-                                d="M25.9375 8.5625L23.0625 11.4375L43.625 32L23.0625 52.5625L25.9375 55.4375L47.9375 33.4375L49.3125 32L47.9375 30.5625L25.9375 8.5625Z"
-                                fill="#000" />
-                        </g>
-                    </svg>
-                </li>
-                <li>{{ name }}</li>
             </ul>
         </div>
     </div>
-    <!-- breadcrumb end -->
 </template>

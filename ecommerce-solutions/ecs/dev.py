@@ -15,9 +15,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.sites',
@@ -27,19 +25,14 @@ INSTALLED_APPS = [
     #"fastadmin",
     'django.contrib.staticfiles',
     'django.contrib.messages',
-    "corsheaders",
     #"storages",
+    "djoser",
     "rest_framework",
-    'rest_framework.authtoken',
     'rest_framework_simplejwt',
-    'allauth',
-    'allauth.account',
-    'dj_rest_auth.registration',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.twitter',
-    'dj_rest_auth',
+     #'rest_framework_simplejwt.token_blacklist',
+     "corsheaders",
+    'coreapi',
+    'drf_yasg',
     "users",
     "profile",
     "product",
@@ -52,8 +45,6 @@ INSTALLED_APPS = [
     "flash",
     "bargains",
     "payment",
-    'coreapi', # Coreapi for coreapi documentation
-    'drf_yasg', # drf_yasg fro Swagger documentatio
 ]
 
 MIDDLEWARE = [
@@ -65,7 +56,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "allauth.account.middleware.AccountMiddleware"
 ]
 
 ROOT_URLCONF = 'ecs.urls'
@@ -73,7 +63,7 @@ ROOT_URLCONF = 'ecs.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR, 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,17 +108,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 REST_FRAMEWORK = {
-    #'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination', 
-    #'PAGE_SIZE': 2, 
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.AllowAny",
-    ],
-    "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.SessionAuthentication",
-        #"rest_framework.authentication.TokenAuthentication",
-        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
-    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        #'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
+    ),
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
 
@@ -137,26 +125,12 @@ if not DEBUG:
             "rest_framework.renderers.JSONRenderer",
         )
 AUTHENTICATION_BACKENDS = [
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',  
+    'users.backend.EmailOrUsernameBackend',
     'django.contrib.auth.backends.ModelBackend',
-    "allauth.account.auth_backends.AuthenticationBackend",
 ]
-
-from datetime import timedelta
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
-}
-REST_AUTH = {
-    #'LOGIN_SERIALIZER':  'users.models.CustomLoginSerializer',
-    'REGISTER_SERIALIZER': 'users.models.CustomRegisterSerializer',
-    'USER_DETAILS_SERIALIZER': 'users.serializers.UserSerializer',
-    "USE_JWT": True,
-    'JWT_AUTH_RETURN_EXPIRATION': not False,
-    'JWT_AUTH_COOKIE' :'mega-auth',
-    'JWT_AUTH_HTTPONLY':False,
-    'JWT_AUTH_REFRESH_COOKIE': 'mega-refresh-token'
-}
-
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
@@ -168,7 +142,7 @@ CSRF_TRUSTED_ORIGINS = [
 CORS_ORIGIN_ALLOW_ALL = True
 
 AUTH_USER_MODEL = "users.CustomUsers"
-SITE_ID = 1
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -194,3 +168,64 @@ MEDIA_ROOT = BASE_DIR / "mediafiles"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DJOSER = {
+    "EMAIL_FRONTEND_PROTOCOL": "http",
+    "EMAIL_FRONTEND_DOMAIN": "localhost:5173",
+    "EMAIL_FRONTEND_SITE_NAME": "DooDoo",
+   'LOGIN_FIELD' : 'email',
+    'USERNAME_CHANGED_EMAIL_CONFIRMATION' : True,
+    'PASSWORD_CHANGED_EMAIL_CONFIRMATION' : True,
+    'SEND_EMAIL_CONFIRMATION' : True,
+    'SET_USERNAME_RETYPE' : True,
+    'SET_PASSWORD_RETYPE' : True,
+    'USERNAME_RESET_CONFIRM_URL' : 'password/reset/confirm/{uid}/{token}',
+    'PASSWORD_RESET_CONFIRM_URL' : 'email/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL' : 'auth/activate/{uid}/{token}',
+    "SEND_CONFIRMATION_EMAIL": True,
+    'SEND_ACTIVATION_EMAIL' : True,
+     "USER_ID_FIELD": "id",
+     "EMAIL": {"activation": "users.emails.ActivationEmail"},
+     "SERIALIZERS":{
+         "token_create": "users.serializers.CustomTokenObtainSerializer",
+          
+     },
+     'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': [
+        'http://localhost:8000/temporary-redirect-for-testing/',
+    ]
+}
+
+from datetime import timedelta
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'ALGORITHM': 'HS256',
+}
+SITE_ID = 1
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = "127.0.0.1"
+EMAIL_PORT = 1025
+
+DEFAULT_FROM_EMAIL = 'webmaster@localhost'  # Set your email address
+EMAIL_SUBJECT_PREFIX = '[Your Project]'  # Optional: Add a prefix to email subject lines
+SERVER_EMAIL = 'root@localhost'
+
+# Social Auth keys (Get these from Google/Facebook/Twitter developer console)
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
+
+SOCIAL_AUTH_FACEBOOK_KEY = ''
+SOCIAL_AUTH_FACEBOOK_SECRET = ''
+
+SOCIAL_AUTH_TWITTER_KEY = ''
+SOCIAL_AUTH_TWITTER_SECRET = ''
+
+# Default redirect for successful social login
+SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
+
+
+# Celery settings
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"

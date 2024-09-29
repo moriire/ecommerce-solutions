@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            background-color: #007BFF;
+            padding: 10px;
+            color: white;
+            text-align: center;
+            font-size: 24px;
+            border-radius: 5px 5px 0 0;
+        }
+        .content {
+            padding: 20px;
+            font-size: 16px;
+            color: #333333;
+            line-height: 1.5;
+        }
+        .product {
+            background-color: #f9f9f9;
+            border: 1px solid #dddddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .product h3 {
+            font-size: 20px;
+            margin: 0 0 10px;
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .product p {
+            font-size: 14px;
+            color: #777777;
+        }
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #999999;
+            padding: 10px;
+            border-top: 1px solid #dddddd;
+        }
+        .footer a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            Special Product Alert!
+        </div>
+        <div class="content">
+            <p>Latest Product Update</p>
+            <p>We are excited to introduce our new product:</p>
+            <div class="product">
+                <h3>{{ product_name }}</h3>
+                <img src="{{ product_image_url }}" alt="{{ product_name }}">
+                <p>{{ product_description }}</p>
+            </div>
+            <p>Get it now at an exclusive price for our loyal customers!</p>
+            <p><a href="{{ product_url }}">View Product</a></p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+            <p><a href="#">Unsubscribe</a></p>
+        </div>
+    </div>
+</body>
+</html>

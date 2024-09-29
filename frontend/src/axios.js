@@ -22,7 +22,7 @@ axiosInstance.interceptors.response.use(
 
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-      await authStore.refreshToken();
+      await authStore.refreshAccessToken(authStore.refreshToken);
       axios.defaults.headers.common['Authorization'] = `Bearer ${authStore.accessToken}`;
       return axiosInstance(originalRequest);
     }
@@ -30,6 +30,7 @@ axiosInstance.interceptors.response.use(
     if (error.response.status === 403 && !originalRequest._retry) {
       localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
+        authStore.logoutAction()
         window.location.href = '/auth/login';
     }
 

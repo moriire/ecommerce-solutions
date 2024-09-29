@@ -1,5 +1,6 @@
 <script setup>
-import { onMounted, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
+import LoaderSpinner from "@/components/LoaderSpinner.vue"
 import { useRoute } from 'vue-router';
 import ProductPage from "@/components/ProductPage.vue"
 import { useProductStore } from '@/stores/products';
@@ -7,15 +8,20 @@ import { useFilterStore } from '@/stores/filter';
 const prod = useProductStore()
 const filter = useFilterStore()
 const route = useRoute()
-
-prod.pages.limit = 6
+const loading = ref(true)
+prod.pages.limit = 3
 onMounted(async ()=>{
-    await prod.getProducts()
+    await prod.getProducts();
+    setTimeout(()=>loading.value=false, 2000)
 })
+
 //watch(route, ()=> prod.getProducts())
 </script>
 
 <template>
+    <teleport to="#app">
+      <LoaderSpinner :loading="loading" />
+    </teleport>
         <div class="collection mt-100">
             <div class="container">
                 <div class="row">

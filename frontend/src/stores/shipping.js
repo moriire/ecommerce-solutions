@@ -1,40 +1,63 @@
-import { reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { defineStore } from 'pinia'
-import axios from "axios"
 import { useAuthStore } from './auth'
+import axiosInstance from '@/axios'
 
-export const useWishlistStore = defineStore('wishlist', () => {
+export const useShippingStore = defineStore('Shipping', () => {
   const auth = useAuthStore();
-  const wishes = ref([]);
-  const registeredProducts = ref([])
-  const productData = reactive({ package: null, description: "", name: "", category: null, price: 500, quantity: 1, profile: parseInt(auth.userInfo.pk), brand: "", discount: 5, condition: "new" })
-  const getUserProducts = async () => {
+  const shippingCost = computed( ()=>{
+    let data = getShippingCostData.value.filter(x => x.id === shippingDetail.value.city);
+    return data
+})
+  const getShippingCostData = ref([])
+  const shippingDetail = ref({
+    first_name: "",
+    last_name: "",
+    city: null,
+    email: "",
+    country: "Nigeria",
+    address: "",
+    phone: "",
+    created_by: null,
+  });
+
+  const getShipping = async () => {
     try {
-      const res = await axios.get(`product-with-images?product__profile__user__id=${auth.userInfo.pk}&limit=${8}`)
-      registeredProducts.value = res.data.results
-      console.log(res.data)
+      const res = await axiosInstance.post('shipping/shipping_address', { created_by: auth.userInfo.pk })
+      shippingDetail.value = res.data.data
+      //shippingDetail.value.city = res.data.data.city
+      //console.log(shippingDetail)
+    } catch (e) {
+      console.log(e.response)
+    }
+  }
+  const getShippingCost = async () => {
+    try {
+      const res = await axiosInstance.get('shipping-cost')
+      getShippingCostData.value = res.data
+    } catch (e) {
+      console.log(e.response)
+    }
+  };
+  const saveOrder = async () => {
+    //await getShipping()
+    try {
+      const res = await axiosInstance.put(`shipping/${shippingDetail.value.id}`, shippingDetail.value)
+      //getShippingCostData.value = res.data
+      console.log(res)
     } catch (e) {
       console.log(e)
     }
   }
 
-  const getWishList = async () => {
-    try {
-      const res = await axios.get(`wishlist?user=${auth.userInfo.pk}`)
-      wishes.value = res.data.data
-    } catch(e){
-      console.log(e.response)
-    }
-  }
-
-  const addWishlist = async (product) => {
-    await getWishList()
+  const addShipping = async (product) => {
+    await getShipping()
     //alert([...wishes.value, product])
     try {
-      const res = await axios.post(`wishlist`,
+      const res = await axiosInstance.post(`shipping`,
         {
-            user: auth.userInfo.pk,
-            product: product
+          user: auth.userInfo.pk,
+          product: product
         }
       )
       //wishes.value = res.data
@@ -47,12 +70,11 @@ export const useWishlistStore = defineStore('wishlist', () => {
   }
 
   return {
-    productData,
-    addWishlist,
-    registeredProducts,
-    getUserProducts,
-    getWishList,
-    addWishlist,
-    wishes
+    shippingDetail,
+    shippingCost,
+    getShippingCostData,
+    saveOrder,
+    getShippingCost,
+    getShipping,
   }
 })

@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import { login, refreshToken, logout, register, fetchUserDetails } from '../services/authService';
+import { login, getRefreshToken, logout, register, fetchUserDetails } from '../services/authService';
 import { useRouter, useRoute } from 'vue-router';
+import { refresh } from 'aos';
 
 export const useAuthStore = defineStore('auth', () => {
   const accessToken = ref(localStorage.getItem('accessToken') || null);
@@ -30,24 +31,22 @@ export const useAuthStore = defineStore('auth', () => {
 
   const loginAction = async (username, password) => {
     const response = await login(username, password);
-    setTokens(response.data.access, response.data.refreshToken, response.data.user);
+    setTokens(response.data.access, response.data.refresh, response.data.user);
     return response
   };
 
  const registerAction = async (data) => {
     const response = await register(data)
-
  }
   const refreshAccessToken = async () => {
-    const response = await refreshToken(refreshToken.value);
-    setTokens(response.access, response.refresh, response.user);
+    const response = await getRefreshToken(refreshToken.value);
+    localStorage.setItem('accessToken', response.access);
   };
 
   const logoutAction = () => {
+    logout(refreshToken);
     clearTokens();
     userInfo.value = null;
-    const res = logout();
-    console.log(res)
     router.push("/")
   };
   
@@ -85,6 +84,7 @@ const getProfile = async () => {
     logoutAction,
     registerAction,
     getProfile,
-    user
+    user,
+   
   };
 });

@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.template.defaultfilters import slugify # new
 from users.models import CustomUsers
-from profile.models import Profile
+#from profile.models import Profile
 from packages.models import Packages
 from product.models.category import Category
 
@@ -11,7 +11,7 @@ class Products(models.Model):
         ("new", "New"),
         ("used", "Used")
     )
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="user_profile")
+    profile = models.ForeignKey(CustomUsers, on_delete=models.CASCADE, related_name="user_products")
     package = models.ForeignKey(Packages, on_delete=models.CASCADE, related_name="user_packages")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="product_category")
     name = models.CharField(max_length=100)

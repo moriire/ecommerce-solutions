@@ -10,12 +10,6 @@ const router = createRouter({
       name: 'pages',
       children: [
         {
-          path: 'profile',
-          name: 'profile',
-          component: () => import('../views/pages/ProfileView.vue'),
-          meta: { requiresAuth: true }
-        },
-        {
           path: '',
           name: 'home',
           component: () => import('../views/pages/HomeView.vue')
@@ -29,7 +23,7 @@ const router = createRouter({
           path: 'wishlist',
           name: 'wishlist',
           component: () => import('../views/pages/WishlistView.vue'),
-          meta: { requiresAuth: true }
+          meta: { requiresAuth: true, loafs:{"home": "/", wishlist: "/wishlist"} }
         },
         {
           path: ':categories_slug',
@@ -50,7 +44,7 @@ const router = createRouter({
             {
               path: 'upload/:product',
               name: 'upload',
-              component: () => import('../views/pages/manage-product/UploadImageView.vue'),
+              component: () => import('../views/pages/manage-product/EditProduct.vue'),
               //meta: { requiresAuth: true }
             },
           ]
@@ -58,13 +52,21 @@ const router = createRouter({
         {
           path: 'vendors',
           name: 'vendors',
-          component: () => import('../views/pages/manage-product/AddProduct.vue')
-        },
-        {
-          path: 'vendor/:vendor_slug',
-          name: 'vendors_slug',
-          component: () => import('../views/pages/ShopbyvendorView.vue'),
-          meta: { requiresAuth: true }
+          component: () => import('../views/pages/vendor/Base.vue'),
+          children:[
+            {
+              path: ':vendor_slug',
+              name: 'vendors_slug',
+              component: () => import('../views/pages/vendor/ShopbyvendorView.vue'),
+              meta: { requiresAuth: true }
+            },
+            {
+              path: 'profile',
+              name: 'profile',
+              component: () => import('../views/pages/ProfileView.vue'),
+              meta: { requiresAuth: true, loafs:{home: "/", vendor: "/vendor", profile:"/profile"} }
+            },
+          ]
         },
         {
           path: '/cart',
@@ -76,6 +78,18 @@ const router = createRouter({
           path: '/checkout',
           name: 'checkout',
           component: () => import('../views/pages/CheckoutView.vue'),
+          meta: { requiresAuth: true }
+        },
+        {
+          path: '/orders',
+          name: 'orders',
+          component: () => import('../views/pages/OrderReview.vue'),
+          meta: { requiresAuth: true }
+        },
+        {
+          path: '/payment-success',
+          name: 'payment-success',
+          component: () => import('../views/pages/SuccessView.vue'),
           meta: { requiresAuth: true }
         },
         {
@@ -105,6 +119,10 @@ const router = createRouter({
           path: 'register',
           name: 'register',
           component: () => import('../views/auth/RegisterView.vue')
+        },
+        { path: 'activate/:uid/:token', 
+          name: "activate",
+          component: () => import("../views/auth/ActivationView.vue") 
         },
         { path: '/reset-password', 
           name: "reset-password",
@@ -143,7 +161,7 @@ router.beforeEach(async (to, from, next) => {
         next();
       } catch (error) {
         authStore.logoutAction();
-        next('/auth/login');
+        next(`/auth/login?next=${to.path}`);
       }
     } else {
       next();

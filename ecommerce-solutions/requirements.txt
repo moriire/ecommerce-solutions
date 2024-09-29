@@ -15,9 +15,8 @@ coreapi
 coreschema
 cryptography
 defusedxml
-dj-rest-auth
 Django
-django-allauth
+djangorestframework-simplejwt
 django-cors-headers
 django-rest-auth
 requests_oauthlib
@@ -74,3 +73,5 @@ validators
 vine
 wcwidth
 wsproto
+djoser
+celery

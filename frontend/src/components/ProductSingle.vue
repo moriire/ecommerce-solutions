@@ -73,11 +73,11 @@ const modules = [FreeMode, Navigation, Thumbs]
                 </div>
                 <h2 class="product-title mb-3">{{ product.name }}</h2>
                 <div class="product-price-wrapper mb-4">
-                    <span class="product-price regular-price">$ {{ product.new_price }}</span>
-                    <del class="product-price compare-price ms-2">$ {{ product.price }}</del>
+                    <span class="product-price regular-price">&#x20A6; {{ product.new_price }}</span>
+                    <del class="product-price compare-price ms-2">&#x20A6; {{ product.price }}</del>
                 </div>
                 <div class="product-vendor product-meta mb-3">
-                    <strong class="label">Vendor:</strong> {{ product.profile.store_name || product.profile.user.username }}
+                    <strong class="label">Vendor:</strong> {{ product.profile.store_name || product.profile.username }}
                 </div>
                 <div>
                     <strong class="label">Description:</strong><br>
