@@ -29,4 +29,6 @@ COPY ./requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 RUN ls $APP_HOME
-RUN --chmod 755 server-entry.sh .
+COPY ./server-entry.sh /home/backend/
+RUN ls $APP_HOME
+RUN chmod -x server-entry.sh .
