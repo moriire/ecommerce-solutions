@@ -2,7 +2,7 @@ services:
   web:
     container_name: ecs_backend
     build: ./ecommerce-solutions
-    entrypoint: ./ecommerce-solutions/server-entry.sh
+    entrypoint: ./ecommerce-solutions/server-entry
     # command: gunicorn ecs.wsgi:application --config gunicorn.py
     volumes:
       - 'static_volume:/home/backend/staticfiles'
