@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+until cd /home/backend
+do
+    echo "Waiting for server volume..."
+done
+
+until python3 manage.py migrate
+do
+    echo "Waiting for db to be ready..."
+    sleep 2
+done
+
+
+python manage.py collectstatic --noinput
+
+python manage.py createsuperuser --noinput
+
+gunicorn ecs.wsgi:application --config gunicorn.py
