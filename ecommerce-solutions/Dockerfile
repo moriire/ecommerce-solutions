@@ -31,4 +31,4 @@ COPY . .
 RUN ls $APP_HOME
 COPY ./server-entry.sh /home/backend/
 RUN ls $APP_HOME
-RUN chmod -x server-entry.sh .
+RUN chmod -x server-entry.sh
