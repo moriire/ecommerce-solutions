@@ -4,7 +4,6 @@ ENV APP_HOME=/home/backend
 RUN mkdir $APP_HOME
 RUN mkdir $APP_HOME/staticfiles
 RUN mkdir $APP_HOME/mediafiles
-COPY ./server-entry.sh $APP_HOME
 WORKDIR $APP_HOME
 
 RUN apt-get update \
