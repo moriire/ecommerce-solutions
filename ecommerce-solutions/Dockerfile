@@ -4,8 +4,9 @@ ENV APP_HOME=/home/backend
 RUN mkdir $APP_HOME
 RUN mkdir $APP_HOME/staticfiles
 RUN mkdir $APP_HOME/mediafiles
+COPY server-entry.sh $APP_HOME
 WORKDIR $APP_HOME
-COPY ./server-entry.sh .
+
 RUN apt-get update \
   # dependencies for building Python packages
   && apt-get install -y build-essential \
