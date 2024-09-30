@@ -20,6 +20,7 @@ services:
       - DJANGO_SUPERUSER_EMAIL=acsolotltd@email.com
       - DJANGO_SUPERUSER_USERNAME=acsolotltd
       - DJANGO_SUPERUSER_PASSWORD=acsolotltd
+      - POSTGRES_PASSWORD=admin
       - DEBUG=1
       - CONN_MAX_AGE
       - SECRET_KEY
