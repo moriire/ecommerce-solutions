@@ -124,7 +124,7 @@ services:
     environment:
       - POSTGRES_DB
       - POSTGRES_USER
-      - POSTGRES_PASSWORD
+      - POSTGRES_PASSWORD=ecommerce-solutions
 
   ecs_redis:
     restart: unless-stopped
