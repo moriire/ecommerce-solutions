@@ -1,5 +1,5 @@
 services:
-  ecs_web:
+  web:
     container_name: ecs_backend
     build: ./ecommerce-solutions
     #entrypoint: ./server-entry
@@ -29,10 +29,9 @@ services:
       - DJANGO_SUPERUSERNAME
       - DJANGO_SUPERUSER_EMAIL
       - DJANGO_SUPERUSER_PASSWORD
-      - CELERY_BROKER_URL="redis://redis:6379/0"
-      - CELERY_RESULT_BACKEND="redis://redis:6379/0"
+      - CELERY_BROKER_URL="redis://localhost:6379/0"
+      - CELERY_RESULT_BACKEND="redis://localhost:6379/0"
       - POSTGRES_USER
-      - POSTGRES_PASSWORD
       - POSTGRES_DB
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
@@ -63,6 +62,7 @@ services:
       - DEBUG
       - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
     depends_on:
+      - web
       - ecs_redis
       
   scheduler:
@@ -70,6 +70,9 @@ services:
     command: celery -A ecs beat -l info
     volumes:
       - ./ecommerce-solutions/:/home/backend
+    depends_on:
+      - web
+      - ecs_redis
 
   frontend_nginx:
     container_name: ecs_frontend_nginx
@@ -91,7 +94,7 @@ services:
     volumes:
       - ./frontend:/app
     depends_on:
-      - ecs_web
+      - web
     environment:
       - NODE_ENV=production
       - BACKEND_API_ENDPOINT=http://127.0.0.1/api/
@@ -106,7 +109,7 @@ services:
       - 'media_volume:/home/backend/mediafiles'
       
     depends_on:
-      - ecs_web 
+      - web 
   ecs_db:
     container_name: ecs_database
     image: postgres:16.0-alpine
@@ -125,13 +128,13 @@ services:
     environment:
       - POSTGRES_DB
       - POSTGRES_USER
-      - POSTGRES_PASSWORD=ecommerce-solutions
+      - POSTGRES_PASSWORD=admin
 
   ecs_redis:
     restart: unless-stopped
-    image: redis:7.0.5-alpine 
-    expose:
-      - 6379
+    image: redis:alpine 
+    ports:
+      - "6379:6379"
     
 volumes:
   db_data:
